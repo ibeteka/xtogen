@@ -444,6 +444,20 @@
 <xsl:text>
 		</xsl:text>
 <xsl:comment> listes </xsl:comment>
+            <map:match pattern="list_import.xsp">
+                <map:generate type="xsp" src="list_import.xsp"/>
+                <map:transform src="xsl/list_import.xsl">
+                    <map:parameter name="use-request-parameters" value="true"/>
+                </map:transform>
+                <map:serialize/>
+            </map:match>
+            <map:match pattern="list_export.xsp">
+                <map:generate type="xsp" src="list_export.xsp"/>
+                <map:transform src="xsl/list_export.xsl">
+                    <map:parameter name="use-request-parameters" value="true"/>
+                </map:transform>
+                <map:serialize/>
+            </map:match>
 			<map:match pattern="list_*.xsp">
 				<map:generate type="xsp">
 					<xsl:attribute name="src">terms_{1}.xsp</xsl:attribute>

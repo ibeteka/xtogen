@@ -1,4 +1,11 @@
 ==============================================================================
+ XToGen 2 - le 23/07/2004
+
+Bug corrigé :
+	* Une erreur d'utilisation des expressions de match dans le sitemap
+	empêchait l'accès à l'import/export des listes externes.
+
+==============================================================================
  XToGen 2 - le 13/05/2004
 
 Bugs corrigés :
