@@ -461,6 +461,20 @@
                 </map:transform>
                 <map:serialize/>
             </map:match>
+            <map:match pattern="list_pre_flush.xsp">
+                <map:generate type="xsp" src="list_pre_flush.xsp"/>
+                <map:transform src="xsl/list_pre_flush.xsl">
+                    <map:parameter name="use-request-parameters" value="true"/>
+                </map:transform>
+                <map:serialize/>
+            </map:match>
+            <map:match pattern="list_flush.xsp">
+                <map:generate type="xsp" src="list_flush.xsp"/>
+                <map:transform src="xsl/list_flush.xsl">
+                    <map:parameter name="use-request-parameters" value="true"/>
+                </map:transform>
+                <map:serialize/>
+            </map:match>
 			<map:match pattern="list_*.xsp">
 				<map:generate type="xsp">
 					<xsl:attribute name="src">terms_{1}.xsp</xsl:attribute>
