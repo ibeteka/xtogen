@@ -86,11 +86,11 @@ http://www.fsf.org/copyleft/gpl.html
 					</xsl:choose>
 					</td>
 					<xsl:if test="$admin">
-						<td bgcolor="white" align="center"><a class="nav" href="admin_import.xsp?db={$db}" title="{$messages[@id='page.admin.importdedocuments']}"><img src="icones/import_base.png" border="0"/></a></td>
+						<td bgcolor="white" align="center"><a class="nav" href="admin_import.xsp?db={$db}" title="{$messages[@id='page.admin.importdedocuments']}"><img src="icones/import_base.png" alt="{$messages[@id='page.admin.importdedocuments']}"/></a></td>
 						<td bgcolor="white" align="center">
 							<xsl:choose>
 								<xsl:when test="$nbDoc &gt; 0">
-									<a class="nav" href="admin_export.xsp?db={$db}&amp;sortfield={$sf}" title="{$messages[@id='page.admin.exportdedocuments']}"><img src="icones/export_base.png" border="0"/></a>
+									<a class="nav" href="admin_export.xsp?db={$db}&amp;sortfield={$sf}" title="{$messages[@id='page.admin.exportdedocuments']}"><img src="icones/export_base.png" alt="{$messages[@id='page.admin.exportdedocuments']}"/></a>
 								</xsl:when>
 								<xsl:otherwise>&#160;</xsl:otherwise>
 							</xsl:choose>
@@ -102,12 +102,12 @@ http://www.fsf.org/copyleft/gpl.html
 							<xsl:otherwise>admin_saisie.xsp</xsl:otherwise>
 						</xsl:choose>
 					</xsl:variable>
-					<td bgcolor="white" align="center"><a class="nav" href="{$saisie_link}?db={$db}" title="{$messages[@id='page.admin.saisiedunnouveaudocument']}"><img src="icones/new_document.png" border="0"/></a></td>
+					<td bgcolor="white" align="center"><a class="nav" href="{$saisie_link}?db={$db}" title="{$messages[@id='page.admin.saisiedunnouveaudocument']}"><img src="icones/new_document.png" alt="{$messages[@id='page.admin.saisiedunnouveaudocument']}"/></a></td>
 					<xsl:if test="$admin">
 						<xsl:choose>
 							<xsl:when test="$nbDoc &gt; 0">
 								<td bgcolor="white" align="center">
-								<a class="nav" href="pre_flush.xsp?db={$db}" title="{$messages[@id='page.admin.viderlabase']}"><img src="icones/flush_base.png" border="0"/></a>
+								<a class="nav" href="pre_flush.xsp?db={$db}" title="{$messages[@id='page.admin.viderlabase']}"><img src="icones/flush_base.png" alt="{$messages[@id='page.admin.viderlabase']}"/></a>
 								</td>
 							</xsl:when>
 							<xsl:otherwise>
@@ -142,13 +142,13 @@ http://www.fsf.org/copyleft/gpl.html
 				</xsl:choose></span>)</span></small>
 			</td>
 			<td bgcolor="white" align="center">
-				<a class="nav" href="list_import.xsp?list={@name}" title="{$messages[@id='common.importauformattexteseparateurvirgule']}"><img src="icones/import_csv.png" alt="{$messages[@id='common.importCSV']}" border="0"/></a>
+				<a class="nav" href="list_import.xsp?list={@name}" title="{$messages[@id='common.importauformattexteseparateurvirgule']}"><img src="icones/import_csv.png" alt="{$messages[@id='common.importCSV']}"/></a>
 			</td>
 			<td bgcolor="white" align="center">
-				<a class="nav" href="list_export.xsp?list={@name}" title="{$messages[@id='common.exportauformattexteseparateurvirgule']}"><img src="icones/export_csv.png" alt="{$messages[@id='common.exportCSV']}" border="0"/></a>
+				<a class="nav" href="list_export.xsp?list={@name}" title="{$messages[@id='common.exportauformattexteseparateurvirgule']}"><img src="icones/export_csv.png" alt="{$messages[@id='common.exportCSV']}"/></a>
 			</td>
 			<td bgcolor="white" align="center">
-				<a class="nav" href="list_pre_flush.xsp?list={@name}" title="{$messages[@id='page.admin.viderlaliste']}"><img src="icones/flush_list.png" alt="{$messages[@id='page.admin.viderlaliste']}" border="0"/></a>
+				<a class="nav" href="list_pre_flush.xsp?list={@name}" title="{$messages[@id='page.admin.viderlaliste']}"><img src="icones/flush_list.png" alt="{$messages[@id='page.admin.viderlaliste']}"/></a>
 			</td>
 			</tr>
 		</xsl:for-each>

@@ -144,7 +144,6 @@
 			<!-- Et de l'image -->
 			<xsl:element name="img">
 				<xsl:attribute name="src"><xsl:value-of select="$vignette"/></xsl:attribute>
-				<xsl:attribute name="border">0</xsl:attribute>
 				<xsl:attribute name="alt"><xsl:value-of select="$imglabel"/></xsl:attribute>
 			</xsl:element>
 		</xsl:element>

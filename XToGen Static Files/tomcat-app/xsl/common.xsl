@@ -279,10 +279,10 @@ http://www.fsf.org/copyleft/gpl.html
 						<a class="nav" href="{$page}&amp;p=1" title="{$messages[@id='common.debut']}">1</a>&#160;
 						</xsl:if>
 						<xsl:if test="$min != 1">
-						<a class="nav" href="{$page}&amp;p={number($min)-number($modulo)}" title="{concat($modulo,' ',$messages[@id='common.pagesprecedentes'])}"><img src="{$iconPPrev}" border="0" align="middle"/></a>&#160;
+						<a class="nav" href="{$page}&amp;p={number($min)-number($modulo)}" title="{concat($modulo,' ',$messages[@id='common.pagesprecedentes'])}"><img alt="{concat($modulo,' ',$messages[@id='common.pagesprecedentes'])}" src="{$iconPPrev}"/></a>&#160;
 						</xsl:if>
                         <xsl:if test="@currentPage &gt; 1">
-                            <a class="nav" href="{$page}&amp;p={number(@currentPage)-1}" title="{$messages[@id='common.pageprecedente']}"><img src="{$iconPrev}" border="0" align="middle"/></a>&#160;
+                            <a class="nav" href="{$page}&amp;p={number(@currentPage)-1}" title="{$messages[@id='common.pageprecedente']}"><img alt="{$messages[@id='common.pageprecedente']}" src="{$iconPrev}"/></a>&#160;
                         </xsl:if>
 						<!-- comptage des pages -->
 						<xsl:call-template name="_hppCount">
@@ -292,10 +292,10 @@ http://www.fsf.org/copyleft/gpl.html
 							<xsl:with-param name="page" select="$page"/>
 						</xsl:call-template>
                         <xsl:if test="number(@currentPage) &lt; number(@nbPages)">
-                            <a class="nav" href="{$page}&amp;p={number(@currentPage)+1}" title="{$messages[@id='common.pagesuivante']}"><img src="{$iconNext}" border="0" align="middle"/></a>&#160;
+                            <a class="nav" href="{$page}&amp;p={number(@currentPage)+1}" title="{$messages[@id='common.pagesuivante']}"><img alt="{$messages[@id='common.pagesuivante']}" src="{$iconNext}"/></a>&#160;
                         </xsl:if>
 						<xsl:if test="$min + $modulo &lt;= @nbPages">
-						<a class="nav" href="{$page}&amp;p={number($min)+number($modulo)}" title="{concat($modulo,' ',$messages[@id='common.pagessuivantes'])}"><img src="{$iconNNext}" border="0" align="middle"/></a>&#160;
+						<a class="nav" href="{$page}&amp;p={number($min)+number($modulo)}" title="{concat($modulo,' ',$messages[@id='common.pagessuivantes'])}"><img alt="{concat($modulo,' ',$messages[@id='common.pagessuivantes'])}" src="{$iconNNext}"/></a>&#160;
 						</xsl:if>
 						<xsl:if test="$min + $modulo &lt;= @nbPages">
 						<a class="nav" href="{$page}&amp;p={@nbPages}" title="{$messages[@id='common.fin']}"><xsl:value-of select="@nbPages"/></a>&#160;
@@ -439,11 +439,11 @@ http://www.fsf.org/copyleft/gpl.html
 
 	<xsl:template name="exportbar">
 		<xsl:if test="$admin">
-		<a class="nav" href="pre_query_export.xsp?type=pdf&amp;db={$currentdoctype}&amp;qid={//sdx:results/@qid}" title="{$messages[@id='page.admin.exportpdf']}"><img alt="{$messages[@id='page.admin.exportpdf']}" src="icones/pdf.png" border="0"/></a>
+		<a class="nav" href="pre_query_export.xsp?type=pdf&amp;db={$currentdoctype}&amp;qid={//sdx:results/@qid}" title="{$messages[@id='page.admin.exportpdf']}"><img alt="{$messages[@id='page.admin.exportpdf']}" src="icones/pdf.png"/></a>
 		<xsl:text> </xsl:text>
-		<a class="nav" href="pre_query_export.xsp?type=zip&amp;db={$currentdoctype}&amp;qid={//sdx:results/@qid}" title="{$messages[@id='page.admin.exportzip']}"><img alt="{$messages[@id='page.admin.exportzip']}" src="icones/zip.png" border="0"/></a>
+		<a class="nav" href="pre_query_export.xsp?type=zip&amp;db={$currentdoctype}&amp;qid={//sdx:results/@qid}" title="{$messages[@id='page.admin.exportzip']}"><img alt="{$messages[@id='page.admin.exportzip']}" src="icones/zip.png"/></a>
 		<xsl:text> </xsl:text>
-		<a class="nav" href="pre_query_export.xsp?type=csv&amp;db={$currentdoctype}&amp;qid={//sdx:results/@qid}" title="{$messages[@id='common.exportCSV']}"><img alt="{$messages[@id='common.exportCSV']}" src="icones/csv.png" border="0"/></a>
+		<a class="nav" href="pre_query_export.xsp?type=csv&amp;db={$currentdoctype}&amp;qid={//sdx:results/@qid}" title="{$messages[@id='common.exportCSV']}"><img alt="{$messages[@id='common.exportCSV']}" src="icones/csv.png"/></a>
 		</xsl:if>
 	</xsl:template>
 
@@ -465,7 +465,7 @@ http://www.fsf.org/copyleft/gpl.html
 					</xsl:choose>
 				</xsl:variable>
 				<a href="{$sortprefixuri}sortfield={@field}&amp;order=ascendant">
-					<img src="{$upicon}" border="0" title="{$messages[@id='common.ordreascendant']}"/>
+					<img src="{$upicon}" alt="{$messages[@id='common.ordreascendant']}" title="{$messages[@id='common.ordreascendant']}"/>
 				</a>
 				<xsl:text> </xsl:text>
 				<span>
@@ -482,7 +482,7 @@ http://www.fsf.org/copyleft/gpl.html
 					</xsl:choose>
 				</xsl:variable>
 				<a href="{$sortprefixuri}sortfield={@field}&amp;order=descendant">
-					<img src="{$downicon}" border="0" title="{$messages[@id='common.ordredescendant']}"/>
+					<img src="{$downicon}" alt="{$messages[@id='common.ordredescendant']}" title="{$messages[@id='common.ordredescendant']}"/>
 				</a>
 			</xsl:for-each>
 		</xsl:if>

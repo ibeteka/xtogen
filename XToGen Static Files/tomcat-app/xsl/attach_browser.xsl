@@ -134,11 +134,11 @@ function valider(name)
 <a class="nav" href="{$currentpage}?p=1&amp;fid={$fid}" title="{$messages[@id='common.debut']}">1</a>&#160;
 </xsl:if>
 <xsl:if test="$p &gt; 1">
-<a class="nav" href="{$currentpage}?p={$p -1}&amp;fid={$fid}" title="{$messages[@id='common.pageprecedente']}"><img src="{$iconPrev}" border="0" align="middle"/></a>&#160;
+<a class="nav" href="{$currentpage}?p={$p -1}&amp;fid={$fid}" title="{$messages[@id='common.pageprecedente']}"><img src="{$iconPrev}" alt="{$messages[@id='common.pageprecedente']}"/></a>&#160;
 </xsl:if>
 <xsl:value-of select="$p"/>&#160;
 <xsl:if test="$p &lt; $maxp">
-<a class="nav" href="{$currentpage}?p={$p+1}&amp;fid={$fid}" title="{$messages[@id='common.pagesuivante']}"><img src="{$iconNext}" border="0" align="middle"/></a>&#160;
+<a class="nav" href="{$currentpage}?p={$p+1}&amp;fid={$fid}" title="{$messages[@id='common.pagesuivante']}"><img src="{$iconNext}" alt="{$messages[@id='common.pagesuivante']}"/></a>&#160;
 </xsl:if>
 <xsl:if test="$p+1 &lt;= $maxp">
 <a class="nav" href="{$currentpage}?p={$maxp}&amp;fid={$fid}" title="{$messages[@id='common.fin']}"><xsl:value-of select="$maxp"/></a>

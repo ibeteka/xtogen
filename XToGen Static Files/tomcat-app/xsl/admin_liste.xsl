@@ -87,14 +87,14 @@ http://www.fsf.org/copyleft/gpl.html
 					<xsl:with-param name="admin">yes</xsl:with-param>
 				</xsl:call-template>
 			</td>
-			<td align="center" bgcolor="white"><small><a class="nav" href="admin_saisie.xsp?id={$docId}&amp;db={$base}&amp;app={$app}" title="{$messages[@id='page.admin.editerledocument']}"><img src="icones/edit.png" border="0" alt="{$messages[@id='page.admin.editer']}"/></a></small></td>
-			<td align="center" bgcolor="white"><small><a class="nav" href="export.xsp?id={$docId}&amp;db={$base}&amp;app={$app}" title="{$messages[@id='page.admin.exporterledocument']}"><img src="icones/export.png" border="0" alt="{$messages[@id='page.admin.exporter']}"/></a></small></td>
-			<td align="center" bgcolor="white"><small><a class="nav" href="admin_saisie.xsp?mode=copy&amp;id={$docId}&amp;db={$base}&amp;app={$app}" title="{$messages[@id='page.admin.copierledocument']}"><img src="icones/copy.png" border="0" alt="{$messages[@id='page.admin.copier']}"/></a></small></td>
+			<td align="center" bgcolor="white"><small><a class="nav" href="admin_saisie.xsp?id={$docId}&amp;db={$base}&amp;app={$app}" title="{$messages[@id='page.admin.editerledocument']}"><img src="icones/edit.png" alt="{$messages[@id='page.admin.editer']}"/></a></small></td>
+			<td align="center" bgcolor="white"><small><a class="nav" href="export.xsp?id={$docId}&amp;db={$base}&amp;app={$app}" title="{$messages[@id='page.admin.exporterledocument']}"><img src="icones/export.png"  alt="{$messages[@id='page.admin.exporter']}"/></a></small></td>
+			<td align="center" bgcolor="white"><small><a class="nav" href="admin_saisie.xsp?mode=copy&amp;id={$docId}&amp;db={$base}&amp;app={$app}" title="{$messages[@id='page.admin.copierledocument']}"><img src="icones/copy.png" alt="{$messages[@id='page.admin.copier']}"/></a></small></td>
 			<xsl:if test="$admin">
 			<td align="center" bgcolor="white">
 			<xsl:variable name="deleteurl" select="concat('pre_delete.xsp?id=',$docId,'&amp;db=',$base,'&amp;title=',sdx:field[@name=$titleField]/@escapedValue)"/>
 			<small>
-			<a class="nav" href="{$deleteurl}" title="{$messages[@id='page.admin.supprimerledocument']}"><img src="icones/delete.png" border="0" alt="{$messages[@id='page.admin.supprimer']}"/></a>
+			<a class="nav" href="{$deleteurl}" title="{$messages[@id='page.admin.supprimerledocument']}"><img src="icones/delete.png" alt="{$messages[@id='page.admin.supprimer']}"/></a>
 			</small></td>
 			</xsl:if>
 			</tr>

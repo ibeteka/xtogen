@@ -35,10 +35,10 @@ http://www.fsf.org/copyleft/gpl.html
     <xsl:template match="sdx:results">
 	<h2><xsl:value-of select="$messages[@id='bouton.navigation']"/></h2>
 	<xsl:apply-templates select="." mode="hpp"/>
-	<div align="left">
+	<div id="exportbar">
 		<xsl:call-template name="exportbar"/>
 	</div>
-	<div align="right">
+	<div id="sortbar">
 		<xsl:call-template name="sortbar"/>
 	</div>
     <h3><xsl:choose>
@@ -53,7 +53,7 @@ http://www.fsf.org/copyleft/gpl.html
 				<xsl:call-template name="display-results"/>
 				<br/>
 				<xsl:if test="@pages != '1'">
-					<hr noshade="noshade" size="1"/>
+					<div class="hr"/>
 				</xsl:if>
         		<xsl:apply-templates select="." mode="hpp"/>
             </xsl:when>
@@ -145,5 +145,7 @@ http://www.fsf.org/copyleft/gpl.html
 			<xsl:attribute name="alt"><xsl:value-of select="$alt"/></xsl:attribute>
 		</xsl:element>
 	</xsl:template>
+
+	<xsl:template match="documentbase"/>
 
 </xsl:stylesheet>

@@ -978,7 +978,7 @@ http://www.fsf.org/copyleft/gpl.html
 						</xsl:choose>
 					</xsl:variable>
 					<xsl:if test="($mode='link' and $value/@thn) or ($mode='inline' and $value) or ($mode='upload' or $mode='browser')">
-						<img id="{$prefix}{$gprefix}{$field}_{$id}_img" src="{$imgurl}"/>
+						<img alt="{$imgurl}" id="{$prefix}{$gprefix}{$field}_{$id}_img" src="{$imgurl}"/>
 					</xsl:if>
 				</td>
 				</tr>
@@ -1027,7 +1027,7 @@ http://www.fsf.org/copyleft/gpl.html
 				</xsl:if>
 				</td>
 			<td>
-				<img id="{$prefix}{$gprefix}{$field}_empty_img" src="icones/transparent.png"/>
+				<img id="{$prefix}{$gprefix}{$field}_empty_img" alt="blank" src="icones/transparent.png"/>
 			</td>
 				</tr>
 			</xsl:otherwise>

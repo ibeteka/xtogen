@@ -31,7 +31,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:sdx="http://www.culture.gouv.fr/ns/sdx/sdx" exclude-result-prefixes="sdx">
 
 	<xsl:template name="display-results">
-		<table border="0">
+		<table border="0" width="100%">
 			<xsl:apply-templates select="sdx:result"/>
 		</table>
 	</xsl:template>
@@ -68,9 +68,9 @@
 				<xsl:otherwise><xsl:value-of select="$docid"/></xsl:otherwise>
 			</xsl:choose>
 		</a>
-&#160;<a class="nav" href="{$pdfurl}" title="{$messages[@id='page.admin.exportpdf']}"><img src="icones/pdf.png" border="0"/></a>
+<xsl:text> </xsl:text><a class="nav" href="{$pdfurl}" title="{$messages[@id='page.admin.exportpdf']}"><img src="icones/pdf.png" alt="{$messages[@id='page.admin.exportpdf']}"/></a>
 <xsl:if test="$value!=''">
-&#160;<span dir="ltr">(<xsl:value-of select="$docid"/>)</span>
+<xsl:text> </xsl:text><span dir="ltr">(<xsl:value-of select="$docid"/>)</span>
 </xsl:if>
 	</xsl:template>
 

@@ -49,13 +49,13 @@ http://www.fsf.org/copyleft/gpl.html
 				<xsl:if test="$sdxnav/sdx:previous">
 					<xsl:variable name="previous" select="$sdxnav/sdx:previous"/>
 					<a title="{$messages[@id='common.documentprecedent']}" href="{$sdxdocument/@uri}?app={$previous/@app}&amp;db={$previous/@base}&amp;id={$previous/@docId}&amp;qid={$previous/../@queryId}&amp;n={$previous/@no}">
-						<img style="cursor:hand" border="0" src="{$iconPrev}"/>
+						<img alt="{$messages[@id='common.documentprecedent']}" src="{$iconPrev}"/>
 					</a>
 				</xsl:if>
 				<xsl:if test="$sdxnav/sdx:next">
 					<xsl:variable name="next" select="$sdxnav/sdx:next"/>
 					<a title="{$messages[@id='common.documentsuivant']}" href="{$sdxdocument/@uri}?app={$next/@app}&amp;db={$next/@base}&amp;id={$next/@docId}&amp;qid={$next/../@queryId}&amp;n={$next/@no}">
-						<img style="cursor:hand" border="0" src="{$iconNext}"/>
+						<img alt="{$messages[@id='common.documentsuivant']}" src="{$iconNext}"/>
 					</a>
 				</xsl:if>
 			</xsl:copy>

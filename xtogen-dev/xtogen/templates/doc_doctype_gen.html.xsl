@@ -91,7 +91,7 @@
 		
 		<tr id="xtg-reversefield-{$doc}/{$field}">
 			<td id="xtg-field-name" class="attribut" valign="top">#reverse#<xsl:value-of select="$doc"/>#<xsl:value-of select="$field"/>#</td>
-			<td id="xtg-field-value" width="100%" class="valeur">#value#</td>
+			<td id="xtg-field-value" class="valeur">#value#</td>
 		</tr>
 	</xsl:template>
 	
@@ -99,7 +99,7 @@
 		<!-- Normal field -->
 		<tr id="xtg-field-id-{@name}">
 			<td id="xtg-field-name" class="attribut" valign="top">#<xsl:value-of select="@name"/>#</td>
-			<td id="xtg-field-value" width="100%">
+			<td id="xtg-field-value">
 				<xsl:attribute name="class">
 					<xsl:choose>
 						<xsl:when test="@default">titre</xsl:when>

@@ -244,7 +244,7 @@ http://www.fsf.org/copyleft/gpl.html
 		</xsl:choose>
 		<xsl:if test="not($op) or $op!='edit' or $paramId!=$id or $paramLang!=$myLang">
 			<xsl:text> </xsl:text>
-			<a class="nav" href="admin_edit_liste.xsp?list={$list}&amp;op=edit&amp;id={$id}&amp;myLang={@id}#mod"><img src="icones/edit.png" border="0" title="{$messages[@id='page.admin_edit_liste.modifier']}"/></a>
+			<a class="nav" href="admin_edit_liste.xsp?list={$list}&amp;op=edit&amp;id={$id}&amp;myLang={@id}#mod" title="{$messages[@id='page.admin_edit_liste.modifier']}"><img src="icones/edit.png" alt="{$messages[@id='page.admin_edit_liste.modifier']}"/></a>
 		</xsl:if>
 	</xsl:template>
 

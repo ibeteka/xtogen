@@ -62,7 +62,7 @@
 
 								<tr>
 									<td>
-										<img src="icones/logo.png" title="{$appli_name}"/>
+										<img alt="logo" src="icones/logo.png" title="{$appli_name}"/>
 									</td>
 									<td>
 										<font size="+3" color="#196fac">
@@ -256,7 +256,7 @@
 									<tr>
 										<td>
 											<a class="url" href="http://xtogen.tech.fr">
-												<img src="icones/v_xtogen.png" width="79" height="24" border="0"/>
+												<img alt="XToGen" src="icones/v_xtogen.png" width="79" height="24"/>
 											</a>
 										</td>
 									</tr>

@@ -283,7 +283,7 @@
 			<xsl:attribute name="name">href</xsl:attribute>javascript:alter('<xsl:element name="xsl:value-of">
 				<xsl:attribute name="select">$divid-<xsl:value-of select="$name"/><xsl:value-of select="$suffix"/></xsl:attribute></xsl:element>','<xsl:element name="xsl:value-of">
 					<xsl:attribute name="select">$divid-<xsl:value-of select="$name"/><xsl:value-of select="$suffix"/></xsl:attribute></xsl:element>_button')</xsl:element>
-		<img width="9" height="9" border="0">
+		<img width="9" height="9" alt="control">
 			<xsl:attribute name="src">
 				<xsl:choose>
 					<xsl:when test="$action='open'">icones/plus.png</xsl:when>
@@ -353,7 +353,7 @@
 			<xsl:attribute name="name">href</xsl:attribute>javascript:alter('<xsl:element name="xsl:value-of">
 				<xsl:attribute name="select">$divid-<xsl:value-of select="$name"/>-new</xsl:attribute></xsl:element>','<xsl:element name="xsl:value-of">
 					<xsl:attribute name="select">$divid-<xsl:value-of select="$name"/>-new</xsl:attribute></xsl:element>_button')</xsl:element>
-		<img width="9" height="9" border="0">
+		<img width="9" height="9" alt="control">
 			<xsl:attribute name="src">
 				<xsl:choose>
 					<xsl:when test="$divpolicy='display:none'">icones/plus.png</xsl:when>

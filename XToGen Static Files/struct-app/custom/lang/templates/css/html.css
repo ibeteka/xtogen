@@ -5,6 +5,27 @@
         A:link   {color: #006600; text-decoration: none; font-weight: bold}
         A:visited  {color: #999999; text-decoration: none; font-weight: bold}
         A:active  {color: #006600; text-decoration: none; font-weight: bold}
+
+fieldset#search { text-align: center; font-size: small; border-width: 0;}
+fieldset#search form { margin: 0; padding: 0;}
+td.nowrap { white-space: nowrap; }
+div.hr { border-top: solid 1px black; width: 100%; height: 2px; }
+div#exportbar { float: left; }
+div#sortbar { text-align: right; width: 100%; }
+td.titre { width: 100%; }
+
+a img {
+	border-width: 0px;
+}
+
+.headertitle {
+	font-size: 300%;
+	color: #196fac;
+	font-weight: bold;
+}
+.small {
+	font-size: small;
+}
 .attribut {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -14,6 +35,7 @@
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	color: #000099;
+	width: 100%;
 }
 .saisie {
 	font-family: Arial, Helvetica, sans-serif;
@@ -164,7 +186,7 @@ a.rel:hover { color: #961cb5; }
         html 
     { }
         body 
-    { margin-left: 3em; margin-right: 1em; margin-top:0;  }
+    { background-color: #ffffff; margin-left: 1em; margin-right: 1em; margin-top:0;  }
         head * 
     { margin-right: 2em; }
         ol, ul, dl 

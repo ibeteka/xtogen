@@ -119,12 +119,12 @@ http://www.fsf.org/copyleft/gpl.html
     </xsl:template>
     <xsl:template match="sdx:next">
         <a title="{$messages[@id='common.documentsuivant']}" href="{$sdxdocument/@uri}?app={@app}&amp;db={@base}&amp;id={@docId}&amp;qid={../@queryId}&amp;n={@no}">
-            <img style="cursor:hand" border="0" src="{$iconNext}"/>
+            <img alt="{$messages[@id='common.documentsuivant']}" src="{$iconNext}"/>
         </a>
     </xsl:template>
     <xsl:template match="sdx:previous">
         <a title="{$messages[@id='common.documentprecedent']}" href="{$sdxdocument/@uri}?app={@app}&amp;db={@base}&amp;id={@docId}&amp;qid={../@queryId}&amp;n={@no}">
-            <img style="cursor:hand" border="0" src="{$iconPrev}"/>
+            <img alt="{$messages[@id='common.documentprecedent']}" src="{$iconPrev}"/>
         </a>
     </xsl:template>
 
@@ -140,7 +140,7 @@ http://www.fsf.org/copyleft/gpl.html
 		<!--
 		<xsl:if test="$dbId = 'vCard'">
 			<a class="nav" href="export_vcf.xsp?id={$id}&amp;db={$base}&amp;app={$app}" title="{$messages[@id='page.admin.exportvcf']}">
-				<img src="icones/export_vcf.png" alt="{$messages[@id='page.admin.exportvcf']}" border="0"/>
+				<img src="icones/export_vcf.png" alt="{$messages[@id='page.admin.exportvcf']}"/>
 			</a>
 			<xsl:text> </xsl:text>
 		</xsl:if>
@@ -148,18 +148,18 @@ http://www.fsf.org/copyleft/gpl.html
 
 		<!-- afficher icône pdf -->
 		<a class="nav" href="pdf_export.xsp?id={$id}&amp;db={$base}&amp;app={$app}" title="{$messages[@id='page.admin.exportpdf']}">
-			<img src="icones/pdf.png" alt="{$messages[@id='page.admin.exportpdf']}" border="0"/>
+			<img src="icones/pdf.png" alt="{$messages[@id='page.admin.exportpdf']}"/>
 		</a>
 			&#160;
 
 		<!-- Edition et export sont pour le groupe saisie de la ville -->
 		<xsl:if test="(count($currentuser/sdx:group[@id='saisie'])=1 and $currentuser/@app=$sdxdocument/@app) or $admin">
 			<a class="nav" href="admin_saisie.xsp?id={$id}&amp;db={$base}&amp;app={$app}" title="{$messages[@id='page.admin.editerledocument']}">
-				<img src="icones/edit.png" alt="{$messages[@id='page.admin.editerledocument']}" border="0"/>
+				<img src="icones/edit.png" alt="{$messages[@id='page.admin.editerledocument']}"/>
 			</a>
 			&#160;
 			<a class="nav" href="export.xsp?id={$id}&amp;db={$base}&amp;app={$app}" title="{$messages[@id='page.admin.exporterledocument']}">
-				<img src="icones/export.png" alt="{$messages[@id='page.admin.exporterledocument']}" border="0"/>
+				<img src="icones/export.png" alt="{$messages[@id='page.admin.exporterledocument']}"/>
 			</a>
 			&#160;
 		</xsl:if>
@@ -167,7 +167,7 @@ http://www.fsf.org/copyleft/gpl.html
 		<!-- La suppression est réservée aux administrateurs -->
 		<xsl:if test="$admin">
 			<a class="nav" href="pre_delete.xsp?id={$id}&amp;db={$base}&amp;app={$app}&amp;title={$title}" title="{$messages[@id='page.admin.supprimerledocument']}">
-				<img src="icones/delete.png" alt="{$messages[@id='page.admin.supprimerledocument']}" border="0"/>
+				<img src="icones/delete.png" alt="{$messages[@id='page.admin.supprimerledocument']}"/>
 			</a>
 		</xsl:if>
 	</xsl:template>
@@ -352,7 +352,6 @@ http://www.fsf.org/copyleft/gpl.html
 								<xsl:attribute name="title"><xsl:value-of select="$imglabel"/></xsl:attribute>
 								<xsl:element name="img">
 									<xsl:attribute name="src"><xsl:value-of select="$thnurl"/></xsl:attribute>
-									<xsl:attribute name="border">0</xsl:attribute>
 									<xsl:attribute name="alt"><xsl:value-of select="$imglabel"/></xsl:attribute>
 								</xsl:element>
 							</xsl:element>
@@ -377,7 +376,7 @@ http://www.fsf.org/copyleft/gpl.html
 						</xsl:variable>
 						<xsl:element name="a">
 							<xsl:attribute name="href"><xsl:value-of select="$imgurlvisu"/></xsl:attribute>
-							<img src="{$rootUrl}thumbnail?app={$application}&amp;base={$base}&amp;id={$imgid}&amp;size={$thnsize}" border="0" title="{$imglabel}"/>
+							<img src="{$rootUrl}thumbnail?app={$application}&amp;base={$base}&amp;id={$imgid}&amp;size={$thnsize}" alt="{$imglabel}" title="{$imglabel}"/>
 						</xsl:element>
 					</xsl:otherwise>
 				</xsl:choose>
