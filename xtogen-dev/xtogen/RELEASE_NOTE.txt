@@ -1,4 +1,9 @@
 ==============================================================================
+ XToGen 2 - le 16/02/2005
+
+Améliorations :
+	* Gestion d'un certain nombre de tags HTML dans le texte libre
+==============================================================================
  XToGen 2 - le 10/02/2005
 
 Améliorations :
