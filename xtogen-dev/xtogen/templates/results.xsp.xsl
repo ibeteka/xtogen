@@ -98,9 +98,19 @@
 					}
 				}
 			</xsp:logic>
-			<sdx:executeSimpleQuery sf="{normalize-space($sf)}" hilite="true" queryString="myValue" fieldString="myField">
-				<xsl:apply-templates select="//documenttype"/>
-			</sdx:executeSimpleQuery>
+			<xsp:logic>
+				if (request.getParameter("db") == null) {
+					<sdx:executeFieldQuery sf="sdxdbid xtgtitle" hilite="true" fieldString="myField" valueString="myValue">
+						<xsl:apply-templates select="//documenttype"/>
+					</sdx:executeFieldQuery>
+				}
+				else {
+					String myDB = request.getParameter("db");
+					<sdx:executeFieldQuery sf="xtgtitle" hilite="true" fieldString="myField" valueString="myValue">
+						<sdx:location baseString="myDB"/>
+					</sdx:executeFieldQuery>
+				}
+			</xsp:logic>
 			</xtg:authentication>
 		</sdx:page>
 	</xsp:page>

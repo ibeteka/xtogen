@@ -178,6 +178,7 @@
 						<input type="text" name="q"/>
 						<input type="submit" value="{$messages[@id='page.search.rechercher']}"/>
 						<input type="hidden" name="qlang" value="fr-FR"/>
+						<input type="hidden" name="db" value="{$currentdoctype}"/>
 					</form>
 				</fieldset>
 				<br/>
