@@ -32,8 +32,7 @@ http://www.fsf.org/copyleft/gpl.html
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:sdx="http://www.culture.gouv.fr/ns/sdx/sdx"
 	xmlns:xtg="http://xtogen.tech.fr"
-	xmlns:urle="java.net.URLEncoder"
-	exclude-result-prefixes="xsl sdx xtg urle">
+	exclude-result-prefixes="xsl sdx xtg">
 
 	<!-- Variables globales -->
 	<xsl:import href="vars.xsl"/>
@@ -245,9 +244,9 @@ http://www.fsf.org/copyleft/gpl.html
 -->
     <xsl:template match="sdx:results | sdx:terms" mode="hpp">
 		<xsl:variable name="page">
-			<xsl:text/><xsl:value-of select="$currentpage"/>?<xsl:for-each select="$urlparameter[@type='get' and @name!='qid' and @name!='p']">
-				<xsl:text/><xsl:value-of select="@name"/>=<xsl:value-of select="urle:encode(@value,'UTF-8')"/>&amp;<xsl:text/>
-			</xsl:for-each>qid=<xsl:value-of select="@id"/><xsl:text/>
+			<xsl:text/><xsl:value-of select="$currentpage"/>?<xsl:for-each select="$urlparameter[@type='get' and @name!='p']">
+				<xsl:text/><xsl:value-of select="@name"/>=<xsl:value-of select="@value"/>&amp;<xsl:text/>
+			</xsl:for-each>dummy=1<xsl:text/>
 		</xsl:variable>
         <xsl:if test="number(@nbPages) &gt; 1">
             <table cellpadding="0" cellspacing="0" border="0" width="100%" class="navigation">
