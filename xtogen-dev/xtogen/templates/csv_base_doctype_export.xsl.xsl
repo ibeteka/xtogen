@@ -101,7 +101,7 @@
 				</conf>
 				<data>
 					<header>
-						<col>id</col><xsl:for-each select="fields/descendant-or-self::field[not(@type) or @type!='attach']"><col><xsl:value-of select="@name"/></col></xsl:for-each>
+						<col>id</col><xsl:for-each select="fields/descendant-or-self::field"><col><xsl:value-of select="@name"/></col></xsl:for-each>
 					</header>
 					<xsl:element name="xsl:for-each">
 						<xsl:attribute name="select">//<xsl:value-of select="@id"/></xsl:attribute>
@@ -117,7 +117,7 @@
 								</xsl:element>
 							</xsl:element>
 						</value>
-						<xsl:for-each select="fields/descendant-or-self::field[not(@type) or @type!='attach']">
+						<xsl:for-each select="fields/descendant-or-self::field">
 						<xsl:variable name="fp">
 							<xsl:call-template name="computeUniqueFullPath">
 								<xsl:with-param name="field" select="."/>

@@ -84,6 +84,12 @@
 		<xsl:apply-templates select="//documenttype" mode="field"/>
 	</fields>
 
+	<allfields>
+		<xsl:apply-templates select="//documenttype" mode="field">
+			<xsl:with-param name="withattach" select="'yes'"/>
+		</xsl:apply-templates>
+	</allfields>
+
 </configuration>
 </xsl:template>
 
@@ -124,14 +130,17 @@
 
 <!-- Field -->
 <xsl:template match="documenttype" mode="field">
+	<xsl:param name="withattach">no</xsl:param>
 	<document id="{@id}">
 		<xsl:apply-templates select="fields/field[not(@type) or @type!='attach']|fields/fieldgroup" mode="field">
+			<xsl:with-param name="withattach" select="$withattach"/>
 			<xsl:with-param name="path"/>
 		</xsl:apply-templates>
 	</document>
 </xsl:template>
 
 <xsl:template match="field" mode="field">
+	<xsl:param name="withattach">no</xsl:param>
 	<xsl:param name="path"/>
 
 	<xsl:variable name="fp">
@@ -150,14 +159,17 @@
 		</xsl:choose>
 	</xsl:variable>
 
-	<field name="{@name}" path="{$fp}" type="{$type}">
-		<xsl:if test="@to">
-			<xsl:copy-of select="@to"/>
-		</xsl:if>
-	</field>
+	<xsl:if test="$withattach='yes' or $type!='attach'">
+		<field name="{@name}" path="{$fp}" type="{$type}">
+			<xsl:if test="@to">
+				<xsl:copy-of select="@to"/>
+			</xsl:if>
+		</field>
+	</xsl:if>
 </xsl:template>
 
 <xsl:template match="fieldgroup" mode="field">
+	<xsl:param name="withattach">no</xsl:param>
 	<xsl:param name="path"/>
 
 	<xsl:variable name="fp">
@@ -170,7 +182,8 @@
 	</xsl:variable>
 
 	<fieldgroup name="{@name}">
-	<xsl:apply-templates select="field[not(@type) or @type!='attach']|fieldgroup" mode="field">
+	<xsl:apply-templates select="field|fieldgroup" mode="field">
+		<xsl:with-param name="withattach" select="$withattach"/>
 		<xsl:with-param name="path" select="$fp"/>
 	</xsl:apply-templates>
 	</fieldgroup>

@@ -63,6 +63,8 @@
 
 	<!-- Champs simples -->
 	<xsl:variable name="sfields" select="$xtogenconf/fields"/>
+	<!-- Tous les champs -->
+	<xsl:variable name="allfields" select="$xtogenconf/allfields"/>
 
 	<!-- Nom du champ "titre" pour un type de document -->
 	<xsl:variable name="titlefields" select="$xtogenconf/dbases"/>

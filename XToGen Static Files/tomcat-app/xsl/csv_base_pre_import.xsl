@@ -98,7 +98,7 @@
 					<tr><td bgcolor="white" colspan="2">
 					<table bgcolor="white" width="100%">
 					<xsl:variable name="base" select="base"/>
-					<xsl:variable name="doc" select="$sfields/document[@id=$base]"/>
+					<xsl:variable name="doc" select="$allfields/document[@id=$base]"/>
 					<xsl:apply-templates select="$doc/field|$doc/fieldgroup">
 						<xsl:with-param name="cols" select="$cols"/>
 						<xsl:with-param name="spacer">&#160;</xsl:with-param>

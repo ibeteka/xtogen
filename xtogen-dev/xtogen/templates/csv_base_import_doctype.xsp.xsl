@@ -80,12 +80,11 @@
 			<xtg:authentication domain="base">
 				<xsp:logic>
 					request.setCharacterEncoding("UTF8");
-					fr.tech.sdx.xtogen.util.TimeTracker tt
-						= new fr.tech.sdx.xtogen.util.TimeTracker();
-					tt.start("init");
 					// Base directory
 					String baseDir
 						= fr.tech.sdx.xtogen.util.FileHelper.getBaseDir(context,request);
+					File documentDir = new File(baseDir + File.separator
+						+ "documents" + File.separator + "<xsl:value-of select="@id"/>");
 
 					File csvFile = new File(request.getParameter("csv.file"));
 					String csvFormat = request.getParameter("csv.format");
@@ -97,18 +96,18 @@
 					clp.reset();
 					clp.getHeaders();
 					
-					Properties	values				= null;
-					String 		id					= null;
+					java.util.Properties	values	= null;
+					String		id					= null;
 					String		idColumn			= request.getParameter("identcol");
 					boolean		idHasToBeGenerated	= "generated".equals(request.getParameter("ident"));
-					<xsl:for-each select="fields/descendant-or-self::field[not(@type) or @type!='attach']">
-					String param<xsl:value-of select="generate-id(.)"/> = request.getParameter("field.<xsl:value-of select="@name"/>");</xsl:for-each>
+					<xsl:for-each select="fields/descendant-or-self::field">
+					String param<xsl:value-of select="generate-id(.)"/> = request.getParameter("field.<xsl:value-of select="@name"/>");
+					boolean bParam<xsl:value-of select="generate-id(.)"/> = (param<xsl:value-of select="generate-id(.)"/> != null &amp;&amp; !"---".equals(param<xsl:value-of select="generate-id(.)"/>));</xsl:for-each>
 					String paramLang = request.getParameter("csv.lang");
 
 					<xsl:variable name="base" select="@id"/>
 					fr.tech.sdx.xtogen.sdx.SDXUtil xtgSDXUtil
 						= new fr.tech.sdx.xtogen.sdx.SDXUtil("<xsl:value-of select="$base"/>", sdx_application);
-					tt.stop("init");
 					int			rowCount			= 0;
 					int			indexedDoc			= 0;
 					while (clp.hasRow())
@@ -119,7 +118,6 @@
 
 						rowCount++;
 
-						tt.start("docb");
 						if (idHasToBeGenerated)
 								id = "xtg" + new java.util.Date().getTime();
 						else	id = values.getProperty(idColumn);
@@ -127,20 +125,16 @@
 						fr.tech.sdx.xtogen.dom.DOMBuilder builder
 							= new fr.tech.sdx.xtogen.dom.DOMBuilder("<xsl:value-of select="@id"/>", id, paramLang);
 						
-					<xsl:for-each select="fields/descendant-or-self::field[not(@type) or @type!='attach']">
+					<xsl:for-each select="fields/descendant-or-self::field">
 						<xsl:variable name="fp">
 							<xsl:call-template name="computeFullPath">
 								<xsl:with-param name="field" select="."/>
 							</xsl:call-template>
 						</xsl:variable>
-						if (param<xsl:value-of select="generate-id(.)"/> != null &amp;&amp; !"---".equals(param<xsl:value-of select="generate-id(.)"/>))
+						if (bParam<xsl:value-of select="generate-id(.)"/> &amp;&amp; values.getProperty(param<xsl:value-of select="generate-id(.)"/>) != null &amp;&amp; !"".equals(values.getProperty(param<xsl:value-of select="generate-id(.)"/>)))
 							builder.populateField("<xsl:value-of select="@name"/>","<xsl:value-of select="$fp"/>",values.getProperty(param<xsl:value-of select="generate-id(.)"/>));</xsl:for-each>
-						tt.stop("docb");
-						tt.start("seri");
-						File tempFile = File.createTempFile("xtg","tmp");
+						File tempFile = new File(documentDir, "xtg_tmp_" + id + ".xml");
 						builder.saveDom(tempFile);
-						tt.stop("seri");
-						tt.start("inde");
 						try
 						{
 							xtgSDXUtil.indexFile(tempFile, id, contentHandler);
@@ -150,10 +144,9 @@
 						{
 							ex.printStackTrace();
 						}
-						tt.stop("inde");
 						tempFile.delete();
+						System.err.println(rowCount + " documents indexed.");
 					}
-					tt.print();
 					
 					csvFile.delete();
 					
