@@ -265,7 +265,12 @@
         </map:pipeline>
 		</xsl:if>
         <map:pipeline>
-
+		   <map:match pattern="**.ico">
+		      <map:read>
+			  	<xsl:attribute name="src">{1}.ico</xsl:attribute>
+			  	<xsl:attribute name="mime-type">image/x-icon</xsl:attribute>
+			  </map:read>
+		   </map:match>
 		   <map:match pattern="thumbnail">
 				<map:act type="request">
 					<map:parameter name="parameters" value="true"/>

@@ -1,4 +1,11 @@
 ==============================================================================
+ XToGen 2 - le 20/08/2004
+
+Amélioration :
+	* Meilleure génération des templates HTML
+	* Ajout de la gestion des .ico dans le sitemap.xmap
+
+==============================================================================
  XToGen 2 - le 05/08/2004
 
 Amélioration :

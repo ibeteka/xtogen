@@ -105,9 +105,7 @@
 						<xsl:when test="@default">titre</xsl:when>
 						<xsl:otherwise>valeur</xsl:otherwise>
 					</xsl:choose>
-				</xsl:attribute>
-				#value#
-			</td>
+				</xsl:attribute>#value#</td>
 		</tr>
 	</xsl:template>
 	
