@@ -186,6 +186,7 @@
 	<message id="page.admin.exportdunebrochurepdf">Esporto di un opuscolo PDF</message>
 	<message id="page.admin.exportzip">*Export ZIP*</message>
 	<message id="page.admin.aveclespiecesattachees">*Avec les pièces attachées :*</message>
+	<message id="page.admin.navigateurdepiecesattachees">*Navigateur de pièces attachées*</message>
 
 	<!-- Admin edit liste -->
 	<message id="page.admin_edit_liste.liste">Lista</message>

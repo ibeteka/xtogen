@@ -185,6 +185,7 @@
 	<message id="page.admin.exportdunebrochurepdf">PDF booklet export</message>
 	<message id="page.admin.exportzip">ZIP export</message>
 	<message id="page.admin.aveclespiecesattachees">Including attached documents:</message>
+	<message id="page.admin.navigateurdepiecesattachees">Attached files browser</message>
 
 	<!-- Admin edit liste -->
 	<message id="page.admin_edit_liste.liste">List</message>

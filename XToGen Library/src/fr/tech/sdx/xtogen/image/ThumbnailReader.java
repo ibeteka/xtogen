@@ -67,7 +67,7 @@ import fr.tech.sdx.xtogen.util.FileHelper;
 
 /**
  * @author Pierre Dittgen (pierre.dittgen(at)pass-tech.fr)
- *
+ * @deprecated Renamed ThumbnailSDXReader
  */
 public class ThumbnailReader extends AbstractReader implements Composable
 {

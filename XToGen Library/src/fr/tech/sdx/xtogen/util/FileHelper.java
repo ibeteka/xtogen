@@ -74,6 +74,26 @@ public final class FileHelper
 	}
 
 	/**
+	 * Copy in into out
+	 * @param in Input stream
+	 * @param out Output stream
+	 * @throws IOException If something bad occurs
+	 */
+	public static void copy(InputStream in, OutputStream out)
+		throws IOException
+	{
+		byte[] buffer = new byte[8192];
+		int length = -1;
+
+		while ((length = in.read(buffer)) > -1) {
+			out.write(buffer, 0, length);
+		}
+		in.close();
+		in = null;
+		out.flush();
+	}
+	
+	/**
 	 * Gets application directory
 	 * 
 	 * @param context Cocoon context

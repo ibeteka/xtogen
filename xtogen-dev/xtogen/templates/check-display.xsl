@@ -106,7 +106,7 @@
 			<xsl:message>Attention : le champ "<xsl:value-of select="$f"/>" n'est pas de type choice, l'attribut mode est donc ignoré.</xsl:message>
 		</xsl:if>
 
-		<xsl:if test="@mode and @mode!='check' and @mode!='radio' and @mode!='combo' and @mode!='Mcombo' and @mode!='2cols' and @mode!='alpha' and @mode!='inline' and @mode!='link' and @mode!='upload'">
+		<xsl:if test="@mode and @mode!='check' and @mode!='radio' and @mode!='combo' and @mode!='Mcombo' and @mode!='2cols' and @mode!='alpha' and @mode!='inline' and @mode!='link' and @mode!='upload' and @mode!='browser'">
 			<xsl:message>Erreur : valeur de mode non conforme : "<xsl:value-of select="@mode"/>"</xsl:message>
 		</xsl:if>
 
@@ -114,8 +114,8 @@
 			<xsl:message>Erreur : un champ relation ne supporte que les modes combo et Mcombo</xsl:message>
 		</xsl:if>
 
-		<xsl:if test="(@mode!='link' and @mode!='inline' and @mode!='upload') and $field/@type='attach'">
-			<xsl:message>Erreur : un champ attach ne supporte que les modes link et inline</xsl:message>
+		<xsl:if test="(@mode!='link' and @mode!='inline' and @mode!='upload' and @mode!='browser') and $field/@type='attach'">
+			<xsl:message>Erreur : un champ attach ne supporte que les modes link, inline, upload et browser</xsl:message>
 		</xsl:if>
 
 		<xsl:if test="$section!='search' and @mode and (@mode='check' or @mode='Mcombo' or @mode='2cols') and $field/@repeat='no'">

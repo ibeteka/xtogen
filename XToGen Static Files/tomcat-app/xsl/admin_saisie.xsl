@@ -33,7 +33,7 @@ http://www.fsf.org/copyleft/gpl.html
 	xmlns:sdx="http://www.culture.gouv.fr/ns/sdx/sdx"
 	xmlns:dir="http://apache.org/cocoon/directory/2.0"
 	xmlns:xtg="http://xtogen.tech.fr"
-	exclude-result-prefixes="sdx xsl xsp">
+	exclude-result-prefixes="sdx xsl dir xsp">
     <xsl:import href="common.xsl"/>
     <xsl:import href="admin_saisie_all_docs.xsl"/>
 
@@ -219,6 +219,13 @@ http://www.fsf.org/copyleft/gpl.html
 			document.getElementById(bt).src = "icones/plus.png";
 		}
 	}
+
+	// Open Attach browser window
+	function openBrowser(fid)
+	{
+		window.open('attach_browser_<xsl:value-of select="$currentdoctype"/>.xsp?fid='+fid,'Saisie','toolbar=no,location=no,status=no,menubar=no,scrollbars=no');
+		return false;
+	}
 	</script>
 	</xsl:template>
 
@@ -252,7 +259,7 @@ http://www.fsf.org/copyleft/gpl.html
 		</div>
 		<h3><xsl:value-of select="$messages[@id='page.admin.basededocuments']"/>&#160;<xsl:value-of select="$base"/></h3>
 		<xsl:if test="$urlparameter[@name='id']">&#160;<small>(<xsl:value-of select="$urlparameter[@name='id']/@value"/>)</small></xsl:if>
-		<form method="POST" action="saisie_{$base}.xsp" enctype="multipart/form-data">
+		<form id="saisie" name="saisie" method="POST" action="saisie_{$base}.xsp" enctype="multipart/form-data">
 			<xsl:if test="$useJavaScript">
 				<xsl:attribute name="onsubmit">if (window.xfm_submit) return xfm_submit(this);</xsl:attribute>
 			</xsl:if>
@@ -496,7 +503,7 @@ http://www.fsf.org/copyleft/gpl.html
 				<table border="0">
 				<tr>
 				<td>
-				<select multiple="multiple" size="{$listSize}" onkeydown="return xfm_selectKeydown (this, this.form[&quot;{$otherfieldname}&quot;]);" type="text" onblur="if (window.xfm_blur) xfm_blur(this);" onfocus="if (window.xfm_focus) xfm_focus(this);">
+				<select multiple="multiple" size="{$selectsize}" onkeydown="return xfm_selectKeydown (this, this.form[&quot;{$otherfieldname}&quot;]);" type="text" onblur="if (window.xfm_blur) xfm_blur(this);" onfocus="if (window.xfm_focus) xfm_focus(this);">
 				 	<xsl:choose>
 						<!-- Liste externe -->
 						<xsl:when test="$list != ''">
@@ -544,7 +551,7 @@ http://www.fsf.org/copyleft/gpl.html
 				</td>
 				<td>
 				<input type="hidden" name="{$prefix}2cols.id" value="{$otherfieldname}"/>
-				<select multiple="multiple" size="{$listSize}" onkeydown="return xfm_selectKeydown(this)" type="text" onblur="if (window.xfm_blur) xfm_blur(this);" onfocus="if (window.xfm_focus) xfm_focus(this);" name="{$otherfieldname}">
+				<select multiple="multiple" size="{$selectsize}" onkeydown="return xfm_selectKeydown(this)" type="text" onblur="if (window.xfm_blur) xfm_blur(this);" onfocus="if (window.xfm_focus) xfm_focus(this);" name="{$otherfieldname}">
 				 	<xsl:choose>
 						<!-- Liste externe -->
 						<xsl:when test="$list != ''">
@@ -797,7 +804,7 @@ http://www.fsf.org/copyleft/gpl.html
 
 		<xsl:variable name="db" select="$relations/relation[@doc=$dbId and @field=$field]"/>
 		<xsl:variable name="titlefield" select="$titlefields/dbase[@id=$db]"/>
-		<xsl:variable name="url" select="concat($rootUrl,'query_',$db,'?f=sdxall&amp;v=1&amp;hpp=-1')"/>
+		<xsl:variable name="url" select="concat($rootUrl,'query_',$db,'?f=sdxall&amp;v=1&amp;hpp=-1&amp;sortfield=xtgtitle')"/>
 		<xsl:variable name="selectsize">
 			<xsl:call-template name="listSize">
 				<xsl:with-param name="$field"/>
@@ -901,9 +908,12 @@ http://www.fsf.org/copyleft/gpl.html
 		<xsl:choose>
 			<!-- Document attaché valué -->
 			<xsl:when test="$value != ''">
+				<xsl:variable name="id" select="generate-id($value)"/>
 				<tr>
 				<td class="saisie">
+					<xsl:if test="$mode!='browser'">
 					<xsl:value-of select="$messages[@id='page.saisie.fichierattache']"/> :
+					</xsl:if>
 					<xsl:choose>
 						<xsl:when test="$mode='upload'">
 							<b>
@@ -913,6 +923,10 @@ http://www.fsf.org/copyleft/gpl.html
 							</xsl:choose>
 							</b><br/>
 							<input type="hidden" name="{$prefix}{$gprefix}{$field}" value="{$value}"/>
+						</xsl:when>
+						<xsl:when test="$mode='browser'">
+							<input type="text" id="{$prefix}{$gprefix}{$field}_{$id}" name="{$prefix}{$gprefix}{$field}" value="{$value}"/><xsl:text> </xsl:text>
+							<input type="button" value="{$messages[@id='page.admin.navigateurdepiecesattachees']}..." onClick="openBrowser('{$prefix}{$gprefix}{$field}_{$id}')"/><br/>
 						</xsl:when>
 						<xsl:otherwise>
 							<select name="{$prefix}{$gprefix}{$field}">
@@ -943,7 +957,6 @@ http://www.fsf.org/copyleft/gpl.html
 							</xsl:if>
 						</xsl:when>
 					</xsl:choose>
-					<xsl:variable name="id" select="generate-id($value)"/>
 					<input type="hidden" name="{$prefix}{$gprefix}{$field}.tag" value="{$id}"/>
 					<input type="checkbox" name="{$prefix}{$gprefix}{$field}.delete" value="{$id}"><span class="commentaire"><xsl:value-of select="$messages[@id='page.saisie.retirerlefichierattache']"/></span></input>
 				</td>
@@ -959,13 +972,13 @@ http://www.fsf.org/copyleft/gpl.html
 					</xsl:variable>
 					<xsl:variable name="imgurl">
 						<xsl:choose>
-							<xsl:when test="$mode='upload'"><xsl:value-of select="concat($rootUrl,'thumbnail?app=',$urlparameter[@name='app']/@value,'&amp;base=',$dbId,'&amp;id=',$value,'&amp;size=',$thnsize)"/></xsl:when>
+							<xsl:when test="$mode='upload' or $mode='browser'"><xsl:value-of select="concat($rootUrl,'thumbnail?app=',$urlparameter[@name='app']/@value,'&amp;base=',$dbId,'&amp;id=',$value,'&amp;size=',$thnsize)"/></xsl:when>
 							<xsl:when test="$mode='link'"><xsl:value-of select="concat(/sdx:document/@api-url,'/getatt?app=',$urlparameter[@name='app']/@value,'&amp;base=',$dbId,'&amp;doc=',$docid,'&amp;id=',$value/@thn)"/></xsl:when>
 							<xsl:otherwise><xsl:value-of select="concat(/sdx:document/@api-url,'/getatt?app=',$urlparameter[@name='app']/@value,'&amp;db=',$dbId,'&amp;doc=',$docid,'&amp;id=',$value)"/></xsl:otherwise>
 						</xsl:choose>
 					</xsl:variable>
-					<xsl:if test="($mode='link' and $value/@thn) or ($mode='inline' and $value) or ($mode='upload')">
-						<img src="{$imgurl}"/>
+					<xsl:if test="($mode='link' and $value/@thn) or ($mode='inline' and $value) or ($mode='upload' or $mode='browser')">
+						<img id="{$prefix}{$gprefix}{$field}_{$id}_img" src="{$imgurl}"/>
 					</xsl:if>
 				</td>
 				</tr>
@@ -975,20 +988,26 @@ http://www.fsf.org/copyleft/gpl.html
 			<xsl:otherwise>
 				
 				<tr><td class="saisie">
+				<xsl:if test="$mode!='browser'">
 				<xsl:value-of select="$messages[@id='page.saisie.fichierattache']"/> :
-					<xsl:choose>
-						<xsl:when test="$mode='inline' or $mode='link'">
-							<select name="{$prefix}{$gprefix}{$field}">
-								<option value="">---</option>
-								<xsl:for-each select="$files/dir:file">
-									<option value="attach/{@name}"><xsl:value-of select="@name"/></option>
-								</xsl:for-each>
-							</select>
-						</xsl:when>
-						<xsl:when test="$mode='upload'">
+				</xsl:if>
+				<xsl:choose>
+					<xsl:when test="$mode='inline' or $mode='link'">
+						<select name="{$prefix}{$gprefix}{$field}">
+							<option value="">---</option>
+							<xsl:for-each select="$files/dir:file">
+								<option value="attach/{@name}"><xsl:value-of select="@name"/></option>
+							</xsl:for-each>
+						</select>
+					</xsl:when>
+					<xsl:when test="$mode='browser'">
+						<input type="text" id="{$prefix}{$gprefix}{$field}_empty" name="{$prefix}{$gprefix}{$field}"/><xsl:text> </xsl:text>
+						<input type="button" value="{$messages[@id='page.admin.navigateurdepiecesattachees']}..." onClick="openBrowser('{$prefix}{$gprefix}{$field}_empty')"/>
+					</xsl:when>
+					<xsl:when test="$mode='upload'">
 							<input type="file" name="{$prefix}{$gprefix}{$field}.upload"/>
-						</xsl:when>
-					</xsl:choose>
+					</xsl:when>
+				</xsl:choose>
 				<br/>
 
 				<xsl:if test="$mode='link'">
@@ -1006,7 +1025,11 @@ http://www.fsf.org/copyleft/gpl.html
 					<br/>
 					<span class="commentaire"><xsl:value-of select="$messages[@id='page.saisie.commentairefichierattache']"/></span>
 				</xsl:if>
-				</td></tr>
+				</td>
+			<td>
+				<img id="{$prefix}{$gprefix}{$field}_empty_img" src="icones/transparent.png"/>
+			</td>
+				</tr>
 			</xsl:otherwise>
 		</xsl:choose>
 		</table>

@@ -84,6 +84,7 @@
 			<xsl:when test="starts-with($currentpage,'search_')"><xsl:value-of select="substring-before(substring-after($currentpage,'search_'),'.xsp')"/></xsl:when>
 			<xsl:when test="starts-with($currentpage,'saisie_')"><xsl:value-of select="substring-before(substring-after($currentpage,'saisie_'),'.xsp')"/></xsl:when>
 			<xsl:when test="starts-with($currentpage,'upload_')"><xsl:value-of select="substring-before(substring-after($currentpage,'upload_'),'.xsp')"/></xsl:when>
+			<xsl:when test="starts-with($currentpage,'attach_browser_')"><xsl:value-of select="substring-before(substring-after($currentpage,'attach_browser_'),'.xsp')"/></xsl:when>
 		</xsl:choose>
 	</xsl:variable>
 

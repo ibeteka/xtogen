@@ -77,7 +77,8 @@
         </map:generators>
         <map:readers default="resource">
             <map:reader name="resource" src="org.apache.cocoon.reading.ResourceReader" logger="sitemap.reader.resource" pool-max="32"/>
-            <map:reader name="thumbnail" src="fr.tech.sdx.xtogen.image.ThumbnailReader"/>
+            <map:reader name="thumbnail" src="fr.tech.sdx.xtogen.image.ThumbnailSDXReader"/>
+            <map:reader name="vignette" src="fr.tech.sdx.xtogen.image.ThumbnailFileReader"/>
         </map:readers>
 
         <map:transformers default="xsl">
@@ -271,6 +272,27 @@
 				</map:act>
 			</map:match>
 
+		   <map:match pattern="vignette">
+				<map:act type="request">
+					<map:parameter name="parameters" value="true"/>
+					<map:read type="vignette">
+						<xsl:attribute name="src">{requestQuery}</xsl:attribute>
+						<map:parameter name="app">
+							<xsl:attribute name="value">{app}</xsl:attribute>
+						</map:parameter>
+						<map:parameter name="base">
+							<xsl:attribute name="value">{base}</xsl:attribute>
+						</map:parameter>
+						<map:parameter name="name">
+							<xsl:attribute name="value">{name}</xsl:attribute>
+						</map:parameter>
+						<map:parameter name="size">
+							<xsl:attribute name="value">{size}</xsl:attribute>
+						</map:parameter>
+					</map:read>
+				</map:act>
+			</map:match>
+
 		<!--
 		<map:act type="locale">
 		-->
@@ -399,12 +421,17 @@
 
 		</xsl:text>
 <xsl:comment> Liste de fichiers </xsl:comment>
-			<xsl:for-each select="documenttypes/documenttype">
-				<map:match pattern="list_attach_{@id}">
-					<map:generate type="directory" src="documents/{@id}/attach"/>
-					<map:serialize type="xml"/>
-				</map:match>
-			</xsl:for-each>
+         <map:match pattern="attach_browser_*.xsp">
+            <map:generate type="xsp" src="admin_attach.xsp"/>
+            <map:transform src="xsl/attach_browser.xsl"/>
+            <map:serialize/>
+         </map:match>
+		<map:match pattern="list_attach_*">
+			<map:generate type="directory">
+				<xsl:attribute name="src">documents/{1}/attach</xsl:attribute>
+			</map:generate>
+			<map:serialize type="xml"/>
+		</map:match>
 
 <xsl:text>
 
