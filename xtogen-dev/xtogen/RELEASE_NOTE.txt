@@ -1,4 +1,11 @@
 ==============================================================================
+ XToGen 2 - le 20/04/2004
+
+Bug corrigé :
+	* Oubli du répertoire athn dans conf pour le navigateur d'images
+Nouveauté :
+	* Export d'un fichier CSV sur un résultat de requête
+==============================================================================
  XToGen 2 - le 16/04/2004
 
 Nouveautés :

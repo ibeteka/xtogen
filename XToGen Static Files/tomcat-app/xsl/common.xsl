@@ -442,6 +442,8 @@ http://www.fsf.org/copyleft/gpl.html
 		<a class="nav" href="pre_query_export.xsp?type=pdf&amp;db={$currentdoctype}&amp;qid={//sdx:results/@qid}" title="{$messages[@id='page.admin.exportpdf']}"><img alt="{$messages[@id='page.admin.exportpdf']}" src="icones/pdf.png" border="0"/></a>
 		<xsl:text> </xsl:text>
 		<a class="nav" href="pre_query_export.xsp?type=zip&amp;db={$currentdoctype}&amp;qid={//sdx:results/@qid}" title="{$messages[@id='page.admin.exportzip']}"><img alt="{$messages[@id='page.admin.exportzip']}" src="icones/zip.png" border="0"/></a>
+		<xsl:text> </xsl:text>
+		<a class="nav" href="pre_query_export.xsp?type=csv&amp;db={$currentdoctype}&amp;qid={//sdx:results/@qid}" title="{$messages[@id='common.exportCSV']}"><img alt="{$messages[@id='common.exportCSV']}" src="icones/csv.png" border="0"/></a>
 		</xsl:if>
 	</xsl:template>
 

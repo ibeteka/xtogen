@@ -38,12 +38,12 @@ http://www.fsf.org/copyleft/gpl.html
         <br/>
 
 		<xsl:choose>
-			<!--
 			<xsl:when test="type='csv'">
 				<fieldset>
 					<legend><xsl:value-of select="$messages[@id='common.exportauformatcsv']"/></legend>
-					<form action="query_export.csv">
+					<form action="base_{$base}_export.csv">
 						<input type="hidden" name="db" value="{$base}"/>
+						<input type="hidden" name="qid" value="{qid}"/>
 						<xsl:value-of select="$messages[@id='page.csv.formatcsv']"/><br/>
 						<input type="radio" name="csv.format" value="excel" checked="checked"/> <xsl:value-of select="$messages[@id='page.csv.donneescsvmsexcel']"/><br/>
 						<input type="radio" name="csv.format" value="standard"/> <xsl:value-of select="$messages[@id='page.csv.donneescsv']"/>
@@ -68,14 +68,10 @@ http://www.fsf.org/copyleft/gpl.html
 						</table>
 						<xsl:value-of select="$messages[@id='page.csv.separateurdechampsmultivalues']"/>
 						<input type="text" size="1" length="1" name="csv.mvsep" value="$"/><br/>
-						<input type="hidden" name="sortfield" value="{sortfield}"/>
-						<input type="hidden" name="order" value="{order}"/>
-						<input type="hidden" name="qid" value="{qid}"/>
 						<input type="submit" value="{$messages[@id='page.csv.exporter...']}"/>
 					</form>
 				</fieldset>
 			</xsl:when>
-			-->
 			<xsl:when test="type='pdf'">
 				<!-- PHAMODIS -->
 				<xsl:if test="not(starts-with($lang,'ar-'))">

@@ -35,15 +35,45 @@
       <xtg:authentication domain="base">
 		 <xsp:logic>
 		 	request.setCharacterEncoding("UTF8");
+		 	String myQidParam = request.getParameter("qid");
 		 </xsp:logic>
          <admin>
 		 	<xsp:logic><csvformat><xsp:expr>request.getParameter("csv.format")</xsp:expr></csvformat></xsp:logic>
 		 	<xsp:logic><csvsep><xsp:expr>request.getParameter("csv.sep")</xsp:expr></csvsep></xsp:logic>
 		 	<xsp:logic><csvquote><xsp:expr>request.getParameter("csv.quote")</xsp:expr></csvquote></xsp:logic>
 		 	<xsp:logic><csvmvsep><xsp:expr>request.getParameter("csv.mvsep")</xsp:expr></csvmvsep></xsp:logic>
- 			<sdx:executeFieldQuery baseParam="db" field="sdxall" value="1" show="results fields documents" hpp="-1">
-				<sdx:sort fieldParam="sortfield" order="ascendant"/>
-			</sdx:executeFieldQuery>
+			<xsp:logic>
+				if (myQidParam == null || myQidParam.equals(""))
+				{
+					<sdx:executeFieldQuery baseParam="db" field="sdxall" value="1" show="results fields documents" hpp="-1">
+						<sdx:sort fieldParam="sortfield" order="ascendant"/>
+					</sdx:executeFieldQuery>
+				}
+				else
+				{
+					<titi><xsp:expr>myQidParam</xsp:expr></titi>
+					<sdx:results qidParam="qid"/>
+					<xsp:logic>
+						if (sdx_results != null) {
+							sdx_results.setAllHits();
+							Pipeline my_pipeline = new GetDocumentsPipeline();
+							my_pipeline.enableLogging(sdx_log);
+							my_pipeline.compose(manager);
+							Parameters params = new Parameters();
+							params.setParameter(GetDocumentsTransformation.SEND_SDX_ELEMENTS, "true");
+							params.setParameter(GetDocumentsTransformation.SEND_INTERNAL_FIELDS, "true");
+							params.setParameter(GetDocumentsTransformation.SEND_USER_FIELDS, "true");
+							my_pipeline.setParameters(params);
+							my_pipeline.setConsumer(sdx_consumer);
+							sdx_results.toSAX(my_pipeline, 1);
+						}
+						else
+						{
+							<toto>NULL !!!</toto>
+						}
+					</xsp:logic> 
+				}
+			</xsp:logic>
          </admin>
       </xtg:authentication>
    </sdx:page>
