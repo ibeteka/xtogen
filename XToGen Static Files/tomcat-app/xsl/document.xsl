@@ -389,6 +389,6 @@ http://www.fsf.org/copyleft/gpl.html
 </xsl:text>
 	</xsl:template>
 
-	<xsl:template match="/sdx:document/sdx:results"/>
+	<xsl:template match="/sdx:document//sdx:results"/>
 
 </xsl:stylesheet>
