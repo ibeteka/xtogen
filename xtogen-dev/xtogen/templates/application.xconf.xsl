@@ -135,6 +135,9 @@
 			<xsl:apply-templates select="fields/field|fields/fieldgroup">
 				<xsl:with-param name="docinfo" select="$docinfo"/>
 			</xsl:apply-templates>
+			<xsl:if test="$docinfo/oai">
+            <sdx:field name="xtgoai_docsource" type="field" brief="true"/>
+			</xsl:if>
 		</sdx:fieldList>
 		<sdx:index>
 			<sdx:pipeline>
@@ -168,11 +171,14 @@
 	<sdx:oai-repository name="OAI repository for {$id} document base" adminEmail="{$adminEmail}" baseURL="{$sdxUrl}/sdx/oai/{$app_name}/{$id}">
 		<sdx:oai-format name="OAI Dublin core" metadataPrefix="oai_dc" namespace="http://purl.org/dc/elements/1.1/" schemaUrl="http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
 			<sdx:oai-fields>
-				<xsl:if test="not(on[@oaiField='title'])">
-				<sdx:oai-field name="title" sdxField="xtgtitle" repeated="concatenate" separator=" ;; "/>
-				</xsl:if>
 				<xsl:if test="not(on[@oaiField='identifier'])">
 				<sdx:oai-field name="identifier" sdxField="sdxdocid"/>
+				</xsl:if>
+				<xsl:if test="not(on[@oaiField='title'])">
+				<sdx:oai-field name="title" sdxField="xtgtitle" repeated="repeated"/>
+				</xsl:if>
+				<xsl:if test="not(on[@oaiField='source'])">
+				<sdx:oai-field name="source" sdxField="xtgoai_docsource"/>
 				</xsl:if>
 				<xsl:for-each select="on">
 					<sdx:oai-field name="{@oaiField}" sdxField="{@field}">

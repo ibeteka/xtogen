@@ -180,6 +180,8 @@
 		<param name="dest_dir" expression="${dest.dir}/conf"/>
 		<param name="display_config_file" expression="${data.dir}/display.xml"/>
 		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+		<param name="app_id" expression="${project.name}"/>
+		<param name="app_path" expression="${project.path}"/>
 	</xslt>
 	<delete file="${out.dir}/index.tmp"/>
 

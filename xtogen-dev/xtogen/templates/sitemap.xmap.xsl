@@ -84,7 +84,6 @@
         <map:transformers default="xsl">
             <map:transformer name="xsl" src="org.apache.cocoon.transformation.TraxTransformer" logger="sitemap.transformer.xslt" pool-max="32" pool-min="8" pool-grow="2"/>
          	<map:transformer name="xinclude" src="org.apache.cocoon.transformation.XIncludeTransformer"/>
-            <map:transformer name="cinclude" src="org.apache.cocoon.transformation.CachingCIncludeTransformer"/>
 			<map:transformer name="i18n" src="org.apache.cocoon.transformation.I18nTransformer" logger="sitemap.transformer.i18n">
 				<catalogue-name>catalog</catalogue-name>
 				<catalogue-location>.</catalogue-location>
@@ -152,9 +151,11 @@
                 mime-type="application/x-zip"/>
        	</map:serializers>
         <map:selectors default="browser"/>
+		<!--
         <map:matchers default="wildcard">
             <map:matcher name="wildcard" src="org.apache.cocoon.matching.WildcardURIMatcherFactory"/>
         </map:matchers>
+		-->
 <xsl:text>
 		</xsl:text>
 <xsl:comment> actions </xsl:comment>
@@ -184,7 +185,6 @@
 					<map:generate type="xsp">
 						<xsl:attribute name="src">{1}.xsp</xsl:attribute>
 					</map:generate>
-					<map:transform type="cinclude"/>
 					<map:transform src="../sdx/resources/xsl/xml.xsl"/>
 					<map:serialize type="html"/>
 				</map:match>
@@ -336,7 +336,6 @@
                 <map:generate type="xsp">
 					<xsl:attribute name="src">saisie_{1}.xsp</xsl:attribute>
 				</map:generate>
-				<map:transform type="cinclude"/>
                 <map:transform src="xsl/saisie_document.xsl">
                     <map:parameter name="use-request-parameters" value="true"/>
                 </map:transform>
@@ -351,7 +350,6 @@
                 <map:generate type="xsp">
 					<xsl:attribute name="src">search_{1}.xsp</xsl:attribute>
 				</map:generate>
-				<map:transform type="cinclude"/>
                 <map:transform src="xsl/complex_search.xsl">
                     <map:parameter name="use-request-parameters" value="true"/>
                 </map:transform>
@@ -467,7 +465,6 @@
 				<map:generate type="xsp">
 					<xsl:attribute name="src">terms_{1}.xsp</xsl:attribute>
 				</map:generate>
-				<map:transform type="cinclude"/>
 				<map:transform src="xsl/liste.xsl">
 					<map:parameter name="use-request-parameters" value="true"/>
 				</map:transform>
@@ -481,7 +478,6 @@
 				<map:generate type="xsp">
 					<xsl:attribute name="src">linear_{1}.xsp</xsl:attribute>
 				</map:generate>
-				<map:transform type="cinclude"/>
 				<map:transform src="xsl/liste.xsl">
 					<map:parameter name="use-request-parameters" value="true"/>
 				</map:transform>
@@ -507,7 +503,6 @@
 				<map:generate type="xsp">
 					<xsl:attribute name="src">terms_{1}.xsp</xsl:attribute>
 				</map:generate>
-				<map:transform type="cinclude"/>
 				<map:transform src="xsl/gallery.xsl">
 					<map:parameter name="use-request-parameters" value="true"/>
 				</map:transform>
@@ -521,7 +516,6 @@
 				<map:generate type="xsp">
 					<xsl:attribute name="src">query_{1}.xsp</xsl:attribute>
 				</map:generate>
-				<map:transform type="cinclude"/>
 				<map:transform src="xsl/query.xsl">
 					<map:parameter name="use-request-parameters" value="true"/>
 				</map:transform>
@@ -541,7 +535,6 @@
 				<map:generate type="xsp">
 					<xsl:attribute name="src">csv_base_import_{1}.xsp</xsl:attribute>
 				</map:generate>
-				<map:transform type="cinclude"/>
 				<map:transform src="xsl/csv_base_import.xsl">
 					<map:parameter name="use-request-parameters" value="true"/>
 				</map:transform>
@@ -561,7 +554,6 @@
 <xsl:comment> Pour le rappel d'une liste </xsl:comment>
          <map:match pattern="mem_liste.xsp">
             <map:generate type="xsp" src="mem_liste.xsp"/>
-            <map:transform type="cinclude"/>
             <map:transform src="xsl/query.xsl">
                <map:parameter name="use-request-parameters" value="true"/>
             </map:transform>
@@ -575,7 +567,6 @@
                 <map:generate type="xsp">
 					<xsl:attribute name="src">{1}.xsp</xsl:attribute>
 				</map:generate>
-				<map:transform type="cinclude"/>
                 <map:transform>
 					<xsl:attribute name="src">xsl/{1}.xsl</xsl:attribute>
                     <map:parameter name="use-request-parameters" value="true"/>

@@ -4,6 +4,9 @@
 Bugs corrigés :
 	* Les champs title et identifier étaient générés pour l'OAI même si 
 		l'utilisateur les redéfinissaient.
+	* Meilleure gestion des champs OAI
+	* Correction d'un bug de génération des variables de listes dans les XSL
+		d'indexation
 ==============================================================================
  XToGen 2 - le 07/10/2004
 

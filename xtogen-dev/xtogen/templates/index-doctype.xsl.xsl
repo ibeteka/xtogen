@@ -39,6 +39,8 @@
 <xsl:param name="dest_dir">.</xsl:param>
 <xsl:param name="display_config_file"/>
 <xsl:param name="file_url_prefix"/>
+<xsl:param name="app_id"/>
+<xsl:param name="app_path"/>
 
 <xsl:include href="xtogen-common-functions.xsl"/>
 
@@ -101,7 +103,7 @@
 	</xsl:text>
 		<xsl:comment> Les documents de listes </xsl:comment>
 		<xsl:variable name="lists" select="fields/descendant-or-self::field[@type='choice' and @list]"/>
-		<xsl:for-each select="$lists[not(@list=following-sibling::field/@list)]">
+		<xsl:for-each select="$lists[not(@list=following::field/@list)]">
 				<xsl:variable name="list" select="@list"/>
 				<xsl:for-each select="/application/languages/lang">
 					<xsl:element name="xsl:variable">
@@ -191,6 +193,21 @@
 						<xsl:attribute name="name">generateId</xsl:attribute>true</xsl:element>
 				</xsl:element>
 			</xsl:element>
+				<xsl:text>
+
+		</xsl:text>
+			<xsl:if test="$docinfo/oai">
+				<sdx:field code="xtgoai_docsource">
+				<xsl:choose>
+					<xsl:when test="$docinfo/oai/@sdxUrl"><xsl:value-of select="$docinfo/oai/@sdxUrl"/></xsl:when>
+					<xsl:otherwise>http://localhost:8080/sdx</xsl:otherwise>
+				</xsl:choose>
+				<xsl:value-of select="concat('/',$app_id,'/document.xsp?app=',$app_path,'&amp;db=',$currentid,'&amp;id=')"/>
+				<xsl:element name="xsl:value-of">
+					<xsl:attribute name="select">@id</xsl:attribute>
+				</xsl:element>
+				</sdx:field>
+			</xsl:if>
 				<xsl:text>
 
 		</xsl:text>
