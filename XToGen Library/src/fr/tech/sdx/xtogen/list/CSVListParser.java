@@ -56,6 +56,7 @@ public class CSVListParser
 	private String[]	_headers	= null;
 	private String[]	_row		= null;
 	private CSVParse	_parser		= null;
+	private String		_charset	= DEFAULT_CHARSET;
 	
 	/**
 	 * Constructor
@@ -78,6 +79,15 @@ public class CSVListParser
 	}
 
 	/**
+	 * Changes charset if different from DEFAULT_CHARSET (iso-8859-1)
+	 * @param charset
+	 */
+	public void setCharset(String charset)
+	{
+		_charset = charset;
+	}
+
+	/**
 	 * Resets
 	 * @throws IOException If something bad occurs
 	 */
@@ -85,7 +95,7 @@ public class CSVListParser
 		throws IOException
 	{
 		FileInputStream is = new FileInputStream(_csvFile);
-		InputStreamReader isr = new InputStreamReader(is, DEFAULT_CHARSET);
+		InputStreamReader isr = new InputStreamReader(is, _charset);
 		_parser = _type.newParser(new BufferedReader(isr));
 	}
 	
