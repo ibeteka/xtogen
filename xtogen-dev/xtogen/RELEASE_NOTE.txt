@@ -1,4 +1,10 @@
 ==============================================================================
+ XToGen 2 - le 26/10/2004
+
+Bugs corrigés :
+	* Les champs title et identifier étaient générés pour l'OAI même si 
+		l'utilisateur les redéfinissaient.
+==============================================================================
  XToGen 2 - le 07/10/2004
 
 Bugs corrigés :

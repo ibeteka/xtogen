@@ -168,10 +168,10 @@
 	<sdx:oai-repository name="OAI repository for {$id} document base" adminEmail="{$adminEmail}" baseURL="{$sdxUrl}/sdx/oai/{$app_name}/{$id}">
 		<sdx:oai-format name="OAI Dublin core" metadataPrefix="oai_dc" namespace="http://purl.org/dc/elements/1.1/" schemaUrl="http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
 			<sdx:oai-fields>
-				<xsl:if test="not(on[@oai='title'])">
+				<xsl:if test="not(on[@oaiField='title'])">
 				<sdx:oai-field name="title" sdxField="xtgtitle" repeated="concatenate" separator=" ;; "/>
 				</xsl:if>
-				<xsl:if test="not(on[@oai='identifier'])">
+				<xsl:if test="not(on[@oaiField='identifier'])">
 				<sdx:oai-field name="identifier" sdxField="sdxdocid"/>
 				</xsl:if>
 				<xsl:for-each select="on">
