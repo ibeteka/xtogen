@@ -1,4 +1,13 @@
 ==============================================================================
+ XToGen 2 - le 09/04/2004
+
+Nouveautés :
+	* Ajout du mode browser pour le choix d'une pièce attachée lors de la
+		saisie.
+Bug corrigé :
+	* La gestion de la taille des listes déroulantes était buggée dans la
+	saisie.
+==============================================================================
  XToGen 2 - le 08/04/2004
 
 Amélioration :
