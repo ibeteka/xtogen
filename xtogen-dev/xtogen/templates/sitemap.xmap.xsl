@@ -165,10 +165,10 @@
 				<store-in-request>false</store-in-request>
 				<store-in-cookie>false</store-in-cookie>
  			</map:action>
-			-->
 			<map:action name="locale" src="fr.tech.sdx.xtogen.acting.LocaleAction" logger="sitemap.MyLocaleAction">
 				<default-locale><xsl:value-of select="//languages/lang[@default]/@id"/></default-locale>
 			</map:action>
+			-->
         </map:actions>
     </map:components>
 <xsl:text>
