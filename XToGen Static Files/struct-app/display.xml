@@ -45,16 +45,18 @@
 			Exemple d'utilisation : pour ajouter une page d'aide. Il faut :
 			* Mettre la ligne <page>aide</page> entre les balises
 				<static>...</static>
-			* Lancer "ant init". Ceci créera les pages <lang>_display.xml
+			* Lancer "ant init". Ceci créera les pages <lang>_display_gen.xml
 				(en fonction des langues choisies dans le fichier structure.xml)
 				dans le répertoire custom/lang/interface/<lang>.
 				Note : Ces fichiers contiennent les traductions des labels
 					apparaissant dans le menu et le titre des pages.
-			* Personnaliser les fichiers <lang>_display.xml pour préciser la
+			* Personnaliser les fichiers <lang>_display_gen.xml (en les
+				renommant en <lang>_display.xml) pour préciser la
 				traduction des labels de menus et les titres des pages statiques
-			* Créer les fichiers <lang>_aide_display.xml dans le répertoire
-				custom/lang/interface/<lang> pour donner du contenu à vos pages
-				statiques.
+			* Créer les fichiers <lang>_static_*.xml (exemple :
+				fr-FR_static_aide.xml ou en-GB_static_credits.xml) dans le
+				répertoire custom/lang/interface/<lang> pour donner du contenu
+				à vos pages statiques.
 
 			Pour chaque page, on peut préciser si elle est privée. Les pages
 			sont par défaut publiques. Si une page est privée, ses droits
