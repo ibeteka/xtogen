@@ -34,16 +34,16 @@ http://www.fsf.org/copyleft/gpl.html
 	<xsl:template match="admin">
 		<h2><xsl:value-of select="$messages[@id='bouton.administration']"/></h2>
 		<br/>
-		<table border="0" width="100%" bgcolor="black" cellspacing="1" cellpadding="5">
+		<table class="admintable" width="100%">
 		<tr>
-				<td bgcolor="white"><small><xsl:value-of select="$messages[@id='page.admin.basededocument']"/></small></td>
+				<td class="label"><xsl:value-of select="$messages[@id='page.admin.basededocument']"/></td>
 				<xsl:if test="$admin">
-					<td bgcolor="white" align="center"><small><xsl:value-of select="$messages[@id='page.admin.import']"/></small></td>
-					<td bgcolor="white" align="center"><small><xsl:value-of select="$messages[@id='page.admin.export']"/></small></td>
+					<td><xsl:value-of select="$messages[@id='page.admin.import']"/></td>
+					<td><xsl:value-of select="$messages[@id='page.admin.export']"/></td>
 				</xsl:if>
-				<td bgcolor="white" align="center"><small><xsl:value-of select="$messages[@id='page.admin.saisie']"/></small></td>
+				<td><xsl:value-of select="$messages[@id='page.admin.saisie']"/></td>
 				<xsl:if test="$admin">
-					<td bgcolor="white" align="center"><small><xsl:value-of select="$messages[@id='page.admin.vider']"/></small></td>
+					<td><xsl:value-of select="$messages[@id='page.admin.vider']"/></td>
 				</xsl:if>
 		</tr>
 			<xsl:apply-templates/>
@@ -55,8 +55,8 @@ http://www.fsf.org/copyleft/gpl.html
 			<xsl:choose>
 				<!-- Base externe -->
 				<xsl:when test="@external">
-					<td bgcolor="white"><xsl:value-of select="@base"/></td>
-					<td bgcolor="white" colspan="5"><small><i><xsl:value-of select="$messages[@id='page.admin.baseexterne']"/></i></small></td>
+					<td class="title"><xsl:value-of select="@base"/></td>
+					<td colspan="5"><i><xsl:value-of select="$messages[@id='page.admin.baseexterne']"/></i></td>
 				</xsl:when>
 				<!-- Base interne -->
 				<xsl:otherwise>
@@ -71,23 +71,23 @@ http://www.fsf.org/copyleft/gpl.html
 						</xsl:choose>
 					</xsl:variable>
 
-					<td bgcolor="white">
+					<td class="label">
 					<xsl:choose>
 						<xsl:when test="$nbDoc &gt; 0">
 							<a class="nav" href="admin_liste.xsp?db={$db}&amp;sortfield={$sf}&amp;order=ascendant" title="{$messages[@id='page.admin.listedesdocuments']}"><xsl:value-of select="@base"/></a>
 							<xsl:text> </xsl:text>
-							<span dir="ltr"><small>(<span dir="{$langDirection}"><xsl:value-of select="$nbDoc"/>&#160;<xsl:value-of select="$messages[@id='common.document_s']"/></span>)</small></span>
+							<span dir="ltr">(<span dir="{$langDirection}"><xsl:value-of select="$nbDoc"/>&#160;<xsl:value-of select="$messages[@id='common.document_s']"/></span>)</span>
 						</xsl:when>
 						<xsl:otherwise>
 							<xsl:value-of select="@base"/>
 							<xsl:text> </xsl:text>
-							<small><span dir="ltr">(<xsl:value-of select="$messages[@id='page.admin.basevide']"/>)</span></small>
+							<span dir="ltr">(<xsl:value-of select="$messages[@id='page.admin.basevide']"/>)</span>
 						</xsl:otherwise>
 					</xsl:choose>
 					</td>
 					<xsl:if test="$admin">
-						<td bgcolor="white" align="center"><a class="nav" href="admin_import.xsp?db={$db}" title="{$messages[@id='page.admin.importdedocuments']}"><img src="icones/import_base.png" alt="{$messages[@id='page.admin.importdedocuments']}"/></a></td>
-						<td bgcolor="white" align="center">
+						<td><a class="nav" href="admin_import.xsp?db={$db}" title="{$messages[@id='page.admin.importdedocuments']}"><img src="icones/import_base.png" alt="{$messages[@id='page.admin.importdedocuments']}"/></a></td>
+						<td>
 							<xsl:choose>
 								<xsl:when test="$nbDoc &gt; 0">
 									<a class="nav" href="admin_export.xsp?db={$db}&amp;sortfield={$sf}" title="{$messages[@id='page.admin.exportdedocuments']}"><img src="icones/export_base.png" alt="{$messages[@id='page.admin.exportdedocuments']}"/></a>
@@ -102,16 +102,16 @@ http://www.fsf.org/copyleft/gpl.html
 							<xsl:otherwise>admin_saisie.xsp</xsl:otherwise>
 						</xsl:choose>
 					</xsl:variable>
-					<td bgcolor="white" align="center"><a class="nav" href="{$saisie_link}?db={$db}" title="{$messages[@id='page.admin.saisiedunnouveaudocument']}"><img src="icones/new_document.png" alt="{$messages[@id='page.admin.saisiedunnouveaudocument']}"/></a></td>
+					<td><a class="nav" href="{$saisie_link}?db={$db}" title="{$messages[@id='page.admin.saisiedunnouveaudocument']}"><img src="icones/new_document.png" alt="{$messages[@id='page.admin.saisiedunnouveaudocument']}"/></a></td>
 					<xsl:if test="$admin">
 						<xsl:choose>
 							<xsl:when test="$nbDoc &gt; 0">
-								<td bgcolor="white" align="center">
+								<td>
 								<a class="nav" href="pre_flush.xsp?db={$db}" title="{$messages[@id='page.admin.viderlabase']}"><img src="icones/flush_base.png" alt="{$messages[@id='page.admin.viderlabase']}"/></a>
 								</td>
 							</xsl:when>
 							<xsl:otherwise>
-								<td bgcolor="white">&#160;</td>
+								<td>&#160;</td>
 							</xsl:otherwise>
 						</xsl:choose>
 					</xsl:if>
@@ -126,28 +126,28 @@ http://www.fsf.org/copyleft/gpl.html
 	<xsl:template match="lists">
 		<br/>
 		<br/>
-		<table border="0" bgcolor="black" cellspacing="1" cellpadding="5" width="80%">
-		<tr><td bgcolor="white"><xsl:value-of select="$messages[@id='page.admin.listesexternes']"/></td>
-		<td bgcolor="white" align="center"><small><xsl:value-of select="$messages[@id='common.importCSV']"/></small></td>
-		<td bgcolor="white" align="center"><small><xsl:value-of select="$messages[@id='common.exportCSV']"/></small></td>
-		<td bgcolor="white" align="center"><small><xsl:value-of select="$messages[@id='page.admin.vider']"/></small></td>
+		<table class="admintable" width="80%">
+		<tr><td class="label"><xsl:value-of select="$messages[@id='page.admin.listesexternes']"/></td>
+		<td><xsl:value-of select="$messages[@id='common.importCSV']"/></td>
+		<td><xsl:value-of select="$messages[@id='common.exportCSV']"/></td>
+		<td><xsl:value-of select="$messages[@id='page.admin.vider']"/></td>
 		</tr>
 		<xsl:for-each select="list">
 			<tr>
-			<td bgcolor="white"><a class="nav" href="admin_edit_liste.xsp?list={@name}" title="{$messages[@id='page.admin.editiondelaliste']}"><xsl:value-of select="@name"/></a>
+			<td class="label"><a class="nav" href="admin_edit_liste.xsp?list={@name}" title="{$messages[@id='page.admin.editiondelaliste']}"><xsl:value-of select="@name"/></a>
 			<xsl:text> </xsl:text>
-				<small><span dir="ltr">(<span dir="{$langDirection}"><xsl:choose>
+				<span dir="ltr">(<span dir="{$langDirection}"><xsl:choose>
 					<xsl:when test="normalize-space(nb) = '0'"><xsl:value-of select="$messages[@id='page.admin.listevide']"/></xsl:when>
 					<xsl:otherwise><xsl:value-of select="normalize-space(nb)"/>&#160;<xsl:value-of select="$messages[@id='common.element_s']"/></xsl:otherwise>
-				</xsl:choose></span>)</span></small>
+				</xsl:choose></span>)</span>
 			</td>
-			<td bgcolor="white" align="center">
+			<td>
 				<a class="nav" href="list_import.xsp?list={@name}" title="{$messages[@id='common.importauformattexteseparateurvirgule']}"><img src="icones/import_csv.png" alt="{$messages[@id='common.importCSV']}"/></a>
 			</td>
-			<td bgcolor="white" align="center">
+			<td>
 				<a class="nav" href="list_export.xsp?list={@name}" title="{$messages[@id='common.exportauformattexteseparateurvirgule']}"><img src="icones/export_csv.png" alt="{$messages[@id='common.exportCSV']}"/></a>
 			</td>
-			<td bgcolor="white" align="center">
+			<td>
 				<a class="nav" href="list_pre_flush.xsp?list={@name}" title="{$messages[@id='page.admin.viderlaliste']}"><img src="icones/flush_list.png" alt="{$messages[@id='page.admin.viderlaliste']}"/></a>
 			</td>
 			</tr>

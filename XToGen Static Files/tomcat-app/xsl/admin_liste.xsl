@@ -56,21 +56,17 @@ http://www.fsf.org/copyleft/gpl.html
 
 	<xsl:template match="sdx:results">
 		<xsl:if test="@nb != 0">
-		<table bgcolor="black" cellspacing="0" cellpadding="0" width="100%">
-		<tr><td>
-		<table width="100%" cellspacing="1" cellpadding="5">
-			<tr><td bgcolor="white">&#160;</td>
-			<td bgcolor="white" align="center"><small><xsl:value-of select="$messages[@id='page.admin.editer']"/></small></td>
+		<table class="admintable">
+			<tr><td>&#160;</td>
+			<td><xsl:value-of select="$messages[@id='page.admin.editer']"/></td>
 
-			<td bgcolor="white" align="center"><small><xsl:value-of select="$messages[@id='page.admin.exporter']"/></small></td>
-			<td bgcolor="white" align="center"><small><xsl:value-of select="$messages[@id='page.admin.copier']"/></small></td>
+			<td><xsl:value-of select="$messages[@id='page.admin.exporter']"/></td>
+			<td><xsl:value-of select="$messages[@id='page.admin.copier']"/></td>
 			<xsl:if test="$admin">
-			<td bgcolor="white" align="center"><small><xsl:value-of select="$messages[@id='page.admin.supprimer']"/></small></td>
+			<td><xsl:value-of select="$messages[@id='page.admin.supprimer']"/></td>
 			</xsl:if>
 			</tr>
 			<xsl:apply-templates/>
-		</table>
-		</td></tr>
 		</table>
 		</xsl:if>
 	</xsl:template>
@@ -81,21 +77,20 @@ http://www.fsf.org/copyleft/gpl.html
 		<xsl:variable name="docId" select="sdx:field[@name='sdxdocid']"/>
 		<xsl:variable name="titleField" select="$titlefields/dbase[@id = $base]"/>
 			<tr>
-			<td bgcolor="white">
+			<td class="label">
 				<xsl:call-template name="display-result-doc">
 					<xsl:with-param name="item" select="."/>
 					<xsl:with-param name="admin">yes</xsl:with-param>
 				</xsl:call-template>
 			</td>
-			<td align="center" bgcolor="white"><small><a class="nav" href="admin_saisie.xsp?id={$docId}&amp;db={$base}&amp;app={$app}" title="{$messages[@id='page.admin.editerledocument']}"><img src="icones/edit.png" alt="{$messages[@id='page.admin.editer']}"/></a></small></td>
-			<td align="center" bgcolor="white"><small><a class="nav" href="export.xsp?id={$docId}&amp;db={$base}&amp;app={$app}" title="{$messages[@id='page.admin.exporterledocument']}"><img src="icones/export.png"  alt="{$messages[@id='page.admin.exporter']}"/></a></small></td>
-			<td align="center" bgcolor="white"><small><a class="nav" href="admin_saisie.xsp?mode=copy&amp;id={$docId}&amp;db={$base}&amp;app={$app}" title="{$messages[@id='page.admin.copierledocument']}"><img src="icones/copy.png" alt="{$messages[@id='page.admin.copier']}"/></a></small></td>
+			<td><a class="nav" href="admin_saisie.xsp?id={$docId}&amp;db={$base}&amp;app={$app}" title="{$messages[@id='page.admin.editerledocument']}"><img src="icones/edit.png" alt="{$messages[@id='page.admin.editer']}"/></a></td>
+			<td><a class="nav" href="export.xsp?id={$docId}&amp;db={$base}&amp;app={$app}" title="{$messages[@id='page.admin.exporterledocument']}"><img src="icones/export.png"  alt="{$messages[@id='page.admin.exporter']}"/></a></td>
+			<td><a class="nav" href="admin_saisie.xsp?mode=copy&amp;id={$docId}&amp;db={$base}&amp;app={$app}" title="{$messages[@id='page.admin.copierledocument']}"><img src="icones/copy.png" alt="{$messages[@id='page.admin.copier']}"/></a></td>
 			<xsl:if test="$admin">
-			<td align="center" bgcolor="white">
+			<td>
 			<xsl:variable name="deleteurl" select="concat('pre_delete.xsp?id=',$docId,'&amp;db=',$base,'&amp;title=',sdx:field[@name=$titleField]/@escapedValue)"/>
-			<small>
 			<a class="nav" href="{$deleteurl}" title="{$messages[@id='page.admin.supprimerledocument']}"><img src="icones/delete.png" alt="{$messages[@id='page.admin.supprimer']}"/></a>
-			</small></td>
+			</td>
 			</xsl:if>
 			</tr>
 	</xsl:template>

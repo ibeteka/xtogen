@@ -2,6 +2,23 @@
 /*************************************/
 /*        html generic css           */
 /*************************************/
+table.admintable {
+	border: 1px solid black;
+	border-collapse: collapse ;
+}
+
+table.admintable td {
+	text-align: center;
+	background-color: white;
+	padding: 4px;
+	/*margin: 90px;*/
+	border: 1px solid black;
+	font-size: small;
+}
+
+table.admintable td.label {
+	text-align: left;
+}
         A:link   {color: #006600; text-decoration: none; font-weight: bold}
         A:visited  {color: #999999; text-decoration: none; font-weight: bold}
         A:active  {color: #006600; text-decoration: none; font-weight: bold}
