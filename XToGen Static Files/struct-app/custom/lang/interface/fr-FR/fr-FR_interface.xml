@@ -51,7 +51,7 @@
 	<!-- Messages communs -->
 	<message id="common.redirection.debut">Si vous n'étiez pas redirigé dans </message>
 	<message id="common.redirection.quelques">quelques</message>
-	<message id="common.redirection.secondes">secondes cliquez </message>
+	<message id="common.redirection.secondes">seconde(s) cliquez </message>
 	<message id="common.redirection.ici">ici</message>
 	<message id="common.redirectionimmediate">Redirection immédiate...</message>
 	<message id="common.vousetesidentifiecomme">vous êtes identifiés comme</message>
@@ -311,7 +311,7 @@
 	<message id="page.results.aucunresultat">Aucun résultat&#xA0;!</message>
 	<message id="page.results.aucuneimage">Aucune image&#xA0;!</message>
 	<message id="page.results.resultats">Résultats de recherche</message>
-	<message id="page.results.resultatscorrespondentavotrerecherche">résultat(s) corresponde(nt) à votre recherche</message>
+	<message id="page.results.resultatscorrespondentavotrerecherche">résultat(s) correspond(ent) à votre recherche</message>
 
 	<!-- Page navigation -->
 	<message id="page.nav.listealphabetique">Liste alphabétique</message>
