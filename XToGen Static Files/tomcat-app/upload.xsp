@@ -68,7 +68,7 @@ http://www.fsf.org/copyleft/gpl.html
 				<sdx:pipeline>
 					<sdx:parameter name="rootpath" valueString="myRootPath"/>
 					<sdx:transformation id="index-doc" type="XSLT" srcString="myIndexName"/>
-					<sdx:transformation id="retire_doublons" type="XSLT" src="myRetireDoublons"/>
+					<sdx:transformation id="retire_doublons" type="XSLT" srcString="myRetireDoublons"/>
 				</sdx:pipeline>
 			</sdx:uploadDocument>
 
