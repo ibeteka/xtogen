@@ -173,7 +173,6 @@
 						<input type="submit" value="{$messages[@id='page.search.rechercher']}"/>
 					</form>
 				</fieldset>
-				</xsl:if>
 				<br/>
 				<fieldset>
 					<legend><xsl:value-of select="$messages[@id='common.recherchedetaillee']"/></legend>

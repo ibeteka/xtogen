@@ -1,4 +1,11 @@
 ==============================================================================
+ XToGen 2 - le 30/07/2004
+
+Bug corrigé :
+	* Une erreur dans le fichier search.xsl empêchait la recherche de
+	s'effectuer correctement.
+
+==============================================================================
  XToGen 2 - le 23/07/2004
 
 Bug corrigé :
