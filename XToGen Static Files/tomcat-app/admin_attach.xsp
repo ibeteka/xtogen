@@ -34,16 +34,20 @@
 		<title id="title.admin_attach"/>
 		<xtg:authentication domain="attach">
 			<xsp:logic>
-				<!-- Crée le répertoire des docs attachés et des vignettes
-					s'ils n'existent pas -->
-				String contextPath
-					= fr.tech.sdx.xtogen.util.FileHelper.getBaseDir(context,request);
-				File rootDir = new File(contextPath + File.separator
-					+ "documents" + File.separator 
-					+ <xsp:expr>sdx_getRequestParameter("db")</xsp:expr>);
-				File attachDir = new File(rootDir, "attach");
-				if (!attachDir.exists())
-					attachDir.mkdirs();
+				String dbParam = request.getParameter("db");
+				
+				if (dbParam != null)
+				{
+					<!-- Crée le répertoire des docs attachés et des vignettes
+						s'ils n'existent pas -->
+					String contextPath
+						= fr.tech.sdx.xtogen.util.FileHelper.getBaseDir(context,request);
+					File rootDir = new File(contextPath + File.separator
+						+ "documents" + File.separator + dbParam);
+					File attachDir = new File(rootDir, "attach");
+					if (!attachDir.exists())
+						attachDir.mkdirs();
+				}
 			</xsp:logic>
 			<admin/>
 		</xtg:authentication>

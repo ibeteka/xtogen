@@ -158,7 +158,10 @@ public class ThumbnailSDXReader extends AbstractThumbnailReader implements Compo
 				+ File.separator + _baseId
 				+ File.separator + _maxDim.width + 'x' + _maxDim.height);
 			if (!directory.exists())
+			{
+				LOG.info("I create directory " + directory);
 				directory.mkdirs();
+			}
 			
 			String attachId = _attachId;
 			LOG.debug("ATTACH ID BEFORE = " + attachId);

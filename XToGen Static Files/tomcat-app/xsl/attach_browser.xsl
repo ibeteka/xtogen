@@ -64,10 +64,12 @@ body {
 h1 {
 	position: absolute;
 	top: 10px;
+	left: 10px;
 	font-size: 100%;
 }
 
 div.pix {
+	width: 180px;
 	height: 200px;
 	margin: 5px;
 	padding: 5px;
@@ -82,6 +84,10 @@ div.pix a img {
 	margin: 5px;
 	background-color: white;
 	border: 1px solid #aeaeae;
+}
+
+a.nav img {
+	border-width: 0;
 }
 
 .legend {
@@ -119,12 +125,12 @@ function valider(name)
 </xsl:choose>
 </xsl:variable>
 <xsl:variable name="count" select="count(dir:file)"/>
-<xsl:variable name="nbpp" select="15"/>
+<xsl:variable name="nbpp" select="12"/>
 <xsl:variable name="maxp" select="ceiling($count div $nbpp)"/>
 <xsl:variable name="first" select="($p - 1)*$nbpp"/>
-<xsl:variable name="last" select="$p*$nbpp"/>
+<xsl:variable name="last" select="$first + $nbpp"/>
 <xsl:for-each select="dir:file">
-	<xsl:if test="position() &gt;= $first and position() &lt; $last">
+	<xsl:if test="position() &gt; $first and position() &lt;= $last">
 		<xsl:apply-templates select="."/>
 	</xsl:if>
 </xsl:for-each>

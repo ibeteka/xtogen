@@ -50,7 +50,7 @@ public class ThumbnailFileReader extends AbstractThumbnailReader implements Comp
 {
 	// Logger
 	private static final Logger LOG
-		= Logger.getLogger(ThumbnailSDXReader.class);
+		= Logger.getLogger(ThumbnailFileReader.class);
 
 	/**
 	 * Call to the factory

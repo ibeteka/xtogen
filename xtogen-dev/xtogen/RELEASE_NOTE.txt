@@ -1,4 +1,42 @@
 ==============================================================================
+ XToGen 2 - le 29/04/2004
+
+Bugs corrigés :
+	* Lors de l'ouverture du navigateurs de pièces attachées, un dossier
+	nommé "null" était automatiquement créé dans le dossier documents
+	* Pb d'affichage du titre du navigateur de pièces attachées
+	* Le nombre de pièces attachées était incorrectement calculé
+
+==============================================================================
+ XToGen 2 - le 28/04/2004
+
+Améliorations :
+	* Dans l'édition des listes externes, on applique un trim() (suppression
+	des espaces au début et à la fin) aux valeurs entrées ou modifiées. Ceci
+	pour éviter les erreurs lors de l'indexation.
+
+==============================================================================
+ XToGen 2 - le 27/04/2004
+
+Améliorations :
+	* Les images comportent maintenant toutes un attribut ALT
+	* Plus de propriété border="0" sur les images, c'est maintenant réglé
+		en CSS.
+	* Les tableaux de présentation de la partie administration
+		utilisent maintenant une classe.
+==============================================================================
+ XToGen 2 - le 23/04/2004
+
+Améliorations :
+	* Utilisations des propriétés CSS plutôt que des gifs transparentes pour
+		le cadre de la page.
+==============================================================================
+ XToGen 2 - le 22/04/2004
+
+Bug corrigé :
+	* Dans l'aide de display.xml, le nom des fichiers statiques était
+		incorrect.
+==============================================================================
  XToGen 2 - le 20/04/2004
 
 Bug corrigé :
