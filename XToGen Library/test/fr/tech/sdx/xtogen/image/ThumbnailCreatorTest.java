@@ -111,7 +111,8 @@ public class ThumbnailCreatorTest extends TestCase
 
 	private void assertDimension(int imW, int imH, int maxW, int maxH, int tW, int tH)
 	{
-		Dimension d = ThumbnailCreator.computeThumbnailDimension(imW, imH, maxW, maxH);
+		Thumb t = new Thumb(null);
+        Dimension d = t.computeThumbnailDimension(imW, imH, maxW, maxH);
 		assertEquals("Computed width is wrong", tW, d.width);
 		assertEquals("Computed height is wrong", tH, d.height);
 	}

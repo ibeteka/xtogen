@@ -31,19 +31,9 @@
  */
 package fr.tech.sdx.xtogen.image;
 
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.MediaTracker;
-import java.awt.RenderingHints;
-import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
-
-import javax.imageio.ImageIO;
 
 import org.apache.log4j.Logger;
 
@@ -106,16 +96,8 @@ public class ThumbnailCreator
             throw new IllegalArgumentException("Invalid max width ("
                     + maxWidth + ") or height (" + maxHeight + ")");
 		
-		// Loads and reduces image		
-		BufferedImage thumbImage = loadAndReduceImage(maxWidth, maxHeight);
-
-		// Saves thumbnail image to OUTFILE
-		String extension = getFileExtension(thumbFile);
-		if ("jpg".equalsIgnoreCase(extension) || "jpeg".equalsIgnoreCase(extension))
-			ImageIO.write(thumbImage, "jpeg", thumbFile);
-		else if ("png".equalsIgnoreCase(extension))
-			ImageIO.write(thumbImage, "png", thumbFile);
-		else throw new IllegalArgumentException("Unknown extension: " + extension);
+        Thumb t = new Thumb(_imageFile);
+        t.createThumbnail(thumbFile, maxWidth, maxHeight);
 	}
 	
 	/**
@@ -128,41 +110,6 @@ public class ThumbnailCreator
 		if (lastDotIndex == -1)
 			return "";
 		return file.getName().substring(lastDotIndex+1);
-	}
-
-	/**
-	 * Loads the image and reduces it to the given thumbnail size
-	 * @param maxWidth Max width
-	 * @param maxHeight Max height
-	 * @return The resized image
-	 * @throws InterruptedException If something bad occurs
-	 */
-	private BufferedImage loadAndReduceImage(int maxWidth, int maxHeight)
-		throws InterruptedException, IOException
-	{
-		// Pour être sûr que l'on n'utilise pas la connexion au serveur X
-		System.setProperty("java.awt.headless", "true");
-
-		// load image from INFILE
-		Image image = Toolkit.getDefaultToolkit().getImage(_imageFile.getAbsolutePath());
-		MediaTracker mediaTracker = new MediaTracker(new Container());
-		mediaTracker.addImage(image, 0);
-		mediaTracker.waitForID(0);
-				
-		// Determine thumbnail size from WIDTH and HEIGHT
-		Dimension thumbDim = computeThumbnailDimension(
-			image.getWidth(null), image.getHeight(null),
-			maxWidth, maxHeight);
-
-		// draw original image to thumbnail image object and
-		// scale it to the new size on-the-fly (drawImage is quite powerful)
-		BufferedImage thumbImage = new BufferedImage(thumbDim.width, 
-			thumbDim.height, BufferedImage.TYPE_INT_RGB);
-		Graphics2D graphics2D = thumbImage.createGraphics();
-		graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-			RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-		graphics2D.drawImage(image, 0, 0, thumbDim.width, thumbDim.height, null);
-		return thumbImage;
 	}
 
 	/**
@@ -193,30 +140,6 @@ public class ThumbnailCreator
 		}
 
 		return new Dimension(thumbWidth, thumbHeight);
-	}
-
-	/**
-	 * Saves in JPG format
-	 * @param thumbImage The image to save
-	 * @param out Output stream to write in
-	 * @throws IOException If something bad occurs
-	 */
-	private void saveToJpeg(BufferedImage thumbImage, OutputStream out, File outfile)
-		throws IOException
-	{
-		ImageIO.write(thumbImage, "jpeg", outfile);
-	}
-
-	/**
-	 * Saves in PNG format
-	 * @param thumbImage The image to save
-	 * @param out Output stream to write in
-	 * @throws IOException If something bad occurs
-	 */
-	private void saveToPng(BufferedImage thumbImage, OutputStream out, File outfile)
-		throws IOException
-	{
-		ImageIO.write(thumbImage, "png", outfile);
 	}
 
 	/**

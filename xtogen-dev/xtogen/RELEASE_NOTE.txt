@@ -1,4 +1,10 @@
 ==============================================================================
+ XToGen 2 - le 3/12/2004
+
+Amélioration :
+	* Gestion de l'antialiasing pour les thumbnails
+	* Meilleure modularisation du code de création des thumbnails
+==============================================================================
  XToGen 2 - le 15/11/2004
 
 Bugs corrigés :
