@@ -92,7 +92,7 @@
 					{
 						String id		= request.getParameter("id");
 						String list		= request.getParameter("list");
-						String value	= request.getParameter("value");
+						String value	= request.getParameter("value").trim();
 
 						myLang			= request.getParameter("myLang");
 						
@@ -118,7 +118,7 @@
 					else if ("add".equals(op))
 					{
 						String list				= request.getParameter("list");
-						String id				= request.getParameter("id");
+						String id				= request.getParameter("id").trim();
 						String defaultFilename	= baseDir + "<xsl:value-of select="$defaultLang"/>" + File.separator
 							+ "<xsl:value-of select="$defaultLang"/>_"  + list + ".xml";
 						fr.tech.sdx.xtogen.list.ExternalListEditor defaultEle
@@ -144,7 +144,7 @@
 						fr.tech.sdx.xtogen.list.ExternalListEditor elt = null;
 						<xsl:for-each select="//languages/lang">
 							myLang = "<xsl:value-of select="@id"/>";
-							value = request.getParameter("value_<xsl:value-of select="@id"/>");
+							value = request.getParameter("value_<xsl:value-of select="@id"/>").trim();
 							<xtg:createExternalListEditor var="elt" dirvar="baseDir" langvar="myLang" op="add" id="id" value="value"/>
 						</xsl:for-each>
 						}
