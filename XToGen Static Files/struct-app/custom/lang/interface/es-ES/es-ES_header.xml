@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<table xmlns:xtg="http://xtogen.tech.fr">
+<tr>
+	<td><img src="icones/logo.png" title="[appname]"/></td>
+	<td><font size="+3" color="#196fac"><b>Applicación [appname]</b></font><br/>
+		<font color="#196fac" size="+1"><b>[label]</b></font><br/>
+		<font color="#ca8000" size="-2"><i>Applicación XtoGen</i></font><br/>
+		<font color="#6c9e6d" size="-1"><i> Solución de generación de applicaciónes 
+		SDX (versión 2),crea muy facílmente una applicación a partir de su 
+		esquema de datos</i></font>
+	</td>
+	<td><xtg:language-bar/></td>
+</tr>
+</table>

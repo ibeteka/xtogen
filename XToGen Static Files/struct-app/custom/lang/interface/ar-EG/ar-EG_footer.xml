@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<table width="100%" xmlns:xtg="http://xtogen.tech.fr">
+<tr>
+	<td colspane="3"><xtg:user-info/></td>
+</tr>
+<tr>
+    <td><small>موقع مصمم بـ</small></td>
+	<td><a class="url" href="http://xtogen.tech.fr"><img src="icones/v_xtogen.png" width="79" height="24" border="0"/></a></td>
+    <td><small>مزيد من المعلومات على موقع 
+	<a class="url" href="http://www.pass-tech.fr">PASS Technologie</a></small></td>
+</tr>
+</table>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<list id="language">
+	<!-- Labels en français pour la liste "language"-->
+	<!-- xml:lang = "fr-FR" -->
+
+	<!-- Titre des langues -->
+	<item id="fr">français</item>
+	<item id="de">allemand</item>
+	<item id="it">italien ôô</item>
+	<item id="en">é anglais</item>
+	<item id="ar">arabî</item>
+</list>

@@ -1,0 +1,29 @@
+<alphabet>
+	<!-- Alphabet pour l'anglais -->
+	<letter search="a,A" display="A"/>
+	<letter search="b,B" display="B"/>
+	<letter search="c,C" display="C"/>
+	<letter search="d,D" display="D"/>
+	<letter search="e,E" display="E"/>
+	<letter search="f,F" display="F"/>
+	<letter search="g,G" display="G"/>
+	<letter search="h,H" display="H"/>
+	<letter search="i,I" display="I"/>
+	<letter search="j,J" display="J"/>
+	<letter search="k,K" display="K"/>
+	<letter search="l,L" display="L"/>
+	<letter search="m,M" display="M"/>
+	<letter search="n,N" display="N"/>
+	<letter search="o,O" display="O"/>
+	<letter search="p,P" display="P"/>
+	<letter search="q,Q" display="Q"/>
+	<letter search="r,R" display="R"/>
+	<letter search="s,S" display="S"/>
+	<letter search="t,T" display="T"/>
+	<letter search="u,U" display="U"/>
+	<letter search="v,V" display="V"/>
+	<letter search="w,W" display="W"/>
+	<letter search="x,X" display="X"/>
+	<letter search="y,Y" display="Y"/>
+	<letter search="z,Z" display="Z"/>
+</alphabet>

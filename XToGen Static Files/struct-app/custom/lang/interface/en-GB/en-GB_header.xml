@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<table xmlns:xtg="http://xtogen.tech.fr">
+<tr>
+    <td><img src="icones/logo.png" title="[appname]"/></td>
+    <td><font size="+3" color="#196fac"><b>[appname] application</b></font><br/>
+		<font color="#196fac" size="+1"><b>[label]</b></font><br/>
+		<font color="#ca8000" size="-2"><i>This header has been automagically generated from the informations contained in the xtogen.properties file. You can modify it, editing en-US_header.xml file in custom/lang/interface directory.</i></font>
+	</td>
+	<td><xtg:language-bar/></td>
+</tr>
+</table>

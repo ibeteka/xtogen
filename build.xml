@@ -1,0 +1,20 @@
+<project name="xtogen2" default="dist">
+
+	<!-- Construit une distribution de XToGen -->
+	<target name="dist" depends="clean,makezip"/>
+	
+	<!-- Prépare un chouette zip de XToGen 2 -->
+	<target name="makezip">
+		<ant dir="XToGen Library" target="dist"/>
+		<ant dir="XToGen Static Files" target="dist"/>
+		<ant dir="xtogen-dev" target="zipxtg"/>
+		<move file="xtogen-dev/xtogen.zip" todir="dist"/>
+	</target>
+
+	<!-- Nettoie avant -->
+	<target name="clean">
+		<ant dir="XToGen Library" target="clean"/>
+		<ant dir="XToGen Static Files" target="clean"/>
+		<delete dir="dist" includeEmptyDirs="true"/>
+	</target>
+</project>

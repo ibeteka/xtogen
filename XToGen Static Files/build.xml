@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<project name="makextogenjar" default="dist">
+
+	<property name="tomcat.app.jar" value="xtogen-tomcat-app.jar"/>
+	<property name="struct.app.jar" value="xtogen-struct-app.jar"/>
+
+	<!-- Clean -->
+	<target name="clean">
+		<delete file="${tomcat.app.jar}"/>
+		<delete file="${struct.app.jar}"/>
+	</target>
+
+	<!-- Package -->
+	<target name="package">
+		<jar destfile="${tomcat.app.jar}" basedir="tomcat-app"/>
+		<jar destfile="${struct.app.jar}" basedir="struct-app"/>
+	</target>
+
+	<!-- Dist -->
+	<target name="dist" depends="clean,package">
+		<copy todir="../xtogen-dev/xtogen/static">
+			<fileset dir=".">
+				<include name="${tomcat.app.jar}"/>
+				<include name="${struct.app.jar}"/>
+			</fileset>
+		</copy>
+	</target>
+</project>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><fonds xmlns:xsp="http://apache.org/xsp" xmlns:sdx="http://www.culture.gouv.fr/ns/sdx/sdx" id="IVR93_004">
+   <etat>Fonds en cours de numérisation</etat>
+   <depot>1996</depot>
+   <nom>Architecture et urbanisme à lEstaque (Marseille)</nom>
+   <etablissement>IVR93</etablissement>
+   <domaine>Architecture</domaine>
+   <domaine>Paysage</domaine>
+   <domaine>Urbanisme</domaine>
+   <sommaire>
+            
+      <p>Ce fonds photographique est en cours de réalisation dans
+                le cadre dun programme détude topographique du
+                quartier de lEstaque mené en collaboration avec
+                lagence durbanisme de lagglomération marseillaise. Le
+                protocole détude est centré sur une problématique de
+                chrono-morphologie urbaine et déchantillonnage de
+                larchitecte urbaine mineure entre 1850 et 1950.</p>
+        
+   </sommaire>
+   <type>Photographie</type>
+   <periode>Époque contemporaine</periode>
+   <date>19e siècle</date>
+   <date>20e siècle</date>
+   <zone>Provence-Alpes-Côte-d'Azur</zone>
+   <base>
+        
+      <p>Base Illustration : ce système descriptif a pour objet de
+            proposer un référentiel commun aux services patrimoniaux
+            afin den faciliter la constitution et la consultation via
+            la base Mémoire.</p>
+    
+   </base>
+   <image thn="thumbnail/IVR93_004_img1v_thn.jpg">attach/IVR93_004_img1v.jpg</image>
+   <image thn="thumbnail/IVR93_004_img2v_thn.jpg">attach/IVR93_004_img2v.jpg</image>
+   <image thn="thumbnail/IVR93_004_img3v_thn.jpg">attach/IVR93_004_img3v.jpg</image>
+</fonds>

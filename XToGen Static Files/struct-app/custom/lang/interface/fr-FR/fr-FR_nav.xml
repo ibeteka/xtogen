@@ -1,0 +1,28 @@
+<table class="bar" cellpadding="0" cellspacing="0" border="0" width="100%" xmlns:xtg="http://xtogen.tech.fr">
+	<tr>
+		<td nowrap="nowrap"><xtg:link-index/></td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap"><xtg:link-nav/></td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap"><xtg:link-search/></td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap"><xtg:link-static/></td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap"><xtg:link-login/></td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap"><xtg:link-admin/></td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap">
+		<div align="center">
+			<small>Recherche</small><br/>
+			<xtg:search-form/>
+		</div>
+		</td>
+	</tr>
+</table>

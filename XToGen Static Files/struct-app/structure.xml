@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<!--
+	XtoGen - Générateur d'applications SDX2 - http://xtogen.tech.fr
+    Copyright (C) 2003 Ministère de la culture et de la communication, PASS Technologie
+
+    Ministère de la culture et de la communication,
+    Mission de la recherche et de la technologie
+    3 rue de Valois, 75042 Paris Cedex 01 (France)
+    mrt@culture.fr, michel.bottin@culture.fr
+
+    PASS Technologie, 23, rue Pierre et Marie Curie, 94200 Ivry Sur Seine
+	Nader Boutros, nader.boutros@pass-tech.fr
+    Pierre Dittgen, pierre.dittgen@pass-tech.fr
+
+    Ce programme est un logiciel libre: vous pouvez le redistribuer
+    et/ou le modifier selon les termes de la "GNU General Public
+    License", tels que publiés par la "Free Software Foundation"; soit
+    la version 2 de cette licence ou (à votre choix) toute version
+    ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile, mais
+    SANS AUCUNE GARANTIE, ni explicite ni implicite; sans même les
+    garanties de commercialisation ou d'adaptation dans un but spécifique.
+
+    Se référer à la "GNU General Public License" pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la "GNU General Public License"
+    en même temps que ce programme; sinon, écrivez à la "Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA".
+-->
+
+<!-- 
+	L'application est par défaut en mode 'test', i.e. autorise l'accès aux
+	pages de debug des xsp. En précisant mode="production", on retire 
+	l'affichage possible de ces pages.
+ -->
+<application>
+	<!--
+	 	Liste des langues d'interface 
+
+			Au moins une langue est obligatoire, elle doit avoir l'attribute
+			default (avec la valeur "true"). S'il y a plusieurs langues,
+			des liens sur chaque page permettent de passer d'une langue l'autre.
+
+		element "lang"
+
+		attributs obligatoires :
+			id = <code_iso_langue_2lettres>-<code_iso_pays_2lettres>
+			label = nom de la langue dans la langue elle-même (nom natif)
+
+		attributs optionnels :
+			direction = Pour les langues qui s'écrivent de droite à gauche, 
+				on précise direction = "rtl"
+	 -->
+	<languages>
+		<lang id="fr-FR" label="français" default="true"/>
+		<lang id="en-US" label="american"/>
+		<lang id="en-GB" label="english"/>
+		<lang id="it-IT" label="italiano"/>
+		<lang id="es-ES" label="español"/>
+	</languages>
+	<documenttypes>
+
+		<!--
+			Un élément 'documenttype' par type de document géré par
+			l'application
+
+			Attribut obligatoire :
+				* id : nom du type de document
+
+			Attribut optionnel :
+				* versioning : avec valeur ='true' indique que l'on souhaite
+					conserver des informations sur les modifications apportées
+					aux documents (auteur, date de modification)
+		-->
+		<documenttype id="contact">
+
+			<!--
+				Positionnement de la base (optionnel)
+				Pour indiquer si les documents viennent d'une base externe
+				
+				<location app="mon.autre.application.contenant.les.docs"/>
+			-->
+
+			<!--
+				Liste des champs du type de document
+				Un champ doit être désigné comme champ par défaut
+				(attribut default="true").
+				C'est ce champ qui sera utilisé pour l'affichage de retour
+				de recherche.
+
+				élément 'field'
+
+				Attribut obligatoire :
+					* name : nom du champ
+
+				Attributs optionnels :
+					* type : type du champ (="string" si absent)
+						sont autorisés, les valeurs :
+							- string : chaine de caractères
+							- email : adresse e-mail
+							- url : adresse url
+							- choice : liste de choix
+							- image : image (avec imagette)
+								ATTENTION, LE TYPE IMAGE EST DEPRECIE
+								IL FAUT MAINTENANT UTILISER LE TYPE attach
+								A LA PLACE
+							- attach : pièce attachée (avec vignette optionnelle)
+							- text : texte libre
+							- relation : relation vers un autre document
+
+					* path : chemin (XPath) du champ. Si ce champ est absent,
+						on considère que le noeud à traiter a le nom du champ
+						et est placé directement sous le noeud racine.
+
+					* lang : (='multi') si l'on souhaite que l'attribut
+						soit disponible en plusieurs langues.
+
+					* repeat : 'no' pour préciser que ce n'est pas un champ
+						multivalué ('yes' si non précisé)
+
+					* mandatory : 'true' pour préciser qu'un champ est
+						obligatoire à la saisie.
+
+				Attributs contextuels :
+					* Pour les champs de type 'choice', on peut préciser la
+					liste de valeurs utilisées, avec l'attribut supplémentaire
+					"list"
+
+					* Pour les champs de type 'relation', il faut préciser
+					le type de document vers lequel se fait la relation,
+					avec l'attribut "to".
+
+					* Pour les champs de type string, on peut préciser
+					la valeur par défaut du champ avec l'attribut 'value'.
+					Cette valeur peut être une chaine constante ou ${sdx:user}
+					pour désigner l'utilisateur courant.
+					
+					* Pour les champs de type string, on peut préciser que le
+					champ est non modifiable avec l'attribut readonly="true"
+
+				On peut définir des groupes répétables avec l'élément
+				fieldgroup. Un fieldgroup a 3 attributs :
+					* name : son nom (obligatoire)
+					* path : son chemin XPath (optionnel)
+					* repeat : 'no' pour ne pas le répéter à la saisie ('yes'
+						si non précisé)
+				Un fieldgroup contient des fields et des fieldgroups.
+			-->
+			<fields>
+				<field name="nom" type="string" default="true"/>
+				<fieldgroup name="internet">
+					<field name="email" type="email"/>
+					<field name="URL" type="url"/>
+				</fieldgroup>
+				<fieldgroup name="coordonnees">
+					<fieldgroup name="telephone" repeat="no">
+						<field name="bureau" path="@bureau"/>
+						<field name="portable" path="@mobile"/>
+					</fieldgroup>
+					<fieldgroup name="adressepostale">
+						<field name="adresse"/>
+						<field name="pays" type="choice" list="country"/>
+					</fieldgroup>
+				</fieldgroup>
+				<field name="nat" type="choice" list="country"/>
+				<field name="langue" type="choice" list="language"/>
+				<field name="photo" type="attach"/>
+				<field name="fonctions" type="text"/>
+				<field name="cv" type="text" lang="multi"/>
+				<field name="ami" type="relation" to="contact"/>
+				<field name="conjoint" type="relation" to="contact"/>
+			</fields>
+
+		</documenttype>
+
+	</documenttypes>
+</application>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<csv>
+	<conf>
+		<format>excel</format>
+		<separator>virgule</separator>
+		<quote>apostrophe</quote>
+		<mvseparator>$</mvseparator>
+	</conf>
+	<data>
+		<header>
+			<col>id</col>
+			<col>name</col>
+			<col>firstName</col>
+			<col>institution</col>
+			<col>qualification</col>
+		</header>
+		<row>
+			<value col="id">A1</value>
+			<value col="name">Boutros</value>
+			<value col="firstName">Nader</value>
+		</row>
+		<row>
+			<value col="id">A2</value>
+			<value col="name">Dittgen</value>
+			<value col="firstName">Pierre</value>
+		</row>
+	</data>
+</csv>
+

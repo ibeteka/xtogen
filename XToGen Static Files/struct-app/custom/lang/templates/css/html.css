@@ -1,0 +1,473 @@
+
+/*************************************/
+/*        html generic css           */
+/*************************************/
+        A:link   {color: #006600; text-decoration: none; font-weight: bold}
+        A:visited  {color: #999999; text-decoration: none; font-weight: bold}
+        A:active  {color: #006600; text-decoration: none; font-weight: bold}
+.attribut {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+}
+.valeur {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000099;
+}
+.saisie {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000099;
+}
+.titre{
+	font-weight: bold;
+	background-color: #efefef;
+}
+
+.hilite{
+	background-color: #ff93f4;
+}
+
+.commentaire {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-style: italic;
+	color: #4c4b4b;
+}
+
+.notinlist {
+	font-weight: bold;
+	color: #a30010;
+}
+
+.warning {
+	color: #ff8e8e;
+	font-style: italic;
+}
+
+#galerie {
+ border: 1px solid #333;
+ background-color: #ffe;
+ padding-left: 15px;
+ }
+
+div.vignettegalerie {
+ float: left;
+ width: 130px;
+ height: 130px;
+ padding-bottom: 10px;
+ }
+
+ div.float {
+ float: left;
+ width: 250px;
+ height: 10px;
+ padding-bottom: 10px;
+ }
+
+ div.spacer {
+ clear: both;
+ }
+
+div.fieldgroupheader {
+	background-color: #afafaf;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+div.fieldgroupplus {
+	background-color: #afafaf;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: right;
+}
+
+div.fieldgroup {
+	background-color: #afafaf;
+	display: none;
+}
+
+fieldset.block {
+	background-color: #e8e8e8;
+	border: 1px dashed grey;
+}
+
+.defaultlang {
+ background-color: #ededed;
+}
+
+.tomodify {
+	background-color: #d6f9b8;
+}
+
+.modified {
+	color: #4ca508;
+	font-style: italic;
+}
+
+.new {
+	color: #001dc4;
+	font-style: italic;
+}
+
+.predel {
+	background-color: #ffe2e9;
+}
+
+span.error {
+	color: #bc2546;
+}
+
+span.success {
+	color: #3c25bc;
+}
+
+/* Utilisé pour les liens de la barre de navigation */
+a.barnav {
+	padding: 0 0 0 10;
+	color: #81e261; 
+}
+a.barnav:link {
+	display: block;
+	color: #4ca82d;
+}
+a.barnav:visited {
+	display: block;
+	color: #4ca82d;
+}
+a.barnav:hover {
+	display: block;
+	color: #2b820e;
+}
+
+/* Utilisé pour les urls externes */
+a.url { color: #d0dbf4; }
+a.url:visited { color: #83a7ef; }
+a.url:hover { color: #1f50a5; }
+
+/* Utilisé pour les liens de navigation */
+a.nav { color: #81e261; }
+a.nav:visited { color: #4ca82d; }
+a.nav:hover { color: #2b820e; }
+
+/* Utilisé pour les liens de relation */
+a.rel { color: #e1a7ef; }
+a.rel:visited { color: #d067ea; }
+a.rel:hover { color: #961cb5; }
+
+/* default blocks */
+        h1, p, ol, ul, dl, html, body, div, center, blockquote
+    { display: block;}
+        h1 
+    {margin: 0}
+        html 
+    { }
+        body 
+    { margin-left: 3em; margin-right: 1em; margin-top:0;  }
+        head * 
+    { margin-right: 2em; }
+        ol, ul, dl 
+    { margin:left: 1em; }
+    p, ul, ol, dl, center 
+    { margin-top: 1ex; margin-bottom: 0.5ex; }
+    
+    
+    /* .page {width:80ex} */
+
+
+/* typo */
+
+        html, body, p, td, ol, ul, dl
+    { font-family: Universal, Arial, sans-serif;  font-weight: normal;}
+        strong, .alert, .bar a, label, button, .legend, select
+    { font-family: Universal, Arial, sans-serif;  }
+        h1, big
+    { font-family: Impact, sans-serif; font-weight: 900;  }
+        h3, h2
+    { font-family: Verdana, sans-serif; font-weight: 900; }
+        em, q, blockquote
+    { font-family: Garamond, serif; font-weight: 100; }
+        notag
+    { font-family: Script, cursive; }
+        notag
+    { font-family: "Comic Sans MS", fantasy; }
+        strong
+    { font-family: Arial, sans-serif ; font-weight: bold; }
+        code, kbd
+    {font-size: 90%; font-family: "Lucida Console", monospace; }
+        pre
+    { font-family: Courier, "MS Courier New", monospace; }
+
+/* sizes */
+        h1 
+    {font-size: xx-large; }
+
+
+/*******************************************/
+/*           semantic elements             */
+/*******************************************/
+
+        
+        big 
+    { font-size:larger; font-weight: 900; text-align: center;  color: red; }
+        small 
+    { font-size:70%; line-height:100%}
+            i 
+        { font-style: italic; }
+        b 
+    { font-weight: bold; }
+        em 
+    { font-style: italic;}
+        strong 
+    { font-weight: 900; }
+        abbr 
+    {}
+        acronym 
+    { font-weight: bold; }
+    
+    /* textual */
+        cite 
+    { font-style: italic;} cite:before { content: "\""} cite:after { content: "\""}
+        q, blockquote 
+    { font-style: italic; } 
+        q:before, blockquote:before 
+    { content: "Â« "}
+        q:after, blockquote:after 
+    { content: " Â»"}
+        samp 
+    { color: black;  }
+        dfn 
+    {}
+    
+    /* computing */
+
+        code 
+    { font-style: normal; }
+        kbd, .but
+    {  font-style: normal; font-weight: bold; border-width: 2px; border-style: outset;
+    padding-left: 1ex; padding-right: 1ex; text-decoration: none}
+        kbd:before, button:before {content: "[";}
+        kbd:after, button:after {content: "]";}
+        var {}
+/* meta */
+    address {}
+    ins {}
+    del {}
+    
+
+
+/********************************/
+/*           lists              */
+/********************************/
+
+
+        dir 
+    {}
+
+    ol, ul, dl {  }
+    ol { list-style-type : decimal;}
+    ul { list-style-type : disc; list-style-position: inside; }
+    /* li { display: list-item; } bug NS4  */
+    
+        li a 
+    { }
+    li a:active {}
+    li a:visited {}
+    
+    
+    dl {}
+    dt {margin-top:1.5em; margin-bottom:0.5ex; }
+    dd {} 
+
+div.choice {
+  float: left;
+  }
+
+/********************************/
+/*            colors            */
+/********************************/
+
+
+
+    /* name colors, not for xmlEditors */
+
+
+
+
+        p strong, ol strong, ul strong, dl strong
+    { color: darkgoldenrod; }
+
+        kbd 
+    { background-color: Gainsboro; color: Black; }
+.bar td
+    { background-color:Beige; color: Black; }
+            .bar a
+        { border-color: ButtonFace }
+        
+        .button {background:Beige; color:DarkOliveGreen} 
+    
+    
+        cite, small
+    { color: black}
+
+    .menu a {color: SlateGray;}
+
+        body, .text
+    { color: #332000; background-color: #FFFEFA; }
+
+        p strong, ol strong, ul strong, dl strong
+    { color: #B8860B; }
+
+        .highlight, p.first-letter:first-letter
+    {
+	background: White;
+	color: Black;
+}
+        h1
+    {color: #3F577E;}
+        h2, 
+    {color:Black;}
+        .form
+    {background:Beige; color:Black}
+        
+        cite 
+    { color: #000000; }
+        code 
+    { }
+        kbd 
+    { background-color: #DCDCDC; color: #000000; }
+        a, .text a
+    { color: Navy; }
+        a:visited, .text a:visited
+    { color: Sienna; }
+        a:hover, .text a:hover
+    { color: red; }
+
+
+/********************************/
+/*         navigation           */
+/********************************/
+
+
+        .bar a
+    {text-decoration: none; }
+        menu 
+    { list-style: decimal inside; text-align: left; width: 60%; white-space: nowrap;
+    margin-top: 1em; margin-bottom: 1em;
+    border: 2px outset; 
+    padding-top: 1ex; padding-bottom: 1ex; padding-left: 1em; padding-right: 1em;
+    }
+        .menu a
+    {width: 100%; text-decoration: none; background-color: transparent; padding-left:1ex; padding-right:1ex}
+        .menu a:hover
+    { background-color: Highlight; color: HighlightText; }
+         .menu a:active
+    { border-top: 1pt solid; border-bottom: 1pt solid; color: red; font-weight: 900; }
+
+     /*   .bar 
+    { border-bottom: 2 outset; border-top: 2 outset; padding: 0; margin: 0  }*/
+        .bar a
+     { font-size: 90%; line-height: 140%; border-width: 2; /*border-style: groove; border-color:transparent; display: block;*/ margin-left:1ex}
+        .bar a:hover
+     { /*border-style: outset; text-decoration: none;*/ }
+        .bar a:active
+     { /*border-style: inset*/}
+    
+        .alert 
+    { color: red; font-weight:bold; text-align:left; text-indent: 0; } 
+    
+/********************************/
+/*           titles             */
+/********************************/
+
+        .highlight strong
+    { font-size: small; display: block;  text-align: left;
+     border-bottom: 1pt solid; text-decoration: underline; }
+        .highlight em
+    {text-align: right; display: block;  font-size: large; }
+        .highlight h1
+    { text-align: right; font-size: xx-large}
+        .highlight 
+    {
+            font-family:Arial,sans-serif; font-weight:900;
+            padding-left:1em; padding-right:1em; padding-top:0.5ex; padding-bottom:0.5ex;
+    }
+    
+/* 1er niveau */
+
+        .paddings 
+    {  padding-top: 0.5ex; padding-bottom: 1em; padding-left: 2em; padding-right: 1em; 
+    border-top-style: ridge; border-bottom-style: ridge; border-left-style: ridge; border-right-style: ridge; 
+    border-width: 2; 
+    }
+        h1
+    { font-size: 200%; text-align: right; font-weight: 900; margin-top:1em; margin-bottom:1ex; margin-right: 1em}
+        h2
+    { text-indent:2em; border-bottom: 1px solid;  font-size: 110%;  margin-top:1em; margin-bottom:0.5ex}
+        h3
+    { font-size:105%; margin-bottom: 0.5ex}
+        .text
+    {  font-weight: normal; padding: 1em; padding-left: 2em; border: inset 2px; }
+
+/* 2e niveau 
+
+            div center
+        {  padding: 0; border: 0;}
+      div h1 {font-size: large; border: 2px ridge; }
+            div center p {border: none;}
+*/
+/* 3e niveau */
+
+
+/********************************/
+/*            text              */
+/********************************/
+
+        p, .text p 
+    {text-align: justify; text-indent:2em;   }
+        p.first-letter
+    { text-indent: 0; }
+        p.first-letter:first-letter 
+    { float: left; line-height: 80%; font-size: 400%;
+      font-style: italic; font-weight: 900; 
+      margin-right: 0.2ex;  padding-top: -0.5ex; padding-bottom: -0.5ex; 
+    }
+        p strong
+    { font-size: 110%; margin-right: 2em; }
+        p strong:after 
+    { content: " - "; }
+
+/********************************/
+/*          controls            */
+/********************************/
+
+
+    .form {border:outset 2; padding: 5}
+
+
+    textarea {height:5em}
+
+    .legend {
+        border-bottom: groove 2; padding-left:1em; padding-right:1em; padding-top: 0.4ex; 
+        padding-bottom: 0.2ex; 
+        margin-bottom:1ex; font-weight:900; font-family: sans-serif;
+    }
+
+    select {background: White; color: Black;}
+    input {font-size:90%; }
+    .info {background:LightYellow; color:Black;}
+    .help { cursor: help;}
+    button, .button {cursor:pointer}
+
+    .focus {border-color:red; background:#FFFFCC; color:black}
+    div.help , tr.help, td.help {
+        width: 80ex; border: 2 ridge; background-color: InfoBackground; color: infoText; 
+        padding: 1ex; font-size: smaller; white-space: normal; font-weight: normal; text-align: justify;
+        white-space: normal; margin-top:1ex; margin-bottom:1ex
+    }
+        
+
+
+/********* end sheet ************/
+ 

@@ -1,0 +1,1170 @@
+==============================================================================
+ XToGen 2 - le 02/02/2004
+
+Changements :
+	* Une politique de sécurité par défaut est mise en place.
+	* Le "check" ne signale plus l'absence de block "security"
+
+==============================================================================
+ XToGen 2 - le 19/01/2004
+
+Bugs corrigés :
+	* Un CSV contenant des lignes vides provoquait la création de lignes vides
+		lors de l'import...
+
+==============================================================================
+ XToGen 2 - le 03/01/2004
+
+Améliorations :
+	* On utilise maintenant des chemins absolus pour les listes externes dans
+		le processus d'indexation. L'indexation de fichiers dans des sous
+		-dossiers et dans une archive ZIP fonctionnent.
+
+Bug corrigé :
+	* Les urls de relation dans les brochures PDF pointaient vers des brochures
+		et non des documents
+==============================================================================
+ XToGen 2 - le 31/12/2003
+
+Changements :
+	* Dans l'affichage du document, si le document contient une vignette mais
+		que la taille de la vignette a été paramétré dans le fichier
+		display.xml alors on utilise cette taille pour générer une vignette.
+
+Améliorations :
+	* Meilleur affichage des documents attachés
+	* Meilleure traduction anglaise des libellés pour la page d'import
+
+Bugs corrigés :
+	* La navigation entre documents n'était pas internationalisée.
+	* Vérification des namespaces générés
+	* L'export ZIP n'exportait pas ou mal les vignettes associées aux documents
+
+==============================================================================
+ XToGen 2 - le 30/12/2003
+
+Améliorations :
+	* Meilleur affichage de la page d'administration en arabe
+	* Meilleur affichage des documents attachés en arabe
+	* Plus de navigation dans l'affichage des documents attachés
+
+Changements :
+	* Dans la galerie d'images, si le document contient une vignette mais que
+		la taille de la vignette a été paramétré dans le fichier display.xml
+		alors on utilise cette taille pour générer une vignette.
+
+Bugs corrigés :
+	* Un appel au script Perl sous Linux subsistait, il est obsolète et a été
+		retiré.
+	* Les champs 'reverse' ne s'affichaient pas en mode brochure dans le PDF
+
+==============================================================================
+ XToGen 2 - le 29/12/2003
+
+Nouveautés :
+	* Le tag 'xtg-doctype-label' est géré dans les templates fop pour le nom
+		du type de document courant.
+	* La direction indiquée dans le tag HTML est automatiquement gérée pour
+		le template.
+	* Possibilité de choisir le critère de tri pour la brochure PDF et l'export
+		CSV dans la page d'export.
+
+Bugs corrigés :
+	* En l'absence d'élément "sort", le tri n'était pas appliqué dans toutes
+		les listes.
+	* Important bug de saisie du à la taille variable des identifiants de
+		noeuds DOM
+	* csv_list_pre_import.xsp ne compilait plus.
+	* Le mode inline est maintenant géré en mode template
+	* La taille de la vignette est maintenant prise en compte en PDF
+
+==============================================================================
+ XToGen 2 - le 24/12/2003
+
+Améliorations :
+	* Dans le mode template, on conserve maintenant bien la valeur de la 
+		recherche.
+	* Suppression de log inutile
+
+Bugs corrigés :
+	* Le titre par défaut de la brochure PDF s'affiche correctement maintenant.
+	* Le traitement des champs uniques faisait "planter" la saisie des
+		documents ne contenant pas de champ unique.
+	* Les vignettes n'étaient pas bien affichées dans la saisie
+	
+==============================================================================
+ XToGen 2 - le 23/12/2003
+
+Changements :
+	* Dans l'affichage PDF, on ne met plus ZOOM sous l'illustration mais le 
+		nom du fichier.
+
+Bugs corrigés :
+	* La vignette (non générée) s'affichait mal dans la saisie.
+	* Le libellé pour la liste alphabétique des documents n'est plus généré.
+
+==============================================================================
+ XToGen 2 - le 22/12/2003
+
+Nouveautés :
+	* L'affichage des éléments multivalués avec un séparateur est maintenant
+		géré.
+	* La gestion des champs "uniques" commence à fonctionner
+
+Améliorations :
+	* Meilleure gestion des fieldgroups répétés avec xtg-fieldgroup-value
+	* Meilleur affichage des images en PDF
+
+Changements :
+	* Dans les templates PDF, les identifiants xtg-field-name et 
+		xtg-field-value sont maintenant augmentés par le nom du champ associé
+		pour assurer l'unicité des identifiants.
+	* xtg-field-name devient xtg-fieldgroup-name pour les fieldgroups
+
+Bugs corrigés :
+	* Le champ par défaut du document était affiché en lien avec le template
+		HTML.
+	* Corrections diverses dans l'affichage PDF
+	* Suppression de namespaces inutiles dans la sortie HTML
+	* Les éléments de liste s'affichent maintenant correctement
+	* Le squelette personnalisé n'était pas copié côté SDX.
+	* Le tri par défaut pour les listes de navigation n'était pas le bon
+	* Même problème dans l'administration
+	
+==============================================================================
+ XToGen 2 - le 20/12/2003
+
+Améliorations :
+	* Traitement plus modulaire du multivalué pour l'affichage HTML et PDF,
+		préparant l'affichage personnalisé du multivalué.
+	* Les tags xtg-field-id-.... sont gérés dans le PDF.
+	* Gestion des champs reverse en HTML et PDF
+	* Le code HTML pour l'édition des listes externes est plus "propre"
+
+Changements :
+	* La syntaxe des id pour le PDF reflète celle de l'HTML
+
+Bugs corrigés :
+	* L'export PDF n'affichait pas correctement les champs situés dans des
+		fieldgroups à plusieurs sous-niveaux.
+	* Dans l'affichage HTML, les champs vides étaient affichés.
+	* Dans l'affichage PDF, les champs vides étaient affichés.
+	* Les vignettes n'étaient plus affichées en mode template PDF et HTML
+	* L'affichage d'un document HTML en mode template pouvait planter
+	* Le squelette généré n'était pas copié côté SDX
+
+==============================================================================
+ XToGen 2 - le 18/12/2003
+
+Nouveautés :
+	* Le template pour les documents fonctionne à deux exceptions :
+		- quid de la gestion des champs "reverse" ?
+		- gestion de l'affichage multi-valué
+	* Même chose pour le pdf
+
+Bugs corrigés :
+	* Le traitement des vignettes n'agrandit plus les petites images.
+
+==============================================================================
+ XToGen 2 - le 17/12/2003
+
+Changements :
+	* les squelettes sont générés indépendamment de la langue. Un nouvel
+		identifiant 'xtg-message-<message>' fait son entrée.
+	* début de template pour les documents
+	
+Améliorations :
+	* Le nom des champs SDX multilingues ne contiennent plus de trait d'union.
+	* La recherche plein-texte apparait maintenant avec une liste déroulante
+		pour choisir la langue de recherche.
+	* Les informations utilisateurs sont maintenant gérés dans les templates
+
+Bugs corrigés :
+	* Le champ par défaut ne possède plus de lien tarzan dans l'affichage
+		des documents
+	* Le champ plein-texte indexait le nom des documents attachés
+	* Le champ plein-texte indexait les informations de versioning
+
+==============================================================================
+ XToGen 2 - le 16/12/2003
+
+Nouveautés :
+	* 1ère version de la génération des templates. Il faut réfléchir à voir 
+		comment utiliser une XSL générique et des méta-tags.
+	* On n'utilise plus les fichiers empty_*.xml
+	* Gestion de la recherche plein-texte en arabe
+
+Changements :
+	* Le suffixe '_std' est renommé en '_gen', plus approprié.
+	* Le même principe est utilisé pour les fichiers display
+	* Les fichiers des pages statiques sont renommés. Ainsi le fichier traitant
+		de l'aide en français n'est plus nommé fr-FR_aide_display.xml mais
+		fr-FR_static_aide.xml.
+
+==============================================================================
+ XToGen 2 - le 15/12/2003
+
+Améliorations :
+	* Un message plus explicite s'affiche lorsque le dossier des documents
+		à indexer ne contient aucun document.
+	* Les fichiers de personnalisation sont forcément copiés dans l'application
+		SDX (utilisation de touch)
+	* Les fichiers de documents sont maintenant générés avec un nom finissant
+		par _std.xml et générés à chaque ant update. Pour personnaliser le
+		fichier, il faut le renommer en retirant "_std".
+
+Bugs corrigés :
+	* La génération des vignettes ne fonctionnait pas sous Linux. Il a fallu
+		ajouter la propriété système java.awt.headless (positionnée à true)
+		dans catalina.sh et modifier le code de lecture.
+	* L'export CSV exporte bien tous les identifiants
+	* Lorsque l'on saisit une fiche avec un document attaché inexistant,
+		celui-ci n'est pas ajouté au document
+
+==============================================================================
+ XToGen 2 - le 12/12/2003
+
+Améliorations :
+	* Présentation + légère de l'administration des listes
+	* La target "ant check" vérifie maintenant la section "lists" de
+		display.xml
+	* Affichage du nombre de documents au moment du "flush" d'une base de
+		documents
+
+Bugs corrigés :
+	* Débuggage de la génération des feuilles de transformation XSL-FO avec
+		la restriction d'accès aux champs.
+	* Le flush de base de documents ne fonctionnait pas dans certaines 
+		circonstances.
+	* Le delete ne fonctionnait plus
+==============================================================================
+ XToGen 2 - le 11/12/2003
+
+Bugs corrigés :
+	* Des flèches de tri apparaissaient même lorsqu'aucun tri n'était défini
+		pour le type de document.
+	* La navigation par page buggait lorsque le tri était utilisé.
+	* Des informations de namespace inutiles dans l'affichage des documents ont
+		été retirés
+
+==============================================================================
+ XToGen 2 - le 10/12/2003
+
+Bugs corrigés :
+	* La version de XToGen utilisant les templates ne géraient pas toutes les
+		informations en header, d'où des problèmes dans les redirections et
+		le JavaScript de la saisie
+	* La liste alphabétique des documents était mal gérée.	
+	* La recherche posait problème avec les champs en mode 2 colonnes
+
+==============================================================================
+ XToGen 2 - le 09/12/2003
+
+Améliorations :
+	* Ajout de tags <br/> pour la présentation du mode "2cols"
+	* Les informations contenues dans l'en-tête HTML généré par SDX ont été 
+		réorganisées
+	* Le lien vers l'export VCard a été prévu dans document.xsl et mis en
+		commentaire pour un ajout simple de la fonctionnalité.
+	* les galeries présentent maintenant 21 images maxi
+
+Bugs corrigés :
+	* La target ant dist de XToGen Library compile bien les classes Java avant
+		de les jarrer.
+
+==============================================================================
+ XToGen 2 - le 08/12/2003
+
+Nouveautés :
+	* Gestion des clefs de tris pour les résultats de requêtes (navigation,
+		recherche et liste des documents dans l'administration)
+	* XToGen 2 est maintenant sous CVS (dans caire)
+
+==============================================================================
+ XToGen 2 - le 05/12/2003
+
+Changements :
+	* L'affichage des relations et relations inverse dans l'export PDF est 
+		maintenant délégué à la feuille relation_display.xsl.
+	* Attention !!! Plus de navigation alphabétique par défaut. Il faut
+		le préciser explicitement.
+
+Bugs corrigés :
+	* La recherche complexe ne fonctionnait plus. Le problème était dû à un 
+		mauvais nommage des champs du formulaire.
+	* La génération d'une nouvelle structure d'application XToGen construisait
+		encore un dossier custom/style et non custom/webapp.
+	* document.xsp utilisait encore le paramètre base par défaut.
+	* vcf_export.xsp utilisait encore le paramètre base par défaut.
+	* upload.xsp ne réagissait pas au paramètre 'db'
+	* Oubli du préfixe dans access_rights.properties.xsl
+
+==============================================================================
+ XToGen 2 - le 04/12/2003
+
+Nouveautés :
+	* Première version "ultra-béta" du système de templates, incluant la
+		recopie du fichier de templates dans le dossier templates côté SDX et 
+		les sous-dossiers à la racine. Sont gérés : la barre de navigation,
+		la barre de langue et l'inclusion du contenu des pages. Pour utiliser
+		le principe de template, il faut faire une modification simple dans
+		common.xsl (fichier commenté).
+	* Une information est affichée si la propriété 'file.url.prefix' n'est pas
+		bien positionnée en fonction du système d'exploitation.
+
+Changements :
+	* Le paramètre URL désignant l'identifiant d'un document est maintenant
+		toujours id (et non plus un mélange de id et editId)
+	* Le dossier custom/style est renommé en custom/webapp
+	* Suppression du script Perl rendu inutile par l'utilisation de la
+		propriété file.url.prefix
+
+Bugs corrigés :
+	* Le nom du fichier attaché ne s'affichait pas toujours dans la saisie
+	* Plusieurs fichiers de même nom peuvent maintenant être uploadé sans 
+		risque d'écrasement
+	* Les fichiers uploadés peuvent maintenant comporter des accents dans leur
+		nom
+
+==============================================================================
+ XToGen 2 - le 03/12/2003
+
+Nouveautés :
+	* Une variable globale $currentdoctype donne le type de document associé
+		à la page si il y en a un.
+	* L'export ZIP fait son apparition dans la page d'export
+	* Une variable globale $urlparameter désigne maintenant les paramètres URL
+		de la page courante
+	
+Améliorations :
+	* Gestion plus intelligente des URLS de changement de langue
+	* header.xsl est plus léger et donc + simple à personnaliser (affichage
+		des pièces attachées)
+
+Changements :
+	* Le paramètre URL désignant la base de document est maintenant toujours
+		(et non un mélange de base et de db comme précédemment).
+
+Bugs corrigés :
+	* xsl:message de debug retirés dans config.xml.xsl
+	* L'export PDF simple ne fonctionnait plus
+	* L'export PDF de brochure n'était pas adapté à la restriction sur les
+		champs.
+
+==============================================================================
+ XToGen 2 - le 02/12/2003
+
+Nouveautés :
+	* Ajout du mime-type et du pipeline VCard dans sitemap.xmap. Ajout de 
+	vcf_export.xsp et vcf_export.xsl (exemple à personnaliser bien sûr) dans
+	le squelette d'application.
+
+Améliorations :
+	* On peut maintenant nommer un type de document "document", il n'y a plus
+	de problème de conflits de noms. La seule restriction restante est de ne
+	pas nommer un type de document "all_docs".
+	* On peut maintenant paramétrer la taille des vignettes dans display.xml
+	
+Bugs corrigés :
+	* Dans l'export de la brochure PDF, on ne visualisait plus que le sommaire.
+
+==============================================================================
+ XToGen 2 - le 01/12/2003
+
+Nouveautés :
+	* Première gestion béta des vignettes automatiquement générées
+
+Améliorations :
+	* Meilleure affichage lorsqu'une erreur d'indexation se produit.
+
+Changements :
+	* L'upload se fait maintenant dans le répertoire attach
+	* Les vignettes sont automatiquement générées
+
+==============================================================================
+ XToGen 2 - le 26/11/2003
+
+Améliorations :
+	* Commentaire + clair pour l'utilisation de file_url_prefix dans 
+		global_xtogen.properties
+	* Ajout des langues disponibles dans structure.xml exemple
+	* Le build.xml de l'application par défaut a "xtogen" et non plus "anum"
+		comme nom de projet.
+	* Plus d'information dans le fichier display.xml par défaut
+	* Détection de la présence de Saxon lors de la création d'une application.
+
+==============================================================================
+ XToGen 2 - le 25/11/2003
+
+Nouveautés :
+	* Support complet de l'export ZIP (avec ou sans pièces attachées)
+
+==============================================================================
+ XToGen 2 - le 24/11/2003
+
+Nouveautés :
+	* Support de la restriction d'accès par valeur d'attributs pour l'export PDF
+	* Début du support de l'export des documents attachés : A rendre générique !!!
+
+Bugs corrigés :
+	* L'export XML avec un document versionné posait problème
+==============================================================================
+ XToGen 2 - le 21/11/2003
+
+Nouveautés :
+	* Première béta version du mode "upload" des fichiers attachés
+	
+Bugs corrigés :
+	* L'export ZIP ne fonctionnait que pour l'application bec :-(
+	* Problème avec la suppression d'un document attaché existant
+
+==============================================================================
+ XToGen 2 - le 20/11/2003
+
+Nouveautés :
+	* Export ZIP des documents XML (sans les pièces attachées !)
+
+Changements :
+	* base_<doctype>_export.xsl a été renommé en csv_base_<doctype>_export.xsl
+
+Bugs corrigés :
+	* Plus de namespaces intempestifs dans l'export des documents en XML
+
+==============================================================================
+ XToGen 2 - le 19/11/2003
+
+Bugs corrigés :
+	* L'import de fichier CSV de liste comportant des accents fonctionne
+		maintenant.
+	
+==============================================================================
+ XToGen 2 - le 18/11/2003
+
+Améliorations :
+	* Gestion + "propre" de la XSL d'administration des listes externes.
+	* Ajout d'une section "lists" dans display.xml pour permettre le tri des
+		listes externes dans l'édition
+	* La déclaration du namespace "java.net.URLEncoder" a été replacé à la
+		racine des feuilles de style document_<doctype>.xsl
+
+Bugs corrigés :
+	* Modifications dans SDXUtil non reportées dans saisie_doctype.xsp.xsl,
+		c'est maintenant fait...
+	* Import d'un fichier CSV dont le nom comportait des accents posait
+		problème dans l'import des listes
+
+==============================================================================
+ XToGen 2 - le 17/11/2003
+
+Améliorations :
+	* Ajout d'un titre "Administration" dans la page principale
+		d'administration.
+
+Bugs corrigés :
+	* Vérification supplémentaire sur la valeur des champs de type URL pour
+		l'export PDF
+	* Le paramétrage individuel de la taille des champs de saisie posait
+		problème
+	* Erreur de nommage du libellé du champ de saisie du libellé optionnel
+		des champs e-mail
+	* Dans la recherche multi-critères, on utilise maintenant complexopParam
+		et non plus complexOpParam...
+	* Correction du bug d'import CSV des documents
+
+==============================================================================
+ XToGen 2 - le 14/11/2003
+
+Changements :
+	* Les repositories sont maintenant basés sur HSQL
+
+==============================================================================
+ XToGen 2 - le 12/11/2003
+
+Améliorations :
+	* Création d'un champ xtgtitle qui contient la valeur du champ par défaut
+		du document
+Bugs corrigés :
+	* Problème de lettres accentuées dans les listes de navigation
+	* Dans la page d'accueil, on fixe la langue à la langue par défaut si elle
+		n'est pas encore en session
+
+==============================================================================
+ XToGen 2 - le 11/11/2003
+
+Améliorations :
+	* Plus de <hr> dans l'information sur l'utilisateur connecté
+	* Metas plus intéressants
+
+==============================================================================
+ XToGen 2 - le 10/11/2003
+
+Améliorations :
+	* relation_display fonctionne également en mode 'relation vers un document
+		dans une application externe'
+	* Gestion du mode "inline" des images dans l'export PDF
+	* La taille maximal d'un élément de liste dans les formulaires de recherche
+		est maintenant de 40 caractères (comme dans la saisie)
+
+Bugs corrigés :
+	* Plus de changement de langue lors de l'identification !
+
+==============================================================================
+ XToGen 2 - le 09/11/2003
+
+Améliorations : 
+	* Mode 'inline' pour les images (affichage du document)
+	* Mode 'inline' pour les images (navigation)
+	* Mode 'inline' pour les images (saisie)
+	* Ajout de valeurs par défaut pour la taille des champs texte, des zones
+		texte et des listes de valeur dans l'édition et la recherche
+	* Remise en place du choix de l'identifiant dans l'édition des listes
+		externes
+
+Bugs corrigés :
+	* La sélection des relations se faisait mal dans la saisie lorsque la
+		valeur était portée par un attribut et non un élément.
+
+==============================================================================
+ XToGen 2 - le 06/11/2003
+
+Améliorations :
+	* Nouvelle section "document" dans display.xml pour changer l'apparence des
+		champs dans l'affichage d'un document. 1ère implémentation : les images.
+		2 modes proposés : link (défaut) et inline
+	* Dans index-doctype.xsl.xsl : Plus de namespace inutiles
+	* L'utilisation de plusieurs paths identiques dans différents fieldgroups
+		ne pose plus de problème pour l'indexation (oui, déjà présent hier mais
+		cette fois-ci, c'est la bonne :-)).
+	* Quand la langue du document n'est pas reconnue à l'indexation (ne fait
+		pas partie des langues déclarées, alors un message est affiché dans la
+		fenêtre de Tomcat et on prend la langue par défaut...)
+
+==============================================================================
+ XToGen 2 - le 05/11/2003
+
+Améliorations :
+	* L'utilisation de plusieurs paths identiques dans différents fieldgroups
+		ne pose plus de problème pour l'indexation.
+
+Changements :
+	* Renommage de champs pour éviter les problèmes de Lucène dus à
+		l'utilisation du trait d'union dans les noms de champs.
+	* Le champ plein-texte est renommé xtgpleintexte
+	* Le champ doc-lang est renommé xtgdoclang
+	* Le préfixe des champs word passe de 'w-' à 'xtgw_'
+	* Le suffixe des champs de liste externe était '_choiceid', il devient un
+		préfixe et est désormais libellé 'xtgid_'.
+==============================================================================
+ XToGen 2 - le 02/11/2003
+
+Bugs corrigés :
+	* Erreur lors de l'édition de documents sans identifiants précédemment 
+		importés, les documents étaient dupliqués (saisie_doctype.xsl.xsl)
+	* Les documents comportant des valeurs de listes externes mais pas
+		d'information de langues étaient mal indexés et mal affichés.
+
+==============================================================================
+ XToGen 2 - le 27/10/2003
+
+Améliorations :
+* Check-display vérifie la validité du bloc meta
+* La target zipxtg remet à jour les jars de squelette d'application
+
+Bugs corrigés :
+* Suppression de namespace inutiles dans la génération HTML de la page de
+	documents
+* Suppression d'un namespace inutile dans la génération des meta
+* Pour les méta, l'attribut contenant la valeur du tag est content et non
+	value.
+* Lorsqu'un méta avait 2 valeurs, 2 lignes étaient générées, maintenant, c'est
+	une chaine contenant les 2 valeurs séparées par une virgule
+* Ligne erronée dans la target zipapp
+* Les labels contenant des accents et associés à des pièces attachées
+	s'affichaient mal dans la barre de titre du navigateur.
+
+==============================================================================
+ XToGen 2 - le 24/10/2003
+
+Bugs corrigés :
+* Le fait de mettre en mode 'check' l'affichage dans la recherche d'un champ
+	de type options non répétable, faisait crier le check-display. Ce n'est
+	plus le cas.
+* lang_display.xml.xsl n'avait pas pris en compte le changement de syntaxe de
+	item à page.
+* Pb lors de l'affichage du lien de navigation d'un champ choice
+* Pb d'indexation d'un champ liste externe contenu dans un fieldgroup
+* Plus d'affichage intempestif du namespace XSP dans les tags contenus dans 
+	un texte libre à la saisie
+* Désormais le 'check' vérifie que le mode appliqué au champ relation n'est pas
+	autre chose que 'combo' et 'Mcombo'
+* Dans la saisie d'un champ associé à une liste externe on ne voyait rien
+	lorsque la liste externe était vide, il y a maintenant un message :
+	"pas de valeur disponible".
+
+==============================================================================
+ XToGen 2 - le 23/10/2003
+
+Nouveautés :
+* Début de support du truc alphabétique
+
+Bugs corrigés :
+* terms_<doctype>.xsp et query_<doctype>.xsp ne contenait pas la ligne magique
+	pour le traitement des valeurs du formulaire en UTF-8...
+==============================================================================
+ XToGen 2 - le 22/10/2003
+
+Changements : 
+* Le problème des 'file:/' sous Windows/Linux est maintenant géré différemment,
+	avec une variable de configuration dans global_xtogen.properties
+
+Bugs corrigés :
+* result_display.xsl comportait des erreurs
+* le paramètre lang du template d'affichage des champs de type choice écrasait
+	la variable globale lang.
+
+==============================================================================
+ XToGen 2 - le 18/10/2003
+
+Changements :
+* relation_display.xsl a été supprimé du squelette d'application SDX car 
+	déjà présent dans le squelette d'application XToGen.
+
+Améliorations :
+* result_display.xsl est aussi utilisé pour l'affichage des documents dans
+	l'administration. Attention, les noms des templates ont été anglicisés...
+
+==============================================================================
+ XToGen 2 - le 17/10/2003
+
+Bugs corrigés :
+* La modification pour gérer la multilocalisation posait des problèmes
+* Les informations de base passées au template d'affichage des relations
+	étaient erronées.
+* La correction sur les multi-bases n'avait pas été appliqué dans
+	pdf_export.xsl.
+
+==============================================================================
+ XToGen 2 - le 16/10/2003
+
+Améliorations :
+* Modifications pour gérer la multilocalisation
+
+Changements :
+* Le charset par défaut pour l'import et l'export CSV est l'iso-latin-1
+
+Bugs corrigés :
+* Le flush ne flushait pas bien... la nouvelle méthode est plus radicale 
+	(recréer le document de toute pièce)
+* La classe CSVListPrinter inutilisée a été retirée.
+==============================================================================
+ XToGen 2 - le 15/10/2003
+
+Bugs corrigés :
+* Les nouvelles icones pour la copie de documents n'étaient pas inclus dans
+	XToGen.
+* Dans la saisie, les listes de choix étaient présentées dans la langue de 
+	l'interface et non la langue du document (ce qui n'est pas génant pour un
+	nouveau document mais l'est bien plus pour un document existant...).
+
+==============================================================================
+ XToGen 2 - le 14/10/2003
+
+Nouveautés :
+* Possibilité de "vider" une liste externe.
+
+Améliorations :
+* Dans l'export d'une brochure PDF, la date est formatté selon la langue
+	de l'interface et non plus selon la langue préférée de l'utilisateur.
+* Dans la génération des XSL d'indexation, le namespace SDX est déclaré au
+	niveau de la stylesheet et non à chaque sdx:field.
+
+Bugs corrigés :
+* La modification relative à la copie des documents copiait tous les documents
+	même lors de leur simple édition...
+* L'indexation plein-texte des champs choice ne se faisait pas lorsque ceux-ci
+	étaient placés dans des fieldgroups.
+* Confusion entre CVS et CSV dans les fichiers d'interface anglophones.
+* L'import CSV des listes externes ne modifiait pas les listes
+
+==============================================================================
+ XToGen 2 - le 13/10/2003
+
+Nouveautés :
+* Possibilité de copier un document dans l'interface d'administration
+
+Changements :
+* Le test de l'appel local dans les XSP terms_ et query_ ne fonctionne pas. En
+	effet, l'adresse de requête peut être différente de 127.0.0.1. Je retire
+	le test en attendant de trouver mieux...
+
+Bugs corrigés :
+* L'export d'un document en PDF était décalé à cause du formatage de la 
+	première page. Un test supplémentaire a été fait.
+* L'affichage des valeurs hors listes externes ne se faisait pas bien dans la
+	page de saisie lorsque le mode d'affichage était la combo.
+
+==============================================================================
+ XToGen 2 - le 11/10/2003
+
+Changements :
+* Ajout d'une page de garde pour les brochures PDF. Celle-ci contient un titre,
+	un sous-titre, le nombre de documents et la date du jour. 
+
+==============================================================================
+ XToGen 2 - le 10/10/2003
+
+Changements :
+* Le titre des fichiers pdf générés est maintenant le champ par défaut (plus
+	de préfixe avec le type de document)
+* Le fichier result_display.xsl était en double (dans la partie
+	"personnalisation" du squelette d'application et dans les fichiers de
+	l'application SDX. Il n'est maintenant plus que dans le squelette de 
+	l'application.
+* Modification de ce fichier pour afficher un lien (l'identifiant du document)
+	même si le champ par défaut est vide.
+* Même type de correction dans l'affichage de la liste des documents d'une
+	base (partie admninistration).
+
+Bugs corrigés :
+* La page de debuggage de la sortie PDF n'avait pas suivi le changement de nom
+	des pages PDF
+* Sous Linux, la génération XSL posait des problèmes à cause du préfixe
+	('file:/' sous Windows et 'file://' sous Linux). Un coup de Perl sous Linux
+	et hop !
+
+==============================================================================
+ XToGen 2 - le 08/10/2003
+
+Améliorations :
+* Les liens de la barre de navigation sont maintenant gérés en classe CSS
+	différentes (barnav) des liens de navigation classiques.
+* Ménage dans l'affichage de la barre de navigation
+* Ajout d'une vignette par défaut pour la galerie d'image
+
+Changements :
+* admin.xsl a été modifié pour afficher moins d'information lorsque
+	l'utilisateur est uniquement du groupe saisie
+* On peut maintenant préciser l'encodage souhaité pour la sérialisation CSV
+	réalisée par le sérialiseur maison (par défaut, c'est de l'UTF-8).
+
+Bugs corrigés :
+* Problème dans la navigation lié à l'UTF-8, j'ai utilisé l'encodage par la
+	méthode java.net.URLEncoder.encode(). XToGen a désormais donc besoin du
+	jdk1.4 !
+* Les champs readonly ne l'étaient plus...
+* Dans la page de saisie, on ne propose plus des liens vers la saisie de 
+	documents de bases externes à l'application
+* Mauvais positionnement du commentaire de fichier pour l'export PDF
+* L'affichage des relations et pièces attachées posait problème avec des
+	bases multilocalisées (affichage du document et export PDF).
+* Les pages servant à récupérer les listes de valeurs pour la saisie et la
+	recherche étaient protégées et ne pouvaient fonctionner en mode
+	document(), les 2 séries de page (terms_<doctype> et query<doctype>) ont
+	été adaptés pour soit vérifier l'accès si l'utilisateur demande la page
+	avec l'extension '.xsp' soit vérifier que la demande provient du serveur
+	local lorsque l'extension est différente.
+* L'affichage était redondant lors du login de l'administrateur
+* L'affichage de la galerie posait problème lorsque les pièces attachées
+	n'avaient pas de vignettes associées.
+
+==============================================================================
+ XToGen 2 - le 07/10/2003
+
+Améliorations :
+* Lorsque le nombre de relations inverses dépasse 10 occurrences, on affiche
+	un lien vers une page de résultats.
+* Utilisation de log4j pour le log de XToGen-lib. Cela permet de configurer
+	plus aisément les logs de Tomcat relatifs à la bibliothèque XToGen.
+
+Bugs corrigés :
+* L'export PDF posait problème lorsque le titre du document était positionné
+	dans un fieldgroup.
+* Mauvais affichage de la page d'administration quand l'utilisateur n'est pas
+	administrateur
+* Dans pdf_export.xsl, suppression d'un attribut posant problème avec FOP sous
+	Linux.
+
+==============================================================================
+ XToGen 2 - le 06/10/2003
+
+Changements :
+* Le dollar ne crée plus de champs multivalués.
+
+Nouveautés :
+* Possibilité de définir la propriété 'repeat="no"' aussi pour un champ simple.
+
+Améliorations :
+* Dans l'affichage du document, on ne met pas de légende si celle-ci est vide.
+* Lorsque l'on se logge en tant qu'administrateur, on est immédiatement
+	redirigé vers la page d'administration.
+* Meilleure information lors du login
+* Présentation "volet" pour un nouveau champ
+* Lorsqu'un champ relation n'est pas répétable, on le présente à la saisie
+	sous forme d'une combo simple (pas multiple).
+* Le 'check' vérifie maintenant qu'un type de document ne contient pas deux
+	champs ou groupe répétable de même nom.
+* Les fichiers structure.xml et display.xml exemples sont mieux commentés pour
+	inclure les nouveautés disponibles.
+* Le 'check' vérifie maintenant que les attributs de mode d'affichage et 
+	l'attribut repeat sont cohérents.
+
+Bugs corrigés :
+* Le lien saisie est bien affiché lorsque l'utilisateur est du groupe saisie.
+	Par ailleurs, la variable "currentapp" a été créée.
+* La page pre_flush.xsp affichait systématiquement un message de redirection.
+* La page delete.xsp aussi
+* La page flush.xsp aussi
+* La page pre_delete.xsp aussi
+* Dans le fichier display.xml de l'application par défaut, la syntaxe de 
+	personnalisation d'affichage des champs était fausse (<field name=... au
+	lieu de <on field=...)
+* Dans la saisie, un champ de type "choice" avec un path en attribut "@..."
+	ne s'affichait pas correctement.
+
+==============================================================================
+ XToGen 2 - le 04/10/2003
+
+Bugs corrigés :
+* Le fichier structure.xml de l'application par défaut contenait un fieldgroup
+	ayant le même nom qu'un field.
+* Erreur dans l'attribution des identifiants de "div" dans la saisie
+
+==============================================================================
+ XToGen 2 - le 03/10/2003
+
+Améliorations :
+* Gestion de la restriction d'accès par valeur de champ sur les documents.
+
+==============================================================================
+ XToGen 2 - le 02/10/2003
+
+Changements :
+* Le domaine "saisie" a été renommé en "edit" pour unifier les noms tous en
+	anglais.
+* L'attribut de l'élément xtg:authentication est maintenant domain et non plus
+	page pour coller à la nouvelle terminologie de sécurité.
+
+Améliorations :
+* Le libellé 'Supprimer le groupe' dans la saisie est maintenant placé à gauche
+	de la case à cocher.
+* Le tag xtg:authentication supporte les domaines multiples (séparés par des
+	"pipe")
+* La définition de la sécurité intègre désormais les types de documents
+
+Bugs corrigés :
+* Les fichiers de header n'étaient pas à jour dans le squelette d'application
+	(ils ne contenaient pas la barre de langue).
+* La barre de langue contenait des espaces insécables inutiles et qui
+	perturbaient son affichage.
+* Le pied de page était mal fichu
+* admin_edit_liste.xsp qui est généré a été retiré des fichiers statiques de
+	XToGen.
+==============================================================================
+ XToGen 2 - le 01/10/2003
+
+Nouveautés :
+* Nouveau système de sécurité :
+	- possibilité de sécuriser certaines pages statiques
+* Ajout d'une target "ant zipapp" au niveau de XToGen pour faire un zip
+	contenant une application
+* Ajout d'une target "ant zipxtg" au niveau de XToGen pour faire un zip
+	de XToGen
+* Ajout de la génération de la JavaDoc pour la bibliothèque XToGen
+
+Changements :
+* "item" est devenu "page" pour la déclaration des pages statiques
+
+Améliorations :
+* Un seul bouton pour les volets
+* Les fichiers d'interface ont été déplacés dans la partie "personnalisation"
+	de l'application et ainsi sont accessibles au créateur de l'application.
+
+Bugs corrigés :
+* La navigation de certains types de document était doublée.
+* La recherche de certains types de document était doublée
+
+==============================================================================
+ XToGen 2 - le 30/09/2003
+
+Améliorations :
+* Intégration des volets (div) pour les fieldgroup dans la saisie
+* Simplification (relative) de la XSL de génération de la feuille XSL de saisie.
+
+Bugs corrigés
+* Déterminer si un champ est vide est maintenant fait différemment.
+
+==============================================================================
+ XToGen 2 - le 29/09/2003
+
+Améliorations :
+* Meilleure information lorsqu'un document n'est pas complètement renseigné à
+	la saisie.
+* En cas d'erreur d'authentification lors de l'accès à une page, le délai pour
+	la redirection est maintenant nul (0 secondes).
+
+Nouveautés :
+* Possibilité de définir des champs comme obligatoire à la saisie (avec
+	l'attribut 'mandatory="true"' dans la déclaration du champ dans
+	structure.xml
+
+==============================================================================
+ XToGen 2 - le 26/09/2003
+
+Nouveautés :
+* Possibilité de ne pas avoir la fonctionnalité d'édition des listes externes
+
+Bugs corrigés :
+* Le lien générique vers l'administration pointait vers la page de login...
+* L'affichage du composant "information sur l'utilisateur" était buggé
+
+==============================================================================
+ XToGen 2 - le 25/09/2003
+
+Nouveautés :
+* Un fichier (<lang>_nav.xml) décrit la barre de menu
+* Il est possible d'inclure des éléments dynamiques dans le header, le footer
+	et la barre de navigation.
+
+Bugs corrigés :
+* L'affichage de la page d'administration n'était pas ok si l'utilisateur
+	n'est pas administrateur.
+
+==============================================================================
+ XToGen 2 - le 24/09/2003
+
+Améliorations :
+* Gestion des fieldgroups pour l'import/export CSV
+* Documentation + complète du fichier structure.xml par défaut
+
+Nouveautés :
+* Fichier xtogen-common-functions.xsl pour factoriser les templates souvent
+	utilisés
+* Les champs string peuvent être positionnés en read-only
+* Les champs string peuvent avoir une valeur par défaut
+
+Bugs corrigés :
+* Une liste externe pouvait apparaitre plusieurs fois dans la page
+	d'administration.
+* Pb de passage à la ligne dans access_rights.properties.xsl
+* Le lien saisie n'est affiché maintenant que pour des utilisateurs de 
+	l'application.
+
+==============================================================================
+ XToGen 2 - le 23/09/2003
+
+Nouveautés :
+* Ajout d'un fichier web.xml.upload.decl.txt pour ajouter les quelques lignes
+	nécessaires à l'utilisation de l'upload avec SDX (dans WEB-INF/web.xml)
+
+Améliorations :
+* Suppression de messages de debug dans l'import CSV
+
+Bugs corrigés :
+* La valeur "---" comme nom de champ lors de l'import CSV de liste externe
+	n'était pas géré.
+* Patch de utils.jar pour éviter les plantages lors de l'export CSV
+	(Ostermiller utilise des méthodes définies en JDK 1.4)
+
+==============================================================================
+ XToGen 2 - le 22/09/2003
+
+Nouveautés : 
+* Possibilités d'exporter une base de documents au format PDF.
+
+Changements :
+* les fichiers manipulant le pdf débutent par pdf désormais.
+
+Ameliorations :
+* le fichier result_display fourni par défaut est plus lisible.
+
+Bugs corrigés :
+* La feuille de style export.xsl avait un attribut mal écrit
+
+==============================================================================
+ XToGen 2 - le 19/09/2003
+
+Nouveautés :
+* Création d'un serializer pour le CSV
+* Utilisation du serializer pour l'export CSV des bases de documents
+* Utilisation aussi pour l'export CSV des listes
+
+Corrections de bugs:
+* L'import de documents CSV Excel a maintenant (comme pour l'export), le
+	point-virgule (;) comme séparateur par défaut.
+==============================================================================
+ XToGen 2 - le 17/09/2003
+
+Ameliorations :
+* On utilise une manière différente d'obtenir le nombre de documents dans les
+	bases de documents et la page admin.xsp s'affiche bien plus rapidement.
+==============================================================================
+ XToGen 2 - le 16/09/2003
+
+Changements :
+* Le repository users est maintenant en mode "FS" et non plus "HSQL"
+* Dans la page de saisie d'un document, il y a maintenant des liens rapides
+	vers la saisie d'un document d'un autre type.
+
+Bugs corrigés :
+* Libellés pas à jour dans l'export CSV des documents.
+* Lorsqu'une erreur se produisait dans l'affichage d'un document, le lien
+	d'administration disparaissait.
+* Dans la page de saisie, le commentaire de copyright de PASS Technologie
+	apparaissait dans la page HTML
+* La feuille d'indexation ne génère plus de référence au namespage d'XtoGen
+	si elle n'utilise pas de tag en xtg.
+* Les bases de documents et les repository associés ont maintenant des noms
+	différents pour éviter le clash.
+
+==============================================================================
+ XToGen 2 - le 15/09/2003
+
+Nouveautés :
+* Possibilité de choisir la langue pour l'import CSV de document
+* Possibilité de choisir le délimiteur pour l'import CSV
+
+Améliorations :
+* admin_edit_liste.xsp.xsl a été nettoyé de son code inutile.
+* Lors du ant init, toutes les transformations XSL sont effectuées
+
+Bugs corrigés :
+* Mauvaise valeur de colspan dans les tableaux du formulaire de saisie.
+* Dans l'affichage du document, divers problèmes (hilite, meta, affichage des
+	relations, ...) dus aux fieldgroup.
+* Problème lors de la navigation liés aux fieldgroup
+
+==============================================================================
+ XToGen 2 - le 12/09/2003
+
+Nouveautés :
+* Le tag <application> de structure.xml supporte maintenant l'attribut "mode"
+	avec les valeurs test et production (défaut = test). En mode production,
+	le sitemap ne propose pas les pages de debug (xsp2src).
+* Première version (super alpha) de l'import CSV des documents.
+
+Bugs corrigés :
+* Dans l'administration, quand une base de documents est vide, on n'affiche pas
+	l'icône "Exporter".
+
+==============================================================================
+ XToGen 2 - le 09/09/2003
+
+Changements :
+* Le préfixe xtogen a été raccourci en xtg pour la tag library.
+* Le mainteneur de la librairie utilitaire utils.jar a intégré mes modifications
+	pour la génération d'un fichier CSV. J'utilise donc la dernière version
+	à jour.
+
+Ameliorations :
+* 3 classes ont été créées pour les liens : rel (relations), url (liens
+	externes) et nav (navigation). Ils permettent de traiter l'affichage de
+	ces liens de manière différente.
+* On peut maintenant préciser mode="combo" pour les champs de type relation (en
+	mode édition uniquement)
+* En mode édition, on peut maintenant changer les propriétés d'un fichier
+	attaché au document (fichier, vignette et libellé)
+
+Bugs corrigés :
+* La mention "Pas de valeur disponible" est maintenant affichée pertinemment
+	dans la recherche multi-critères.
+
+==============================================================================
+ XToGen 2 - le 08/09/2003
+
+Changements :
+* Dans l'administration des bases de documents et des documents, on a échangé
+	texte et icones.
+* L'édition des listes est affichée dans un tableau similaire à celui des bases
+	de documents et des documents
+* 2 templates contenus dans admin_saisie.xsl ont été renommés pour éviter qu'ils
+	ne commencent par un chiffre.
+
+Améliorations :
+* Les identifiants générés pour les listes externes sont plus courts.
+* La modification d'une valeur de liste externe est plus agréable car on va
+	(avec une ancre) directement à la case à modifier.
+* La combo de choix de langue d'édition est maintenant placée avant le champ
+	texte et avec un libellé plus clair.
+
+Bugs corrigés :
+* La modification d'un élément d'une liste externe posait problème (on voyait
+	un '|' apparaitre sur la page).
+* La feuille CSS standard ne contenait pas la couleur pour souligner la ligne
+	à supprimer dans l'édition des listes externes.
+
+==============================================================================
+ XToGen 2 - le 05/09/2003
+
+Nouveautés :
+* Un champ peut-être déclaré multilingue avec lang="multi" dans la déclaration
+	du champ dans structure.xml. Lors de la saisie, on précisera dans quelle
+	langue on le tape (à choisir parmi les langues de l'application) et dans
+	la recherche, on précisera également la langue.
+
+Changements :
+* Les requêtes faites dans admin.xsp ont été déplacées dans admin.xsl car on
+	atteignait la taille limite des méthodes en Java dans la servlet générée.
+
+Corrections :
+* L'url list_thumbnail_<doctype> n'est plus générée dans sitemap.xmap
+* Dans la génération des XSL d'indexation, les variables de liste n'étaient pas
+	générées si le champ choice était dans un fieldgroup.
+
+En cours :
+* Ajout d'un opérateur pour la recherche multi-critères
+* Que faire de la recherche plain-texte quand on a un attribut multilingue ?
+
+==============================================================================
+ XToGen 2 - le 04/09/2003
+
+Nouveautés :
+* L'utilisateur est averti avant de vider une base de documents si des
+	documents d'une autre base référencent ces premiers.
+
+En cours :
+* Ajout d'un opérateur pour la recherche multi-critères
+* La fonctionnalité des champs multilingues
+
+==============================================================================
+ XToGen 2 - le 01/09/2003
+
+Nouvelles fonctionnalités :
+* On peut maintenant éviter qu'un fieldGroup ne se répète en précisant
+	repeat="no" dans sa définition (fichier structure.xml)
+* L'affichage des relations et relations inverses a été déplacé dans un fichier
+	externe (relation-display.xml) permettant leur personnalisation.
+
+Bugs corrigés :
+* On peut maintenant utiliser des champs en mode 2cols dans un fieldgroup
+* Avoir le champ par défaut d'un type de document ne pose plus de problème à
+	la saisie
+* On n'a plus de cadre vide dans l'affichage d'un document si le champ par
+	défaut est le seul défini dans un fieldgroup
+* Non plus dans l'export PDF
+
+==============================================================================
+ XToGen 2 - mois d'août
+
+Nouvelles fontionnalités :
+* Les informations concernant la navigation et la recherche ont été déplacées
+	dans le fichier display.xml
+* Les listes peuvent avoir une valeur par défaut maintenant (qui peut être 
+	différente par langue)
+* Les listes externes ne sont plus triées par défaut. On peut le demander en 
+	faisant un sort="true" dans display.xml valable en saisie ET recherche
+* On peut forcer la mise en brief avec brief="true"
+* Super gestion des autorisations séparé par domaines applicatifs
+* La gestion des autorisations est maintenant placée dans le fichier 
+	display.xml
+* Les répertoires attach et thumbnail sont réunis
+* Les champs DC fonctionnent
+* On peut éditer un document existant même si le document attaché n'est plus
+	sur le disque
+* L'application générée a été passée en UTF-8
+
+Bugs corrigés:
+* Le problème des "No more input" dans le traitement des XSL a disparu, il
+	fallait préciser le protocole ('file:/')
+* Si un type de document ne précise pas de navigation ou de recherche, les 
+	liens correspondants ne sont plus générés dans la barre de menu.
+* Nombreux bugs liés à l'introduction des groupes répétables

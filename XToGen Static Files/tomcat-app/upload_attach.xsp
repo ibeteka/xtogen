@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!--
+SDX: Documentary System in XML.
+Copyright (C) 2000, 2001, 2002  Ministere de la culture et de la communication (France), AJLSM
+
+Ministere de la culture et de la communication,
+Mission de la recherche et de la technologie
+3 rue de Valois, 75042 Paris Cedex 01 (France)
+mrt@culture.fr, michel.bottin@culture.fr
+
+AJLSM, 17, rue Vital Carles, 33000 Bordeaux (France)
+sevigny@ajlsm.com
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the
+Free Software Foundation, Inc.
+59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+or connect to:
+http://www.fsf.org/copyleft/gpl.html
+-->
+<xsp:page language="java" xmlns:xsp="http://apache.org/xsp" xmlns:sdx="http://www.culture.gouv.fr/ns/sdx/sdx" xmlns:xtg="http://xtogen.tech.fr">
+	<xsp:structure>
+		<xsp:include>org.apache.cocoon.servlet.multipart.*</xsp:include>
+		<xsp:include>fr.tech.sdx.xtogen.util.FileHelper</xsp:include>
+	</xsp:structure>
+    <sdx:page langSession="lang" langParam="lang">
+        <bar/>
+        <title id="title.upload_attach"/>
+
+        <xtg:authentication domain="attach">
+            <upload>
+			<xsp:logic>
+
+				String base = (String)request.get("db");
+				String type = (String)request.get("type");
+			
+				<base><xsp:expr>base</xsp:expr></base>
+				<type><xsp:expr>type</xsp:expr></type>
+
+				FilePartFile part = (FilePartFile)request.get("attach_file");
+
+				if (part != null)
+				{
+					String contextPath
+						= fr.tech.sdx.xtogen.util.FileHelper.getBaseDir(context,request);
+					File rootDir = new File(contextPath + File.separator
+						+ "documents" + File.separator 
+						+ base + File.separator + type);
+
+					File uploadedFile = part.getFile();
+
+					String fileName = uploadedFile.getName();
+					String lowerFileName = fileName.toLowerCase();
+					boolean isThumbnail = lowerFileName.endsWith(".png")
+						||	lowerFileName.endsWith(".gif")
+						||	lowerFileName.endsWith(".jpg")
+						||	lowerFileName.endsWith(".jpeg");
+					
+					// Raté !!!
+					if ("thumbnail".equals(type) &amp;&amp; !isThumbnail)
+					{
+						<bad reason="badfileextension">
+							<file><xsp:expr>fileName</xsp:expr></file>
+						</bad>
+					}
+					else
+					{
+						File destFile = new File(rootDir, fileName);
+
+						// Copie le fichier au bon endroit
+						FileHelper.copy(uploadedFile,destFile);
+
+						<good>
+							<file><xsp:expr>fileName</xsp:expr></file>
+						</good>
+					}
+						
+					// Supprime le fichier dans le répertoire temporaire
+					uploadedFile.delete();
+				}
+				else
+				{
+				  <bad reason="nofilenamegiven"/>
+				}
+			</xsp:logic>
+			</upload>
+        </xtg:authentication>
+    </sdx:page>
+</xsp:page>

@@ -1,0 +1,345 @@
+<?xml version="1.0"?>
+<messages>
+	<!-- Label file in english for XtoGen -->
+	<!-- xml:lang = "en-GB" -->
+
+	<!-- Titre des pages -->
+	<message id="title.index">Welcome on [XTOGEN]</message>
+	<message id="title.terms">[XTOGEN] - Term list</message>
+	<message id="title.nav">[XTOGEN] - Browsing</message>
+	<message id="title.search">[XTOGEN] - Advanced search</message>
+	<message id="title.linearsearch">[XTOGEN] - Search results</message>
+	<message id="title.login">[XTOGEN] - Authentification</message>
+	<message id="title.admin">[XTOGEN] - Administration</message>
+	<message id="title.delete">[XTOGEN] - Document deletion</message>
+	<message id="title.results">[XTOGEN] - Search results</message>
+	<message id="title.upload">[XTOGEN] - Document import</message>
+	<message id="title.gallery">[XTOGEN] - Picture gallery</message>
+	<message id="title.query">[XTOGEN] - Document list</message>
+	<message id="title.liste">[XTOGEN] - Terms list</message>
+	<message id="title.listealpha">[XTOGEN] - Document alphabetical list</message>
+	<message id="title.admin_import">[XTOGEN] - Administration - Document import</message>
+	<message id="title.admin_liste">[XTOGEN] - Administration - Document list</message>
+	<message id="title.admin_saisie">[XTOGEN] - Administration - Document edition</message>
+	<message id="title.admin_attach">[XTOGEN] - Administration - Thumbnails and attached files management</message>
+	<message id="title.upload_attach">[XTOGEN] - Administration - Thumbnails and attached files upload</message>
+	<message id="title.document">[XTOGEN] - Document display</message>
+	<message id="title.pre_flush">[XTOGEN] - Administration - Document base flush</message>
+	<message id="title.pre_delete">[XTOGEN] - Administration - Document deletion</message>
+	<message id="title.csvexport">[XTOGEN] - Administration - CSV export</message>
+	<message id="title.admin_export">[XTOGEN] - Administration - Export</message>
+
+	<!-- Barre de navigation -->
+	<message id="bouton.accueil">Home</message>
+	<message id="tooltip.accueil"></message>
+	<message id="bouton.titres">Titles</message>
+	<message id="tooltip.titres">Documents indexed in this database</message>
+	<message id="bouton.navigation">Browsing</message>
+	<message id="tooltip.navigation">Access documents</message>
+	<message id="bouton.index">Index</message>
+	<message id="tooltip.index">Used word index</message>
+	<message id="bouton.recherche">Search</message>
+	<message id="tooltip.recherche">Advanced search</message>
+	<message id="bouton.identification">Authentification</message>
+	<message id="tooltip.identification">Change login for this application</message>
+	<message id="bouton.administration">Administration</message>
+	<message id="tooltip.administration">Manage databases</message>
+	<message id="bouton.saisie">Edit</message>
+	<message id="tooltip.saisie">Create and edit documents</message>
+	<message id="bouton.recherchepleintexte">Search</message>
+
+	<!-- Common messages -->
+	<message id="common.redirection.debut">If you weren't redirected in </message>
+	<message id="common.redirection.quelques">a few</message>
+	<message id="common.redirection.secondes">seconds, please click </message>
+	<message id="common.redirection.ici">here</message>
+	<message id="common.redirectionimmediate">Immediate redirection...</message>
+	<message id="common.vousetesidentifiecomme">you are authentified as</message>
+	<message id="common.superutilisateur">superuser</message>
+	<message id="common.administrateur">application administrator</message>
+	<message id="common.utilisateur">application user</message>
+	<message id="common.pasautorise">You are not authorized to administer this application</message>
+	<message id="common.resultats">results</message>
+	<message id="common.page">page</message>
+	<message id="common.pasdevaleurdisponible">no available value</message>
+	<message id="common.pageprecedente">previous page</message>
+	<message id="common.pagesuivante">next page</message>
+	<message id="common.pagesprecedentes">previous pages</message>
+	<message id="common.pagessuivantes">next pages</message>
+	<message id="common.documentprecedent">previous document</message>
+	<message id="common.documentsuivant">next document</message>
+	<message id="common.document_s">document(s)</message>
+	<message id="common.documents">documents</message>
+	<message id="common.element_s">element(s)</message>
+	<message id="common.debut">Beginning</message>
+	<message id="common.fin">End</message>
+	<message id="common.ou">or</message>
+	<message id="common.et">and</message>
+	<message id="common.ok">Ok</message>
+	<message id="common.importCSV">CSV Import</message>
+	<message id="common.exportCSV">CSV Export</message>
+	<message id="common.importauformattexteseparateurvirgule">Comma separated text format import</message>
+	<message id="common.exportauformattexteseparateurvirgule">Comma separated text format export</message>
+	<message id="common.exportauformatcsv">CSV format export</message>
+	<message id="common.pasdecontenudanslefichierstatique.debut">No content in the static fil</message>
+	<message id="common.pasdecontenudanslefichierstatique.fin">or file not found.</message>
+	<message id="common.oui">yes</message>
+	<message id="common.non">no</message>
+	<message id="common.titre">Title</message>
+	<message id="common.soustitre">Subtitle</message>
+	<message id="common.date">Date</message>
+	<message id="common.utilisezleboutonbackdevotrenavigateurpourreveniralapagedesaisie">Use the "back" button of your browser to go back to the edit page.</message>
+	<message id="common.trierpar">Sort by:</message>
+	<message id="common.ordreascendant">Ascendant order</message>
+	<message id="common.ordredescendant">Descendant order</message>
+
+	<!-- Page terms -->
+	<message id="page.terms.index">Used word index </message>
+	<message id="page.terms.aucunereponse">No result.</message>
+
+	<!-- Page search -->
+	<message id="page.search.retouralarecherche">Back to search page</message>
+	<message id="page.search.recherchedans">Search in the document repository</message>
+	<message id="page.search.rechercher">Search</message>
+	<message id="page.search.reinitialiser">Reset</message>
+	<message id="page.search.aucuneselection">Nothing selected</message>
+	<message id="page.search.operateuraappliquerentrelesvaleursdelaliste">Boolean operator used to combine list values:</message>
+	<message id="page.search.operateuraappliquerentrelescriteresderecherchesurlesdifferentschamps">Boolean operator used to combine field values:</message>
+	<message id="page.search.languederechercheduchamp">Search language for this field:</message>
+
+	<!-- Page linearsearch -->
+	<message id="page.linearsearch.resultats">Search result</message>
+
+	<!-- Page login -->
+	<message id="page.login.droits">Rights</message>
+	<message id="page.login.explication">
+		SDX application management can be securized by using commonly known
+		"group" and "user" concepts. For this application, default logins
+		have been defined in the configuration file: "admins" group with
+		"admin" member. The access to the document repositories is reserved to
+		the members of the "admins" group. "admin" user is allowed but you
+		can create other logins (users or groups) using the following
+		interface:
+	</message>
+	<message id="page.login.codeutilisateur">Login: </message>
+	<message id="page.login.motdepasse">Password: </message>
+	<message id="page.login.identitereconnue">Authentication ok.</message>
+	<message id="page.login.vousappartenezaugroupe">You belong to group(s):</message>
+	<message id="page.login.identitenonreconnue">Authentication failed for this application.</message>
+	<message id="page.login.admins">You belong to the "admins" group. You can access administration interface.</message>
+	<message id="page.login.reinitialiser">Reset</message>
+	<message id="page.login.deconnexion">Logout</message>
+	<message id="page.login.entrer">Sign up</message>
+
+	<!-- Page admin -->
+	<message id="page.admin.basededocument">document repository </message>
+	<message id="page.admin.importdedocuments">Document import (folder or files)</message>
+	<message id="page.admin.import">Import</message>
+	<message id="page.admin.exportdedocuments">Document export (CSV format)</message>
+	<message id="page.admin.export">Export</message>
+	<message id="page.admin.saisiedunnouveaudocument">Add new document</message>
+	<message id="page.admin.saisie">Add</message>
+	<message id="page.admin.copiededocument">Document copy</message>
+	<message id="page.admin.listedesdocuments">Document list</message>
+	<message id="page.admin.liste">List</message>
+	<message id="page.admin.indexerlesdocuments">Index documents found in directory</message>
+	<message id="page.admin.importerlesdocuments">Import documents contained in ZIP archive file</message>
+	<message id="page.admin.importerunseuldocument">Import only one XML document (without any attached file)</message>
+	<message id="page.admin.indexer">Index</message>
+	<message id="page.admin.importer">Import</message>
+	<message id="page.admin.retour">Back</message>
+	<message id="page.admin.editerledocument">Edit the document</message>
+	<message id="page.admin.editer">Edit</message>
+	<message id="page.admin.exporterledocument">Export the document</message>
+	<message id="page.admin.exporter">Export</message>
+	<message id="page.admin.copierledocument">Copy the document</message>
+	<message id="page.admin.copier">Copy</message>
+	<message id="page.admin.supprimerledocument">Remove the document</message>
+	<message id="page.admin.supprimer">Remove</message>
+	<message id="page.admin.basevide">Database is empty.</message>
+	<message id="page.admin.listevide">empty list</message>
+	<message id="page.admin.baseexterne">external base (can'be modified in this application)</message>
+	<message id="page.admin.vider">Flush</message>
+	<message id="page.admin.viderlabase">Flush the document base</message>
+	<message id="page.admin.viderlaliste">Flush the list</message>
+	<message id="page.admin.vignettes">Thumbnails</message>
+	<message id="page.admin.piecesattachees">Attached files</message>
+	<message id="page.admin.gestiondesattachements">Attached files management</message>
+	<message id="page.admin.listedesvignettespourlabase">Thumbnails list for document base </message>
+	<message id="page.admin.listedespiecesattacheespourlabase">Attached files list for document base </message>
+	<message id="page.admin.aucunfichier">No file</message>
+	<message id="page.admin.ajouterunnouveaufichier">Upload a new file</message>
+	<message id="page.admin.envoyer">Upload</message>
+	<message id="page.admin.uploaddefichier">File upload</message>
+	<message id="page.admin.retouralalistedesfichiers">Back to file list</message>
+	<message id="page.admin.vousnavezpasprecisedefichieraenvoyer">Error: You didn't give any file name.</message>
+	<message id="page.admin.extensiondefichierincorrecte.debut">Error: Thumbnail file</message>
+	<message id="page.admin.extensiondefichierincorrecte.fin">has an incorrect extension (only .png, .gif, .jpg et .jpeg are allowed). File not uploaded.</message>
+	<message id="page.admin.lefichieraetecorrectementenvoye.debut">File</message>
+	<message id="page.admin.lefichieraetecorrectementenvoye.fin">has been uploaded.</message>
+	<message id="page.admin.voir">View</message>
+	<message id="page.admin.exportpdf">PDF export</message>
+	<message id="page.admin.listesexternes">External lists</message>
+	<message id="page.admin.editiondelaliste">List edition</message>
+	<message id="page.admin.listeexterne">External list</message>
+	<message id="page.admin.exportdunebrochurepdf">PDF booklet export</message>
+	<message id="page.admin.exportzip">ZIP export</message>
+	<message id="page.admin.aveclespiecesattachees">Including attached documents:</message>
+
+	<!-- Admin edit liste -->
+	<message id="page.admin_edit_liste.liste">List</message>
+	<message id="page.admin_edit_liste.clef">Id</message>
+	<message id="page.admin_edit_liste.ajouter">Add</message>
+	<message id="page.admin_edit_liste.supprimer">Del</message>
+	<message id="page.admin_edit_liste.modifier">Modify</message>
+	<message id="page.admin_edit_liste.erreur">Error</message>
+	<message id="page.admin_edit_liste.erreur.erreurlorsdelasauvegardedufichier.debut">Error while saving list file "</message>
+	<message id="page.admin_edit_liste.erreur.erreurlorsdelasauvegardedufichier.fin">"</message>
+	<message id="page.admin_edit_liste.erreur.erreurlorsdelouverturedufichier.debut">Error while opening list file "</message>
+	<message id="page.admin_edit_liste.erreur.erreurlorsdelouverturedufichier.fin">"</message>
+	<message id="page.admin_edit_liste.erreur.iddejautilise.debut">A row with the same id already exists in file "</message>
+	<message id="page.admin_edit_liste.erreur.iddejautilise.fin">"</message>
+	<message id="page.admin_edit_liste.erreur.fichierxmlnonvalide.debut">XML file is not valid: </message>
+	<message id="page.admin_edit_liste.erreur.fichierxmlnonvalide.fin"></message>
+	<message id="page.admin_edit_liste.erreur.valeursvides">Empty values</message>
+	<message id="page.admin_edit_liste.erreur.impossibledetrouverunparseurxml.debut">Can't find an XML parser to analyse file: </message>
+	<message id="page.admin_edit_liste.erreur.impossibledetrouverunparseurxml.fin"></message>
+	<message id="page.admin_edit_liste.succes.suppressioneffectuee">Deletion done</message>
+	<message id="page.admin_edit_liste.succes.ajouteffectue">New values added</message>
+	<message id="page.admin_edit_liste.succes.modificationeffectuee">Update done</message>
+	<message id="page.admin_edit_liste.voulezvousvraimentsupprimerlaligne">Do you really want to delete the row?</message>
+
+	<!-- Import/Export CSV -->
+	<message id="page.csv.importerunfichiercsv">Import a CSV file:</message>
+	<message id="page.csv.fichiercsvaimporter">CSV file to import:</message>
+	<message id="page.csv.importcsvdelaliste">CSV import of the list</message>
+	<message id="page.csv.importcsvdelabase">CSV import of the document base</message>
+	<message id="page.csv.exporter...">Export...</message>
+	<message id="page.csv.exportcsvdelaliste">CSV export of the list</message>
+	<message id="page.csv.exportcsvdesdocumentsdelabase">CSV export of the documents</message>
+	<message id="page.csv.separateurdechamps">Field separator char</message>
+	<message id="page.csv.separateurdechampsmultivalues">Multivalued field separator</message>
+	<message id="page.csv.formatcsv">CSV format:</message>
+	<message id="page.csv.formatstandard">standard</message>
+	<message id="page.csv.formatexcel">MS Excel</message>
+	<message id="page.csv.suite">Next &gt;</message>
+	<message id="page.csv.fichieraimportermanquant">Error: you didn't select any CSV file name!</message>
+	<message id="page.csv.retouralapagedimport">Back to import page</message>
+	<message id="page.csv.lesidentifiantssont">Ids are:</message>
+	<message id="page.csv.generesautomatiquement">automatically generated</message>
+	<message id="page.csv.contenusdanslacolonne">contained in the following column: </message>
+	<message id="page.csv.correspondances">Matches</message>
+	<message id="page.csv.langue">Language</message>
+	<message id="page.csv.colonne">Column</message>
+	<message id="page.csv.colonnecsv">CSV column</message>
+	<message id="page.csv.importreussi.debut">Import done:</message>
+	<message id="page.csv.importreussi.fin">added or updated values.</message>
+	<message id="page.csv.voirlecontenudelaliste">See list content</message>
+	<message id="page.csv.champsdudocument">Document field</message>
+	<message id="page.csv.importcsvdelabase">CSV import of document base</message>
+	<message id="page.csv.voirlecontenudelabase">See document base content</message>
+	<message id="page.csv.ligneslues">parsed rows</message>
+	<message id="page.csv.documentsindexes">indexed documents</message>
+	<message id="page.csv.languedesdocuments">Documents language</message>
+	<message id="page.csv.donneescsv">CSV data</message>
+	<message id="page.csv.donneescsvmsexcel">MS Excel CSV data</message>
+	<message id="page.csv.champsseparespar">Fields separated by:</message>
+	<message id="page.csv.champsentourespar">Fields surrounded by:</message>
+
+	<!-- Export PDF -->
+	<message id="page.pdf.documentgenerepar">Document generated by&#160;</message>
+	<message id="page.pdf.sommaire">Table of contents</message>
+
+	<!-- Page saisie -->
+	<message id="page.saisie.documentindexeavecsucces">Document indexation was successful</message>
+	<message id="page.saisie.dureedindexation">Indexation duration</message>
+	<message id="page.saisie.retouralasaisiedudocument">Back to document edition</message>
+	<message id="page.saisie.saisirunnouveaudocument">Edit a new document</message>
+	<message id="page.saisie.visualiserledocument">View the document</message>
+	<message id="page.saisie.retouralalistedesdocuments">Back to document list</message>
+	<message id="page.saisie.retouralapagedadministration">Back to admin page</message>
+	<message id="page.saisie.lechamp">Field</message>
+	<message id="page.saisie.nestpasrenseigne">has no value</message>
+	<message id="page.saisie.lindexationnapaspuetreeffectuee">Indexation failed for previous reasons</message>
+	<message id="page.saisie.languedudocument">Document language</message>
+	<message id="page.saisie.supprimerlegroupe">Delete the group</message>
+	<message id="page.saisie.retirerlefichierattache">Remove attached file from document</message>
+	<message id="page.saisie.fichierattache">Attached file</message>
+	<message id="page.saisie.icone">Icon</message>
+	<message id="page.saisie.libelle">Label</message>
+	<message id="page.saisie.adresseurl">URL address</message>
+	<message id="page.saisie.libelleoptionneldelurl">Optional label for URL</message>
+	<message id="page.saisie.email">e-mail address</message>
+	<message id="page.saisie.libelleoptionneldelemail">Optional label for e-mail</message>
+	<message id="page.saisie.valeursupplementaire">If the list beside doesn't
+		contain the value you want to use for the field, just type the new
+		value in the field below.</message>
+	<message id="page.saisie.commentairefichierattache">Files to attach to the
+		document and thumbnails have to be located in the "attach" subdirectory
+		of the document type directory.</message>
+	<message id="page.saisie.langueassocieeauchamp">Language associated to the field:</message>
+	<message id="page.saisie.ajouterunnouveaubloc">Add a new block?</message>
+	<message id="page.saisie.ajouterunenouvellevaleur">Add a new value?</message>
+	<message id="page.saisie.lechampnestpasunique.debut">Error: The value of the field </message>
+	<message id="page.saisie.lechampnestpasunique.fin">is already used!</message>
+	<message id="page.saisie.lavaleurestdejautilisee.debut">Value </message>
+	<message id="page.saisie.lavaleurestdejautilisee.fin">is used by the following document(s):</message>
+
+	<!-- Page upload -->
+	<message id="page.upload.erreur">Error</message>
+	<message id="page.upload.import">Document import</message>
+	<message id="page.upload.importok">Import done.</message>
+	<message id="page.upload.statistiquesdindexation">Indexing results</message>
+	<message id="page.upload.nombrededocumentsajoutes">Document count: </message>
+	<message id="page.upload.nombrededocumentsenerreur">Document in error: </message>
+	<message id="page.upload.dureedelindexation">Indexing duration (in seconds): </message>
+	<message id="page.upload.erreurlorsdelindexationdudocument">Error while indexing document</message>
+	<message id="page.upload.ledossierdesdocumentsaindexerestvide">Documents folder is empty. No documents to index!</message>
+
+	<!-- Page results -->
+	<message id="page.results.aucunresultat">No result!</message>
+	<message id="page.results.aucuneimage">No picture!</message>
+	<message id="page.results.resultats">Search result</message>
+	<message id="page.results.resultatscorrespondentavotrerecherche">result(s) matching your request</message>
+
+	<!-- Page navigation -->
+	<message id="page.nav.listealphabetique">Alphabetical list</message>
+	<message id="page.nav.navigationdanslesdocumentsdelabase">Browsing documents of base</message>
+
+	<!-- Page listealpha -->
+	<message id="page.listealpha.aucundocument">No available document!</message>
+
+	<!-- Page query -->
+	<message id="page.query.aucunresultat">No result!</message>
+
+	<!-- Page delete -->
+	<message id="page.delete.ledocument">Document </message>
+	<message id="page.delete.aetesupprimedelabase">has been deleted.</message>
+	<message id="page.delete_attach.suppressioneffectuee">Deletion done</message>
+	<message id="page.delete_attach.fichiernontrouve">Error: File not found</message>
+	<message id="page.delete_attach.impossibledesupprimerlefichier">Error: Unable to delete the file</message>
+	<message id="page.delete_attach.suppressiondunattachement">Attached file deletion</message>
+
+	<!-- Page document -->
+	<message id="page.document.retouraudocument">Back to the document</message> 
+	<message id="page.document.documentabsentdebut">can't find referenced document (id: </message> 
+	<message id="page.document.documentabsentfin">)</message> 
+	<message id="page.document.accesinterditaudocument">Access forbidden to the document.</message> 
+
+	<!-- Page pre_flush -->
+	<message id="page.pre_flush.voulezvousvraimentviderlabase">Do you really want to flush document base</message>
+	<message id="page.pre_flush.voulezvousvraimentviderlaliste">Do you really want to flush list</message>
+	<message id="page.pre_flush.attention">Warning!</message>
+	<message id="page.pre_flush.documentsdelabase"> documents of base </message>
+	<message id="page.pre_flush.referencentdesdocumentsdecettebase"> link documents of this base</message>
+	<message id="page.pre_flush.champ">field </message>
+	<message id="page.pre_delete.voulezvousvraimentsupprimerledocument">Do you really want to delete the document</message>
+	<message id="page.pre_delete_attach.voulezvousvraimentsupprimerlapieceattachee">Do you really want to delete the attached file?</message>
+	<message id="page.pre_delete_attach.voulezvousvraimentsupprimerlavignette">Do you really want to delete the thumbnail file?</message>
+	<message id="page.pre_delete.attentioncedocumentestreferencepar">Warning!!! This document is referenced by:</message>
+
+	<!-- Page statique -->
+	<message id="page.static.pasdepagedemandee">No page id given!</message>
+	<message id="page.static.pagenondeclaree.debut">Page "</message>
+	<message id="page.static.pagenondeclaree.fin">" has not been declared!</message>
+</messages>

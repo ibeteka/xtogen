@@ -1,0 +1,346 @@
+<?xml version="1.0"?>
+<messages>
+	<!-- Labels en italien pour XtoGen-->
+	<!-- xml:lang = "it-IT" -->
+
+	<!-- Titre des pages -->
+	<message id="title.index">Benvenuti su [XTOGEN]</message>
+	<message id="title.terms">[XTOGEN] - Lista di termini</message>
+	<message id="title.nav">[XTOGEN] - Navigazione</message>
+	<message id="title.search">[XTOGEN] - Ricerca avazata</message>
+	<message id="title.linearsearch">[XTOGEN] - Risultati della ricerca</message>
+	<message id="title.login">[XTOGEN] - Identificazione</message>
+	<message id="title.admin">[XTOGEN] - Amministrazione</message>
+	<message id="title.delete">[XTOGEN] - Cancellazione di un documento</message>
+	<message id="title.results">[XTOGEN] - Risultati della ricerca</message>
+	<message id="title.upload">[XTOGEN] - Importazione dei documenti</message>
+	<message id="title.gallery">[XTOGEN] - Galleria delle immagini</message>
+	<message id="title.query">[XTOGEN] - Lista dei documenti</message>
+	<message id="title.liste">[XTOGEN] - Lista dei termini</message>
+	<message id="title.listealpha">[XTOGEN] - Lista in ordine alfabetico dei documenti</message>
+	<message id="title.admin_import">[XTOGEN] - Administration - Inserimento dei documenti</message>
+	<message id="title.admin_liste">[XTOGEN] - Administration - Lista dei documenti</message>
+	<message id="title.admin_saisie">[XTOGEN] - Administration - Redazione e edizione dei documenti</message>
+	<message id="title.admin_attach">[XTOGEN] - Administration - Gestione dei documenti e degli allegati</message>
+	<message id="title.upload_attach">[XTOGEN] - Administration - Invio delle miniature (thumbnails) e dei file allegati</message>
+	<message id="title.document">[XTOGEN] - Visualizzazione di un documento</message>
+	<message id="title.pre_flush">[XTOGEN] - Administration - Cancellazione di un documento nel database</message>
+	<message id="title.pre_delete">[XTOGEN] - Administration - Cancellazione di un documento</message>
+	<message id="title.csvexport">[XTOGEN] - Administration - Esporto CSV</message>
+	<message id="title.admin_export">[XTOGEN] - Administration - Esporto</message>
+
+	<!-- Barre de navigation -->
+	<message id="bouton.accueil">home</message>
+	<message id="tooltip.accueil"/>
+	<message id="bouton.titres">Titoli</message>
+	<message id="tooltip.titres">Documenti presenti nel database</message>
+	<message id="bouton.navigation">Navigazione</message>
+	<message id="tooltip.navigation">documenti del database</message>
+	<message id="bouton.index">Indice</message>
+	<message id="tooltip.index">Indice delle parole utilizzate</message>
+	<message id="bouton.recherche">Ricerca</message>
+	<message id="tooltip.recherche">Ricerca avanzata</message>
+	<message id="bouton.identification">Autenticazione</message>
+	<message id="tooltip.identification">Cambio d'identità per questa applicazione</message>
+	<message id="bouton.administration">Amministrazione</message>
+	<message id="tooltip.administration">Gestione del database</message>
+	<message id="bouton.saisie">*Saisie*</message>
+	<message id="tooltip.saisie">*Saisir et éditer des documents*</message>
+	<message id="bouton.recherchepleintexte">cerca</message>
+
+	<!-- Messages communs -->
+	<message id="common.redirection.debut">Se non si collega entro</message>
+	<message id="common.redirection.quelques">in pochi</message>
+	<message id="common.redirection.secondes">secondi cliccate </message>
+	<message id="common.redirection.ici">qui</message>
+	<message id="common.redirectionimmediate">Direzione immediata ...</message>
+	<message id="common.vousetesidentifiecomme"> siete identificati come</message>
+	<message id="common.superutilisateur">superutente</message>
+	<message id="common.administrateur">amministratore dell'applicazione</message>
+	<message id="common.utilisateur">utente dell'applicazione</message>
+	<message id="common.pasautorise">Voi non siete autorizzati ad amministrare questa applicazione.</message>
+	<message id="common.resultats">risultati</message>
+	<message id="common.page">pagina</message>
+	<message id="common.pasdevaleurdisponible">valori non disponibili</message>
+	<message id="common.pageprecedente">pagina precedente</message>
+	<message id="common.pagesuivante">pagina successiva</message>
+	<message id="common.pagesprecedentes">pagine precedenti</message>
+	<message id="common.pagessuivantes">pagine successive</message>
+	<message id="common.documentprecedent">documento precedente</message>
+	<message id="common.documentsuivant">documento successivo</message>
+	<message id="common.document_s">documento(i)</message>
+	<message id="common.documents">documenti</message>
+	<message id="common.element_s">elemento(i)</message>
+	<message id="common.debut">Inizio</message>
+	<message id="common.fin">Fine</message>
+	<message id="common.ou">o</message>
+	<message id="common.et">e</message>
+	<message id="common.ok">Ok</message>
+	<message id="common.importCSV">Importo CSV</message>
+	<message id="common.exportCSV">Esporto CSV</message>
+	<message id="common.importauformattexteseparateurvirgule">Importo verso il formato testo separatore virgula</message>
+	<message id="common.exportauformattexteseparateurvirgule">Esporto verso il formato testo séparatore virgula</message>
+	<message id="common.exportauformatcsv">Esporto verso il formato CSV</message>
+	<message id="common.pasdecontenudanslefichierstatique.debut">nessun contenuto nel file statico</message>
+	<message id="common.pasdecontenudanslefichierstatique.fin">o file assente.</message>
+	<message id="common.oui">si</message>
+	<message id="common.non">no</message>
+	<message id="common.titre">Titolo </message>
+	<message id="common.soustitre">Sottotitolo </message>
+	<message id="common.date">Data </message>
+	<message id="common.utilisezleboutonbackdevotrenavigateurpourreveniralapagedesaisie">Utilizzate *le bouton Back de votre navigateur pour revenir à la page de saisie.*</message>
+	<message id="common.trierpar">*Trier par :*</message>
+	<message id="common.ordreascendant">*Ordre ascendant*</message>
+	<message id="common.ordredescendant">*Ordre descendant*</message>
+
+	<!-- Page terms -->
+	<message id="page.terms.index">Indice delle parole utilizzate</message>
+	<message id="page.terms.aucunereponse">nessuna risposta.</message>
+
+	<!-- Page search -->
+	<message id="page.search.retouralarecherche">ritorno alla pagina di ricerca</message>
+	<message id="page.search.recherchedans">Ricerca nel database</message>
+	<message id="page.search.rechercher">Cerca</message>
+	<message id="page.search.reinitialiser">Reset</message>
+	<message id="page.search.aucuneselection">nessuna selezione</message>
+	<message id="page.search.operateuraappliquerentrelesvaleursdelaliste">Connettore applicabile tra i valori della lista :</message>
+	<message id="page.search.operateuraappliquerentrelescriteresderecherchesurlesdifferentschamps">Connettore applicabile tra i criteri di ricerca nei diversi campi :</message>
+	<message id="page.search.languederechercheduchamp">Lingua di recerca del campo :</message>
+
+	<!-- Page linearsearch -->
+	<message id="page.linearsearch.resultats">risultati della ricerca</message>
+
+	<!-- Page login -->
+	<message id="page.login.droits">Destra</message>
+	<message id="page.login.explication">
+		L'amministrazione di una applicazione SDX può essere sicura
+        solo con l'utilizzo dei concetti conosciuti di "gruppo" e di "utente".
+        Per questa applicazione sono stati definiti dei logins
+		di partenza nel file di configurazione: il gruppo "admins", con l'utente "admin".
+		L'accesso ai documenti del database è riservato agli utenti del gruppo "admins".
+		L'utente "admin" è autorizzato, ma non può creare altri logins (utenti o gruppi)
+		usando l'interfaccia seguente:
+
+	</message>
+	<message id="page.login.codeutilisateur">nome utente: </message>
+	<message id="page.login.motdepasse">password: </message>
+	<message id="page.login.identitereconnue">Autenticazione riconosciuta.</message>
+	<message id="page.login.vousappartenezaugroupe">Appartenete al gruppo(i) :</message>
+	<message id="page.login.identitenonreconnue">La vostra autentificazione non è stata riconosciuta.</message>
+	<message id="page.login.admins">Voi appartenete al gruppo: "admins" ; potete accedere all'amministrazione di questa applicazione.</message>
+	<message id="page.login.reinitialiser">Reset</message>
+	<message id="page.login.deconnexion">Esci</message>
+	<message id="page.login.entrer">Entra</message>
+
+	<!-- Page admin -->
+	<message id="page.admin.basededocument">Documenti nel database</message>
+	<message id="page.admin.importdedocuments">Inserimento di documenti (cartella o file .ZIP)</message>
+	<message id="page.admin.import">Inserimento</message>
+	<message id="page.admin.exportdedocuments">Esporto dei documenti (verso il formato CSV)</message>
+	<message id="page.admin.export">Esporto</message>
+	<message id="page.admin.saisiedunnouveaudocument">Creazione di un nuovo documento</message>
+	<message id="page.admin.saisie">Crea</message>
+	<message id="page.admin.copiededocument">Copia del documento</message>
+	<message id="page.admin.listedesdocuments">Lista dei documenti (modifica, cancella)</message>
+	<message id="page.admin.liste">Lista</message>
+	<message id="page.admin.indexerlesdocuments">Lista dei documenti contenuti sul server</message>
+	<message id="page.admin.importerlesdocuments">Inserire i documenti</message>
+	<message id="page.admin.importerunseuldocument">Inserire un solo documento XML (senza allegati)</message>
+	<message id="page.admin.indexer">Indice</message>
+	<message id="page.admin.importer">Inserisci</message>
+	<message id="page.admin.retour">Ritorno</message>
+	<message id="page.admin.editerledocument">modifica il documento</message>
+	<message id="page.admin.editer">modifica</message>
+	<message id="page.admin.exporterledocument">esporta un documento</message>
+	<message id="page.admin.exporter">Esporta</message>
+	<message id="page.admin.copierledocument">Copiare il documento</message>
+	<message id="page.admin.copier">Copiare</message>
+	<message id="page.admin.supprimerledocument">Cancella un documento</message>
+	<message id="page.admin.supprimer">Cancella</message>
+	<message id="page.admin.basevide">Il vostro database è vuoto.</message>
+	<message id="page.admin.listevide">lista vuota</message>
+	<message id="page.admin.baseexterne">database esterno (non modificabile dall'applicazione)</message>
+	<message id="page.admin.vider">svuota</message>
+	<message id="page.admin.viderlabase">svuotare il database</message>
+	<message id="page.admin.viderlaliste">Svuotare la lista</message>
+	<message id="page.admin.vignettes">Thumbnails</message>
+	<message id="page.admin.piecesattachees">file allegati</message>
+	<message id="page.admin.gestiondesattachements">gestione degli allegati</message>
+	<message id="page.admin.listedesvignettespourlabase">lista delle Thumbnails per il database</message>
+	<message id="page.admin.listedespiecesattacheespourlabase">Lista dei file allegati per il database</message>
+	<message id="page.admin.aucunfichier">nessun file</message>
+	<message id="page.admin.ajouterunnouveaufichier">aggiunta di un nuovo file</message>
+	<message id="page.admin.envoyer">Invia</message>
+	<message id="page.admin.uploaddefichier">Aggiunta di file</message>
+	<message id="page.admin.retouralalistedesfichiers">Ritorno alla lista dei file</message>
+	<message id="page.admin.vousnavezpasprecisedefichieraenvoyer">Errore: Non avete inserito nessun file da inviare!</message>
+	<message id="page.admin.extensiondefichierincorrecte.debut">Errore: Il file thumbnail!</message>
+	<message id="page.admin.extensiondefichierincorrecte.fin">estensione del file sbagliata (solo file tipo .png, .gif, .jpg et .jpeg). file non caricato.</message>
+	<message id="page.admin.lefichieraetecorrectementenvoye.debut">il file</message>
+	<message id="page.admin.lefichieraetecorrectementenvoye.fin">è stato caricato correttamente.</message>
+	<message id="page.admin.voir">Vedere</message>
+	<message id="page.admin.exportpdf">Esportazione PDF</message>
+	<message id="page.admin.listesexternes">Liste esterne</message>
+	<message id="page.admin.editiondelaliste">Edizione della lista</message>
+	<message id="page.admin.listeexterne">Lista esterna</message>
+	<message id="page.admin.exportdunebrochurepdf">Esporto di un opuscolo PDF</message>
+	<message id="page.admin.exportzip">*Export ZIP*</message>
+	<message id="page.admin.aveclespiecesattachees">*Avec les pièces attachées :*</message>
+
+	<!-- Admin edit liste -->
+	<message id="page.admin_edit_liste.liste">Lista</message>
+	<message id="page.admin_edit_liste.clef">Chiave</message>
+	<message id="page.admin_edit_liste.ajouter">Aggiungere</message>
+	<message id="page.admin_edit_liste.supprimer">Cancellare</message>
+	<message id="page.admin_edit_liste.modifier">Modificare</message>
+	<message id="page.admin_edit_liste.erreur">Errore&#160;</message>
+	<message id="page.admin_edit_liste.erreur.erreurlorsdelasauvegardedufichier.debut">Errore nel salvare il file della lista "</message>
+	<message id="page.admin_edit_liste.erreur.erreurlorsdelasauvegardedufichier.fin">"</message>
+	<message id="page.admin_edit_liste.erreur.erreurlorsdelouverturedufichier.debut">Errore nell'aprire il file "</message>
+	<message id="page.admin_edit_liste.erreur.erreurlorsdelouverturedufichier.fin">"</message>
+	<message id="page.admin_edit_liste.erreur.iddejautilise.debut">Una linea con questo identificante esiste già nel file "</message>
+	<message id="page.admin_edit_liste.erreur.iddejautilise.fin">"</message>
+	<message id="page.admin_edit_liste.erreur.fichierxmlnonvalide.debut">File XML non valido : </message>
+	<message id="page.admin_edit_liste.erreur.fichierxmlnonvalide.fin">*</message>
+	<message id="page.admin_edit_liste.erreur.valeursvides">I valori da aggiungere sono vuoti</message>
+	<message id="page.admin_edit_liste.erreur.impossibledetrouverunparseurxml.debut">*Impossible de trouver un parseur XML pour analyser le fichier : *</message>
+	<message id="page.admin_edit_liste.erreur.impossibledetrouverunparseurxml.fin">*</message>
+	<message id="page.admin_edit_liste.succes.suppressioneffectuee">*Suppression effectuée*</message>
+	<message id="page.admin_edit_liste.succes.ajouteffectue">*Ajout effectué*</message>
+	<message id="page.admin_edit_liste.succes.modificationeffectuee">*Modification effectuée*</message>
+	<message id="page.admin_edit_liste.voulezvousvraimentsupprimerlaligne">*Voulez-vous vraiment supprimer la ligne ?*</message>
+
+	<!-- Import/Export CSV -->
+	<message id="page.csv.importerunfichiercsv">*Importer un fichier CSV*</message>
+	<message id="page.csv.fichiercsvaimporter">*Fichier CSV à importer :*</message>
+	<message id="page.csv.importcsvdelaliste">*Import CSV de la liste*</message>
+	<message id="page.csv.importcsvdelabase">*Import CSV de la base*</message>
+	<message id="page.csv.exporter...">*Exporter...*</message>
+	<message id="page.csv.exportcsvdelaliste">*Export CSV de la liste*</message>
+	<message id="page.csv.exportcsvdesdocumentsdelabase">*Export CSV des documents de la base*</message>
+	<message id="page.csv.separateurdechamps">*Séparateur de champs*</message>
+	<message id="page.csv.separateurdechampsmultivalues">*Séparateur de champs multivalués :*</message>
+	<message id="page.csv.formatcsv">*Format CSV :*</message>
+	<message id="page.csv.formatstandard">*standard*</message>
+	<message id="page.csv.formatexcel">*MS Excel*</message>
+	<message id="page.csv.suite">*Suite &gt;*</message>
+	<message id="page.csv.fichieraimportermanquant">*Erreur : vous n'avez pas précisé de nom de fichier à importer !*</message>
+	<message id="page.csv.retouralapagedimport">*Retour à la page d'import*</message>
+	<message id="page.csv.lesidentifiantssont">*Les identifiants sont :*</message>
+	<message id="page.csv.generesautomatiquement">*générés automatiquement*</message>
+	<message id="page.csv.contenusdanslacolonne">*contenus dans la colonne *</message>
+	<message id="page.csv.correspondances">*Correspondances*</message>
+	<message id="page.csv.langue">*Langue*</message>
+	<message id="page.csv.colonne">*Colonne*</message>
+	<message id="page.csv.colonnecsv">*Colonne CSV*</message>
+	<message id="page.csv.importreussi.debut">*Import réussi :*</message>
+	<message id="page.csv.importreussi.fin">*valeurs ajoutées ou mises à jour.*</message>
+	<message id="page.csv.voirlecontenudelaliste">*Voir le contenu de la liste*</message>
+	<message id="page.csv.champsdudocument">*Champ du document*</message>
+	<message id="page.csv.importcsvdelabase">*Import CSV de la base*</message>
+	<message id="page.csv.voirlecontenudelabase">*Voir le contenu de la base*</message>
+	<message id="page.csv.ligneslues">*lignes lues*</message>
+	<message id="page.csv.documentsindexes">*documents indexés*</message>
+	<message id="page.csv.languedesdocuments">*Langue des documents*</message>
+	<message id="page.csv.donneescsv">*Données CSV*</message>
+	<message id="page.csv.donneescsvmsexcel">*Données CSV MS Excel*</message>
+	<message id="page.csv.champsseparespar">*Champs séparés par :*</message>
+	<message id="page.csv.champsentourespar">*Champs entourés par :*</message>
+
+	<!-- Export PDF -->
+	<message id="page.pdf.documentgenerepar">Documento generato da&#160;</message>
+	<message id="page.pdf.sommaire">*Sommaire*</message>
+
+	<!-- Page saisie -->
+	<message id="page.saisie.documentindexeavecsucces">Documento inserito con successo</message>
+	<message id="page.saisie.dureedindexation">Durata d'inserimento</message>
+	<message id="page.saisie.retouralasaisiedudocument">Modificare il documento</message>
+	<message id="page.saisie.saisirunnouveaudocument">Creare un nuovo documento</message>
+	<message id="page.saisie.visualiserledocument">Vedere il documento</message>
+	<message id="page.saisie.retouralalistedesdocuments">Ritorno alla lista dei documenti</message>
+	<message id="page.saisie.retouralapagedadministration">Ritorno alla pagina di admin</message>
+	<message id="page.saisie.lechamp">il campo</message>
+	<message id="page.saisie.nestpasrenseigne">non è compilato</message>
+	<message id="page.saisie.lindexationnapaspuetreeffectuee">L'inserimento non può essere effettuato</message>
+	<message id="page.saisie.languedudocument">linguaggio del documento</message>
+	<message id="page.saisie.supprimerlegroupe">*Supprimer le groupe*</message>
+	<message id="page.saisie.retirerlefichierattache">rimuovere il file allegato dal documento</message>
+	<message id="page.saisie.fichierattache">file allegato</message>
+	<message id="page.saisie.icone">Icona</message>
+	<message id="page.saisie.libelle">indirizzo</message>
+	<message id="page.saisie.adresseurl">indirizzo (URL)</message>
+	<message id="page.saisie.libelleoptionneldelurl">indirizzo alternativo (URL)</message>
+	<message id="page.saisie.email">indirizzo e-mail</message>
+	<message id="page.saisie.libelleoptionneldelemail">indirizzo alternativo e-mail</message>
+	<message id="page.saisie.valeursupplementaire">Se la lista qui a fianco non contiene
+		il valore che vuoi inserire in questo campo, inserisci qui sotto il nuovo valore.</message>
+	<message id="page.saisie.commentairefichierattache">I files da allegare al documento
+	devono essere inseriti nella sottocartella "attach" della cartella del tipo di documento. 
+	Le Thumbnail vanno inserite nella cartella "thumbnail".</message>
+	<message id="page.saisie.commentairesaisie">Nota bene: per inserire più valori in un solo campo 
+	usa il segno "$" per separare i valori.</message>
+	<message id="page.saisie.ajouterunnouveaubloc">*Ajouter un nouveau bloc ?*</message>
+	<message id="page.saisie.ajouterunenouvellevaleur">*Ajouter une nouvelle valeur ?*</message>
+	<message id="page.saisie.lechampnestpasunique.debut">*Erreur : la valeur du champ *</message>
+	<message id="page.saisie.lechampnestpasunique.fin">*n'est pas unique !*</message>
+	<message id="page.saisie.lavaleurestdejautilisee.debut">*La valeur *</message>
+	<message id="page.saisie.lavaleurestdejautilisee.fin">*est déjà utilisée par le(s) document(s) suivant(s) :*</message>
+
+	<!-- Page upload -->
+	<message id="page.upload.erreur">Errore</message>
+	<message id="page.upload.import">Inserire i documenti</message>
+	<message id="page.upload.importok">Importazione riuscita.</message>
+	<message id="page.upload.statistiquesdindexation">Risultato dell'inserimento</message>
+	<message id="page.upload.nombrededocumentsajoutes">Numero dei documenti: </message>
+	<message id="page.upload.nombrededocumentsenerreur">Numero dei documenti errati: </message>
+	<message id="page.upload.dureedelindexation">Durata dell'inserimento (in secondi) : </message>
+	<message id="page.upload.erreurlorsdelindexationdudocument">*Erreur lors de l'indexation du document*</message>
+	<message id="page.upload.ledossierdesdocumentsaindexerestvide">*Le dossier des documents à indexer est vide*</message>
+
+	<!-- Page results -->
+	<message id="page.results.aucunresultat">nessun risultato!</message>
+	<message id="page.results.aucuneimage">nessuna immagine!</message>
+	<message id="page.results.resultats">Risultati della ricerca</message>
+	<message id="page.results.resultatscorrespondentavotrerecherche">Risultato/i della vostra ricerca</message>
+
+	<!-- Page navigation -->
+	<message id="page.nav.listealphabetique">lista alfabetica</message>
+	<message id="page.nav.navigationdanslesdocumentsdelabase">Navigazione nei documenti del database</message>
+
+	<!-- Page listealpha -->
+	<message id="page.listealpha.aucundocument">Nessun documento disponibile!</message>
+
+	<!-- Page query -->
+	<message id="page.query.aucunresultat">Nessun risultato!</message>
+
+	<!-- Page delete -->
+	<message id="page.delete.ledocument">il documento </message>
+	<message id="page.delete.aetesupprimedelabase">è stato cancellato.</message>
+	<message id="page.delete_attach.suppressioneffectuee">cancellazione avvenuta</message>
+	<message id="page.delete_attach.fichiernontrouve">Errore: file non trovato</message>
+	<message id="page.delete_attach.impossibledesupprimerlefichier">Errore: impossibile cancellare il file</message>
+	<message id="page.delete_attach.suppressiondunattachement">cancellazione di un allegato</message>
+
+	<!-- Page document -->
+	<message id="page.document.retouraudocument">*Retour au document*</message> 
+	<message id="page.document.documentabsentdebut">non posso trovare il documento  (</message>
+	<message id="page.document.documentabsentfin">)</message>
+	<message id="page.document.accesinterditaudocument">*Accès interdit au document demandé.*</message>
+
+	<!-- Page pre_flush -->
+	<message id="page.pre_flush.voulezvousvraimentviderlabase">Volete veramente cancellare il database</message>
+	<message id="page.pre_flush.voulezvousvraimentviderlaliste">*Voulez vous vraiment vider la liste*</message>
+	<message id="page.pre_flush.attention">*Attention !*</message>
+	<message id="page.pre_flush.documentsdelabase">* documents de la base *</message>
+	<message id="page.pre_flush.referencentdesdocumentsdecettebase">* référencent des documents de cette base*</message>
+	<message id="page.pre_flush.champ">*champ *</message>
+	<message id="page.pre_delete.voulezvousvraimentsupprimerledocument">Volete veramente cancellare il documento</message>
+	<message id="page.pre_delete_attach.voulezvousvraimentsupprimerlapieceattachee">Volete veramente cancellare il file allegato?</message>
+	<message id="page.pre_delete_attach.voulezvousvraimentsupprimerlavignette">Volete veramente cancellare la thumbnail?</message>
+	<message id="page.pre_delete.attentioncedocumentestreferencepar">*Attention !!! Ce document est référencé par :*</message>
+
+	<!-- Page statique -->
+	<message id="page.static.pasdepagedemandee">*Pas de page demandée !*</message>
+	<message id="page.static.pagenondeclaree.debut">*La page *</message>
+	<message id="page.static.pagenondeclaree.fin">* n'a pas été déclarée*</message>
+</messages>

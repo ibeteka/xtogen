@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<!--
+	XtoGen - Générateur d'applications SDX2
+    Copyright (C) 2003 Ministère de la culture et de la communication, PASS Technologie
+
+    Ministère de la culture et de la communication,
+    Mission de la recherche et de la technologie
+    3 rue de Valois, 75042 Paris Cedex 01 (France)
+    mrt@culture.fr, michel.bottin@culture.fr
+
+    PASS Technologie, 23, rue Pierre et Marie Curie, 94200 Ivry Sur Seine
+    pierre.dittgen@pass-tech.fr
+
+    Ce programme est un logiciel libre: vous pouvez le redistribuer
+    et/ou le modifier selon les termes de la "GNU General Public
+    License", tels que publiés par la "Free Software Foundation"; soit
+    la version 2 de cette licence ou (à votre choix) toute version
+    ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile, mais
+    SANS AUCUNE GARANTIE, ni explicite ni implicite; sans même les
+    garanties de commercialisation ou d'adaptation dans un but spécifique.
+
+    Se référer à la "GNU General Public License" pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la "GNU General Public License"
+    en même temps que ce programme; sinon, écrivez à la "Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA".
+-->
+<display>
+	<!--
+		display.xml
+		Ce fichier permet de configurer la présentation et l'affichage des
+	     éléments de l'application.
+		Il a été séparé de "structure.xml" qui contient la description des
+		données à gérer.
+	 -->
+
+	<application>
+
+		<!--
+			Liste des pages XHTML non générées et que l'on veut voir apparaitre
+			dans le menu sur la partie gauche de l'écran.
+			
+			Exemple d'utilisation : pour ajouter une page d'aide. Il faut :
+			* Mettre la ligne <page>aide</page> entre les balises
+				<static>...</static>
+			* Lancer "ant init". Ceci créera les pages <lang>_display.xml
+				(en fonction des langues choisies dans le fichier structure.xml)
+				dans le répertoire custom/lang/interface/<lang>.
+				Note : Ces fichiers contiennent les traductions des labels
+					apparaissant dans le menu et le titre des pages.
+			* Personnaliser les fichiers <lang>_display.xml pour préciser la
+				traduction des labels de menus et les titres des pages statiques
+			* Créer les fichiers <lang>_aide_display.xml dans le répertoire
+				custom/lang/interface/<lang> pour donner du contenu à vos pages
+				statiques.
+
+			Pour chaque page, on peut préciser si elle est privée. Les pages
+			sont par défaut publiques. Si une page est privée, ses droits
+			doivent être défini dans le domaine 'static'
+		-->
+		<static>
+			<!--
+			<page>aide</page>
+			<page private="true">credits</page>
+			-->
+		</static>
+
+		<!-- Utilisation des templates -->
+		<templates>
+			<!-- Pour utiliser le template général (skeleton) -->
+			<template in="general"/>
+
+			<!-- Pour utiliser le template pour l'affichage HTML des docs -->
+			<template in="document-html"/>
+
+			<!-- Pour utiliser le template pour l'affichage PDF des docs -->
+			<template in="document-pdf"/>
+		</templates>
+
+	</application>
+
+	<documenttypes>
+
+		<!-- Un bloc par type de document -->
+		<documenttype id="contact">
+
+			<edit>
+			<!--
+				Configuration optionnelle de l'affichage des champs pour
+				les formulaires d'édition
+
+				Champs de type choix :
+				* Les modes suivants sont possibles :
+				- Mcombo : liste combo multiple (valeur par défaut si absent)
+				- combo : liste combo à sélection simple
+				- check : boutons checkbox (sélection multiple)
+				- radio : boutons radio
+				- 2cols : 2 colonnes (utilise JavaScript)
+				* On peut préciser que l'on souhaite trier les listes externes
+				de valeurs avec l'attribut sort (="true").
+
+				Champs de type attach :
+				* Les modes suivants sont possibles :
+				- link : choix de la pièce attachée, de la vignette et du
+					libellé (valeur par défaut)
+				- inline : choix de la pièce attachée uniquement
+				- upload : upload de la pièce attachée
+				* On peut préciser la taille des vignettes avec l'attribut
+				thnsize (="80x100"), la valeur par défaut est 150x150
+			-->
+				<on field="pays" mode="radio"/>
+				<on field="nat" mode="combo"/>
+				<on field="photo" mode="upload" thnsize="80x80"/>
+
+				<!--
+					Changement des valeurs par défaut de la taille des champs
+					texte, des zones texte et des listes
+				-->
+				<global>
+					<input size="40"/>
+					<textarea cols="60" rows="10"/>
+					<select size="6"/>
+				</global>
+			</edit>
+
+			<search>
+				<!--
+					Choix des champs pour la recherche multi-critère et possibilité
+					de configurer leur affichage
+					
+					Les modes sont les mêmes que pour l'édition.
+				-->
+				<on field="nom"/>
+				<on field="nat" mode="2cols"/>
+				<on field="pays"/>
+				<!--
+					Changement des valeurs par défaut de la taille des champs
+					texte et des listes
+				-->
+				<global>
+					<input size="40"/>
+					<select size="6"/>
+				</global>
+			</search>
+
+			<!-- Choix des champs navigables -->
+			<nav>
+				<on field="nat"/>
+				<on field="pays"/>
+				<on field="photo"/>
+			</nav>
+
+			<!-- Personnalisation de l'affichage du document -->
+			<document>
+				<on field="photo" thnsize="200x200"/>	
+			</document>
+
+			<!-- 
+				Définition des tris dans les listes de résultats
+				(navigation et partie administration)
+
+				Le tri par défaut (s'il n'est pas précisé avec l'attribut
+					@default) est sur le champ par défaut du document.
+				Les tris supplémentaires sont disponibles en mode croissant et
+				décroissants dans les pages de l'application.
+			-->
+			<sort default="nom">
+				<on field="domaine"/>
+			</sort>
+				
+			<!--
+				Gestion des meta données
+
+				C'est l'endroit pour positionner les champs dublin core.
+				Ex : <on field="myfield" meta="mymeta"/>
+				donnera dans la partie <head></head> de la page d'affichage
+				du document le code suivant :
+				<meta name="mymeta" content="valeur du champ 'myfield' du document affiché">
+			-->
+			<meta>
+				<on field="nom" meta="dc.title"/>
+			</meta>
+
+			<!-- 
+				Gestion d'un entrepot OAI
+
+				On peut ajouter l'attribut sdxUrl pour préciser le chemin url
+				de SDX s'il est différent de http://localhost:8080/sdx
+
+				Par défaut, deux champs sont déclarés :
+					* title : champ par défaut des ressources
+					* identifier : identifiant sdx des ressources
+			-->
+			<oai adminEmail="me@myhome.com">
+				<!--
+					Déclaration d'un champ supplémentaire nommé e-mail.
+					Il est lié au champ email des documents
+					S'il y en a plusieurs, les différentes valeurs seront
+					concaténées avec le séparateur ' , '.
+					
+					Les attributs repeated et separator sont optionnels.
+					L'attribut repeated peut prendre deux valeurs :
+						* repeated (défaut)
+						* concatenate
+					L'attribut separator n'a de sens que si l'attribut repeated
+					a la valeur "concatenate"
+				  -->
+				<on field="email" oaiField="e-mail" repeated="concatenate" separator=" , "/>
+			</oai>
+
+		</documenttype>
+	</documenttypes>
+
+	<!-- 
+		Section des listes externes.
+		Actuellement, uniquement pour décider si une liste doit être triée
+		lors de son édition (non triée par défaut).
+	  -->
+	<lists>
+		<list id="country" sort="true"/>
+	</lists>
+
+</display>

@@ -1,0 +1,12 @@
+Pour disposer de plus de mémoire, ajouter
+dans catalina.bat (Windows) :
+set JAVA_OPTS=-Xms128m -Xmx512m
+dans catalina.sh (Unix)
+JAVA_OPTS='-Xms128m -Xmx512m'
+
+Pour faire fonctionner les vignettes sous Linux, il faut ajouter dans 
+catalina.sh, la commande suivante :
+JAVA_OPTS='-Djava.awt.headless=true'
+ou
+JAVA_OPTS=' -Djava.awt.headless=true -Xms128m -Xmx512m'
+pour combiner les deux améliorations

@@ -1,0 +1,75 @@
+Liste des domaines et fichiers associés
+
+backoffice
+==========
+[base|list|edit]
+admin.xsp (Page principale)
+
+[base|edit]
+admin_liste.xsp (Liste des documents)
+
+[base]
+admin_import.xsp (Import CSV, ZIP, dir, file)
+csv_base_export.xsp (Export CSV)
+csv_base_pre_import.xsp (Export CSV)
+pre_delete.xsp (Suppression d'un document)
+delete.xsp (Suppression d'un document)
+admin_export.xsp (Export CSV, brochure PDF)
+pre_flush.xsp (Vidage d'une base)
+flush.xsp (Vidage d'une base)
+pdf_base_export.xsp (Brochure PDF)
+upload.xsp (Indexation)
+csv_base_import_<doc>.xsp (Import CSV de documents)
+
+[attach]
+admin_attach.xsp (Administration des attachements)
+delete_attach.xsp (Suppression d'un attachement)
+pre_delete_attach.xsp (Suppression d'un attachement)
+upload_attach.xsp (Ajout d'un nouvel attachement)
+
+[list]
+admin_edit_list.xsp (Edition d'une liste externe)
+csv_list_pre_import.xsp (Import CSV d'une liste)
+csv_list_export.xsp (Export CSV d'une liste)
+list_export.xsp (Export CSV d'une liste)
+csv_list_import.xsp (Import CSV d'une liste)
+list_import.xsp (Import CSV d'une liste)
+
+[edit]
+admin_saisie.xsp (Saisie/Edition d'un document)
+pre_saisie.xsp (Saisie/Edition d'un document)
+saisie_<doc>.xsp (Saisie/Edition d'un document)
+
+interface
+=========
+[index]
+index.xsp (Page d'accueil)
+
+[nav]
+nav.xsp (Navigation)
+query_<doc>.xsp (Résultats de requête)
+terms_<doc>.xsp (Liste de termes)
+
+[search]
+results.xsp (Résultat de recherche plein-texte)
+search.xsp (Formulaire de recherche multi-critère)
+search_<doc>.xsp (Traitement du formulaire de recherche)
+
+[static]
+static.xsp (Présentation des pages statiques)
+
+document
+========
+Les trois sous-domaines suivants sont multipliés par autant de type de
+documents gérés par l'application
+
+[html]
+document.xsp (Affichage HTML d'un document)
+header.xsp (Affichage d'une pièce attachée)
+show_attach.xsp (Affichage d'une pièce attachée)
+
+[pdf]
+pdf_export.xsp (Export PDF)
+
+[xml]
+export.xsp (Export XML d'un document)

@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!-- 
+  Fichier : build.xml
+  	Destiné à la création d'une nouvelle application SDX2
+  Auteur : Pierre Dittgen (pierre.dittgen@pass-tech.fr)
+  		   PASS Technologie
+  Date : 06/11/2002
+
+  Targets :
+
+  -->
+<project name="xtogen-template" default="help" basedir=".">
+
+<property file="xtogen/version.properties"/>
+
+<target name="help">
+<echo>
+	XToGen version ${xtogen.version}
+
+	* Pour creer une nouvelle structure d'application,
+	  utilisez la target "ant newapp".
+	  Deplacez vous ensuite dans le repertoire correspondant
+	  pour travailler sur votre application.
+	* Pour archiver votre application,
+	  utilisez la target "ant zipapp"
+
+	Bonne journee avec XToGen !
+</echo>
+	<antcall target="checksaxon"/>
+</target>
+
+<target name="newapp" description="Creation d'une nouvelle application">
+	<echo>Creation d'une nouvelle structure d'application</echo>
+	<input message="Donner le nom de votre application : "
+		addproperty="app.name" />
+	<mkdir dir="${app.name}"/>
+	<unjar src="xtogen/static/xtogen-struct-app.jar" dest="${app.name}"/>
+	<delete dir="${app.name}/META-INF"/>
+	<replace dir="${app.name}" encoding="utf-8">
+		<include name="xtogen.properties"/>
+		<replacefilter token="[app]" value="${app.name}"/>
+	</replace>
+	<echo>
+
+	Creation de la structure terminee
+	Deplacez vous dans le repertoire ${app.name} pour travailler.
+
+	Les fichiers de configuration se nomment structure.xml et xtogen.properties
+	Le repertoire documents accepte votre arborescence de documents
+	Le repertoire custom contient les fichiers de personnalisation
+
+	Des que vos fichiers de configuration seront a jour,
+	lancez "ant init".
+	Pour les modifications suivantes utilisez "ant update"
+
+	Bonne journee !
+	</echo>
+
+	<antcall target="checksaxon"/>
+</target>
+
+<target name="zipapp" description="Archivage d'une application">
+	<echo>Archivage d'une application</echo>
+	<input message="Nom de l'application" addproperty="app.name"/>
+	<delete file="${app.name}.zip"/>
+	<property name="app.name" value="nantes"/>
+	<zip destfile="${app.name}.zip">
+		<zipfileset dir="${app.name}" prefix="${app.name}"/>
+	</zip>
+	<echo>Fichier cree</echo>
+</target>
+
+<target name="zipxtg" description="Archive de XToGen">
+	<delete file="xtogen.zip"/>
+	<zip destfile="xtogen.zip">
+		<zipfileset dir="." includes="COPYING,build.xml" prefix="xtogen-dev"/>
+		<zipfileset dir="xtogen" prefix="xtogen-dev/xtogen"/>
+	</zip>
+</target>
+
+<target name="checksaxon">
+	<available classname="com.icl.saxon.output.Outputter" property="saxon.present"/>
+	<antcall target="screamsaxon"/>
+</target>
+
+<target name="screamsaxon" unless="saxon.present">
+	<echo>ATTENTION !!!</echo>
+	<echo>Saxon n'a pas ete trouve dans le CLASSPATH</echo>
+	<echo/>
+	<echo>Verifier votre installation de ANT</echo>
+	<echo>(saxon.jar doit etre present dans le repertoire lib de ant)</echo>
+	<echo>XToGen ne peut fonctionner correctement sans Saxon</echo>
+</target>
+
+</project>

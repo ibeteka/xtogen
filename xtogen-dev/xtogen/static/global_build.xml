@@ -1,0 +1,546 @@
+<!--
+	XtoGen - Générateur d'applications SDX2 - http://xtogen.tech.fr
+    Copyright (C) 2003 Ministère de la culture et de la communication, PASS Technologie
+
+    Ministère de la culture et de la communication,
+    Mission de la recherche et de la technologie
+    3 rue de Valois, 75042 Paris Cedex 01 (France)
+    mrt@culture.fr, michel.bottin@culture.fr
+
+    PASS Technologie, 23, rue Pierre et Marie Curie, 94200 Ivry Sur Seine
+	Nader Boutros, nader.boutros@pass-tech.fr
+    Pierre Dittgen, pierre.dittgen@pass-tech.fr
+
+    Ce programme est un logiciel libre: vous pouvez le redistribuer
+    et/ou le modifier selon les termes de la "GNU General Public
+    License", tels que publiés par la "Free Software Foundation"; soit
+    la version 2 de cette licence ou (à votre choix) toute version
+    ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile, mais
+    SANS AUCUNE GARANTIE, ni explicite ni implicite; sans même les
+    garanties de commercialisation ou d'adaptation dans un but spécifique.
+
+    Se référer à la "GNU General Public License" pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la "GNU General Public License"
+    en même temps que ce programme; sinon, écrivez à la "Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA".
+-->
+
+<property name="data.dir" value="${basedir}"/>
+<property name="conf.dir" value="${basedir}/custom/conf"/>
+<property name="webapp.dir" value="${basedir}/custom/webapp"/>
+<property name="template.dir" value="${basedir}/custom/lang/templates"/>
+<property name="lang.dir" value="${basedir}/custom/lang"/>
+<property name="archive.dir" value="${xtogen.dir}/static"/>
+<property name="tmpl.dir" value="${xtogen.dir}/templates"/>
+<property name="out.dir" value="${xtogen.dir}/tmp"/>
+<property name="dest.dir" value="${sdx.install.dir}/${project.name}"/>
+
+<!-- Pour la version de XtoGen -->
+<property file="${xtogen.dir}/version.properties"/>
+
+<target name="help" description="Quelques informations">
+	<echo>
+		XtoGen version ${xtogen.version}
+
+		Vous etes dans un projet.
+		Pour creer la structure de votre application SDX,
+		utilisez la commande :
+			ant init
+		Pour toutes les mises à jour suivantes, utilisez :
+			ant update
+
+		Pour vérifier les erreurs dans votre structure.xml, utilisez :
+			ant check
+
+		Bon travail !
+	</echo>
+</target>
+
+<target name="init" description="Target de création de l'arborescence de répertoire de l'application" depends="checkSys">
+
+	<echo message="Initialisation de l'application ${project.name}"/>
+	<mkdir dir="${dest.dir}/"/>
+	<unjar src="${archive.dir}/xtogen-tomcat-app.jar" dest="${dest.dir}"/>
+	<delete dir="${dest.dir}/META-INF"/>
+
+	<!-- Copie du fichier xtogen-lib.jar -->
+	<touch file="${archive.dir}/xtogen-lib.jar"/>
+	<copy file="${archive.dir}/xtogen-lib.jar" todir="${sdx.install.dir}/WEB-INF/lib"/>
+	<!-- Et de utils.jar (gestion du CSV) -->
+	<copy file="${archive.dir}/utils.jar" todir="${sdx.install.dir}/WEB-INF/lib"/>
+	<!-- Et de log4j (gestion du log) -->
+	<copy file="${archive.dir}/log4j-1.2.8.jar" todir="${sdx.install.dir}/WEB-INF/lib"/>
+	<copy file="${archive.dir}/log4j.properties" todir="${sdx.install.dir}/WEB-INF/classes"/>
+
+	<!-- Substitution du numéro de version -->
+	<antcall target="custoversion"/>
+
+	<!-- Personnalisation des fichiers header et edito -->
+	<antcall target="headeredito"/>
+
+	<!-- Generation de tous les fichiers dependant de structure.xml -->
+	<touch file="${data.dir}/structure.xml"/>
+	<touch file="${data.dir}/display.xml"/>
+	<antcall target="update"/>
+</target>
+
+<target name="update" description="Mise à jour des fichiers modifiés" depends="checkSys">
+
+	<!-- Génération du squelette de fichiers labels -->
+	<antcall target="genlabels"/>
+
+	<!-- Génération du squelette des fichiers de label display -->
+	<antcall target="genlabelsdisplay"/>
+
+	<!-- Génération des templates -->
+	<antcall target="gentemplates"/>
+
+	<!-- Génération des XSP -->
+	<antcall target="buildxsp"><param name="name" value="index"/></antcall>
+	<antcall target="buildxsp"><param name="name" value="list_flush"/></antcall>
+	<antcall target="buildxsp"><param name="name" value="csv_list_export"/></antcall>
+	<antcall target="buildxsp"><param name="name" value="csv_list_import"/></antcall>
+	<xslt	in="${data.dir}/structure.xml"
+			out="${dest.dir}/admin.xsp"
+			style="${tmpl.dir}/admin.xsp.xsl">
+		<param name="display_config_file" expression="${data.dir}/display.xml"/>
+		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+	</xslt>
+	<xslt	in="${data.dir}/structure.xml"
+			out="${dest.dir}/admin_edit_liste.xsp"
+			style="${tmpl.dir}/admin_edit_liste.xsp.xsl">
+		<param name="display_config_file" expression="${data.dir}/display.xml"/>
+		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+	</xslt>
+	<xslt	in="${data.dir}/structure.xml"
+			out="${dest.dir}/nav.xsp"
+			style="${tmpl.dir}/nav.xsp.xsl">
+		<param name="display_config_file" expression="${data.dir}/display.xml"/>
+		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+	</xslt>
+	<antcall target="buildxsp"><param name="name" value="results"/></antcall>
+	<xslt	in="${data.dir}/structure.xml"
+			out="${dest.dir}/search.xsp"
+			style="${tmpl.dir}/search.xsp.xsl">
+		<param name="display_config_file" expression="${data.dir}/display.xml"/>
+		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+	</xslt>
+	<xslt	in="${data.dir}/display.xml"
+			out="${dest.dir}/static.xsp"
+			style="${tmpl.dir}/static.xsp.xsl"/>
+
+	<!-- Génération des XSL -->
+	<xslt in="${data.dir}/structure.xml"
+		  out="${dest.dir}/xsl/document_all_docs.xsl"
+		  style="${tmpl.dir}/document_all_docs.xsl.xsl"/>
+	<xslt in="${data.dir}/structure.xml"
+		  out="${out.dir}/document.tmp"
+		  style="${tmpl.dir}/document_doctype.xsl.xsl">
+		<param name="display_config_file" expression="${data.dir}/display.xml"/>
+		<param name="dest_dir" expression="${dest.dir}/xsl"/>
+		<param name="app_full_path" expression="${project.path}"/>
+		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+	</xslt>
+	<delete file="${out.dir}/document.tmp"/>
+
+	<!-- Génération des fichiers XML -->
+	<xslt in="${data.dir}/structure.xml"
+		  out="${dest.dir}/xsl/config.xml"
+		  style="${tmpl.dir}/config.xml.xsl"/>
+	<available file="display.xml"
+		type="file" property="display.xml.exists.2"/>
+	<antcall target="createconfigdisplay"/>
+
+	<!-- Génération du fichier de droits d'accès -->
+	<xslt in="${data.dir}/display.xml"
+		  out="${dest.dir}/access_rights.properties"
+		  style="${tmpl.dir}/access_rights.properties.xsl">
+		<param name="applicationId" expression="${project.path}"/>
+		<param name="structure_file" expression="${data.dir}/structure.xml"/>
+		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+	</xslt>
+
+	<!-- Génération du fichier application.xconf -->
+	<xslt in="${data.dir}/structure.xml"
+		  out="${dest.dir}/conf/application.xconf"
+		  style="${tmpl.dir}/application.xconf.xsl">
+		<param name="app_name" expression="${project.name}"/>
+		<param name="display_config_file" expression="${data.dir}/display.xml"/>
+		<param name="application_id" expression="${project.path}"/>
+		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+	</xslt>
+
+	<!-- Et des fichiers d'indexation -->
+	<xslt in="${data.dir}/structure.xml"
+		  out="${out.dir}/index.tmp"
+		  style="${tmpl.dir}/index-doctype.xsl.xsl">
+		<param name="dest_dir" expression="${dest.dir}/conf"/>
+		<param name="display_config_file" expression="${data.dir}/display.xml"/>
+		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+	</xslt>
+	<delete file="${out.dir}/index.tmp"/>
+
+	<!-- Génération des fichiers pour l'export CSV -->
+	<xslt in="${data.dir}/structure.xml"
+		  out="${out.dir}/csv.tmp"
+		  style="${tmpl.dir}/csv_base_doctype_export.xsl.xsl">
+		<param name="dest_dir" expression="${dest.dir}/xsl"/>
+	</xslt>
+	<delete file="${out.dir}/csv.tmp"/>
+	
+	<!-- Génération des fichiers pour la saisie -->
+	<xslt in="${data.dir}/structure.xml"
+		  out="${out.dir}/admin_saisie.tmp"
+		  style="${tmpl.dir}/admin_saisie_doctype.xsl.xsl">
+		<param name="dest_dir" expression="${dest.dir}/xsl"/>
+		<param name="display_config_file" expression="${data.dir}/display.xml"/>
+		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+	</xslt>
+	<delete file="${out.dir}/admin_saisie.tmp"/>
+	<xslt in="${data.dir}/structure.xml"
+		  out="${out.dir}/saisie.tmp"
+		  style="${tmpl.dir}/saisie_doctype.xsp.xsl">
+		<param name="dest_dir" expression="${dest.dir}"/>
+		<param name="display_config_file" expression="${data.dir}/display.xml"/>
+		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+		<param name="application_id" expression="${project.path}"/>
+	</xslt>
+	<delete file="${out.dir}/saisie.tmp"/>
+	<xslt in="${data.dir}/structure.xml"
+		  out="${dest.dir}/xsl/admin_saisie_all_docs.xsl"
+		  style="${tmpl.dir}/admin_saisie_all_docs.xsl.xsl"/>
+
+	<!-- Génération des fichiers pour l'export ZIP -->
+	<xslt in="${data.dir}/structure.xml"
+		  out="${dest.dir}/xsl/zip_export_all_docs.xsl"
+		  style="${tmpl.dir}/zip_export_all_docs.xsl.xsl"/>
+	<xslt in="${data.dir}/structure.xml"
+		  out="${out.dir}/zip.tmp"
+		  style="${tmpl.dir}/zip_export_doctype.xsl.xsl">
+		<param name="dest_dir" expression="${dest.dir}/xsl"/>
+	</xslt>
+	<delete file="${out.dir}/zip.tmp"/>
+	<xslt in="${data.dir}/structure.xml"
+		  out="${out.dir}/zip.tmp"
+		  style="${tmpl.dir}/zip_base_doctype_export.xsp.xsl">
+		<param name="dest_dir" expression="${dest.dir}"/>
+	</xslt>
+	<delete file="${out.dir}/zip.tmp"/>
+
+	<!-- Génération des fichiers pour la recherche -->
+	<xslt in="${data.dir}/structure.xml"
+		  out="${out.dir}/search.tmp"
+		  style="${tmpl.dir}/search_doctype.xsp.xsl">
+		<param name="dest_dir" expression="${dest.dir}"/>
+		<param name="display_config_file" expression="${data.dir}/display.xml"/>
+		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+	</xslt>
+	<delete file="${out.dir}/search.tmp"/>
+
+	<!-- Génération des fichiers pour les termes et les requetes -->
+	<xslt in="${data.dir}/structure.xml"
+		  out="${out.dir}/terms.tmp"
+		  style="${tmpl.dir}/terms_doctype.xsp.xsl">
+		<param name="dest_dir" expression="${dest.dir}"/>
+	</xslt>
+	<delete file="${out.dir}/terms.tmp"/>
+	<xslt in="${data.dir}/structure.xml"
+		  out="${out.dir}/query.tmp"
+		  style="${tmpl.dir}/query_doctype.xsp.xsl">
+		<param name="dest_dir" expression="${dest.dir}"/>
+	</xslt>
+	<delete file="${out.dir}/query.tmp"/>
+	<xslt in="${data.dir}/structure.xml"
+		  out="${out.dir}/linear.tmp"
+		  style="${tmpl.dir}/linear_doctype.xsp.xsl">
+		<param name="dest_dir" expression="${dest.dir}"/>
+	</xslt>
+	<delete file="${out.dir}/linear.tmp"/>
+
+	<!-- Génération de l'aide aux templates -->
+	<xslt in="${data.dir}/structure.xml"
+		  out="${dest.dir}/xsl/template_access.xsl"
+		  style="${tmpl.dir}/template_access.xsl.xsl">
+		<param name="display_config_file" expression="${data.dir}/display.xml"/>
+		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+	</xslt>
+
+	<!-- Génération des XSL de transformation XSL-FO -->
+	<xslt in="${data.dir}/structure.xml"
+		  out="${dest.dir}/xsl/pdf_export_all_docs.xsl"
+		  style="${tmpl.dir}/pdf_export_all_docs.xsl.xsl"/>
+	<xslt in="${data.dir}/structure.xml"
+		  out="${out.dir}/pdf_export_pdf.tmp"
+		  style="${tmpl.dir}/pdf_export_doctype.xsl.xsl">
+		<param name="dest_dir" expression="${dest.dir}/xsl"/>
+		<param name="display_config_file" expression="${data.dir}/display.xml"/>
+		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+		<param name="app_full_path" expression="${project.path}"/>
+	</xslt>
+	<delete file="${out.dir}/pdf_export.tmp"/>
+
+	<!-- Generation des XSP supplementaires -->
+	<xslt in="${data.dir}/structure.xml"
+		  out="${out.dir}/csv_base_import.tmp"
+		  style="${tmpl.dir}/csv_base_import_doctype.xsp.xsl">
+		<param name="dest_dir" expression="${dest.dir}"/>
+	</xslt>
+	<delete file="${out.dir}/csv_base_import.tmp"/>
+
+	<!-- Génération du sitemap.xmap -->
+	<xslt in="${data.dir}/structure.xml"
+		  out="${dest.dir}/sitemap.xmap"
+		  style="${tmpl.dir}/sitemap.xmap.xsl"/>
+
+	<!-- Copie des documents -->
+	<copy todir="${dest.dir}/documents">
+		<fileset dir="documents"/>
+	</copy>
+
+	<!-- Copie des fichiers de langue -->
+	<antcall target="copy-lang-documents"/>
+
+	<!-- Copie des fichiers de templates -->
+	<antcall target="copy-templates"/>
+
+	<!-- Copie des fichiers personnalisés ou ajoutés -->
+	<copy todir="${dest.dir}" overwrite="true">
+		<fileset dir="${webapp.dir}"/>
+	</copy>
+
+	<!-- Vérification du fichier structure.xml -->
+	<antcall target="check"/>
+</target>
+
+<!-- Copie des fichiers de langue -->
+<target name="copy-lang-documents">
+
+	<!-- Copie des fichiers standard -->
+	<copy todir="${dest.dir}/xsl/lang">
+		<mapper type="glob" from="*_gen.xml" to="*.xml"/>
+		<fileset dir="${lang.dir}">
+			<include name="**/*_gen.xml"/>
+		</fileset>
+	</copy>
+
+	<!-- Puis écrasement par les fichiers personnalisés -->
+	<!-- S'ils existent -->
+	<copy todir="${dest.dir}/xsl/lang" overwrite="true">
+		<fileset dir="${lang.dir}">
+			<include name="**/*.xml"/>
+			<exclude name="**/*_gen.xml"/>
+		</fileset>
+	</copy>
+</target>
+
+<!-- Copie des fichiers de templates -->
+<target name="copy-templates">
+
+	<!-- Copy des fichiers générés -->
+	<copy todir="${dest.dir}/templates">
+		<mapper type="glob" from="*_gen.html" to="*.html"/>
+		<fileset dir="${template.dir}">
+			<include name="doc_*_gen.html"/>
+			<include name="skeleton_gen.html"/>
+			<include name="skeleton_*_gen.html"/>
+		</fileset>
+	</copy>
+	<copy todir="${dest.dir}/templates">
+		<mapper type="glob" from="*_gen.fo" to="*.fo"/>
+		<fileset dir="${template.dir}">
+			<include name="pdf_*_gen.fo"/>
+		</fileset>
+	</copy>
+	<copy todir="${dest.dir}/templates" overwrite="true">
+		<fileset dir="${template.dir}">
+			<include name="skeleton.html"/>
+			<include name="skeleton_*.html"/>
+			<include name="doc_*.html"/>
+			<include name="pdf_*.fo"/>
+			<exclude name="skeleton_gen.html"/>
+			<exclude name="doc_*_gen.html"/>
+			<exclude name="pdf_*_gen.fo"/>
+		</fileset>
+	</copy>
+	<!-- Copie du contenu des sous-répertoires -->
+	<copy todir="${dest.dir}">
+		<fileset dir="${template.dir}">
+			<exclude name="*"/>
+		</fileset>
+	</copy>
+</target>
+
+<!-- Création du fichier de configuration du display -->
+<target name="createconfigdisplay" if="display.xml.exists.2">
+	<xslt in="${data.dir}/display.xml"
+		  out="${dest.dir}/xsl/config_display.xml"
+		  style="${tmpl.dir}/config_display.xml.xsl">
+		<param name="structure_file" expression="${data.dir}/structure.xml"/>
+		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+	</xslt>
+</target>
+
+<!-- Génération des labels -->
+<target name="genlabels" description="Génération d'une structure de fichiers de labels">
+	<echo>Génération d'une structure de fichiers de labels</echo>
+	<xslt in="${data.dir}/structure.xml"
+		  out="${out.dir}/labels.tmp"
+		  style="${tmpl.dir}/lang-document.xml.xsl">
+		<param name="dest_dir" expression="${lang.dir}/document"/>
+		<param name="appli_name" expression="${project.label}"/>
+		<param name="display_config_file" expression="${data.dir}/display.xml"/>
+		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+	</xslt>
+	<delete file="${out.dir}/labels.tmp"/>
+</target>
+
+<!-- Génération des labels de display -->
+<target name="genlabelsdisplay" description="Génération d'une structure de fichiers de labels display">
+	<echo>Génération d'une structure de fichiers de labels de display</echo>
+	<xslt in="${data.dir}/display.xml"
+		  out="${out.dir}/display.tmp"
+		  style="${tmpl.dir}/lang_display.xml.xsl">
+		<param name="structure_file" expression="${data.dir}/structure.xml"/>
+		<param name="dest_dir" expression="${lang.dir}/interface"/>
+		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+	</xslt>
+	<delete file="${out.dir}/display.tmp"/>
+</target>
+
+<!-- Génération des templates -->
+<target name="gentemplates" description="Génération des fichiers de templates">
+
+	<echo>Génération des squelettes</echo>
+	<xslt in="${data.dir}/display.xml"
+		  out="${template.dir}/skeleton_gen.html"
+		  style="${tmpl.dir}/skeleton.html.xsl">
+		<param name="appli_name" expression="${project.name}"/>
+		<param name="appli_comment" expression="${project.label}"/>
+	</xslt>
+
+	<echo>Génération des documents HTML</echo>
+	<xslt in="${data.dir}/structure.xml"
+		  out="${out.dir}/doc_doctype_gen.tmp"
+		  style="${tmpl.dir}/doc_doctype_gen.html.xsl">
+		<param name="dest_dir" expression="${template.dir}"/>
+		<param name="display_config_file" expression="${data.dir}/display.xml"/>
+		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+	</xslt>
+	<delete file="${out.dir}/doc_doctype_gen.tmp"/>
+
+	<echo>Génération des documents PDF</echo>
+	<xslt in="${data.dir}/structure.xml"
+		  out="${out.dir}/pdf_doctype_gen.tmp"
+		  style="${tmpl.dir}/pdf_doctype_gen.fo.xsl">
+		<param name="dest_dir" expression="${template.dir}"/>
+		<param name="display_config_file" expression="${data.dir}/display.xml"/>
+		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+	</xslt>
+	<delete file="${out.dir}/pdf_doctype_gen.tmp"/>
+</target>
+
+<target name="custoversion" description="Personnalisation de la version">
+	<replace file="${dest.dir}/xsl/common.xsl" token="[VERSION]" value="${xtogen.version}"/>
+</target>
+
+<target name="headeredito" description="Personnalisation des fichiers header et edito">
+	<echo>Personnalisation des fichiers header et edito</echo>
+	<replace dir="${lang.dir}/interface" encoding="utf-8">
+		<include name="**/*_header.xml"/>
+		<include name="**/*_edito.xml"/>
+		<replacefilter token="[appname]" value="${project.name}"/>
+		<replacefilter token="[label]" value="${project.label}"/>
+		<replacefilter token="[description]" value="${project.description}"/>
+	</replace>
+</target>
+
+<target name="check" depends="check.structure,check.display"/>
+
+<target name="check.structure">
+	<echo message="Verification de la validite de structure.xml"/>
+	<echo message="== début verification ======================"/>
+	<xslt in="${data.dir}/structure.xml"
+		  style="${tmpl.dir}/check-structure.xsl"
+		  out="${out.dir}/check.tmp"/>
+	<echo message="== fin verification ========================"/>
+	<delete file="${out.dir}/check.tmp"/>
+</target>
+
+<target name="check.display">
+	<echo message="Verification de la validite de display.xml"/>
+	<echo message="== début verification ======================"/>
+	<xslt in="${data.dir}/display.xml"
+		  style="${tmpl.dir}/check-display.xsl"
+		  out="${out.dir}/check.tmp">
+		<param name="structure_file" expression="${data.dir}/structure.xml"/>
+		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+	</xslt>
+	<echo message="== fin verification ========================"/>
+	<delete file="${out.dir}/check.tmp"/>
+</target>
+
+<!-- Targets utilitaires -->
+<target name="buildxsp">
+	<echo message="Génération de ${name}.xsp"/>
+	<xslt in="${data.dir}/structure.xml" out="${dest.dir}/${name}.xsp"
+		style="${tmpl.dir}/${name}.xsp.xsl">
+		<param name="file_url_prefix" expression="${file.url.prefix}"/>
+	</xslt>
+</target>
+
+<!-- Crie à cause de custom style -->
+<target name="screamcustomstyle" if="custom.style.exists">
+	<fail>
+
+		ATTENTION !!!
+
+	Votre projet XToGen comprend un dossier nomme custom/style
+	Renommez ce dossier en custom/webapp pour pouvoir continuer
+	</fail>
+</target>
+
+<!-- Crie à cause du file.url.prefix -->
+<target name="file:/" if="isUnixOSfamily">
+	<fail>
+
+		ATTENTION !!!
+		
+	La propriété "file.url.prefix" ne correspond pas au 
+	système d'exploitation courant !
+	Faites la modification dans le fichier global_xtogen.properties 
+	contenu dans le dossier static de XToGen !
+	</fail>
+</target>
+
+<target name="file://" if="isWinOSfamily">
+	<fail>
+
+		ATTENTION !!!
+		
+	La propriété "file.url.prefix" ne correspond pas au 
+	système d'exploitation courant !
+	Faites la modification dans le fichier global_xtogen.properties 
+	contenu dans le dossier static de XToGen !
+	</fail>
+</target>
+
+<!-- Pour faire certaines vérifications au départ -->
+<target name="checkSys">
+
+	<available file="custom/style" type="dir" property="custom.style.exists"/>
+	<antcall target="screamcustomstyle"/>
+
+	<condition property="isUnixOSfamily">
+		<or>
+			<os family="unix"/>
+			<os family="mac" version="10"/>
+		</or>
+	</condition>
+	<condition property="isWinOSfamily">
+		<os family="windows"/>
+	</condition>
+	<antcall target="${file.url.prefix}"/>
+</target>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+SDX: Documentary System in XML.
+Copyright (C) 2000, 2001, 2002  Ministere de la culture et de la communication (France), AJLSM
+
+Ministere de la culture et de la communication,
+Mission de la recherche et de la technologie
+3 rue de Valois, 75042 Paris Cedex 01 (France)
+mrt@culture.fr, michel.bottin@culture.fr
+
+AJLSM, 17, rue Vital Carles, 33000 Bordeaux (France)
+sevigny@ajlsm.com
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the
+Free Software Foundation, Inc.
+59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+or connect to:
+http://www.fsf.org/copyleft/gpl.html
+-->
+<xsp:page language="java" xmlns:xsp="http://apache.org/xsp" xmlns:sdx="http://www.culture.gouv.fr/ns/sdx/sdx" xmlns:xtg="http://xtogen.tech.fr">
+    <sdx:page langSession="lang" langParam="lang">
+        <bar/>
+        <title id="title.document"/>
+		<xtg:authentication domain="html" doctype="base">
+			<document>
+				<xsp:attribute name="type"><xsp:expr>request.getParameter("db")</xsp:expr></xsp:attribute>
+				<sdx:includeDocument baseParam="db" hilite="true"/>
+			</document>
+			<sdx:executeFieldQuery field="sdxdocid" valueParam="id" hpp="1"/>
+		</xtg:authentication>
+    </sdx:page>
+</xsp:page>

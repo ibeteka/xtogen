@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+	XtoGen - Générateur d'applications SDX2 - http://xtogen.tech.fr
+    Copyright (C) 2003 Ministère de la culture et de la communication, PASS Technologie
+
+    Ministère de la culture et de la communication,
+    Mission de la recherche et de la technologie
+    3 rue de Valois, 75042 Paris Cedex 01 (France)
+    mrt@culture.fr, michel.bottin@culture.fr
+
+    PASS Technologie, 23, rue Pierre et Marie Curie, 94200 Ivry Sur Seine
+	Nader Boutros, nader.boutros@pass-tech.fr
+    Pierre Dittgen, pierre.dittgen@pass-tech.fr
+
+    Ce programme est un logiciel libre: vous pouvez le redistribuer
+    et/ou le modifier selon les termes de la "GNU General Public
+    License", tels que publiés par la "Free Software Foundation"; soit
+    la version 2 de cette licence ou (à votre choix) toute version
+    ultérieure.
+
+    Ce programme est distribué dans l'espoir qu'il sera utile, mais
+    SANS AUCUNE GARANTIE, ni explicite ni implicite; sans même les
+    garanties de commercialisation ou d'adaptation dans un but spécifique.
+
+    Se référer à la "GNU General Public License" pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la "GNU General Public License"
+    en même temps que ce programme; sinon, écrivez à la "Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA".
+-->
+<xsp:page xmlns:xsp="http://apache.org/xsp" xmlns:xtg="http://xtogen.tech.fr" language="java">
+   <sdx:page xmlns:sdx="http://www.culture.gouv.fr/ns/sdx/sdx" langSession="lang" langParam="lang">
+      <title id="title.admin_export"/>
+      <bar/>
+      <xtg:authentication domain="base">
+         <export>
+			<xsp:logic>
+				java.util.Locale myLocale =
+					java.util.Locale.getDefault();
+
+				org.apache.cocoon.environment.Session mySession
+					= request.getSession();
+				if (mySession != null)
+				{
+					String lang = (String)mySession.getAttribute("lang");
+					if (lang != null &amp;&amp; lang.length() == 5)
+					{
+						String myLang = lang.substring(0,2);
+						String myCountry = lang.substring(3);
+						myLocale = new java.util.Locale(myLang, myCountry);
+					}
+				}
+
+				java.text.DateFormat myDateFormat
+					= java.text.DateFormat.getDateInstance(DateFormat.LONG, myLocale);
+				java.util.Date myDate = new java.util.Date();
+				String today = myDateFormat.format(myDate);
+		 		<today><xsp:expr>today</xsp:expr></today>
+			</xsp:logic>
+		 </export>
+      </xtg:authentication>
+   </sdx:page>
+</xsp:page>

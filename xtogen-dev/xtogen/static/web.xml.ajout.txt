@@ -1,0 +1,12 @@
+<!-- A ajouter pour faire fonctionner l'upload -->
+<init-param>
+	<param-name>enable-uploads</param-name>
+	<param-value>true</param-value>
+</init-param>
+
+<!-- A ajouter pour positionner l'encodage par défaut à UTF-8 -->
+<init-param>
+	<param-name>form-encoding</param-name>
+	<param-value>UTF-8</param-value>
+</init-param>
+

@@ -1,0 +1,7 @@
+                <!-- The Xtogen logicsheet. The XSLT file is in xtogen-lib.jar. -->
+                <builtin-logicsheet>
+                    <parameter name="prefix" value="xtg"/>
+                    <parameter name="uri" value="http://xtogen.tech.fr"/>
+                    <parameter name="href" value="resource://fr/tech/sdx/xtogen/logicsheet/xtogen.xsl"/>
+                </builtin-logicsheet>
+
