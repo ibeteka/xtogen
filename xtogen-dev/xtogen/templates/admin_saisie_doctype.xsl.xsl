@@ -863,6 +863,15 @@
 
 		<!-- Choice -->
 		<xsl:when test="$fieldType = 'choice'">
+
+			<xsl:variable name="mode">
+				<xsl:choose>
+					<xsl:when test="count($docinfo/on[@field=$value/@name and @mode]) = 1"><xsl:value-of select="$docinfo/on[@field=$value/@name and @mode]/@mode"/></xsl:when>
+					<xsl:when test="$value/@repeat='no'">combo</xsl:when>
+					<xsl:otherwise>Mcombo</xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
+
 			<xsl:element name="xsl:call-template">
 				<xsl:attribute name="name">choice</xsl:attribute>
 				<xsl:element name="xsl:with-param">
@@ -879,11 +888,7 @@
 				</xsl:element>
 				<xsl:element name="xsl:with-param">
 					<xsl:attribute name="name">mode</xsl:attribute>
-					<xsl:choose>
-						<xsl:when test="count($docinfo/on[@field=$value/@name and @mode]) = 1"><xsl:value-of select="$docinfo/on[@field=$value/@name and @mode]/@mode"/></xsl:when>
-						<xsl:when test="$value/@repeat='no'">combo</xsl:when>
-						<xsl:otherwise>Mcombo</xsl:otherwise>
-					</xsl:choose>
+					<xsl:value-of select="$mode"/>
 				</xsl:element>
 				<!-- Liste externe -->
 				<xsl:if test="$value/@list">
@@ -908,6 +913,15 @@
 
 		<!-- Relation -->
 		<xsl:when test="$fieldType = 'relation'">
+
+			<xsl:variable name="mode">
+				<xsl:choose>
+					<xsl:when test="count($docinfo/on[@field=$value/@name and @mode]) = 1"><xsl:value-of select="$docinfo/on[@field=$value/@name and @mode]/@mode"/></xsl:when>
+					<xsl:when test="$value/@repeat='no'">combo</xsl:when>
+					<xsl:otherwise>Mcombo</xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
+
 			<xsl:element name="xsl:call-template">
 				<xsl:attribute name="name">relation</xsl:attribute>
 				<xsl:element name="xsl:with-param">
@@ -924,11 +938,7 @@
 				</xsl:element>
 				<xsl:element name="xsl:with-param">
 					<xsl:attribute name="name">mode</xsl:attribute>
-					<xsl:choose>
-						<xsl:when test="count($docinfo/on[@field=$value/@name and @mode]) = 1"><xsl:value-of select="$docinfo/on[@field=$value/@name and @mode]/@mode"/></xsl:when>
-						<xsl:when test="$value/@repeat='no'">combo</xsl:when>
-						<xsl:otherwise>Mcombo</xsl:otherwise>
-					</xsl:choose>
+					<xsl:value-of select="$mode"/>
 				</xsl:element>
 			</xsl:element>
 		</xsl:when>

@@ -45,7 +45,7 @@ http://www.fsf.org/copyleft/gpl.html
 	<xsl:variable name="prefix">f_</xsl:variable>
 
 	<xsl:variable name="docDisplay" select="document('config_display.xml')/configuration_display/documenttypes/documenttype[@id=$dbId]/edit"/>
-	<xsl:variable name="useJavaScript" select="count($docDisplay/on[@mode='2cols']) != 0"/>
+	<xsl:variable name="useJavaScript" select="count($docDisplay/on[@mode='2cols']) != 0 or count($docDisplay/on[@mode='browser']) != 0"/>
 
 	<!-- Taille des champs input/textarea/select -->
 	<xsl:variable name="globalInputSize">
@@ -145,29 +145,24 @@ http://www.fsf.org/copyleft/gpl.html
 	// viennent de la page d'administration SDX
 	// et ont été écrits par AJLSM
     
-    function xfm_blur(o)
-    {
+    function xfm_blur(o) {
         if (!o.className) return true;
         o.className=o.className.replace(/ ?xfm_focus/gi, ''); 
         return true;
     }
 
-    function xfm_focus(o) 
-    {
+    function xfm_focus(o) {
         document.xfm_last = o;
         if (!o.className) return true;
         o.className=o.className + ' xfm_focus'; 
         return true;
     }
     
-	function xfm_load()
-	{
-		
+	function xfm_load() {
 		return true;
 	}
 
-	function getInputValue(obj)
-	{
+	function getInputValue(obj) {
 		if ((typeof(obj.length) != "undefined") &amp;&amp; (typeof(obj.type)=="undefined"))
 		{
 			var values = new Array();
@@ -185,11 +180,9 @@ http://www.fsf.org/copyleft/gpl.html
 		return ret;
 	}
 
-	function xfm_submit(form)
-	{
+	function xfm_submit(form) {
 		values = getInputValue(form['<xsl:value-of select="$prefix"/>2cols.id']);
-		for (i=0; i&lt;values.length; i++)
-		{
+		for (i=0; i&lt;values.length; i++) {
 			var hid = values[i];
 			if (form[hid]) selectAll(form[hid]);
 		}
@@ -197,9 +190,15 @@ http://www.fsf.org/copyleft/gpl.html
 		return true;
 	}
 	
-	function xfm_reset(form)
-	{
-	
+	function xfm_reset(form) {
+	}
+
+	function clearField(field) {
+		document.getElementById(field).value = '';
+	}
+	function clearFields(field) {
+		document.getElementById(field).value = '';
+		document.getElementById(field + '.label').value = '';
 	}
     </script>
 	</xsl:if>
@@ -224,6 +223,20 @@ http://www.fsf.org/copyleft/gpl.html
 	function openBrowser(fid)
 	{
 		window.open('attach_browser_<xsl:value-of select="$currentdoctype"/>.xsp?fid='+fid,'Saisie','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes');
+		return false;
+	}
+
+	// Open Choose browser
+	function openChooseBrowser(fid, list)
+	{
+		window.open('choose_browser_list.xsp?fid='+fid+'&amp;list='+list,'Saisie','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes');
+		return false;
+	}
+
+	// Open Relation browser
+	function openRelationBrowser(fid, db)
+	{
+		window.open('relation_browser.xsp?fid='+fid+'&amp;db='+db,'Saisie','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes');
 		return false;
 	}
 	</script>
@@ -505,6 +518,21 @@ http://www.fsf.org/copyleft/gpl.html
 		</xsl:variable>
 
 		<xsl:choose>
+			<!-- Mode browser -->
+			<xsl:when test="$mode='browser'">
+				<xsl:variable name="size">
+					<xsl:choose>
+						<xsl:when test="$docDisplay/on[@field=$field]/@size"><xsl:value-of select="$docDisplay/on[@field=$field]/@size"/></xsl:when>
+						<xsl:otherwise><xsl:value-of select="$globalInputSize"/></xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
+
+				<input type="hidden" name="{$otherfieldname}" id="{$otherfieldname}" value="{$value}"/>
+				<input type="text" name="{$otherfieldname}.label" id="{$otherfieldname}.label" value="{$value}" disabled="disabled" size="{$size}"/>
+				<input type="button" value="{$messages[@id='page.admin.choisirunevaleur...']}" onClick="openChooseBrowser('{$otherfieldname}','{$list}')"/>
+				<input type="button" value="{$messages[@id='page.admin.effacer']}" onClick="clearFields('{$otherfieldname}')"/>
+			</xsl:when>
+
 			<!-- 2 colonnes -->
 			<xsl:when test="$mode='2cols'">
 				<table border="0">
@@ -817,30 +845,69 @@ http://www.fsf.org/copyleft/gpl.html
 				<xsl:with-param name="name" select="$field"/>
 			</xsl:call-template>
 		</xsl:variable>
+
 		<td colspan="2" class="saisie">
-		<select name="{$prefix}{$gprefix}{$field}">
-			<xsl:if test="$mode='Mcombo'">
-				<xsl:attribute name="multiple">multiple</xsl:attribute>
-				<xsl:attribute name="size"><xsl:value-of select="$selectsize"/></xsl:attribute>
-			</xsl:if>
-			<option value="---">---</option>
-			<xsl:for-each select="document($url)/sdx:document/sdx:results/sdx:result">
-				<xsl:element name="option">
-					<xsl:variable name="current" select="sdx:field[@name='sdxdocid']/@value"/>
-					<xsl:attribute name="value"><xsl:value-of select="$current"/></xsl:attribute>
-					<xsl:if test="count($value[text()=$current]) &gt; 0 or $value=$current">
-						<xsl:attribute name="selected">selected</xsl:attribute>
-					</xsl:if>
-					<xsl:variable name="v" select="sdx:field[@name=$titlefield]/@value"/>
+
+		<xsl:choose>
+			<!-- Mode browser -->
+			<xsl:when test="$mode='browser'">
+				<xsl:variable name="size">
 					<xsl:choose>
-						<xsl:when test="string-length($v) &gt;40">
-							<xsl:value-of select="substring($v,0,40)"/>...
-						</xsl:when>
-						<xsl:otherwise><xsl:value-of select="$v"/></xsl:otherwise>
+						<xsl:when test="$docDisplay/on[@field=$field]/@size"><xsl:value-of select="$docDisplay/on[@field=$field]/@size"/></xsl:when>
+						<xsl:otherwise><xsl:value-of select="$globalInputSize"/></xsl:otherwise>
 					</xsl:choose>
-				</xsl:element>
-			</xsl:for-each>
-		</select>
+				</xsl:variable>
+
+				<xsl:variable name="myfieldname" select="concat($prefix,$gprefix,$field)"/>
+				<input type="hidden" name="{$myfieldname}" id="{$myfieldname}" value="{$value}"/>
+				<xsl:variable name="valuelabel">
+					<xsl:if test="$value!=''">
+						<xsl:variable name="url" select="concat($rootUrl,'query_',$db,'?f=sdxdocid&amp;v=',$value)"/>
+						<xsl:variable name="result" select="document($url)//sdx:result"/>
+						<xsl:choose>
+							<xsl:when test="$result">
+								<xsl:value-of select="$result[1]/sdx:field[@name='xtgtitle']/@value"/>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="$messages[@id='page.document.documentabsentdebut']"/>
+								<xsl:value-of select="$value"/>
+								<xsl:value-of select="$messages[@id='page.document.documentabsentfin']"/>
+							</xsl:otherwise>
+						</xsl:choose>
+					</xsl:if>
+				</xsl:variable>
+				<input type="text" name="{$myfieldname}.label" id="{$myfieldname}.label" value="{$valuelabel}" disabled="disabled" size="{$size}"/>
+				<input type="button" value="{$messages[@id='page.admin.choisirundocumentlie...']}" onClick="openRelationBrowser('{$myfieldname}','{$db}')"/>
+				<input type="button" value="{$messages[@id='page.admin.effacer']}" onClick="clearFields('{$myfieldname}')"/>
+			</xsl:when>
+
+			<!-- Mode Combo -->
+			<xsl:when test="$mode='Mcombo' or $mode='combo'">
+				<select name="{$prefix}{$gprefix}{$field}">
+					<xsl:if test="$mode='Mcombo'">
+						<xsl:attribute name="multiple">multiple</xsl:attribute>
+						<xsl:attribute name="size"><xsl:value-of select="$selectsize"/></xsl:attribute>
+					</xsl:if>
+					<option value="---">---</option>
+					<xsl:for-each select="document($url)/sdx:document/sdx:results/sdx:result">
+						<xsl:element name="option">
+							<xsl:variable name="current" select="sdx:field[@name='sdxdocid']/@value"/>
+							<xsl:attribute name="value"><xsl:value-of select="$current"/></xsl:attribute>
+							<xsl:if test="count($value[text()=$current]) &gt; 0 or $value=$current">
+								<xsl:attribute name="selected">selected</xsl:attribute>
+							</xsl:if>
+							<xsl:variable name="v" select="sdx:field[@name=$titlefield]/@value"/>
+							<xsl:choose>
+								<xsl:when test="string-length($v) &gt;40">
+									<xsl:value-of select="substring($v,0,40)"/>...
+								</xsl:when>
+								<xsl:otherwise><xsl:value-of select="$v"/></xsl:otherwise>
+							</xsl:choose>
+						</xsl:element>
+					</xsl:for-each>
+				</select>
+			</xsl:when>
+		</xsl:choose>
 		</td>
 	</xsl:template>
 
