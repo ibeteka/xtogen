@@ -1099,12 +1099,9 @@
 						<xsl:if test="$value/@value">
 							<xsl:element name="xsl:with-param">
 								<xsl:attribute name="name">value</xsl:attribute>
-								<xsl:element name="xsl:if">
-									<xsl:attribute name="test">$firstBlockIsEmpty and not($urlparameter[@name='id'])</xsl:attribute>
-									<xsl:call-template name="defaultValue">
-										<xsl:with-param name="value" select="$value"/>
-									</xsl:call-template>
-								</xsl:element>
+								<xsl:call-template name="defaultValue">
+									<xsl:with-param name="value" select="$value"/>
+								</xsl:call-template>
 							</xsl:element>
 						</xsl:if> 
 
