@@ -189,7 +189,7 @@
 		<xsl:attribute name="name">gpref-<xsl:value-of select="$name"/></xsl:attribute>
 		<xsl:attribute name="select">
 			<xsl:choose>
-				<xsl:when test="$empty">'empty_'</xsl:when>
+				<xsl:when test="$empty and $empty='yes'">'empty_'</xsl:when>
 				<xsl:otherwise>concat(generate-id(.),'_')</xsl:otherwise>
 			</xsl:choose>
 		</xsl:attribute>
