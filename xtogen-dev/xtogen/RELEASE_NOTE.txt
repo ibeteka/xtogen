@@ -6,7 +6,7 @@ Bugs corrigés :
 	nommé "null" était automatiquement créé dans le dossier documents
 	* Pb d'affichage du titre du navigateur de pièces attachées
 	* Le nombre de pièces attachées était incorrectement calculé
-
+	* Les XSP de debugs de la sortie ZIP sont maintenant dans la zone debug
 ==============================================================================
  XToGen 2 - le 28/04/2004
 

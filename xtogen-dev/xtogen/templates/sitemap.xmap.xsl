@@ -247,6 +247,21 @@
 					<map:transform src="xsl/pdf_export.xsl"/>
 					<map:serialize type="xml"/>
 				</map:match>
+				<map:match pattern="base_*_export.zipx">
+					<map:generate type="xsp">
+						<xsl:attribute name="src">zip_base_{1}_export.xsp</xsl:attribute>
+					</map:generate>
+					<map:transform src="xsl/zip_base_export.xsl"/>
+					<map:serialize type="xml"/>
+				</map:match>
+				<map:match pattern="base_*_export.zipxx">
+					<map:generate type="xsp">
+						<xsl:attribute name="src">zip_base_{1}_export.xsp</xsl:attribute>
+					</map:generate>
+					<map:transform src="xsl/zip_base_export.xsl"/>
+					<map:transform src="xsl/zip_del_doublons.xsl"/>
+					<map:serialize type="xml"/>
+				</map:match>
         </map:pipeline>
 		</xsl:if>
         <map:pipeline>
@@ -383,21 +398,6 @@
                 <map:transform src="xsl/zip_base_export.xsl"/>
                 <map:transform src="xsl/zip_del_doublons.xsl"/>
                 <map:serialize type="zip"/>
-            </map:match>
-            <map:match pattern="base_*_export.zipx">
-                <map:generate type="xsp">
-					<xsl:attribute name="src">zip_base_{1}_export.xsp</xsl:attribute>
-				</map:generate>
-                <map:transform src="xsl/zip_base_export.xsl"/>
-                <map:serialize type="xml"/>
-            </map:match>
-            <map:match pattern="base_*_export.zipxx">
-                <map:generate type="xsp">
-					<xsl:attribute name="src">zip_base_{1}_export.xsp</xsl:attribute>
-				</map:generate>
-                <map:transform src="xsl/zip_base_export.xsl"/>
-                <map:transform src="xsl/zip_del_doublons.xsl"/>
-                <map:serialize type="xml"/>
             </map:match>
 <xsl:text>
 
