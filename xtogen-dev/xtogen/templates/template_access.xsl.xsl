@@ -110,9 +110,6 @@
 		<xsl:element name="xsl:template">
 			<xsl:attribute name="name">getnamedfield</xsl:attribute>
 			<xsl:element name="xsl:param">
-				<xsl:attribute name="name">doc</xsl:attribute>
-			</xsl:element>
-			<xsl:element name="xsl:param">
 				<xsl:attribute name="name">field</xsl:attribute>
 			</xsl:element>
 			<xsl:element name="xsl:param">
@@ -130,6 +127,38 @@
 									<xsl:choose>
 										<xsl:when test="not(@path)"><xsl:value-of select="@name"/></xsl:when>
 										<xsl:otherwise><xsl:call-template name="cleanpath"><xsl:with-param name="path" select="@path"/></xsl:call-template></xsl:otherwise>
+									</xsl:choose>
+								</xsl:element>
+							</xsl:for-each>
+						</xsl:element>
+					</xsl:element>
+				</xsl:for-each>
+			</xsl:element>
+		</xsl:element>
+
+<xsl:text>
+</xsl:text>
+		<xsl:element name="xsl:template">
+			<xsl:attribute name="name">getparentfield</xsl:attribute>
+			<xsl:element name="xsl:param">
+				<xsl:attribute name="name">field</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="xsl:param">
+				<xsl:attribute name="name">doctype</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="xsl:choose">
+				<xsl:for-each select="//documenttype">
+					<xsl:element name="xsl:when">
+						<xsl:attribute name="test">$doctype = '<xsl:value-of select="@id"/>'</xsl:attribute>
+
+						<xsl:element name="xsl:choose">
+							<xsl:for-each select="fields/descendant-or-self::field|fields/descendant-or-self::fieldgroup">
+								<xsl:element name="xsl:when">
+									<xsl:attribute name="test">$field = '<xsl:value-of select="@name"/>'</xsl:attribute>
+									<xsl:choose>
+										<xsl:when test="name(parent::*)='fields'"><xsl:value-of select="ancestor::documenttype/@id"/></xsl:when>
+										<xsl:when test="parent::*/@path"><xsl:value-of select="parent::*/@path"/></xsl:when>
+										<xsl:otherwise><xsl:value-of select="parent::*/@name"/></xsl:otherwise>
 									</xsl:choose>
 								</xsl:element>
 							</xsl:for-each>

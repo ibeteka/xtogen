@@ -155,6 +155,8 @@
 							<xsl:call-template name="managefield">
 								<xsl:with-param name="absolute">yes</xsl:with-param>
 								<xsl:with-param name="value" select="."/>
+								<xsl:with-param name="empty" select="'no'"/>
+								<xsl:with-param name="new" select="'no'"/>
 								<xsl:with-param name="docinfo" select="$docinfo"/>
 							</xsl:call-template>
 						</xsl:for-each>
@@ -162,6 +164,8 @@
 						<!-- Champs 'normaux' -->
 						<xsl:apply-templates select="fields/field[not(@default)]|fields/fieldgroup">
 							<xsl:with-param name="docinfo" select="$docinfo"/>
+							<xsl:with-param name="empty" select="'no'"/>
+							<xsl:with-param name="new" select="'no'"/>
 						</xsl:apply-templates>
                     </table>
                 </td>
@@ -364,6 +368,7 @@
 	Template principal du fieldgroup
 -->
 <xsl:template match="fieldgroup">
+	<xsl:param name="new"/>
 	<xsl:param name="empty"/>
 	<xsl:param name="docinfo"/>
 
@@ -513,8 +518,12 @@
 								<xsl:with-param name="nodename" select="$path"/>
 							</xsl:call-template>
 
+							<xsl:element name="xsl:variable">
+								<xsl:attribute name="name">firstBlockIsEmpty</xsl:attribute>
+								<xsl:attribute name="select">boolean(count(<xsl:value-of select="$path"/>)=0)</xsl:attribute>
+							</xsl:element>
 							<xsl:element name="xsl:if">
-								<xsl:attribute name="test">count(<xsl:value-of select="$path"/>)!=0</xsl:attribute>
+								<xsl:attribute name="test">not($firstBlockIsEmpty)</xsl:attribute>
 
 								<xsl:call-template name="showFieldGroupAdder">
 									<xsl:with-param name="name" select="@name"/>
@@ -598,6 +607,7 @@
 	<fieldset class="block">
 		<table>
 			<xsl:apply-templates select="$node/field[not(@default)]|$node/fieldgroup">
+				<xsl:with-param name="new" select="$new"/>
 				<xsl:with-param name="empty" select="$empty"/>
 				<xsl:with-param name="docinfo" select="$docinfo"/>
 			</xsl:apply-templates>
@@ -651,9 +661,13 @@
 <!-- Template sur le field -->
 <xsl:template match="field">
 	<xsl:param name="docinfo"/>
+	<xsl:param name="empty"/>
+	<xsl:param name="new"/>
 	<xsl:call-template name="managefield">
 		<xsl:with-param name="value" select="."/>
 		<xsl:with-param name="docinfo" select="$docinfo"/>
+		<xsl:with-param name="empty" select="$empty"/>
+		<xsl:with-param name="new" select="$new"/>
 	</xsl:call-template>
 </xsl:template>
 
@@ -727,6 +741,8 @@
 <xsl:template name="managefield">
 	<xsl:param name="value"/>
 	<xsl:param name="docinfo"/>
+	<xsl:param name="empty"/>
+	<xsl:param name="new">no</xsl:param>
 	<xsl:param name="absolute">no</xsl:param>
 
 	<xsl:variable name="fieldPath">
@@ -923,140 +939,190 @@
 			<td colspan="2" class="saisie">
 			<!-- si pas de tag -->
 
-			<xsl:element name="xsl:choose">
-			<xsl:element name="xsl:when">
-				<xsl:attribute name="test">count(<xsl:value-of select="$fieldPath"/>) = 0</xsl:attribute>
-				<xsl:element name="xsl:call-template">
-					<xsl:attribute name="name"><xsl:value-of select="$fieldType"/></xsl:attribute>
-					<xsl:element name="xsl:with-param">
-						<xsl:attribute name="name">gprefix</xsl:attribute>
-						<xsl:attribute name="select">$gprefix</xsl:attribute>
-					</xsl:element>
-					<xsl:element name="xsl:with-param">
-						<xsl:attribute name="name">field</xsl:attribute>
-						<xsl:value-of select="$value/@name"/>
-					</xsl:element>
+			<xsl:choose>
+				<xsl:when test="$empty='no'">
+					<xsl:element name="xsl:choose">
+					<xsl:element name="xsl:when">
+						<xsl:attribute name="test">count(<xsl:value-of select="$fieldPath"/>) = 0</xsl:attribute>
+						<xsl:element name="xsl:call-template">
+							<xsl:attribute name="name"><xsl:value-of select="$fieldType"/></xsl:attribute>
+							<xsl:element name="xsl:with-param">
+								<xsl:attribute name="name">gprefix</xsl:attribute>
+								<xsl:attribute name="select">$gprefix</xsl:attribute>
+							</xsl:element>
+							<xsl:element name="xsl:with-param">
+								<xsl:attribute name="name">field</xsl:attribute>
+								<xsl:value-of select="$value/@name"/>
+							</xsl:element>
 
-					<!-- Gestion des valeurs par défaut -->
-					<xsl:if test="$value/@value">
-						<xsl:element name="xsl:with-param">
-							<xsl:attribute name="name">value</xsl:attribute>
-							<xsl:call-template name="defaultValue">
-								<xsl:with-param name="value" select="$value"/>
-							</xsl:call-template>
-						</xsl:element>
-					</xsl:if> 
-
-					<!-- Champ en lecture seule -->
-					<xsl:if test="$value/@readonly='true'">
-						<xsl:element name="xsl:with-param">
-							<xsl:attribute name="name">readonly</xsl:attribute>true</xsl:element>
-					</xsl:if>
-
-					<!-- Champ multilingue -->
-					<xsl:if test="$value/@lang='multi'">
-						<xsl:element name="xsl:with-param">
-							<xsl:attribute name="name">multilingual</xsl:attribute>yes</xsl:element>
-					</xsl:if>
-				</xsl:element>
-			</xsl:element>
-
-			<!-- sinon... -->
-			<xsl:element name="xsl:otherwise">
-			<xsl:element name="xsl:for-each">
-
-				<!-- boucle -->
-				<xsl:attribute name="select"><xsl:value-of select="$fieldPath"/></xsl:attribute>
-				<xsl:element name="xsl:if">
-					<xsl:attribute name="test">position() != 1</xsl:attribute>
-					<br/>
-				</xsl:element>
-				<xsl:element name="xsl:call-template">
-					<xsl:attribute name="name"><xsl:value-of select="$fieldType"/></xsl:attribute>
-					<xsl:element name="xsl:with-param">
-						<xsl:attribute name="name">gprefix</xsl:attribute>
-						<xsl:attribute name="select">$gprefix</xsl:attribute>
-					</xsl:element>
-					<xsl:element name="xsl:with-param">
-						<xsl:attribute name="name">field</xsl:attribute>
-						<xsl:value-of select="$value/@name"/>
-					</xsl:element>
-					<xsl:element name="xsl:with-param">
-						<xsl:attribute name="name">value</xsl:attribute>
-						<xsl:attribute name="select">.</xsl:attribute>
-					</xsl:element>
-					<xsl:if test="$value/@readonly='true'">
-						<xsl:element name="xsl:with-param">
-							<xsl:attribute name="name">readonly</xsl:attribute>true</xsl:element>
-					</xsl:if>
-					<xsl:if test="$value/@lang='multi'">
-						<xsl:element name="xsl:with-param">
-							<xsl:attribute name="name">multilingual</xsl:attribute>yes</xsl:element>
-					</xsl:if>
-				</xsl:element>
-				</xsl:element>
-
-				<!--
-					Nouvelle valeur seulement si :
-
-					* Le path du champ n'est pas un attribut
-					* Le champ n'est pas celui par défaut
-					* Le champ est répétable (on n'a précisé explicitement qu'il ne l'était pas)
-				-->
-				<xsl:if test="not($value/@default) and not($value/@repeat='no') and not(contains($value/@path,'@'))">
-					<br/>
-					<xsl:element name="xsl:variable">
-						<xsl:attribute name="name">divid-<xsl:value-of select="$value/@name"/>-new</xsl:attribute>
-						<xsl:element name="xsl:value-of">
-							<xsl:attribute name="select">$gprefix</xsl:attribute>
-						</xsl:element>
-						<xsl:value-of select="$value/@name"/>
-					</xsl:element>
-					<xsl:call-template name="showFieldAdder">
-						<xsl:with-param name="name" select="$value/@name"/>
-						<xsl:with-param name="divpolicy" select="'display:none'"/>
-					</xsl:call-template>
-					<div class="fieldgroup" style="display:none">
-						<xsl:attribute name="id">{$divid-<xsl:value-of select="$value/@name"/>-new}</xsl:attribute>
-						<fieldset class="block">
-							<xsl:element name="xsl:call-template">
-								<xsl:attribute name="name"><xsl:value-of select="$fieldType"/></xsl:attribute>
+							<!-- Gestion des valeurs par défaut -->
+							<xsl:if test="$value/@value">
 								<xsl:element name="xsl:with-param">
-									<xsl:attribute name="name">gprefix</xsl:attribute>
-									<xsl:attribute name="select">$gprefix</xsl:attribute>
-								</xsl:element>
-								<xsl:element name="xsl:with-param">
-									<xsl:attribute name="name">field</xsl:attribute>
-									<xsl:value-of select="$value/@name"/>
-								</xsl:element>
-
-								<!-- Gestion des valeurs par défaut -->
-								<xsl:if test="$value/@value">
-									<xsl:element name="xsl:with-param">
-										<xsl:attribute name="name">value</xsl:attribute>
+									<xsl:attribute name="name">value</xsl:attribute>
+									<xsl:element name="xsl:if">
+										<xsl:attribute name="test">not($urlparameter['id'])</xsl:attribute>
 										<xsl:call-template name="defaultValue">
 											<xsl:with-param name="value" select="$value"/>
 										</xsl:call-template>
 									</xsl:element>
-								</xsl:if> 
+								</xsl:element>
+							</xsl:if> 
 
-								<!-- Champ en lecture seule -->
-								<xsl:if test="$value/@readonly='true'">
-									<xsl:element name="xsl:with-param">
-										<xsl:attribute name="name">readonly</xsl:attribute>true</xsl:element>
-								</xsl:if>
+							<!-- Champ en lecture seule -->
+							<xsl:if test="$value/@readonly='true'">
+								<xsl:element name="xsl:with-param">
+									<xsl:attribute name="name">readonly</xsl:attribute>true</xsl:element>
+							</xsl:if>
 
-								<!-- Champ multilingue -->
-								<xsl:if test="$value/@lang='multi'">
-									<xsl:element name="xsl:with-param">
-										<xsl:attribute name="name">multilingual</xsl:attribute>yes</xsl:element>
-								</xsl:if>
+							<!-- Champ multilingue -->
+							<xsl:if test="$value/@lang='multi'">
+								<xsl:element name="xsl:with-param">
+									<xsl:attribute name="name">multilingual</xsl:attribute>yes</xsl:element>
+							</xsl:if>
+						</xsl:element>
+					</xsl:element>
+
+					<!-- sinon... -->
+					<xsl:element name="xsl:otherwise">
+					<xsl:element name="xsl:for-each">
+
+						<!-- boucle -->
+						<xsl:attribute name="select"><xsl:value-of select="$fieldPath"/></xsl:attribute>
+						<xsl:element name="xsl:if">
+							<xsl:attribute name="test">position() != 1</xsl:attribute>
+							<br/>
+						</xsl:element>
+						<xsl:element name="xsl:call-template">
+							<xsl:attribute name="name"><xsl:value-of select="$fieldType"/></xsl:attribute>
+							<xsl:element name="xsl:with-param">
+								<xsl:attribute name="name">gprefix</xsl:attribute>
+								<xsl:attribute name="select">$gprefix</xsl:attribute>
 							</xsl:element>
-						</fieldset>
-					</div>
-				</xsl:if>
-			</xsl:element>
-			</xsl:element>
+							<xsl:element name="xsl:with-param">
+								<xsl:attribute name="name">field</xsl:attribute>
+								<xsl:value-of select="$value/@name"/>
+							</xsl:element>
+							<xsl:element name="xsl:with-param">
+								<xsl:attribute name="name">value</xsl:attribute>
+								<xsl:attribute name="select">.</xsl:attribute>
+							</xsl:element>
+							<xsl:if test="$value/@readonly='true'">
+								<xsl:element name="xsl:with-param">
+									<xsl:attribute name="name">readonly</xsl:attribute>true</xsl:element>
+							</xsl:if>
+							<xsl:if test="$value/@lang='multi'">
+								<xsl:element name="xsl:with-param">
+									<xsl:attribute name="name">multilingual</xsl:attribute>yes</xsl:element>
+							</xsl:if>
+						</xsl:element>
+						</xsl:element>
+
+						<!--
+							Nouvelle valeur seulement si :
+
+							* Le path du champ n'est pas un attribut
+							* Le champ n'est pas celui par défaut
+							* Le champ est répétable (on n'a précisé explicitement qu'il ne l'était pas)
+						-->
+						<xsl:if test="not($value/@default) and not($value/@repeat='no') and not(contains($value/@path,'@'))">
+							<br/>
+							<xsl:element name="xsl:variable">
+								<xsl:attribute name="name">divid-<xsl:value-of select="$value/@name"/>-new</xsl:attribute>
+								<xsl:element name="xsl:value-of">
+									<xsl:attribute name="select">$gprefix</xsl:attribute>
+								</xsl:element>
+								<xsl:value-of select="$value/@name"/>
+							</xsl:element>
+							<xsl:call-template name="showFieldAdder">
+								<xsl:with-param name="name" select="$value/@name"/>
+								<xsl:with-param name="divpolicy" select="'display:none'"/>
+							</xsl:call-template>
+							<div class="fieldgroup" style="display:none">
+								<xsl:attribute name="id">{$divid-<xsl:value-of select="$value/@name"/>-new}</xsl:attribute>
+								<fieldset class="block">
+									<xsl:element name="xsl:call-template">
+										<xsl:attribute name="name"><xsl:value-of select="$fieldType"/></xsl:attribute>
+										<xsl:element name="xsl:with-param">
+											<xsl:attribute name="name">gprefix</xsl:attribute>
+											<xsl:attribute name="select">$gprefix</xsl:attribute>
+										</xsl:element>
+										<xsl:element name="xsl:with-param">
+											<xsl:attribute name="name">field</xsl:attribute>
+											<xsl:value-of select="$value/@name"/>
+										</xsl:element>
+
+										<!-- Gestion des valeurs par défaut -->
+										<!--
+										<xsl:if test="$value/@value">
+											<xsl:element name="xsl:with-param">
+												<xsl:attribute name="name">value</xsl:attribute>
+												<xsl:call-template name="defaultValue">
+													<xsl:with-param name="value" select="$value"/>
+												</xsl:call-template>
+											</xsl:element>
+										</xsl:if> 
+										-->
+
+										<!-- Champ en lecture seule -->
+										<xsl:if test="$value/@readonly='true'">
+											<xsl:element name="xsl:with-param">
+												<xsl:attribute name="name">readonly</xsl:attribute>true</xsl:element>
+										</xsl:if>
+
+										<!-- Champ multilingue -->
+										<xsl:if test="$value/@lang='multi'">
+											<xsl:element name="xsl:with-param">
+												<xsl:attribute name="name">multilingual</xsl:attribute>yes</xsl:element>
+										</xsl:if>
+									</xsl:element>
+								</fieldset>
+							</div>
+						</xsl:if>
+					</xsl:element>
+					</xsl:element>
+				</xsl:when>
+
+				<!-- Empty -->
+				<xsl:otherwise>
+					<xsl:element name="xsl:call-template">
+						<xsl:attribute name="name"><xsl:value-of select="$fieldType"/></xsl:attribute>
+						<xsl:element name="xsl:with-param">
+							<xsl:attribute name="name">gprefix</xsl:attribute>
+							<xsl:attribute name="select">$gprefix</xsl:attribute>
+						</xsl:element>
+						<xsl:element name="xsl:with-param">
+							<xsl:attribute name="name">field</xsl:attribute>
+							<xsl:value-of select="$value/@name"/>
+						</xsl:element>
+
+						<!-- Gestion des valeurs par défaut -->
+						<xsl:if test="$value/@value">
+							<xsl:element name="xsl:with-param">
+								<xsl:attribute name="name">value</xsl:attribute>
+								<xsl:element name="xsl:if">
+									<xsl:attribute name="test">$firstBlockIsEmpty and not($urlparameter[@name='id'])</xsl:attribute>
+									<xsl:call-template name="defaultValue">
+										<xsl:with-param name="value" select="$value"/>
+									</xsl:call-template>
+								</xsl:element>
+							</xsl:element>
+						</xsl:if> 
+
+						<!-- Champ en lecture seule -->
+						<xsl:if test="$value/@readonly='true'">
+							<xsl:element name="xsl:with-param">
+								<xsl:attribute name="name">readonly</xsl:attribute>true</xsl:element>
+						</xsl:if>
+
+						<!-- Champ multilingue -->
+						<xsl:if test="$value/@lang='multi'">
+							<xsl:element name="xsl:with-param">
+								<xsl:attribute name="name">multilingual</xsl:attribute>yes</xsl:element>
+						</xsl:if>
+					</xsl:element>
+				</xsl:otherwise>
+			</xsl:choose>
+
 			</td>
 		</xsl:otherwise>
 	</xsl:choose>

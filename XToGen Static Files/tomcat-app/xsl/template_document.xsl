@@ -70,7 +70,12 @@ http://www.fsf.org/copyleft/gpl.html
 
 		<xsl:variable name="nodename">
 			<xsl:call-template name="getnamedfield">
-				<xsl:with-param name="doc" select="$doc"/>
+				<xsl:with-param name="field" select="$fieldname"/>
+				<xsl:with-param name="doctype" select="$dbId"/>
+			</xsl:call-template>
+		</xsl:variable>
+		<xsl:variable name="parent">
+			<xsl:call-template name="getparentfield">
 				<xsl:with-param name="field" select="$fieldname"/>
 				<xsl:with-param name="doctype" select="$dbId"/>
 			</xsl:call-template>
@@ -83,7 +88,7 @@ http://www.fsf.org/copyleft/gpl.html
 			</xsl:choose>
 		</xsl:variable>
 
-		<xsl:variable name="node" select="$doc/descendant-or-self::*[name()=$basenode]"/>
+		<xsl:variable name="node" select="$doc/descendant-or-self::*[name()=$basenode and name(parent::*) = $parent]"/>
 		<xsl:if test="$node">
 			<xsl:choose>
 				<xsl:when test="$nodename != $basenode">
@@ -158,7 +163,6 @@ http://www.fsf.org/copyleft/gpl.html
 
 		<xsl:variable name="nodename">
 			<xsl:call-template name="getnamedfield">
-				<xsl:with-param name="doc" select="$doc"/>
 				<xsl:with-param name="field" select="$realfieldname"/>
 				<xsl:with-param name="doctype" select="$dbId"/>
 			</xsl:call-template>
