@@ -1,4 +1,10 @@
 ==============================================================================
+ XToGen 2 - le 23/12/2004
+
+Bug corrigé :
+	* La génération des feuilles d'indexation posait problème (référence des
+		listes externes)
+==============================================================================
  XToGen 2 - le 9/12/2004
 
 Nouveauté :

@@ -103,8 +103,8 @@
 	</xsl:text>
 		<xsl:comment> Les documents de listes </xsl:comment>
 		<xsl:variable name="lists" select="fields/descendant-or-self::field[@type='choice' and @list]"/>
-		<xsl:for-each select="$lists[not(@list=following::field/@list)]">
-				<xsl:variable name="list" select="@list"/>
+		<xsl:for-each select="saxon:distinct($lists//@list)">
+				<xsl:variable name="list" select="."/>
 				<xsl:for-each select="/application/languages/lang">
 					<xsl:element name="xsl:variable">
 						<xsl:attribute name="name"><xsl:value-of select="$list"/>_<xsl:value-of select="@id"/></xsl:attribute>
