@@ -438,12 +438,40 @@ http://www.fsf.org/copyleft/gpl.html
 	</xsl:template>
 
 	<xsl:template name="exportbar">
+		<xsl:param name="mode">result</xsl:param>
+
 		<xsl:if test="$admin">
-		<a class="nav" href="pre_query_export.xsp?type=pdf&amp;db={$currentdoctype}&amp;qid={//sdx:results/@qid}" title="{$messages[@id='page.admin.exportpdf']}"><img alt="{$messages[@id='page.admin.exportpdf']}" src="icones/pdf.png"/></a>
+		<small>
+			<xsl:choose>
+				<xsl:when test="$mode='result'">
+					<xsl:value-of select="$messages[@id='page.admin.exportdesresultatsen']"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="$messages[@id='page.admin.exportdelabase']"/>
+				</xsl:otherwise>
+			</xsl:choose>
+			<br/>
+		</small>
+		<xsl:variable name="addon">
+			<xsl:if test="$mode='result'">&amp;qid=<xsl:value-of select="//sdx:results/@qid"/></xsl:if>
+		</xsl:variable>
+
+		<a class="nav" href="pre_query_export.xsp?type=pdf&amp;db={$currentdoctype}{$addon}" title="{$messages[@id='page.admin.exportpdf']}"><img alt="{$messages[@id='page.admin.exportpdf']}" src="icones/pdf.png" border="0"/></a>
 		<xsl:text> </xsl:text>
-		<a class="nav" href="pre_query_export.xsp?type=zip&amp;db={$currentdoctype}&amp;qid={//sdx:results/@qid}" title="{$messages[@id='page.admin.exportzip']}"><img alt="{$messages[@id='page.admin.exportzip']}" src="icones/zip.png"/></a>
+		<a class="nav" href="pre_query_export.xsp?type=zip&amp;db={$currentdoctype}{$addon}" title="{$messages[@id='page.admin.exportzip']}"><img alt="{$messages[@id='page.admin.exportzip']}" src="icones/zip.png"/></a>
 		<xsl:text> </xsl:text>
-		<a class="nav" href="pre_query_export.xsp?type=csv&amp;db={$currentdoctype}&amp;qid={//sdx:results/@qid}" title="{$messages[@id='common.exportCSV']}"><img alt="{$messages[@id='common.exportCSV']}" src="icones/csv.png"/></a>
+		<a class="nav" href="pre_query_export.xsp?type=csv&amp;db={$currentdoctype}{$addon}" title="{$messages[@id='common.exportCSV']}"><img alt="{$messages[@id='common.exportCSV']}" src="icones/csv.png"/></a>
+		<xsl:if test="$mode='result'">
+			<xsl:text> </xsl:text>
+			<xsl:variable name="id" select="//sdx:result[1]/sdx:field[@name='sdxdocid']/@value"/>
+			<xsl:variable name="mylang">
+				<xsl:choose>
+					<xsl:when test="$lang!='ar-EG'"><xsl:value-of select="$lang"/></xsl:when>
+					<xsl:otherwise>en-GB</xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
+			<a class="nav" href="admin_saisie.xsp?id={$id}&amp;db={$currentdoctype}&amp;app={$currentapp}&amp;lang={$mylang}&amp;qid={//sdx:results/@qid}&amp;n=1" title="{$messages[@id='page.admin.editionparlot']}"><img alt="{$messages[@id='page.admin.editionparlot']}" src="icones/edit.png" border="0"/></a>
+		</xsl:if>
 		</xsl:if>
 	</xsl:template>
 

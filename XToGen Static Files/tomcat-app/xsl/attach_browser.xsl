@@ -101,6 +101,10 @@ div.pages {
 	right: 10px;
 }
 
+span#sort {
+	margin-right: 30px;
+}
+
 --&gt;
 </style>
 <script type="text/javascript" language="javascript">
@@ -129,26 +133,75 @@ function valider(name)
 <xsl:variable name="maxp" select="ceiling($count div $nbpp)"/>
 <xsl:variable name="first" select="($p - 1)*$nbpp"/>
 <xsl:variable name="last" select="$first + $nbpp"/>
-<xsl:for-each select="dir:file">
-	<xsl:if test="position() &gt; $first and position() &lt;= $last">
-		<xsl:apply-templates select="."/>
-	</xsl:if>
-</xsl:for-each>
+<xsl:variable name="sortfield">
+	<xsl:choose>
+		<xsl:when test="$urlparameter[@name='sortfield']"><xsl:value-of select="$urlparameter[@name='sortfield']/@value"/></xsl:when>
+		<xsl:otherwise>lastModified</xsl:otherwise>
+	</xsl:choose>
+</xsl:variable>
+<xsl:variable name="order">
+	<xsl:choose>
+		<xsl:when test="$urlparameter[@name='order']"><xsl:value-of select="$urlparameter[@name='order']/@value"/></xsl:when>
+		<xsl:otherwise>descending</xsl:otherwise>
+	</xsl:choose>
+</xsl:variable>
+<xsl:variable name="sortinfo">
+	<xsl:text/>&amp;sortfield=<xsl:value-of select="$sortfield"/>&amp;order=<xsl:value-of select="$order"/>
+</xsl:variable>
+
+<xsl:choose>
+	<xsl:when test="$sortfield='lastModified'">
+		<xsl:for-each select="dir:file">
+			<xsl:sort select="@lastModified" order="{$order}"/>
+			<xsl:if test="position() &gt; $first and position() &lt;= $last">
+				<xsl:apply-templates select="."/>
+			</xsl:if>
+		</xsl:for-each>
+	</xsl:when>
+	<xsl:otherwise>
+		<xsl:for-each select="dir:file">
+			<xsl:sort select="@name" order="{$order}"/>
+			<xsl:if test="position() &gt; $first and position() &lt;= $last">
+				<xsl:apply-templates select="."/>
+			</xsl:if>
+		</xsl:for-each>
+	</xsl:otherwise>
+</xsl:choose>
+
 <!-- Page navigation -->
 <div class="pages">
+<span id="sort">
+<xsl:value-of select="$messages[@id='common.trierpar']"/>
+<xsl:text> </xsl:text>
+<xsl:variable name="currentpageuri" select="concat($currentpage,'?p=',$p,'&amp;fid=',$fid,'&amp;')"/>
+<a href="{$currentpageuri}sortfield={$sortfield}&amp;order=ascending" title="{$messages[@id='common.ordreascendant']}"><img src="icones/up.png" border="0"/></a>
+<xsl:text> </xsl:text>
+<xsl:choose>
+	<xsl:when test="$sortfield='name'">
+		<xsl:value-of select="$messages[@id='common.trierparnomdefichier']"/> - <a href="{$currentpageuri}sortfield=lastModified&amp;order={$order}"><xsl:value-of select="$messages[@id='common.trierpardate']"/></a>
+	</xsl:when>
+	<xsl:otherwise>
+		<a href="{$currentpageuri}sortfield=name&amp;order={$order}"><xsl:value-of select="$messages[@id='common.trierparnomdefichier']"/></a> - <xsl:value-of select="$messages[@id='common.trierpardate']"/>
+	</xsl:otherwise>
+</xsl:choose>
+<xsl:text> </xsl:text>
+<a href="{$currentpageuri}sortfield={$sortfield}&amp;order=descending" title="{$messages[@id='common.ordredescendant']}"><img src="icones/down.png" border="0"/></a>
+</span>
+<span>
 <xsl:if test="$p != 1">
 <a class="nav" href="{$currentpage}?p=1&amp;fid={$fid}" title="{$messages[@id='common.debut']}">1</a>&#160;
 </xsl:if>
 <xsl:if test="$p &gt; 1">
-<a class="nav" href="{$currentpage}?p={$p -1}&amp;fid={$fid}" title="{$messages[@id='common.pageprecedente']}"><img src="{$iconPrev}" alt="{$messages[@id='common.pageprecedente']}"/></a>&#160;
+<a class="nav" href="{$currentpage}?p={$p -1}&amp;fid={$fid}{$sortinfo}" title="{$messages[@id='common.pageprecedente']}"><img src="{$iconPrev}" alt="{$messages[@id='common.pageprecedente']}"/></a>&#160;
 </xsl:if>
 <xsl:value-of select="$p"/>&#160;
 <xsl:if test="$p &lt; $maxp">
-<a class="nav" href="{$currentpage}?p={$p+1}&amp;fid={$fid}" title="{$messages[@id='common.pagesuivante']}"><img src="{$iconNext}" alt="{$messages[@id='common.pagesuivante']}"/></a>&#160;
+<a class="nav" href="{$currentpage}?p={$p+1}&amp;fid={$fid}{$sortinfo}" title="{$messages[@id='common.pagesuivante']}"><img src="{$iconNext}" alt="{$messages[@id='common.pagesuivante']}"/></a>&#160;
 </xsl:if>
 <xsl:if test="$p+1 &lt;= $maxp">
-<a class="nav" href="{$currentpage}?p={$maxp}&amp;fid={$fid}" title="{$messages[@id='common.fin']}"><xsl:value-of select="$maxp"/></a>
+<a class="nav" href="{$currentpage}?p={$maxp}&amp;fid={$fid}{$sortinfo}" title="{$messages[@id='common.fin']}"><xsl:value-of select="$maxp"/></a>
 </xsl:if>
+</span>
 </div>
 </body>
 </html>	

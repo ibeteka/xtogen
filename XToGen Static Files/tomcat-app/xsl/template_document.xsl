@@ -154,13 +154,12 @@ http://www.fsf.org/copyleft/gpl.html
 		<xsl:param name="field"/>
 
 		<xsl:variable name="currentnode" select="."/>
-
-		<xsl:variable name="fieldname" select="substring-after(@id,'xtg-fieldgroup-id-')"/>
+		<xsl:variable name="realfieldname" select="substring-after(@id,'xtg-fieldgroup-id-')"/>
 
 		<xsl:variable name="nodename">
 			<xsl:call-template name="getnamedfield">
 				<xsl:with-param name="doc" select="$doc"/>
-				<xsl:with-param name="field" select="$fieldname"/>
+				<xsl:with-param name="field" select="$realfieldname"/>
 				<xsl:with-param name="doctype" select="$dbId"/>
 			</xsl:call-template>
 		</xsl:variable>
@@ -172,7 +171,7 @@ http://www.fsf.org/copyleft/gpl.html
 				<xsl:copy-of select="@*[name()!='id']"/>
 				<xsl:apply-templates mode="xhtml-doc">
 					<xsl:with-param name="doc" select="$doc"/>
-					<xsl:with-param name="fieldname" select="$fieldname"/>
+					<xsl:with-param name="fieldname" select="$realfieldname"/>
 					<xsl:with-param name="field" select="$node"/>
 				</xsl:apply-templates>
 			</xsl:copy>

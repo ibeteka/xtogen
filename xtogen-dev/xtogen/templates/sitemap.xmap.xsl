@@ -539,6 +539,18 @@
 <xsl:text>
 
 		</xsl:text>
+<xsl:comment> Pour le rappel d'une liste </xsl:comment>
+         <map:match pattern="mem_liste.xsp">
+            <map:generate type="xsp" src="mem_liste.xsp"/>
+            <map:transform type="cinclude"/>
+            <map:transform src="xsl/query.xsl">
+               <map:parameter name="use-request-parameters" value="true"/>
+            </map:transform>
+            <map:serialize/>
+         </map:match>
+<xsl:text>
+
+		</xsl:text>
 <xsl:comment> Cas général </xsl:comment>
             <map:match pattern="*.xsp">
                 <map:generate type="xsp">

@@ -90,8 +90,12 @@
 	<message id="common.date">Date</message>
 	<message id="common.utilisezleboutonbackdevotrenavigateurpourreveniralapagedesaisie">Use the "back" button of your browser to go back to the edit page.</message>
 	<message id="common.trierpar">Sort by:</message>
+	<message id="common.trierparnomdefichier">filename</message>
+	<message id="common.trierpardate">date</message>
 	<message id="common.ordreascendant">Ascendant order</message>
 	<message id="common.ordredescendant">Descendant order</message>
+	<message id="common.recherchepleintexte">Full-text search</message>
+	<message id="common.recherchedetaillee">Complex search</message>
 
 	<!-- Page terms -->
 	<message id="page.terms.index">Used word index </message>
@@ -136,6 +140,7 @@
 	<message id="page.admin.importdedocuments">Document import (folder or files)</message>
 	<message id="page.admin.import">Import</message>
 	<message id="page.admin.exportdedocuments">Document export (CSV format)</message>
+	<message id="page.admin.exportdelabase">Document base export</message>
 	<message id="page.admin.export">Export</message>
 	<message id="page.admin.exportderesultats">Result export</message>
 	<message id="page.admin.saisiedunnouveaudocument">Add new document</message>
@@ -187,6 +192,9 @@
 	<message id="page.admin.exportzip">ZIP export</message>
 	<message id="page.admin.aveclespiecesattachees">Including attached documents:</message>
 	<message id="page.admin.navigateurdepiecesattachees">Attached files browser</message>
+	<message id="page.admin.exportdesresultatsen">Result export using:</message>
+	<message id="page.admin.editionparlot">Edit results</message>
+	<message id="page.admin.continuerleditionparlot">Edit next document</message>
 
 	<!-- Admin edit liste -->
 	<message id="page.admin_edit_liste.liste">List</message>

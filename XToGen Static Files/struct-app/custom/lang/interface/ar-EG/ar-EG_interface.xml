@@ -2,6 +2,8 @@
 <messages>
 	<!-- Labels pour XToGen -->
 	<!-- xml:lang = "ar-EG" -->
+	<!-- traduction : Nader Boutros (nader.boutros@pass-tech.fr) -->
+	<!-- toute contribution ou correction est la bienvenue -->
 
 	<!-- Titre des pages -->
 	<message id="title.index">أهلاً بكم فى برنامج [XTOGEN]</message>
@@ -48,7 +50,7 @@
 	<message id="tooltip.saisie">إدخال وتعديل الوثائق</message>
 	<message id="bouton.recherchepleintexte">البحث العام فى كل القواعد</message>
 
-	<!-- Messages communs -->
+	<!-- Common messages -->
 	<message id="common.redirection.debut">إذا لم يتم تغير المستند فى </message>
 	<message id="common.redirection.quelques">بضعة </message>
 	<message id="common.redirection.secondes">ثوانى اضغط </message>
@@ -80,32 +82,39 @@
 	<message id="common.exportCSV">CSV إخراج</message>
 	<message id="common.importauformattexteseparateurvirgule">أدخال فى شكل نص بفرازة فاصلة</message>
 	<message id="common.exportauformattexteseparateurvirgule">إخراج فى شكل نص بفرازة فاصلة</message>
-	<message id="common.exportauformatcsv">*Export au format CSV*</message>
-	<message id="common.pasdecontenudanslefichierstatique.debut">*Pas de contenu dans le fichier statique*</message>
-	<message id="common.pasdecontenudanslefichierstatique.fin">*ou fichier absent.*</message>
+	<message id="common.exportauformatcsv">CSV إخراج</message>
+	<message id="common.pasdecontenudanslefichierstatique.debut">لا يوجد أى محتوى للمستند</message>
+	<message id="common.pasdecontenudanslefichierstatique.fin">أو المستند غير موجود</message>
 	<message id="common.oui">نعم</message>
 	<message id="common.non">لا</message>
 	<message id="common.titre">عنوان رئيسـى</message>
 	<message id="common.soustitre">عنوان فرعى</message>
 	<message id="common.date">تاريخ</message>
-	<message id="common.utilisezleboutonbackdevotrenavigateurpourreveniralapagedesaisie">*Utilisez le bouton Back de votre navigateur pour revenir à la page de saisie.*</message>
-	<message id="common.trierpar">*Trier par :*</message>
-	<message id="common.ordreascendant">*Ordre ascendant*</message>
-	<message id="common.ordredescendant">*Ordre descendant*</message>
+	<message id="common.utilisezleboutonbackdevotrenavigateurpourreveniralapagedesaisie">استخدم زر العودة للرجوع الى صفحة الإدخال</message>
+	<message id="common.trierpar">ترتيب تبعا:</message>
+	<message id="common.trierparnomdefichier">*nom de fichier*</message>
+	<message id="common.trierpardate">*date*</message>
+	<message id="common.ordreascendant">ترتيب متصاعد</message>
+	<message id="common.ordredescendant">ترتيب متنازل</message>
+	<message id="common.recherchepleintexte">البحث العام</message>
+	<message id="common.recherchedetaillee">البحث التفصيلى</message>
 
 	<!-- Page terms -->
 	<message id="page.terms.index">قائمة الكلمات المذكوره فى المستندات</message>
-	<message id="page.terms.aucunereponse">لا يوجد  اى مستند يرد على طلب البحث</message>
+	<message id="page.terms.aucunereponse">لا يوجد  اى مستند مناسب لطلب البحث</message>
 
 	<!-- Page search -->
 	<message id="page.search.retouralarecherche">عودة إلى صفحة البحث</message>
-	<message id="page.search.recherchedans">ابحث فى القاعدة</message>
-	<message id="page.search.rechercher">ابحث</message>
+	<message id="page.search.recherchedans">إبحث فى القاعدة</message>
+	<message id="page.search.rechercher">إبحث</message>
 	<message id="page.search.reinitialiser"> فرغ </message>
-	<message id="page.search.aucuneselection">*Aucune sélection*</message>
-	<message id="page.search.operateuraappliquerentrelesvaleursdelaliste">*Opérateur à appliquer entre les valeurs de la liste :*</message>
-	<message id="page.search.operateuraappliquerentrelescriteresderecherchesurlesdifferentschamps">*Opérateur à appliquer entre les critères de recherche sur les différents champs :*</message>
-	<message id="page.search.languederechercheduchamp">*Langue de recherche du champ :*</message>
+	<message id="page.search.aucuneselection">بدون اختيار</message>
+	<message id="page.search.operateuraappliquerentrelesvaleursdelaliste">فاصلة للاستخدام بين عناصر القائمة</message>
+	<message id="page.search.operateuraappliquerentrelescriteresderecherchesurlesdifferentschamps">
+	 فاصلة للاستخدام بين الحقول</message>
+	<message id="page.search.languederechercheduchamp">
+	لغة البحث فى الحقل
+	</message>
 
 	<!-- Page linearsearch -->
 	<message id="page.linearsearch.resultats">نتائج البحث</message>
@@ -118,7 +127,9 @@
 	<message id="page.login.codeutilisateur">أسم المستخدم :</message>
 	<message id="page.login.motdepasse">كلمة السر :</message>
 	<message id="page.login.identitereconnue">تم التعرف على شخصيتكم</message>
-	<message id="page.login.vousappartenezaugroupe">*Vous appartenez au groupe(s) :*</message>
+	<message id="page.login.vousappartenezaugroupe">
+	تنتموا الى المجموعة او المجموعات التالية :
+	</message>
 	<message id="page.login.identitenonreconnue">لم يتم التعرف على شخصيتكم لهذا البرنامج</message>
 	<message id="page.login.admins">تنتموا لمجموعة "admins" ، يمكن لكم إدارة هذا البرنامج</message>
 	<message id="page.login.reinitialiser"> فرغ </message>
@@ -127,19 +138,23 @@
 
 	<!-- Page admin -->
 	<message id="page.admin.basededocument">قاعدة مستندات </message>
-	<message id="page.admin.importdedocuments">إدخال المستندات - ملف أو ZIP</message>
+	<message id="page.admin.importdedocuments">إدخال المستندات - ملف أو ZIP
+	</message>
 	<message id="page.admin.import">إدخال</message>
-	<message id="page.admin.exportdedocuments">*Export de documents (au format CSV)*</message>
-	<message id="page.admin.export">*Export*</message>
-	<message id="page.admin.exportderesultats">*Export de résultats*</message>
+	<message id="page.admin.exportdedocuments">
+	إخراج المستندات فى 
+	</message>
+	<message id="page.admin.exportdelabase">إخراج قاعدة البيانات</message>
+	<message id="page.admin.export">إخراج</message>
+	<message id="page.admin.exportderesultats">إخراج نتائج البحث</message>
 	<message id="page.admin.saisiedunnouveaudocument">ملف جديد</message>
 	<message id="page.admin.saisie">ملف جديد</message>
-	<message id="page.admin.copiededocument">*Copie de document*</message>
+	<message id="page.admin.copiededocument">نسخة من المستند</message>
 	<message id="page.admin.listedesdocuments">قائمة المستندات - تغيير، إلغاء</message>
 	<message id="page.admin.liste">قائمة</message>
 	<message id="page.admin.indexerlesdocuments">ادخال ملف مستندات XML </message>
 	<message id="page.admin.importerlesdocuments">إدخال ملف zip</message>
-	<message id="page.admin.importerunseuldocument">*Importer un seul document XML (sans pièce attachée)*</message>
+	<message id="page.admin.importerunseuldocument">إدخال مستند واحد XML بدون عناصر متصلة</message>
 	<message id="page.admin.indexer">إدخال</message>
 	<message id="page.admin.importer">إدخال</message>
 	<message id="page.admin.retour">عودة</message>
@@ -147,150 +162,149 @@
 	<message id="page.admin.editer">تغيير</message>
 	<message id="page.admin.exporterledocument">إخراج المستند</message>
 	<message id="page.admin.exporter">إخراج</message>
-	<message id="page.admin.copierledocument">*Copier le document*</message>
-	<message id="page.admin.copier">*Copier*</message>
+	<message id="page.admin.copierledocument">إنسخ المستند</message>
+	<message id="page.admin.copier">إنسخ</message>
 	<message id="page.admin.supprimerledocument">إلغاءالمستند</message>
 	<message id="page.admin.supprimer">إلغاء</message>
 	<message id="page.admin.basevide">قاعدة بياناتكم فارغة</message>
-	<message id="page.admin.listevide">*liste vide*</message>
+	<message id="page.admin.listevide">قائمة فارغة</message>
 	<message id="page.admin.baseexterne">قاعدة مستندات خارجية (لا يمكن إدارتها فى هذا البرنامج)</message>
-	<message id="page.admin.vider">*Vider*</message>
-	<message id="page.admin.viderlabase">*Vider la base de documents*</message>
-	<message id="page.admin.viderlaliste">*Vider la liste*</message>
-	<message id="page.admin.vignettes">*Vignettes*</message>
-	<message id="page.admin.piecesattachees">*Pièces attachées*</message>
-	<message id="page.admin.gestiondesattachements">*Gestion des attachements*</message>
-	<message id="page.admin.listedesvignettespourlabase">*Liste des vignettes pour la base*</message>
-	<message id="page.admin.listedespiecesattacheespourlabase">*Liste des pièces attachées pour la base*</message>
-	<message id="page.admin.aucunfichier">*Aucun fichier*</message>
-	<message id="page.admin.ajouterunnouveaufichier">*Ajouter un nouveau fichier*</message>
-	<message id="page.admin.envoyer">*Envoyer*</message>
-	<message id="page.admin.uploaddefichier">*Upload de fichier*</message>
-	<message id="page.admin.retouralalistedesfichiers">*retour à la liste des fichiers*</message>
-	<message id="page.admin.vousnavezpasprecisedefichieraenvoyer">*Erreur : Vous n'avez pas précisé de fichier à envoyer !*</message>
-	<message id="page.admin.extensiondefichierincorrecte.debut">*Erreur : le fichier vignette*</message>
-	<message id="page.admin.extensiondefichierincorrecte.fin">*a une extension incorrecte (autre que .png, .gif, .jpg et .jpeg). Fichier non uploadé.*</message>
-	<message id="page.admin.lefichieraetecorrectementenvoye.debut">*Le fichier*</message>
-	<message id="page.admin.lefichieraetecorrectementenvoye.fin">*a été correctement envoyé.*</message>
-	<message id="page.admin.voir">*Voir*</message>
-	<message id="page.admin.exportpdf">*Export PDF*</message>
-	<message id="page.admin.listesexternes">*Listes externes*</message>
-	<message id="page.admin.editiondelaliste">*Edition de la liste*</message>
-	<message id="page.admin.listeexterne">*Liste externe*</message>
-	<message id="page.admin.exportdunebrochurepdf">*Export d'une brochure PDF*</message>
-	<message id="page.admin.exportzip">*Export ZIP*</message>
-	<message id="page.admin.aveclespiecesattachees">*Avec les pièces attachées :*</message>
-	<message id="page.admin.navigateurdepiecesattachees">*Navigateur de pièces attachées*</message>
+	<message id="page.admin.vider">إلغاء</message>
+	<message id="page.admin.viderlabase">إلغاء قاعدة البيانات</message>
+	<message id="page.admin.viderlaliste">إلغاء القائمة</message>
+	<message id="page.admin.vignettes">معرض الصور</message>
+	<message id="page.admin.piecesattachees">ملفات مرتبطة</message>
+	<message id="page.admin.gestiondesattachements">إدارة الملفات المرتبطة</message>
+	<message id="page.admin.listedesvignettespourlabase">قائمة الصور للقاعدة</message>
+	<message id="page.admin.listedespiecesattacheespourlabase">قائمة الملفات المرتبطة لقاعدة البيانات</message>
+	<message id="page.admin.aucunfichier">لا يوجد أى مستند</message>
+	<message id="page.admin.ajouterunnouveaufichier">تحميل مستند جديد</message>
+	<message id="page.admin.envoyer">تحميل</message>
+	<message id="page.admin.uploaddefichier">تحميل مستند</message>
+	<message id="page.admin.retouralalistedesfichiers">العودة الى قائمة المستندات</message>
+	<message id="page.admin.vousnavezpasprecisedefichieraenvoyer">خطأ: لم يتم إدخال إسم أى مستند</message>
+	<message id="page.admin.extensiondefichierincorrecte.debut">خطأ: الصورة</message>
+	<message id="page.admin.extensiondefichierincorrecte.fin">لها الامتداد غير صحيح (المستند لم يتم تحميله) (.png, .gif, .jpg et .jpeg).</message>
+	<message id="page.admin.lefichieraetecorrectementenvoye.debut">مستند</message>
+	<message id="page.admin.lefichieraetecorrectementenvoye.fin">تم تحميله</message>
+	<message id="page.admin.voir">مشاهدة</message>
+	<message id="page.admin.exportpdf">تصدير PDF</message>
+	<message id="page.admin.listesexternes">قوائم خارجية</message>
+	<message id="page.admin.editiondelaliste">تحرير قائمة</message>
+	<message id="page.admin.listeexterne">قائمة خارجية</message>
+	<message id="page.admin.exportdunebrochurepdf">تصدير كتيب PDF</message>
+	<message id="page.admin.exportzip">تصدير ZIP</message>
+	<message id="page.admin.aveclespiecesattachees">يتضمن مستندات مرتبطة</message>
+	<message id="page.admin.navigateurdepiecesattachees">متصفح مستندات مرتبطة</message>
+	<message id="page.admin.exportdesresultatsen">إخراج نتائج البحث كـ</message>
+	<message id="page.admin.editionparlot">مراجعة نتائج البحث</message>
+	<message id="page.admin.continuerleditionparlot">مراجعة المستند التالى فى القائمة</message>
 
 	<!-- Admin edit liste -->
-	<message id="page.admin_edit_liste.liste">*Liste*</message>
-	<message id="page.admin_edit_liste.clef">*Clef*</message>
-	<message id="page.admin_edit_liste.ajouter">*Ajouter*</message>
-	<message id="page.admin_edit_liste.supprimer">*Supprimer*</message>
-	<message id="page.admin_edit_liste.modifier">*Modifier*</message>
-	<message id="page.admin_edit_liste.erreur">*Erreur *</message>
-	<message id="page.admin_edit_liste.erreur.erreurlorsdelasauvegardedufichier.debut">*Erreur lors de la sauvegarde du fichier de liste "*</message>
-	<message id="page.admin_edit_liste.erreur.erreurlorsdelasauvegardedufichier.fin">*"*</message>
-	<message id="page.admin_edit_liste.erreur.erreurlorsdelouverturedufichier.debut">*Erreur lors de l'ouverture du fichier "*</message>
-	<message id="page.admin_edit_liste.erreur.erreurlorsdelouverturedufichier.fin">*"*</message>
-	<message id="page.admin_edit_liste.erreur.iddejautilise.debut">*Une ligne avec cet identifiant existe déjà dans le fichier "*</message>
-	<message id="page.admin_edit_liste.erreur.iddejautilise.fin">*"*</message>
-	<message id="page.admin_edit_liste.erreur.fichierxmlnonvalide.debut">*Fichier XML non valide : *</message>
-	<message id="page.admin_edit_liste.erreur.fichierxmlnonvalide.fin">**</message>
-	<message id="page.admin_edit_liste.erreur.valeursvides">*Les valeurs à ajouter sont vides*</message>
-	<message id="page.admin_edit_liste.erreur.impossibledetrouverunparseurxml.debut">*Impossible de trouver un parseur XML pour analyser le fichier : *</message>
-	<message id="page.admin_edit_liste.erreur.impossibledetrouverunparseurxml.fin">**</message>
-	<message id="page.admin_edit_liste.succes.suppressioneffectuee">*Suppression effectuée*</message>
-	<message id="page.admin_edit_liste.succes.ajouteffectue">*Ajout effectué*</message>
-	<message id="page.admin_edit_liste.succes.modificationeffectuee">*Modification effectuée*</message>
-	<message id="page.admin_edit_liste.voulezvousvraimentsupprimerlaligne">*Voulez-vous vraiment supprimer la ligne ?*</message>
+	<message id="page.admin_edit_liste.liste">قائمة</message>
+	<message id="page.admin_edit_liste.clef">رقم معرف</message>
+	<message id="page.admin_edit_liste.ajouter">إضافة</message>
+	<message id="page.admin_edit_liste.supprimer">إلغاء</message>
+	<message id="page.admin_edit_liste.modifier">تعديل</message>
+	<message id="page.admin_edit_liste.erreur">خطأ</message>
+	<message id="page.admin_edit_liste.erreur.erreurlorsdelasauvegardedufichier.debut">خطأ أثناء حفظ المستند "</message>
+	<message id="page.admin_edit_liste.erreur.erreurlorsdelasauvegardedufichier.fin">"</message>
+	<message id="page.admin_edit_liste.erreur.erreurlorsdelouverturedufichier.debut">خطأ أثناء فتح المستند "</message>
+	<message id="page.admin_edit_liste.erreur.erreurlorsdelouverturedufichier.fin">"</message>
+	<message id="page.admin_edit_liste.erreur.iddejautilise.debut">يوجد إدخال بنفس الرقم "</message>
+	<message id="page.admin_edit_liste.erreur.iddejautilise.fin">"</message>
+	<message id="page.admin_edit_liste.erreur.fichierxmlnonvalide.debut">مستند XML غير صحيح: </message>
+	<message id="page.admin_edit_liste.erreur.fichierxmlnonvalide.fin"/>
+	<message id="page.admin_edit_liste.erreur.valeursvides">القيم المضافة فارغة</message>
+	<message id="page.admin_edit_liste.erreur.impossibledetrouverunparseurxml.debut">لا يوجد محلل لملف XML: </message>
+	<message id="page.admin_edit_liste.erreur.impossibledetrouverunparseurxml.fin"/>
+	<message id="page.admin_edit_liste.succes.suppressioneffectuee">تم الإلغاء</message>
+	<message id="page.admin_edit_liste.succes.ajouteffectue">تمت الإضافة</message>
+	<message id="page.admin_edit_liste.succes.modificationeffectuee">تم التعديل</message>
+	<message id="page.admin_edit_liste.voulezvousvraimentsupprimerlaligne">هل تريد فعلاً إلغاء الصف؟</message>
 
 	<!-- Import/Export CSV -->
-	<message id="page.csv.importerunfichiercsv">*Importer un fichier CSV*</message>
-	<message id="page.csv.fichiercsvaimporter">*Fichier CSV à importer :*</message>
-	<message id="page.csv.importcsvdelaliste">*Import CSV de la liste*</message>
-	<message id="page.csv.importcsvdelabase">*Import CSV de la base*</message>
-	<message id="page.csv.exporter...">*Exporter...*</message>
-	<message id="page.csv.exportcsvdelaliste">*Export CSV de la liste*</message>
-	<message id="page.csv.exportcsvdesdocumentsdelabase">*Export CSV des documents de la base*</message>
-	<message id="page.csv.separateurdechamps">*Séparateur de champs*</message>
-	<message id="page.csv.separateurdechampsmultivalues">*Séparateur de champs multivalués :*</message>
-	<message id="page.csv.formatcsv">*Format CSV :*</message>
-	<message id="page.csv.formatstandard">*standard*</message>
-	<message id="page.csv.formatexcel">*MS Excel*</message>
-	<message id="page.csv.suite">*Suite &gt;*</message>
-	<message id="page.csv.fichieraimportermanquant">*Erreur : vous n'avez pas précisé de nom de fichier à importer !*</message>
-	<message id="page.csv.retouralapagedimport">*Retour à la page d'import*</message>
-	<message id="page.csv.lesidentifiantssont">*Les identifiants sont :*</message>
-	<message id="page.csv.generesautomatiquement">*générés automatiquement*</message>
-	<message id="page.csv.contenusdanslacolonne">*contenus dans la colonne *</message>
-	<message id="page.csv.correspondances">*Correspondances*</message>
-	<message id="page.csv.langue">*Langue*</message>
-	<message id="page.csv.colonne">*Colonne*</message>
-	<message id="page.csv.colonnecsv">*Colonne CSV*</message>
-	<message id="page.csv.importreussi.debut">*Import réussi :*</message>
-	<message id="page.csv.importreussi.fin">*valeurs ajoutées ou mises à jour.*</message>
-	<message id="page.csv.voirlecontenudelaliste">*Voir le contenu de la liste*</message>
-	<message id="page.csv.champsdudocument">*Champ du document*</message>
-	<message id="page.csv.importcsvdelabase">*Import CSV de la base*</message>
-	<message id="page.csv.voirlecontenudelabase">*Voir le contenu de la base*</message>
-	<message id="page.csv.ligneslues">*lignes lues*</message>
-	<message id="page.csv.documentsindexes">*documents indexés*</message>
-	<message id="page.csv.languedesdocuments">*Langue des documents*</message>
-	<message id="page.csv.donneescsv">*Données CSV*</message>
-	<message id="page.csv.donneescsvmsexcel">*Données CSV MS Excel*</message>
-	<message id="page.csv.champsseparespar">*Champs séparés par :*</message>
-	<message id="page.csv.champsentourespar">*Champs entourés par :*</message>
+	<message id="page.csv.importerunfichiercsv">إدخال مستند CSV</message>
+	<message id="page.csv.fichiercsvaimporter">مستند CSV لإدخال:</message>
+	<message id="page.csv.importcsvdelaliste">إدخال قائمة CSV</message>
+	<message id="page.csv.importcsvdelabase">إدخال CSV لقاعدة البيانات</message>
+	<message id="page.csv.exporter...">إخراج...</message>
+	<message id="page.csv.exportcsvdelaliste">إخراج قائمة CSV</message>
+	<message id="page.csv.exportcsvdesdocumentsdelabase">إخراج CSV لقاعدة البيانات</message>
+	<message id="page.csv.separateurdechamps">فاصل الحقول</message>
+	<message id="page.csv.separateurdechampsmultivalues">فاصل الحقول ذات القيم المتعددة</message>
+	<message id="page.csv.formatcsv">تنسيق CSV:</message>
+	<message id="page.csv.formatstandard">قياسى</message>
+	<message id="page.csv.formatexcel">MS Excel</message>
+	<message id="page.csv.suite">الصفحة التالية &lt;</message>
+	<message id="page.csv.fichieraimportermanquant">خطأ: لم يتم تحديد اسم أى مستند CSV للإدخال</message>
+	<message id="page.csv.retouralapagedimport">العودة الى صفحة الإدخال</message>
+	<message id="page.csv.lesidentifiantssont">الأرقام معرفة:</message>
+	<message id="page.csv.generesautomatiquement">تصنيف تلقائى</message>
+	<message id="page.csv.contenusdanslacolonne">محتواة فى الأعمدة التالية</message>
+	<message id="page.csv.correspondances">مطابقة</message>
+	<message id="page.csv.langue">لغة</message>
+	<message id="page.csv.colonne">عمود</message>
+	<message id="page.csv.colonnecsv">عمود CSV</message>
+	<message id="page.csv.importreussi.debut">تم الإدخال:</message>
+	<message id="page.csv.importreussi.fin">الإضافة أو التعديل للقيم</message>
+	<message id="page.csv.voirlecontenudelaliste">أطلع على قائمة المحتويات</message>
+	<message id="page.csv.champsdudocument">حقل المستند</message>
+	<message id="page.csv.importcsvdelabase">إدخال CSV لقاعدة البيانات</message>
+	<message id="page.csv.voirlecontenudelabase">أطلع على محتوى قاعدة البيانات</message>
+	<message id="page.csv.ligneslues">صفوف مقروءة</message>
+	<message id="page.csv.documentsindexes">مستندات مفهرسة</message>
+	<message id="page.csv.languedesdocuments">لغة المستندات</message>
+	<message id="page.csv.donneescsv">بيانات CSV</message>
+	<message id="page.csv.donneescsvmsexcel">بيانات MS Excel CSV</message>
+	<message id="page.csv.champsseparespar">حقول منفصلة بواسطة:</message>
+	<message id="page.csv.champsentourespar">حقول محاطة بواسطة:</message>
 
 	<!-- Export PDF -->
-	<message id="page.pdf.documentgenerepar">*Document généré par *</message>
-	<message id="page.pdf.sommaire">*Sommaire*</message>
+	<message id="page.pdf.documentgenerepar">إنتاج آلى للمستند بواسطة:</message>
+	<message id="page.pdf.sommaire">محتويات الكتيب</message>
 
 	<!-- Page saisie -->
 	<message id="page.saisie.documentindexeavecsucces">تم إدخال المستند بنجاح</message>
 	<message id="page.saisie.dureedindexation">مدة الإدخال</message>
-	<message id="page.saisie.retouralasaisiedudocument">*Retour à la saisie du document*</message>
-	<message id="page.saisie.saisirunnouveaudocument">*Saisir un nouveau document*</message>
-	<message id="page.saisie.visualiserledocument">*Visualiser le document*</message>
-	<message id="page.saisie.retouralalistedesdocuments">*Retour à la liste des documents*</message>
+	<message id="page.saisie.retouralasaisiedudocument">العودة لإدخال المستند</message>
+	<message id="page.saisie.saisirunnouveaudocument">إدخال مستند جديد</message>
+	<message id="page.saisie.visualiserledocument">صفحة عرض المستند</message>
+	<message id="page.saisie.retouralalistedesdocuments">العودة الى قائمة المستندات</message>
 	<message id="page.saisie.retouralapagedadministration">العودة إلي صفحة الإدارة</message>
 	<message id="page.saisie.lechamp">الحقل</message>
 	<message id="page.saisie.nestpasrenseigne">لم يتم تسجيله</message>
 	<message id="page.saisie.lindexationnapaspuetreeffectuee">الإدخال لم يتم بنجاح</message>
-	<message id="page.saisie.languedudocument">*Langue du document *</message>
-	<message id="page.saisie.supprimerlegroupe">*Supprimer le groupe*</message>
-	<message id="page.saisie.retirerlefichierattache">*Retirer le fichier attaché*</message>
-	<message id="page.saisie.fichierattache">*Fichier attaché*</message>
-	<message id="page.saisie.icone">*Icone*</message>
-	<message id="page.saisie.libelle">*Libellé*</message>
-	<message id="page.saisie.adresseurl">*adresse URL*</message>
-	<message id="page.saisie.libelleoptionneldelurl">*libellé optionnel de l'URL*</message>
-	<message id="page.saisie.email">*adresse e-mail*</message>
-	<message id="page.saisie.libelleoptionneldelemail">*libellé optionnel de l'e-mail*</message>
-	<message id="page.saisie.valeursupplementaire">*Si la liste des valeurs ci-contre ne contient pas
-		la valeur que vous souhaitez positionner pour ce champ, utilisez la case ci-dessous pour 
-		ajouter une nouvelle valeur.*</message>
-	<message id="page.saisie.commentairefichierattache">*Les fichiers à attacher
-	au document et les vignettes doivent être placés dans le sous-répertoire
-	"attach" du répertoire du type de document.*</message>
-	<message id="page.saisie.langueassocieeauchamp">*Langue d'édition :*</message>
-	<message id="page.saisie.ajouterunnouveaubloc">*Ajouter un nouveau bloc ?*</message>
-	<message id="page.saisie.ajouterunenouvellevaleur">*Ajouter une nouvelle valeur ?*</message>
-	<message id="page.saisie.lechampnestpasunique.debut">*Erreur : la valeur du champ *</message>
-	<message id="page.saisie.lechampnestpasunique.fin">*n'est pas unique !*</message>
-	<message id="page.saisie.lavaleurestdejautilisee.debut">*La valeur *</message>
-	<message id="page.saisie.lavaleurestdejautilisee.fin">*est déjà utilisée par le(s) document(s) suivant(s) :*</message>
+	<message id="page.saisie.languedudocument">لغة المستند</message>
+	<message id="page.saisie.supprimerlegroupe">إلغاء المجموعة</message>
+	<message id="page.saisie.retirerlefichierattache">إلغاء المستند المتصل</message>
+	<message id="page.saisie.fichierattache">إختيار المستند المتصل</message>
+	<message id="page.saisie.icone">إختيار الصورة المصغرة</message>
+	<message id="page.saisie.libelle">عنوان للمستند المتصل</message>
+	<message id="page.saisie.adresseurl">عنوان على الشبكة</message>
+	<message id="page.saisie.libelleoptionneldelurl">تعليق</message>
+	<message id="page.saisie.email">بريد الكترونى</message>
+	<message id="page.saisie.libelleoptionneldelemail">تعليق</message>
+	<message id="page.saisie.valeursupplementaire">إذا لم توجد العنصر فى القائمة، يمكن إضافة عنصر جديد هنا</message>
+	<message id="page.saisie.commentairefichierattache">ضع المستندات المتصلة فى ملف "attach" داخل الملف الرئيسى للمستندات</message>
+	<message id="page.saisie.langueassocieeauchamp">لغة الإدخال</message>
+	<message id="page.saisie.ajouterunnouveaubloc">إضافة بلوك جديد؟</message>
+	<message id="page.saisie.ajouterunenouvellevaleur">تكرار الحقل؟</message>
+	<message id="page.saisie.lechampnestpasunique.debut">خطأ: قيمة الحقل </message>
+	<message id="page.saisie.lechampnestpasunique.fin">مستخدمة فى مستند آخر</message>
+	<message id="page.saisie.lavaleurestdejautilisee.debut">القيمة </message>
+	<message id="page.saisie.lavaleurestdejautilisee.fin">مستخدمة فى المستندات التالية:</message>
 
 	<!-- Page upload -->
-	<message id="page.upload.erreur">خطء</message>
+	<message id="page.upload.erreur">خطأ</message>
 	<message id="page.upload.import">إدخال مستندات</message>
 	<message id="page.upload.importok">تم إدخال المستندات بدون اخطاء معروفة.</message>
 	<message id="page.upload.statistiquesdindexation">إحصائية الإدخال</message>
 	<message id="page.upload.nombrededocumentsajoutes">عدد المستندات المدخولة :</message>
 	<message id="page.upload.nombrededocumentsenerreur">عدد المستندات التى لم يمكن إدخالها :</message>
 	<message id="page.upload.dureedelindexation">مدة الإدخال بالثوانى :</message>
-	<message id="page.upload.erreurlorsdelindexationdudocument">*Erreur lors de l'indexation du document*</message>
-	<message id="page.upload.ledossierdesdocumentsaindexerestvide">*Le dossier des documents à indexer est vide*</message>
+	<message id="page.upload.erreurlorsdelindexationdudocument">خطأ أثناء فهرسة المستند</message>
+	<message id="page.upload.ledossierdesdocumentsaindexerestvide">ملف المستندات فارغ. لا يوجد مستندات للفهرسة!</message>
 
 	<!-- Page results -->
 	<message id="page.results.aucunresultat">بدون نتائج ؟</message>
@@ -300,7 +314,7 @@
 
 	<!-- Page navigation -->
 	<message id="page.nav.listealphabetique">قائمة أبجدية</message>
-	<message id="page.nav.navigationdanslesdocumentsdelabase">*Navigation dans les documents de la base*</message>
+	<message id="page.nav.navigationdanslesdocumentsdelabase">التجول فى مستندات القاعدة</message>
 
 	<!-- Page listealpha -->
 	<message id="page.listealpha.aucundocument">لا يوجد أى مستند مناسب</message>
@@ -311,31 +325,33 @@
 	<!-- Page delete -->
 	<message id="page.delete.ledocument">تم إلغاء المستند </message>
 	<message id="page.delete.aetesupprimedelabase">من القاعدة.</message>
-	<message id="page.delete_attach.suppressioneffectuee">*Suppression effectuée*</message>
-	<message id="page.delete_attach.fichiernontrouve">*Erreur : fichier non trouvé*</message>
-	<message id="page.delete_attach.impossibledesupprimerlefichier">*Erreur : impossible de supprimer le fichier*</message>
-	<message id="page.delete_attach.suppressiondunattachement">*Suppression d'un attachement*</message>
+	<message id="page.delete_attach.suppressioneffectuee">تم الإلغاء</message>
+	<message id="page.delete_attach.fichiernontrouve">خطء: المستند غير موجود</message>
+	<message id="page.delete_attach.impossibledesupprimerlefichier">خطء: استحالة مسح المستند</message>
+	<message id="page.delete_attach.suppressiondunattachement">إلغاء عنصر متصل</message>
 
 	<!-- Page document -->
-	<message id="page.document.retouraudocument">*Retour au document*</message> 
-	<message id="page.document.documentabsentdebut">*document référencé (*</message>
-	<message id="page.document.documentabsentfin">*) introuvable*</message>
-	<message id="page.document.accesinterditaudocument">*Accès interdit au document demandé.*</message>
+	<message id="page.document.retouraudocument">العودة الى المستند</message>
+	<message id="page.document.documentabsentdebut">المستند المتصل </message>
+	<message id="page.document.documentabsentfin">غير موجود</message>
+	<message id="page.document.accesinterditaudocument">
+	التوصل للمستند المطلوب غير مصرح لكم. الرجاء تسجيل او طلب اسم مستخدم مصرح له. 
+	</message>
 
 	<!-- Page pre_flush -->
-	<message id="page.pre_flush.voulezvousvraimentviderlabase">*Voulez vous vraiment vider la base*</message>
-	<message id="page.pre_flush.voulezvousvraimentviderlaliste">*Voulez vous vraiment vider la liste*</message>
-	<message id="page.pre_flush.attention">*Attention !*</message>
-	<message id="page.pre_flush.documentsdelabase">* documents de la base *</message>
-	<message id="page.pre_flush.referencentdesdocumentsdecettebase">* référencent des documents de cette base*</message>
-	<message id="page.pre_flush.champ">*champ *</message>
-	<message id="page.pre_delete.voulezvousvraimentsupprimerledocument">*Voulez vous vraiment supprimer le document*</message>
-	<message id="page.pre_delete_attach.voulezvousvraimentsupprimerlapieceattachee">*Voulez vous vraiment supprimer la pièce attachée ?*</message>
-	<message id="page.pre_delete_attach.voulezvousvraimentsupprimerlavignette">*Voulez vous vraiment supprimer la vignette ?*</message>
-	<message id="page.pre_delete.attentioncedocumentestreferencepar">*Attention !!! Ce document est référencé par :*</message>
+	<message id="page.pre_flush.voulezvousvraimentviderlabase">هل تريد فعلاً تفريغ القاعدة؟</message>
+	<message id="page.pre_flush.voulezvousvraimentviderlaliste">هل تريد فعلاً تفريغ القائمة؟</message>
+	<message id="page.pre_flush.attention">تحزير</message>
+	<message id="page.pre_flush.documentsdelabase">مستندات من القاعدة</message>
+	<message id="page.pre_flush.referencentdesdocumentsdecettebase">متصلة بمستندات من هذه القاعدة</message>
+	<message id="page.pre_flush.champ">حقل</message>
+	<message id="page.pre_delete.voulezvousvraimentsupprimerledocument">هل تريد فعلاً إلغاء المستند؟</message>
+	<message id="page.pre_delete_attach.voulezvousvraimentsupprimerlapieceattachee">هل تريد فعلاً إلغاء المستند المتصل؟</message>
+	<message id="page.pre_delete_attach.voulezvousvraimentsupprimerlavignette">هل تريد فعلاً إلغاء الصورة المصغرة؟</message>
+	<message id="page.pre_delete.attentioncedocumentestreferencepar">تحزير: هذا المستند متصل بـ:</message>
 
 	<!-- Page statique -->
-	<message id="page.static.pasdepagedemandee">*Pas de page demandée !*</message>
-	<message id="page.static.pagenondeclaree.debut">*La page *</message>
-	<message id="page.static.pagenondeclaree.fin">* n'a pas été déclarée*</message>
+	<message id="page.static.pasdepagedemandee">لا يوجد اى صفحة مطلوبة</message>
+	<message id="page.static.pagenondeclaree.debut">الصفحة </message>
+	<message id="page.static.pagenondeclaree.fin"> غير معرفة.</message>
 </messages>

@@ -90,8 +90,12 @@
 	<message id="common.date">*Date *</message>
 	<message id="common.utilisezleboutonbackdevotrenavigateurpourreveniralapagedesaisie">*Utilisez le bouton Back de votre navigateur pour revenir à la page de saisie.*</message>
 	<message id="common.trierpar">*Trier par :*</message>
+	<message id="common.trierparnomdefichier">*nom de fichier*</message>
+	<message id="common.trierpardate">*date*</message>
 	<message id="common.ordreascendant">*Ordre ascendant*</message>
 	<message id="common.ordredescendant">*Ordre descendant*</message>
+	<message id="common.recherchepleintexte">*Recherche plein-texte*</message>
+	<message id="common.recherchedetaillee">*Recherche détaillée*</message>
 
 	<!-- Page terms -->
 	<message id="page.terms.index">Indíce de las palabras encontradas </message>
@@ -135,6 +139,7 @@ El manejo de la applicación SDX puede ser asegurado usando los conceptos de "gr
 	<message id="page.admin.importdedocuments">Importación de documentos(directorios o archivos)</message>
 	<message id="page.admin.import">Importar</message>
 	<message id="page.admin.exportdedocuments">*Export de documents (au format CSV)*</message>
+	<message id="page.admin.exportdelabase">*Export de la base*</message>
 	<message id="page.admin.export">*Export*</message>
 	<message id="page.admin.exportderesultats">*Export de résultats*</message>
 	<message id="page.admin.saisiedunnouveaudocument">Entrar un documento nuevo</message>
@@ -186,6 +191,9 @@ El manejo de la applicación SDX puede ser asegurado usando los conceptos de "gr
 	<message id="page.admin.exportzip">*Export ZIP*</message>
 	<message id="page.admin.aveclespiecesattachees">*Avec les pièces attachées :*</message>
 	<message id="page.admin.navigateurdepiecesattachees">*Navigateur de pièces attachées*</message>
+	<message id="page.admin.exportdesresultatsen">Export des résultats en :</message>
+	<message id="page.admin.editionparlot">Editer les résultats</message>
+	<message id="page.admin.continuerleditionparlot">Editer le document suivant</message>
 
 	<!-- Admin edit liste -->
 	<message id="page.admin_edit_liste.liste">*Liste*</message>
@@ -279,7 +287,6 @@ El manejo de la applicación SDX puede ser asegurado usando los conceptos de "gr
 	sub-directorio "attach" del directorio del tipo del documento.</message>
 	<message id="page.saisie.langueassocieeauchamp">*Langue d'édition:*</message>
 	<message id="page.saisie.ajouterunnouveaubloc">*Ajouter un nouveau bloc ?*</message>
-	<message id="page.saisie.ajouterunenouvellevaleur">*Ajouter une nouvelle valeur ?*</message>
 	<message id="page.saisie.ajouterunenouvellevaleur">*Ajouter une nouvelle valeur ?*</message>
 	<message id="page.saisie.lechampnestpasunique.debut">*Erreur : la valeur du champ *</message>
 	<message id="page.saisie.lechampnestpasunique.fin">*n'est pas unique !*</message>

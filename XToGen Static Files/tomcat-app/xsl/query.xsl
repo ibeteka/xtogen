@@ -34,11 +34,11 @@ http://www.fsf.org/copyleft/gpl.html
 
     <xsl:template match="sdx:results">
 	<h2><xsl:value-of select="$messages[@id='bouton.navigation']"/></h2>
-	<xsl:apply-templates select="." mode="hpp"/>
-	<div id="exportbar">
+	<div id="exportbar" style="float: {$alignDirection}; text-align: {$alignDirection};">
 		<xsl:call-template name="exportbar"/>
 	</div>
-	<div id="sortbar">
+	<xsl:apply-templates select="." mode="hpp"/>
+	<div id="sortbar" style="float: {$alignDirection};">
 		<xsl:call-template name="sortbar"/>
 	</div>
     <h3><xsl:choose>
@@ -50,6 +50,8 @@ http://www.fsf.org/copyleft/gpl.html
 	</xsl:if></h3>
         <xsl:choose>
             <xsl:when test="@nb > 0">
+				<br/>
+				<br/>
 				<xsl:call-template name="display-results"/>
 				<br/>
 				<xsl:if test="@pages != '1'">

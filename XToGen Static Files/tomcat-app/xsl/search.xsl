@@ -62,7 +62,7 @@
 
 		<xsl:variable name="size">
 			<xsl:choose>
-				<xsl:when test="$docDisplay/on[@field=$name]/@size"><xsl:value-of select="$docInfo/on[@field=$name]/@size"/></xsl:when>
+				<xsl:when test="$docDisplay/on[@field=$name]/@size"><xsl:value-of select="$docDisplay/on[@field=$name]/@size"/></xsl:when>
 				<xsl:otherwise><xsl:value-of select="$globalInputSize"/></xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
@@ -75,7 +75,7 @@
 		<xsl:param name="name"/>
 
 		<xsl:choose>
-			<xsl:when test="$docDisplay/on[@field=$name]/@size"><xsl:value-of select="$docInfo/on[@field=$name]/@size"/></xsl:when>
+			<xsl:when test="$docDisplay/on[@field=$name]/@size"><xsl:value-of select="$docDisplay/on[@field=$name]/@size"/></xsl:when>
 			<xsl:otherwise><xsl:value-of select="$globalSelectSize"/></xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
@@ -154,7 +154,7 @@
 	<xsl:template match="recherche">
 		<xsl:variable name="dbId" select="@db"/>
 		<xsl:choose>
-			<xsl:when test="$dbParam = $dbId">
+			<xsl:when test="$dbParam=$dbId">
 				<h2><xsl:value-of select="$messages[@id='bouton.recherche']"/></h2>
 				<h3><xsl:value-of select="$labels/doctype[@name=$dbId]/label"/>
 					<xsl:if test="location">
@@ -163,6 +163,20 @@
 						<xsl:if test="position() != 1">, </xsl:if>
 						<xsl:value-of select="@app"/>
 					</xsl:for-each>)</small></xsl:if></h3>
+				<br/>
+				<fieldset>
+					<legend><xsl:value-of select="$messages[@id='common.recherchepleintexte']"/></legend>
+					<form action="ft_search_{@db}.xsp" method="GET">
+						<input type="hidden" name="f" value="{concat('xtgpleintexte_',translate($lang,'-','_'))}"/>
+						<input type="hidden" name="sortfield" value="xtgtitle"/>
+						<input type="text" name="v"/>
+						<input type="submit" value="{$messages[@id='page.search.rechercher']}"/>
+					</form>
+				</fieldset>
+				</xsl:if>
+				<br/>
+				<fieldset>
+					<legend><xsl:value-of select="$messages[@id='common.recherchedetaillee']"/></legend>
 				<table border="0">
 				<form action="search_{@db}.xsp" method="GET">
 					<xsl:if test="$useJavaScript">
@@ -170,6 +184,7 @@
 					</xsl:if>
 					<input type="hidden" name="sortfield" value="{$currentdoctypedefaultsortfield}"/>
 					<input type="hidden" name="order" value="ascendant"/>
+					<input type="hidden" name="qlang" value="{$lang}"/>
 					<xsl:for-each select="zone">
 						<tr>
 							<xsl:apply-templates select="."/>
@@ -196,6 +211,7 @@
 					</td></tr>
 				</form>
 				</table>
+				</fieldset>
 			</xsl:when>
 			<!-- pas de parametre db :-( -->
 			<xsl:when test="count($urlparameter[@name='db']) = 0">

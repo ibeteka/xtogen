@@ -28,7 +28,7 @@ Free Software Foundation, Inc.
 or connect to:
 http://www.fsf.org/copyleft/gpl.html
 -->
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet version="1.1"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:sdx="http://www.culture.gouv.fr/ns/sdx/sdx"
 	exclude-result-prefixes="sdx xsl">
@@ -237,7 +237,9 @@ http://www.fsf.org/copyleft/gpl.html
 			<xsl:when test="$nav='yes' and $evalue!=''">
 				<xsl:choose>
 					<xsl:when test="not($list) or $list=''">
-						<a class="nav" href="query_{$dbId}.xsp?f={$field}&amp;v={$evalue}&amp;sortfield={$currentdoctypedefaultsortfield}&amp;order=ascendant"><xsl:apply-templates select="$value" mode="html"/></a>
+						<a class="nav" href="query_{$dbId}.xsp?f={$field}&amp;v={$evalue}&amp;sortfield={$currentdoctypedefaultsortfield}&amp;order=ascendant">
+							<xsl:apply-templates select="$value" mode="html"/>
+						</a>
 					</xsl:when>
 					<xsl:otherwise>
 						<a class="nav" href="query_{$dbId}.xsp?f={$choicefieldprefix}{$field}&amp;v={$evalue}&amp;list={$list}&amp;sortfield={$currentdoctypedefaultsortfield}&amp;order=ascendant"><xsl:apply-templates select="$value" mode="html"/></a>

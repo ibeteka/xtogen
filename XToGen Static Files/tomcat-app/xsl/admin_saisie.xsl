@@ -33,7 +33,7 @@ http://www.fsf.org/copyleft/gpl.html
 	xmlns:sdx="http://www.culture.gouv.fr/ns/sdx/sdx"
 	xmlns:dir="http://apache.org/cocoon/directory/2.0"
 	xmlns:xtg="http://xtogen.tech.fr"
-	exclude-result-prefixes="sdx xsl dir xsp">
+	exclude-result-prefixes="sdx xsl dir xtg">
     <xsl:import href="common.xsl"/>
     <xsl:import href="admin_saisie_all_docs.xsl"/>
 
@@ -223,7 +223,7 @@ http://www.fsf.org/copyleft/gpl.html
 	// Open Attach browser window
 	function openBrowser(fid)
 	{
-		window.open('attach_browser_<xsl:value-of select="$currentdoctype"/>.xsp?fid='+fid,'Saisie','toolbar=no,location=no,status=no,menubar=no,scrollbars=no');
+		window.open('attach_browser_<xsl:value-of select="$currentdoctype"/>.xsp?fid='+fid,'Saisie','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes');
 		return false;
 	}
 	</script>
@@ -265,6 +265,13 @@ http://www.fsf.org/copyleft/gpl.html
 			</xsl:if>
 			<input type="hidden" name="document.base" value="{$base}"/>
 			<input type="hidden" name="interfaceLang" value="{$lang}"/>
+			<!-- Batch editing -->
+			<xsl:if test="//sdx:navigation/sdx:next">
+				<xsl:variable name="batchnav" select="//sdx:navigation"/>
+				<input type="hidden" name="qid" value="{$batchnav/@qid}"/>
+				<input type="hidden" name="nextid" value="{$batchnav/sdx:next/@id}"/>
+				<input type="hidden" name="nextno" value="{$batchnav/sdx:next/@no}"/>
+			</xsl:if>
 			<xsl:apply-templates/>
 			<xsl:choose>
 				<xsl:when test="$useJavaScript">
@@ -493,7 +500,7 @@ http://www.fsf.org/copyleft/gpl.html
 		<xsl:variable name="otherfieldname" select="concat($prefix,$gprefix,$field)"/>
 		<xsl:variable name="selectsize">
 			<xsl:call-template name="listSize">
-				<xsl:with-param name="$field"/>
+				<xsl:with-param name="name" select="$field"/>
 			</xsl:call-template>
 		</xsl:variable>
 
@@ -807,7 +814,7 @@ http://www.fsf.org/copyleft/gpl.html
 		<xsl:variable name="url" select="concat($rootUrl,'query_',$db,'?f=sdxall&amp;v=1&amp;hpp=-1&amp;sortfield=xtgtitle')"/>
 		<xsl:variable name="selectsize">
 			<xsl:call-template name="listSize">
-				<xsl:with-param name="$field"/>
+				<xsl:with-param name="name" select="$field"/>
 			</xsl:call-template>
 		</xsl:variable>
 		<td colspan="2" class="saisie">
@@ -1005,7 +1012,7 @@ http://www.fsf.org/copyleft/gpl.html
 						<input type="button" value="{$messages[@id='page.admin.navigateurdepiecesattachees']}..." onClick="openBrowser('{$prefix}{$gprefix}{$field}_empty')"/>
 					</xsl:when>
 					<xsl:when test="$mode='upload'">
-							<input type="file" name="{$prefix}{$gprefix}{$field}.upload"/>
+						<input type="file" name="{$prefix}{$gprefix}{$field}.upload"/>
 					</xsl:when>
 				</xsl:choose>
 				<br/>

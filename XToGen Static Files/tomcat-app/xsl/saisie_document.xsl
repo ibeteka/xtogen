@@ -62,8 +62,21 @@ http://www.fsf.org/copyleft/gpl.html
 		<xsl:variable name="base" select="$urlparameter[@name='document.base']/@value"/>
 		<xsl:value-of select="$messages[@id='page.saisie.documentindexeavecsucces']"/><br/>
 		<xsl:value-of select="$messages[@id='page.saisie.dureedindexation']"/>: <xsl:value-of select="../sdx:uploadDocuments/sdx:summary/@duration"/>s.<br/>
+		<xsl:variable name="addon">
+			<xsl:if test="//sdx:parameter[@type='post' and @name='qid']">
+				<xsl:text/>&amp;qid=<xsl:value-of select="//sdx:parameter[@type='post' and @name='qid']/@value"/>
+				<xsl:text/>&amp;n=<xsl:value-of select="//sdx:parameter[@type='post' and @name='nextno']/@value"/>
+			</xsl:if>
+		</xsl:variable>
+		<xsl:if test="//sdx:parameter[@type='post' and @name='qid']">
+			<xsl:variable name="nextid" select="//sdx:parameter[@type='post' and @name='nextid']/@value"/>
+			<br/>
+			<a class="nav" href="admin_saisie.xsp?app={$app}&amp;db={$base}&amp;id={$nextid}{$addon}"><xsl:value-of select="$messages[@id='page.admin.continuerleditionparlot']"/></a>
+			<xsl:text> - </xsl:text>
+			<a class="nav" href="mem_liste.xsp?qid={//sdx:parameter[@type='post' and @name='qid']/@value}"><xsl:value-of select="$messages[@id='page.saisie.retouralalistedesdocuments']"/></a>
+		</xsl:if>
 		<br/>
-		<a class="nav" href="admin_saisie.xsp?app={$app}&amp;db={$base}&amp;id={$docId}"><xsl:value-of select="$messages[@id='page.saisie.retouralasaisiedudocument']"/></a>
+		<a class="nav" href="admin_saisie.xsp?app={$app}&amp;db={$base}&amp;id={$docId}{$addon}"><xsl:value-of select="$messages[@id='page.saisie.retouralasaisiedudocument']"/></a>
 		<br/>
 		<xsl:variable name="url1" select="concat('admin_saisie.xsp?app=',$app,'&amp;db=',$base,'&amp;id=',$docId)"/>
 		<a class="nav" href="admin_saisie.xsp?db={$base}"><xsl:value-of select="$messages[@id='page.saisie.saisirunnouveaudocument']"/></a>
