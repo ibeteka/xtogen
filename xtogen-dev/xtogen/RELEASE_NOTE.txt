@@ -1,4 +1,15 @@
 ==============================================================================
+ XToGen 2 - le 29/03/2004
+
+Bug corrigé :
+	* Le choix de l'encodage de la sérialisation CSV dans le sitemap ne
+		fonctionnait pas. C'est corrigé.
+Amélioration :
+	* La classe de lecture CSV (CSVListParser.java) contient maintenant une 
+		méthode permettant de choisir l'encodage au moment de la lecture.
+	* La méthode newId() de la classe ExternalListEditor est + intelligente.
+
+==============================================================================
  XToGen 2 - le 26/03/2004
 
 Nouvelles fonctionnalités :
