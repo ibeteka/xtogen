@@ -350,6 +350,8 @@ public class FileType
 		MIMES.setProperty("wsc", "text/scriptlet");
 		MIMES.setProperty("wvx", "video/x-ms-wvx");
 		MIMES.setProperty("wz", "application/x-wingz");
+		MIMES.setProperty("x3d", "model/x3d+xml");
+		MIMES.setProperty("x3dv", "model/x3d+vrml");
 		MIMES.setProperty("xbm", "image/x-xbitmap");
 		MIMES.setProperty("xht", "application/xhtml+xml");
 		MIMES.setProperty("xhtml", "application/xhtml+xml");

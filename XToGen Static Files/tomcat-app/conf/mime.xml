@@ -313,6 +313,8 @@
 	<file ext="wsc">text/scriptlet</file>
 	<file ext="wvx">video/x-ms-wvx</file>
 	<file ext="wz">application/x-wingz</file>
+	<file ext="x3d">model/x3d+xml</file>
+	<file ext="x3dv">model/x3d+vrml</file>
 	<file ext="xbm">image/x-xbitmap</file>
 	<file ext="xht">application/xhtml+xml</file>
 	<file ext="xhtml">application/xhtml+xml</file>

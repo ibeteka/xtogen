@@ -166,11 +166,18 @@
 				<br/>
 				<fieldset>
 					<legend><xsl:value-of select="$messages[@id='common.recherchepleintexte']"/></legend>
+					<!-- 
 					<form action="ft_search_{@db}.xsp" method="GET">
 						<input type="hidden" name="f" value="{concat('xtgpleintexte_',translate($lang,'-','_'))}"/>
 						<input type="hidden" name="sortfield" value="xtgtitle"/>
 						<input type="text" name="v"/>
 						<input type="submit" value="{$messages[@id='page.search.rechercher']}"/>
+					</form>
+					-->
+					<form action="results.xsp" method="GET">
+						<input type="text" name="q"/>
+						<input type="submit" value="{$messages[@id='page.search.rechercher']}"/>
+						<input type="hidden" name="qlang" value="fr-FR"/>
 					</form>
 				</fieldset>
 				<br/>
