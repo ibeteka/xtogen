@@ -63,11 +63,16 @@ public class QueryHelper
 	public static Results fieldQuery(FrameworkImpl sdxFrame, String applicationId, String baseId, String fieldName, String value)
 		throws SDXException, IOException
 	{
-		assert(sdxFrame != null);
-		assert(applicationId != null && !"".equals(applicationId));
-		assert(baseId != null && !"".equals(baseId));
-		assert(fieldName != null && !"".equals(fieldName));
-		assert(value != null && !"".equals(value));
+		if (sdxFrame == null)
+            throw new IllegalArgumentException("SDX framework is null");
+        if (applicationId == null || "".equals(applicationId))
+            throw new IllegalArgumentException("Application id is null or empty");
+        if (baseId == null || "".equals(baseId))
+            throw new IllegalArgumentException("baseId is null or empty");
+        if (fieldName == null || "".equals(fieldName))
+            throw new IllegalArgumentException("Field name is null or empty");
+        if (value == null || "".equals(value))
+            throw new IllegalArgumentException("Value is null or empty");
 		
 		// Locations
 		Application app = sdxFrame.getApplicationById(applicationId);

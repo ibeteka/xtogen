@@ -1,9 +1,23 @@
 ==============================================================================
+ XToGen 2 - le 24/08/2004
+
+Bugs corrigés :
+	* L'export ZIP n'exportait pas toujours les pièces attachées
+	* L'import CSV gère les fieldgroups
+
+Amélioration :
+	* L'import CSV est bien plus rapide maintenant
+
+==============================================================================
  XToGen 2 - le 23/08/2004
 
 Amélioration :
 	* L'import/export CSV des documents prend les fichiers attachés en
 		compte.
+
+Bug corrigé :
+	* L'import CSV ne crée plus d'éléments vides lorsqu'une donnée est
+		absente.
 
 ==============================================================================
  XToGen 2 - le 20/08/2004

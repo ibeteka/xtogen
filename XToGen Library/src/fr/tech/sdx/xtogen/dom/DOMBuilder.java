@@ -42,10 +42,12 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.apache.xerces.dom.ChildNode;
 import org.apache.xerces.dom.DocumentImpl;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -116,19 +118,38 @@ public class DOMBuilder
 			}
 			
 			// Normal element
-			Element newElt = _dom.createElement(eltName);
-			parent.appendChild(newElt);
+            Element child = getChildNode(parent, eltName);
+            if (child == null) {
+                child = _dom.createElement(eltName);
+                parent.appendChild(child);
+            }
+            
 			if (!st.hasMoreTokens())
 			{
-				addText(newElt, value);
+				addText(child, value);
 				return;
 			}
 
-			parent = newElt;
+			parent = child;
 		}
 	}
 	
 	/**
+     * @param parent Parent node
+     * @param eltName Element name
+     * @return Child node if found, else null
+     */
+    private Element getChildNode(Element parent, String eltName) {
+        NodeList children = parent.getElementsByTagName(eltName);
+        for (int i=0; i<children.getLength(); i++) {
+            Node child = children.item(i);
+            if (eltName.equals(child.getNodeName()) && child instanceof Element)
+                    return (Element)child;
+        }
+        return null;
+    }
+
+    /**
 	 * Adds a valued text element to the given element
 	 * @param currentElt The element to append to
 	 * @param value The value to use

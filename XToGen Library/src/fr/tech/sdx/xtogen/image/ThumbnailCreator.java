@@ -67,8 +67,11 @@ public class ThumbnailCreator
 	 */
 	public ThumbnailCreator(File imageFile)
 	{
-		assert(imageFile != null);
-		assert(imageFile.exists() && imageFile.canRead());
+		if (imageFile == null)
+            throw new IllegalArgumentException("Image file is null");
+        if (!imageFile.exists() || !imageFile.canRead())
+            throw new IllegalArgumentException("Image file " + imageFile
+                    + " can't be found or is not readable");
 		
 		_imageFile = imageFile;
 	}
@@ -97,8 +100,11 @@ public class ThumbnailCreator
 	public void createThumbnail(File thumbFile, int maxWidth, int maxHeight)
 		throws InterruptedException, IOException
 	{
-		assert(thumbFile != null);
-		assert(maxWidth > 0 && maxHeight > 0);
+		if (thumbFile == null)
+            throw new IllegalArgumentException("Thumbnail file is null");
+		if (maxWidth <= 0 || maxHeight <= 0)
+            throw new IllegalArgumentException("Invalid max width ("
+                    + maxWidth + ") or height (" + maxHeight + ")");
 		
 		// Loads and reduces image		
 		BufferedImage thumbImage = loadAndReduceImage(maxWidth, maxHeight);

@@ -105,6 +105,11 @@
 					boolean bParam<xsl:value-of select="generate-id(.)"/> = (param<xsl:value-of select="generate-id(.)"/> != null &amp;&amp; !"---".equals(param<xsl:value-of select="generate-id(.)"/>));</xsl:for-each>
 					String paramLang = request.getParameter("csv.lang");
 
+					System.err.print("Generating documents... ");
+					System.err.flush();
+
+					java.util.List docList = new java.util.ArrayList();
+					java.util.List tempFiles = new java.util.ArrayList();
 					<xsl:variable name="base" select="@id"/>
 					fr.tech.sdx.xtogen.sdx.SDXUtil xtgSDXUtil
 						= new fr.tech.sdx.xtogen.sdx.SDXUtil("<xsl:value-of select="$base"/>", sdx_application);
@@ -135,21 +140,36 @@
 							builder.populateField("<xsl:value-of select="@name"/>","<xsl:value-of select="$fp"/>",values.getProperty(param<xsl:value-of select="generate-id(.)"/>));</xsl:for-each>
 						File tempFile = new File(documentDir, "xtg_tmp_" + id + ".xml");
 						builder.saveDom(tempFile);
-						try
-						{
-							xtgSDXUtil.indexFile(tempFile, id, contentHandler);
-							indexedDoc++;
-						}
-						catch (Exception ex)
-						{
-							ex.printStackTrace();
-						}
-						tempFile.delete();
-						System.err.println(rowCount + " documents indexed.");
+						fr.gouv.culture.sdx.document.IndexableDocument myDoc
+							= new fr.gouv.culture.sdx.document.XMLDocument();
+						myDoc.setMimeType("text/xml");
+						myDoc.setId(id);
+						myDoc.setContent(tempFile);
+						docList.add(myDoc);
+						tempFiles.add(tempFile);
 					}
-					
+					System.err.println("done.");
 					csvFile.delete();
-					
+					System.err.print("Indexing... ");
+					System.err.flush();
+					try
+					{
+						xtgSDXUtil.indexFiles(docList, contentHandler);
+						indexedDoc = rowCount;
+					}
+					catch (Exception ex)
+					{
+						ex.printStackTrace();
+					}
+					System.err.println("done.");
+
+					System.err.print("Deleting temp files... ");
+					System.err.flush();
+					for (java.util.Iterator it=tempFiles.iterator(); it.hasNext();) {
+						((java.io.File)it.next()).delete();
+					}
+					System.err.println("done.");
+
 					<xsp:element name="success">
 						<xsp:logic><base><xsp:expr>request.getParameter("db")</xsp:expr></base></xsp:logic>
 						<xsp:logic><rownumber><xsp:expr>rowCount</xsp:expr></rownumber></xsp:logic>

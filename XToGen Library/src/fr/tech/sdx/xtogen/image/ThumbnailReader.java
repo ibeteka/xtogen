@@ -265,7 +265,8 @@ public class ThumbnailReader extends AbstractReader implements Composable
 	 */
 	private boolean isImage(String mimeType)
 	{
-		assert (mimeType != null);
+		if (mimeType == null)
+            throw new IllegalArgumentException("Mime-type is null");
 		
 		return (
 				"image/jpeg".equals(mimeType)

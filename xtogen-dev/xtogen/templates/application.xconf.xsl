@@ -201,7 +201,7 @@
 	<xsl:param name="docinfo"/>
 	<xsl:variable name="name" select="@name"/>
 	<sdx:field name="{$name}" type="field">
-		<xsl:if test="$docinfo/nav/on[@field=$name] or @default or @brief='true'">
+		<xsl:if test="$docinfo/nav/on[@field=$name] or @default or @type='attach' or @brief='true'">
 			<xsl:attribute name="brief">true</xsl:attribute>
 		</xsl:if>
 	</sdx:field>

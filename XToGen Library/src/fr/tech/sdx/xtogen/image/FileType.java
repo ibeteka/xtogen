@@ -52,7 +52,8 @@ public class FileType
 	 */
 	public static String getMimeFromExtension(String extension)
 	{
-		assert (extension != null);
+		if (extension == null)
+            throw new IllegalArgumentException("Extension is null");
 		return getMimes().getProperty(extension.toLowerCase());
 	}
 		

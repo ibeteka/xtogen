@@ -32,6 +32,7 @@
 package fr.tech.sdx.xtogen.sdx;
 
 import java.io.File;
+import java.util.List;
 
 import org.xml.sax.ContentHandler;
 
@@ -85,4 +86,17 @@ public class SDXUtil
 
 		_sdxBase.index((IndexableDocument)_myDoc, _sdxRepo, _sdxIndex, contentHandler);
 	}
+
+    /**
+     * Indexes a list of documents in a row
+     * @param documents Document list
+     * @param contentHandler contentHandler
+     * @throws Exception
+     */
+    public void indexFiles(List documents, ContentHandler contentHandler)
+        throws Exception
+    {
+        IndexableDocument[] docArray = (IndexableDocument[])documents.toArray(new IndexableDocument[0]);
+        _sdxBase.index(docArray, _sdxRepo, _sdxIndex, contentHandler);
+    }
 }

@@ -238,7 +238,8 @@ public abstract class AbstractThumbnailReader extends AbstractReader implements 
 	 */
 	private boolean isImage(String mimeType)
 	{
-		assert (mimeType != null);
+		if (mimeType == null)
+            throw new IllegalArgumentException("mime-type is null");
 		
 		return (
 				"image/jpeg".equals(mimeType)
