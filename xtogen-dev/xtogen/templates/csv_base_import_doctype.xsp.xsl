@@ -148,6 +148,7 @@
 						docList.add(myDoc);
 						tempFiles.add(tempFile);
 					}
+					clp.close();
 					System.err.println("done.");
 					csvFile.delete();
 					System.err.print("Indexing... ");

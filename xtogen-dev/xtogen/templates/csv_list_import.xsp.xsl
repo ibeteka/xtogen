@@ -113,6 +113,7 @@
 					</xsl:for-each>
 						rowCount++;
 					}
+					clp.close();
 					
 					<xsl:for-each select="//languages/lang">
 						<xsl:call-template name="varName"><xsl:with-param name="lang" select="@id"/></xsl:call-template>.save();

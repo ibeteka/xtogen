@@ -1,4 +1,10 @@
 ==============================================================================
+ XToGen 2 - le 01/09/2004
+
+Bugs corrigés :
+	* L'import CSV ne supprimait pas les fichiers uploadés
+	-> patch de utils.jar
+==============================================================================
  XToGen 2 - le 24/08/2004
 
 Bugs corrigés :

@@ -158,4 +158,14 @@ public class CSVListParser
 		}
 		return true;
 	}
+
+    /**
+     * Closes the CSV file
+     * @throws IOException If a I/O error occurred
+     */
+	public void close() throws IOException
+    {
+        if (_parser != null)
+            _parser.close();
+    }
 }
