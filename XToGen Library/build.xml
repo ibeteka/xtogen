@@ -1,0 +1,67 @@
+<project name="domutil" default="dist" basedir=".">
+
+	<property file="../xtogen-dev/xtogen/static/global_xtogen.properties"/>
+	<property name="xtogen.lib.jar" value="xtogen-lib.jar"/>
+
+	<!-- Classpath definition -->
+	<path id="cp">
+		<fileset dir="${sdx.install.dir}/WEB-INF/lib">
+			<include name="*.jar"/>
+			<exclude name="${xtogen.lib.jar}"/>
+		</fileset>
+	</path>
+
+	<!-- Clean -->
+	<target name="clean">
+		<delete file="${xtogen.lib.jar}"/>
+		<delete dir="classes"/>
+		<mkdir dir="classes"/>
+		<delete dir="doc"/>
+		<mkdir dir="doc"/>
+	</target>
+
+	<!-- Compile -->
+	<target name="compile">
+		<javac srcdir="src"
+			   source="1.4"
+			   destdir="classes"
+			   target="1.4">
+			<classpath refid="cp"/>
+			<include name="**/*.java"/>
+		</javac>
+	</target>
+
+	<!-- Generate doc -->
+	<target name="doc">
+		<delete dir="doc"/>
+		<mkdir dir="doc"/>
+		<javadoc packagenames="fr.tech.sdx.*"
+			source="1.4"
+			sourcepath="src"
+			destdir="doc"
+			author="true"
+			classpathref="cp">
+			<doctitle><![CDATA[<h1 align="center">XToGen Library</h1>]]></doctitle>
+			<bottom><![CDATA[<i>Copyright &#169; 2002-2003 Ministère de la culture et de la communication / PASS Technologie. All Rights Reserved.</i>]]></bottom>
+		</javadoc>
+	</target>
+
+	<!-- Package code and doc -->
+	<target name="package" depends="doc">
+		<jar destfile="${xtogen.lib.jar}">
+			 <fileset dir="classes">
+			 	<include name="**/*.class"/>
+				<exclude name="**/*Test.class"/>
+				<exclude name="**/rights.properties"/>
+			 </fileset>
+			 <fileset dir="src" includes="**/xtogen.xsl"/>
+			 <fileset dir="doc"/>
+		</jar>
+	</target>
+
+	<!-- Copy package into static directory -->
+	<target name="dist" depends="clean,compile,package">
+		<copy file="xtogen-lib.jar" todir="../xtogen-dev/xtogen/static"/>
+	</target>
+
+</project>
