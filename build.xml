@@ -4,7 +4,7 @@
 	<target name="dist" depends="clean,makezip"/>
 	
 	<!-- Prépare un chouette zip de XToGen 2 -->
-	<target name="makezip">
+	<target name="makezip" depends="checkprop">
 		<ant dir="XToGen Library" target="dist"/>
 		<ant dir="XToGen Static Files" target="dist"/>
 		<ant dir="xtogen-dev" target="zipxtg"/>
@@ -16,5 +16,20 @@
 		<ant dir="XToGen Library" target="clean"/>
 		<ant dir="XToGen Static Files" target="clean"/>
 		<delete dir="dist" includeEmptyDirs="true"/>
+	</target>
+
+	<!-- Vérifie que tout est là -->
+	<target name="checkprop">
+		<available file="xtogen.properties" property="xtogen.properties.present"/>
+		<fail unless="xtogen.properties.present">
+
+	-- ATTENTION -- ATTENTION -- ATTENTION --
+
+	Le fichier xtogen.properties est introuvable.
+
+	Veuillez renommer le fichier xtogen_sample.properties en
+		xtogen.properties en mettant son contenu a jour avant
+		de continuer.
+		</fail>
 	</target>
 </project>

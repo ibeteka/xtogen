@@ -1,13 +1,21 @@
 <project name="domutil" default="dist" basedir=".">
 
-	<property file="../xtogen-dev/xtogen/static/global_xtogen.properties"/>
+	<property file="../xtogen.properties"/>
 	<property name="xtogen.lib.jar" value="xtogen-lib.jar"/>
+	<property name="utils.jar" value="xtogen-lib.jar"/>
+	<property name="log4j.jar" value="xtogen-lib.jar"/>
 
 	<!-- Classpath definition -->
 	<path id="cp">
 		<fileset dir="${sdx.install.dir}/WEB-INF/lib">
 			<include name="*.jar"/>
 			<exclude name="${xtogen.lib.jar}"/>
+			<exclude name="log4j*"/>
+			<exclude name="utils*"/>
+		</fileset>
+		<fileset dir="../xtogen-dev/xtogen/static">
+			<include name="utils.jar"/>
+			<include name="log4j-1.2.8.jar"/>
 		</fileset>
 	</path>
 
