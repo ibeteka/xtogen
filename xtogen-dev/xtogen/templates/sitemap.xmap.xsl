@@ -240,13 +240,11 @@
 					<map:transform src="xsl/pdf_export.xsl"/>
 					<map:serialize type="xml"/>
 				</map:match>
-				<xsl:for-each select="//documenttype">
-					<map:match pattern="base_{@id}_export.pdfx">
-						<map:generate type="xsp" src="pdf_base_export.xsp"/>
-						<map:transform src="xsl/pdf_export.xsl"/>
-						<map:serialize type="xml"/>
-					</map:match>
-				</xsl:for-each>
+				<map:match pattern="base_*_export.pdfx">
+					<map:generate type="xsp" src="pdf_base_export.xsp"/>
+					<map:transform src="xsl/pdf_export.xsl"/>
+					<map:serialize type="xml"/>
+				</map:match>
         </map:pipeline>
 		</xsl:if>
         <map:pipeline>
@@ -365,51 +363,49 @@
                 <map:generate type="xsp" src="csv_list_export.xsp"/>
                 <map:serialize type="csv"/>
             </map:match>
-			<xsl:for-each select="documenttypes/documenttype">
-            <map:match pattern="base_{@id}_export.csv">
+            <map:match pattern="base_*_export.csv">
                 <map:generate type="xsp" src="csv_base_export.xsp"/>
-                <map:transform src="xsl/csv_base_{@id}_export.xsl"/>
+                <map:transform>
+					<xsl:attribute name="src">xsl/csv_base_{1}_export.xsl</xsl:attribute>
+				</map:transform>
                 <map:serialize type="csv"/>
             </map:match>
-			</xsl:for-each>
 <xsl:text>
 
 		</xsl:text>
 <xsl:comment> Export ZIP </xsl:comment>
-			<xsl:for-each select="documenttypes/documenttype">
-            <map:match pattern="base_{@id}_export.zip">
-                <map:generate type="xsp" src="zip_base_{@id}_export.xsp"/>
+            <map:match pattern="base_*_export.zip">
+                <map:generate type="xsp">
+					<xsl:attribute name="src">zip_base_{1}_export.xsp</xsl:attribute>
+				</map:generate>
                 <map:transform src="xsl/zip_base_export.xsl"/>
                 <map:transform src="xsl/zip_del_doublons.xsl"/>
                 <map:serialize type="zip"/>
             </map:match>
-			</xsl:for-each>
-			<xsl:for-each select="documenttypes/documenttype">
-            <map:match pattern="base_{@id}_export.zipx">
-                <map:generate type="xsp" src="zip_base_{@id}_export.xsp"/>
+            <map:match pattern="base_*_export.zipx">
+                <map:generate type="xsp">
+					<xsl:attribute name="src">zip_base_{1}_export.xsp</xsl:attribute>
+				</map:generate>
                 <map:transform src="xsl/zip_base_export.xsl"/>
                 <map:serialize type="xml"/>
             </map:match>
-			</xsl:for-each>
-			<xsl:for-each select="documenttypes/documenttype">
-            <map:match pattern="base_{@id}_export.zipxx">
-                <map:generate type="xsp" src="zip_base_{@id}_export.xsp"/>
+            <map:match pattern="base_*_export.zipxx">
+                <map:generate type="xsp">
+					<xsl:attribute name="src">zip_base_{1}_export.xsp</xsl:attribute>
+				</map:generate>
                 <map:transform src="xsl/zip_base_export.xsl"/>
                 <map:transform src="xsl/zip_del_doublons.xsl"/>
                 <map:serialize type="xml"/>
             </map:match>
-			</xsl:for-each>
 <xsl:text>
 
 		</xsl:text>
 <xsl:comment> Export PDF </xsl:comment>
-			<xsl:for-each select="documenttypes/documenttype">
-            <map:match pattern="base_{@id}_export.pdf">
+            <map:match pattern="base_*_export.pdf">
                 <map:generate type="xsp" src="pdf_base_export.xsp"/>
                 <map:transform src="xsl/pdf_export.xsl"/>
                 <map:serialize type="fo2pdf"/>
             </map:match>
-			</xsl:for-each>
 
             <map:match pattern="pdf_export.xsp">
                 <map:generate type="xsp" src="pdf_export.xsp"/>
@@ -437,43 +433,45 @@
 
 		</xsl:text>
 <xsl:comment> Termes </xsl:comment>
-			<xsl:for-each select="documenttypes/documenttype">
-				<map:match pattern="terms_{@id}">
-					<map:generate type="xsp" src="terms_{@id}.xsp"/>
-					<map:serialize type="xml"/>
-				</map:match>
-			</xsl:for-each>
+			<map:match pattern="terms_*">
+				<map:generate type="xsp">
+					<xsl:attribute name="src">terms_{1}.xsp</xsl:attribute>
+				</map:generate>
+				<map:serialize type="xml"/>
+			</map:match>
 <xsl:text>
 		</xsl:text>
 <xsl:comment> listes </xsl:comment>
-			<xsl:for-each select="documenttypes/documenttype">
-				<map:match pattern="list_{@id}.xsp">
-					<map:generate type="xsp" src="terms_{@id}.xsp"/>
-					<map:transform type="cinclude"/>
-					<map:transform src="xsl/liste.xsl">
-						<map:parameter name="use-request-parameters" value="true"/>
-					</map:transform>
-					<map:serialize/>
-				</map:match>
-			</xsl:for-each>
+			<map:match pattern="list_*.xsp">
+				<map:generate type="xsp">
+					<xsl:attribute name="src">terms_{1}.xsp</xsl:attribute>
+				</map:generate>
+				<map:transform type="cinclude"/>
+				<map:transform src="xsl/liste.xsl">
+					<map:parameter name="use-request-parameters" value="true"/>
+				</map:transform>
+				<map:serialize/>
+			</map:match>
 <xsl:text>
 
 		</xsl:text>
 <xsl:comment> Recherche linéaire (pour alphabet) </xsl:comment>
-			<xsl:for-each select="documenttypes/documenttype">
-				<map:match pattern="linear_{@id}">
-					<map:generate type="xsp" src="linear_{@id}.xsp"/>
-					<map:serialize type="xml"/>
-				</map:match>
-				<map:match pattern="linear_{@id}.xsp">
-					<map:generate type="xsp" src="linear_{@id}.xsp"/>
-					<map:transform type="cinclude"/>
-					<map:transform src="xsl/liste.xsl">
-						<map:parameter name="use-request-parameters" value="true"/>
-					</map:transform>
-					<map:serialize/>
-				</map:match>
-			</xsl:for-each>
+			<map:match pattern="linear_*.xsp">
+				<map:generate type="xsp">
+					<xsl:attribute name="src">linear_{1}.xsp</xsl:attribute>
+				</map:generate>
+				<map:transform type="cinclude"/>
+				<map:transform src="xsl/liste.xsl">
+					<map:parameter name="use-request-parameters" value="true"/>
+				</map:transform>
+				<map:serialize/>
+			</map:match>
+			<map:match pattern="linear_*">
+				<map:generate type="xsp">
+					<xsl:attribute name="src">linear_{1}.xsp</xsl:attribute>
+				</map:generate>
+				<map:serialize type="xml"/>
+			</map:match>
 <xsl:text>
 		</xsl:text>
 <xsl:comment> contenu </xsl:comment>
@@ -484,48 +482,50 @@
 <xsl:text>
 		</xsl:text>
 <xsl:comment> galeries </xsl:comment>
-			<xsl:for-each select="documenttypes/documenttype">
-				<map:match pattern="gallery_{@id}.xsp">
-					<map:generate type="xsp" src="terms_{@id}.xsp"/>
-					<map:transform type="cinclude"/>
-					<map:transform src="xsl/gallery.xsl">
-						<map:parameter name="use-request-parameters" value="true"/>
-					</map:transform>
-					<map:serialize/>
-				</map:match>
-			</xsl:for-each>
+			<map:match pattern="gallery_*.xsp">
+				<map:generate type="xsp">
+					<xsl:attribute name="src">terms_{1}.xsp</xsl:attribute>
+				</map:generate>
+				<map:transform type="cinclude"/>
+				<map:transform src="xsl/gallery.xsl">
+					<map:parameter name="use-request-parameters" value="true"/>
+				</map:transform>
+				<map:serialize/>
+			</map:match>
 <xsl:text>
 
 		</xsl:text>
 <xsl:comment> requetes </xsl:comment>
-			<xsl:for-each select="documenttypes/documenttype">
-				<map:match pattern="query_{@id}.xsp">
-					<map:generate type="xsp" src="query_{@id}.xsp"/>
-					<map:transform type="cinclude"/>
-					<map:transform src="xsl/query.xsl">
-						<map:parameter name="use-request-parameters" value="true"/>
-					</map:transform>
-					<map:serialize/>
-				</map:match>
-				<map:match pattern="query_{@id}">
-					<map:generate type="xsp" src="query_{@id}.xsp"/>
-					<map:serialize type="xml"/>
-				</map:match>
-			</xsl:for-each>
+			<map:match pattern="query_*.xsp">
+				<map:generate type="xsp">
+					<xsl:attribute name="src">query_{1}.xsp</xsl:attribute>
+				</map:generate>
+				<map:transform type="cinclude"/>
+				<map:transform src="xsl/query.xsl">
+					<map:parameter name="use-request-parameters" value="true"/>
+				</map:transform>
+				<map:serialize/>
+			</map:match>
+			<map:match pattern="query_*">
+				<map:generate type="xsp">
+					<xsl:attribute name="src">query_{1}.xsp</xsl:attribute>
+				</map:generate>
+				<map:serialize type="xml"/>
+			</map:match>
 <xsl:text>
 
 		</xsl:text>
 <xsl:comment> import csv </xsl:comment>
-			<xsl:for-each select="documenttypes/documenttype">
-				<map:match pattern="csv_base_import_{@id}.xsp">
-					<map:generate type="xsp" src="csv_base_import_{@id}.xsp"/>
-					<map:transform type="cinclude"/>
-					<map:transform src="xsl/csv_base_import.xsl">
-						<map:parameter name="use-request-parameters" value="true"/>
-					</map:transform>
-					<map:serialize/>
-				</map:match>
-			</xsl:for-each>
+			<map:match pattern="csv_base_import_*.xsp">
+				<map:generate type="xsp">
+					<xsl:attribute name="src">csv_base_import_{1}.xsp</xsl:attribute>
+				</map:generate>
+				<map:transform type="cinclude"/>
+				<map:transform src="xsl/csv_base_import.xsl">
+					<map:parameter name="use-request-parameters" value="true"/>
+				</map:transform>
+				<map:serialize/>
+			</map:match>
 <xsl:text>
 
 		</xsl:text>
