@@ -194,6 +194,20 @@ http://www.fsf.org/copyleft/gpl.html
 		</xsl:copy>
 	</xsl:template>
 
+	<xsl:template match="*[starts-with(@id,'xtg-field-name-')]" mode="xhtml-doc">
+		<xsl:param name="doc"/>
+		<xsl:param name="fieldname"/>
+		<xsl:param name="field"/>
+
+		<xsl:variable name="fn" select="substring-after(@id,'xtg-field-name-')"/>
+		<xsl:variable name="dt" select="$relations/relation[@doc=$currentdoctype and @field=$fieldname]"/>
+		<xsl:variable name="dt2" select="$labels/doctype[@name=$dt]"/>
+		<xsl:copy>
+			<xsl:copy-of select="@*[name()!='id']"/>
+			<xsl:value-of select="$dt2/field[@name=$fn]"/>
+		</xsl:copy>
+	</xsl:template>
+
 	<xsl:template match="*[@id='xtg-fieldgroup-name']" mode="xhtml-doc">
 		<xsl:param name="doc"/>
 		<xsl:param name="fieldname"/>
@@ -331,6 +345,83 @@ http://www.fsf.org/copyleft/gpl.html
 							<!-- TODO: TRAITEMENT DES DIFFERENTS SEPARATEURS -->
 							<ul>
 								<xsl:for-each select="$field">
+									<li>
+									<xsl:call-template name="display-value">
+										<xsl:with-param name="fieldtype" select="$fieldtype"/>
+										<xsl:with-param name="fieldnav" select="$fieldnav"/>
+										<xsl:with-param name="fieldname" select="$fieldname"/>
+										<xsl:with-param name="field" select="."/>
+									</xsl:call-template>
+									</li>
+								</xsl:for-each>
+							</ul>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:copy>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="*[starts-with(@id,'xtg-field-value-')]" mode="xhtml-doc">
+		<xsl:param name="doc"/>
+		<xsl:param name="fieldname"/>
+		<xsl:param name="field"/>
+	
+		<xsl:variable name="fn" select="substring-after(@id,'xtg-field-value-')"/>
+		<xsl:variable name="dt" select="$relations/relation[@doc=$currentdoctype and @field=$fieldname]"/>
+		<xsl:variable name="url" select="concat($rootUrl,'export.xsp?db=',$dt,'&amp;id=',$field)"/>
+		<xsl:variable name="nf">
+			<xsl:call-template name="getnamedfield">
+				<xsl:with-param name="field" select="$fn"/>
+				<xsl:with-param name="doctype" select="$dt"/>
+			</xsl:call-template>
+		</xsl:variable>
+		<xsl:variable name="f" select="document($url)//*[name()=$nf]"/>
+
+		<xsl:variable name="fieldtype">
+			<xsl:call-template name="getfieldtype">
+				<xsl:with-param name="field" select="$fn"/>
+				<xsl:with-param name="doctype" select="$dt"/>
+			</xsl:call-template>
+		</xsl:variable>
+
+		<xsl:variable name="fieldnav" select="'no'"/>
+
+		<xsl:if test="$f">
+		<xsl:copy>
+			<xsl:copy-of select="@*[name()!='id']"/>
+
+			<xsl:choose>
+				<xsl:when test="count($f)=1 and $f!=''">
+					<xsl:call-template name="display-value">
+						<xsl:with-param name="fieldtype" select="$fieldtype"/>
+						<xsl:with-param name="fieldnav" select="$fieldnav"/>
+						<xsl:with-param name="fieldname" select="$fieldname"/>
+						<xsl:with-param name="field" select="$f"/>
+					</xsl:call-template>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:choose>
+						<xsl:when test="$fieldtype='attach'">
+							<div id="galerie">
+							<xsl:for-each select="$f">
+								<div class="float">
+									<xsl:call-template name="display-value">
+										<xsl:with-param name="fieldtype" select="$fieldtype"/>
+										<xsl:with-param name="fieldnav" select="$fieldnav"/>
+										<xsl:with-param name="fieldname" select="$fieldname"/>
+										<xsl:with-param name="field" select="."/>
+									</xsl:call-template>
+								</div>
+							</xsl:for-each>
+							</div>
+							<div class="spacer"> </div>
+						</xsl:when>
+						<xsl:otherwise>
+							<!-- TODO: TRAITEMENT DES DIFFERENTS SEPARATEURS -->
+							<ul>
+								<xsl:for-each select="$f">
 									<li>
 									<xsl:call-template name="display-value">
 										<xsl:with-param name="fieldtype" select="$fieldtype"/>

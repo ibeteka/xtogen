@@ -107,8 +107,8 @@
 		<xsl:for-each select="//documenttype/fields/descendant-or-self::field[@type='relation' and @to=$doctype]">
 			<xsl:variable name="reldoc" select="../ancestor::documenttype/@id"/>
 			<vfield doc="{$reldoc}" field="{@name}">
-				<one>[<xsl:value-of select="$reldoc"/> associé :]</one>
-				<more>[<xsl:value-of select="$reldoc"/> associés :]</more>
+				<one>[<xsl:value-of select="$reldoc"/> associé:]</one>
+				<more>[<xsl:value-of select="$reldoc"/> associés:]</more>
 			</vfield>
 		</xsl:for-each>
 	</doctype>
@@ -137,7 +137,7 @@
 </xsl:template>
 
 <xsl:template match="field">
-	<field name="{@name}">[<xsl:value-of select="@name"/> :]</field>
+	<field name="{@name}">[<xsl:value-of select="@name"/>:]</field>
 </xsl:template>
 
 <xsl:template match="fieldgroup">

@@ -1,4 +1,12 @@
 ==============================================================================
+ XToGen 2 - le 10/02/2005
+
+Améliorations :
+	* Possibilité d'afficher, dans les templates de documents, un champ d'un
+	document lié par relation au document principal
+	* Meilleure présentation par défaut du PDF
+
+==============================================================================
  XToGen 2 - le 8/02/2005
 
 Bug corrigé :
