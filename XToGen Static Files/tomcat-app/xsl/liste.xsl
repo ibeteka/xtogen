@@ -104,6 +104,15 @@ http://www.fsf.org/copyleft/gpl.html
 						<xsl:variable name="choiceid" select="$value"/>
 						<xsl:value-of select="$liste/item[@id=$choiceid]"/>
 					</xsl:when>
+					<xsl:when test="$sfields/document[@id=$currentdoctype]/descendant-or-self::field[@name=$field]/@type='relation'">
+						<xsl:variable name="selectedfield" select="$sfields/document[@id=$currentdoctype]/descendant-or-self::field[@name=$field]"/>
+						<xsl:variable name="url" select="concat($rootUrl,'query_',$selectedfield/@to,'?f=sdxdocid&amp;v=',$value)"/>
+						<xsl:variable name="reldoc" select="document($url)/sdx:document/sdx:results/sdx:result[1]"/>
+						<xsl:choose>
+							<xsl:when test="$reldoc"><xsl:value-of select="$reldoc/sdx:field[@name='xtgtitle']/@value"/></xsl:when>
+							<xsl:otherwise><xsl:value-of select="concat($messages[@id='page.document.documentabsentdebut'],$value,$messages[@id='page.document.documentabsentfin'])"/></xsl:otherwise>
+						</xsl:choose>
+					</xsl:when>
 					<xsl:otherwise>
 						<xsl:value-of select="$value"/>
 					</xsl:otherwise>

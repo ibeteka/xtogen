@@ -150,7 +150,11 @@
 		</xsl:choose>
 	</xsl:variable>
 
-	<field name="{@name}" path="{$fp}" type="{$type}"/>
+	<field name="{@name}" path="{$fp}" type="{$type}">
+		<xsl:if test="@to">
+			<xsl:copy-of select="@to"/>
+		</xsl:if>
+	</field>
 </xsl:template>
 
 <xsl:template match="fieldgroup" mode="field">
