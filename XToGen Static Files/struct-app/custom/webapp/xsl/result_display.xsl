@@ -41,7 +41,7 @@
 		<xsl:param name="item"/>
 
 		<tr>
-		<td align="right"><b><xsl:value-of select="$item/@no"/></b>&#160;</td>
+		<td align="right" valign="top"><b><xsl:value-of select="$item/@no"/></b>&#160;</td>
 			<td>
 				<xsl:call-template name="display-result-doc">
 					<xsl:with-param name="item" select="$item"/>

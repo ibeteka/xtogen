@@ -1,4 +1,10 @@
 ==============================================================================
+ XToGen 2 - le 7/02/2005
+
+Amélioration :
+	* Meilleure présentation de la numérotation des résultats par défaut.
+
+==============================================================================
  XToGen 2 - le 23/12/2004
 
 Bug corrigé :
