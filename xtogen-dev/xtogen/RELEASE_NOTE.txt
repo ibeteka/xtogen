@@ -1,4 +1,11 @@
 ==============================================================================
+ XToGen 2 - le 15/03/2004
+
+Bugs corrigés :
+	* Les vignettes n'étaient pas correctement affichés dans l'export PDF quand
+		le nom du fichier associé comportait des accents.
+	
+==============================================================================
  XToGen 2 - le 02/02/2004
 
 Changements :

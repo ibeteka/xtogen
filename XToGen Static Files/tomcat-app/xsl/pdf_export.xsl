@@ -32,6 +32,7 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:sdx="http://www.culture.gouv.fr/ns/sdx/sdx"
 	xmlns:fo="http://www.w3.org/1999/XSL/Format"
+	xmlns:urle="java.net.URLEncoder"
 	exclude-result-prefixes="sdx xsl">
 
     <xsl:import href="vars.xsl"/>
@@ -649,7 +650,7 @@
 						<fo:external-graphic src="url({$thnurl})"/>
 					</xsl:when>
 					<xsl:otherwise>
-						<fo:external-graphic src="url({$rootUrl}thumbnail?app={$application}&amp;base={$dbId}&amp;id={$value}&amp;size={$thnsize})"/>
+						<fo:external-graphic src="url({$rootUrl}thumbnail?app={$application}&amp;base={$dbId}&amp;id={urle:encode(string(string($value)),'UTF-8')}&amp;size={$thnsize})"/>
 					</xsl:otherwise>
 				</xsl:choose>
 			</xsl:when>
