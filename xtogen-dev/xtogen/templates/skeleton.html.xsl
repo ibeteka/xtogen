@@ -52,15 +52,9 @@
 
 				<table width="720" border="0" cellspacing="0" cellpadding="0">
 					<tr>
-						<td>
-							<img src="icones/cols.gif" width="150" height="1" alt="pour la mise en page seulement"/>
-						</td>
-						<td>
-							<img src="icones/cols.gif" width="450" height="1" alt="pour la mise en page seulement"/>
-						</td>
-						<td>
-							<img src="icones/cols.gif" width="120" height="1" alt="pour la mise en page seulement"/>
-						</td>
+						<td id="tdcol1">&#160;</td>
+						<td id="tdcol2">&#160;</td>
+						<td id="tdcol3">&#160;</td>
 					</tr>
 					<tr>
 						<td colspan="3" class="header">

@@ -467,7 +467,11 @@ div.choice {
         white-space: normal; margin-top:1ex; margin-bottom:1ex
     }
         
-
+td#tdcol1 { width: 150px; }
+td#tdcol2 { width: 450px; }
+td#tdcol3 { width: 120px; }
+td#tdcol4 { width: 100px; }
+td#tdcol5 { width: 458px; }
 
 /********* end sheet ************/
  

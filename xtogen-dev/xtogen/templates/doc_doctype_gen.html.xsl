@@ -56,12 +56,8 @@
 							<td class="highlight">
 								<table cellpadding="0" cellspacing="3" width="100%" class="highlight">
 									<tr>
-										<td>
-											<img src="icones/cols.gif" width="100" height="1" alt="pour la mise en page seulement"/>
-										</td>
-										<td>
-											<img src="icones/cols.gif" width="458" height="1" alt="pour la mise en page seulement"/>
-										</td>
+										<td id="tdcol4">&#160;</td>
+										<td id="tdcol5">&#160;</td>
 									</tr>
 									<tr>
 										<td id="xtg-document-nav" colspan="2" align="right"><b>&lt; &gt;</b></td>
