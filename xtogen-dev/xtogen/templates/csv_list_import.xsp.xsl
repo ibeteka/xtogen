@@ -94,7 +94,7 @@
 					clp.reset();
 					clp.getHeaders();
 					
-					Properties	values				= null;
+					java.util.Properties	values				= null;
 					String 		id					= null;
 					String		idColumn			= request.getParameter("identcol");
 					boolean		idHasToBeGenerated	= "generated".equals(request.getParameter("ident"));
