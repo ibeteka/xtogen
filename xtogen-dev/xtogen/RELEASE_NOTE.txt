@@ -1,4 +1,11 @@
 ==============================================================================
+ XToGen 2 - le 08/04/2004
+
+Amélioration :
+	* La page intermédiaire de gestion des attachements n'est pas proposé si
+		le type de document contient un/des champs pièces attachées en mode
+		'upload'.
+==============================================================================
  XToGen 2 - le 29/03/2004
 
 Bug corrigé :
