@@ -38,7 +38,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Date;
+import java.math.BigInteger;
+import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -67,6 +70,7 @@ public class ExternalListEditor
 		= Logger.getLogger(ExternalListEditor.class);
 	
 	private static final int TAB_WIDTH = 4;
+	private static final String DEFAULT_ID = "id001";
 	private Document		_doc;
 	private File			_listFile;
 	private DocumentBuilder	_builder = null;
@@ -152,17 +156,88 @@ public class ExternalListEditor
 	}
 
 	/**
+	 * Computes the integer after the one given as parameter
+	 * @param strNb An integer in a string
+	 * @return The next integer
+	 */
+	private String nextInteger(String strNb)
+	{
+		try
+		{
+			long result = Long.parseLong(strNb);
+			String strNext = Long.toString(result+1);
+			int nbz = strNb.length() - strNext.length();
+			for (int i=0; i<nbz; i++)
+				strNext = '0' + strNext;
+			return strNext;
+		}
+		catch (NumberFormatException nfe)
+		{
+			BigInteger bge = new BigInteger(strNb);
+			BigInteger one = new BigInteger("1");
+			return bge.add(one).toString();
+		}
+	}
+	
+	/**
+	 * Computes next id from current id given as parameter
+	 * @param currentId Current id
+	 * @return Next id
+	 */
+	private String computeNextId(String currentId)
+	{
+		Pattern patt = Pattern.compile("^([a-zA-Z_]*)(\\d+)$");
+		Matcher mat = patt.matcher(currentId);
+		if (mat.matches())
+		{
+			String pref = mat.group(1);
+			String nb = mat.group(2);
+			String str = pref + nextInteger(nb);
+			return str;
+		}		
+	
+		return DEFAULT_ID; 
+	}
+
+	/**
+	 * Gets the highest id of the file
+	 * @return Highest id
+	 */
+	private String highestId()
+	{
+		Element listElt = _doc.getDocumentElement();
+		NodeList nl = listElt.getChildNodes();
+		
+		// Empty list
+		if (nl.getLength() == 0)
+			return DEFAULT_ID; 
+
+		// Else computes highest element
+		TreeSet ts = new TreeSet();
+		for (int i=0; i<nl.getLength(); i++)
+		{
+			Node current = nl.item(i);
+			if (!"item".equals(current.getNodeName()))
+				continue;
+			String currentId = current.getAttributes().getNamedItem("id").getNodeValue();
+			ts.add(currentId);
+		}
+
+		// Looks for unused id
+		return (String)ts.last();
+	}
+
+	/**
 	 * Creates a new Id for the XML file
 	 * @return The newly created id
 	 */
 	public final String newId()
 	{
-		while (true)
-		{
-			String id = "xtg" + Long.toHexString(new Date().getTime());
-			if (getNode(id) == null)
-				return id;
-		}
+		String newId = highestId();
+		while (getNode(newId) != null)
+			newId = computeNextId(newId);
+		
+		return newId;
 	}
 	
 	/**

@@ -51,6 +51,8 @@ public class ExternalListEditorTest extends TestCase
 		 = "test\\fr\\tech\\sdx\\xtogen\\list\\list.xml";
 	private static final String TEST_FILE_PATH_2
 		 = "test\\fr\\tech\\sdx\\xtogen\\list\\list_temp.xml";
+	private static final String TEST_FILE_PATH_3
+		 = "test\\fr\\tech\\sdx\\xtogen\\list\\list3.xml";
 
 	public ExternalListEditorTest(String name)
 	{
@@ -171,6 +173,14 @@ public class ExternalListEditorTest extends TestCase
 		assertTrue("La liste ne contient pas l'allemand", ele.containsId("de"));			
 		assertTrue("La liste contient le polonais !!!", !ele.containsId("po"));			
 	}
+
+	public void testNextId()
+		throws Exception
+	{
+		ExternalListEditor ele = new ExternalListEditor(new File(TEST_FILE_PATH_3));
+		assertEquals(ele.newId(),"po44");
+	}
+
 
 	public static Test suite()
 	{
