@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
 	XtoGen - Générateur d'applications SDX2 - http://xtogen.tech.fr
     Copyright (C) 2003 Ministère de la culture et de la communication, PASS Technologie
 
@@ -30,44 +29,39 @@
 -->
 <xsp:page xmlns:xsp="http://apache.org/xsp" xmlns:xtg="http://xtogen.tech.fr" language="java">
    <sdx:page xmlns:sdx="http://www.culture.gouv.fr/ns/sdx/sdx" langSession="lang" langParam="lang">
+      <title id="title.admin"/>
+      <bar/>
       <xtg:authentication domain="base">
-		 <xsp:logic>
-		 	request.setCharacterEncoding("UTF8");
-		 	String myQidParam = request.getParameter("qid");
-		 </xsp:logic>
-         <pdf>
-			<conf>
-				<type>multiple</type>
-		 		<xsp:logic><title><xsp:expr>request.getParameter("title")</xsp:expr></title></xsp:logic>
-		 		<xsp:logic><subtitle><xsp:expr>request.getParameter("subtitle")</xsp:expr></subtitle></xsp:logic>
-		 		<xsp:logic><date><xsp:expr>request.getParameter("date")</xsp:expr></date></xsp:logic>
-			</conf>
-			<data>
-				<xsp:attribute name="doctype"><xsp:expr>request.getParameter("db")</xsp:expr></xsp:attribute>
-				<xsp:logic>
-				if (myQidParam == null || myQidParam.equals(""))
+         <export>
+			<xsp:logic>
+				java.util.Locale myLocale =
+					java.util.Locale.getDefault();
+
+				org.apache.cocoon.environment.Session mySession
+					= request.getSession();
+				if (mySession != null)
 				{
-					<sdx:executeFieldQuery baseParam="db" field="sdxall" value="1" show="results fields documents" hpp="-1">
-						<sdx:sort fieldParam="sortfield" order="ascendant"/>
-					</sdx:executeFieldQuery>
+					String lang = (String)mySession.getAttribute("lang");
+					if (lang != null &amp;&amp; lang.length() == 5)
+					{
+						String myLang = lang.substring(0,2);
+						String myCountry = lang.substring(3);
+						myLocale = new java.util.Locale(myLang, myCountry);
+					}
 				}
-				else
-				{
-					<sdx:results qidParam="qid"/>
-					<xsp:logic>
-						if (sdx_results != null) {
-							sdx_results.setAllHits();
-							Pipeline my_pipeline = new GetDocumentsPipeline();
-							my_pipeline.enableLogging(sdx_log);
-							my_pipeline.compose(manager);
-							my_pipeline.setConsumer(sdx_consumer);
-							sdx_results.toSAX(my_pipeline, 1);
-						}
-					</xsp:logic> 
-				}
-				</xsp:logic>
-			</data>
-         </pdf>
+
+				java.text.DateFormat myDateFormat
+					= java.text.DateFormat.getDateInstance(DateFormat.LONG, myLocale);
+				java.util.Date myDate = new java.util.Date();
+				String today = myDateFormat.format(myDate);
+		 		<today><xsp:expr>today</xsp:expr></today>
+			</xsp:logic>
+		 	<xsp:logic><type><xsp:expr>request.getParameter("type")</xsp:expr></type></xsp:logic>
+		 	<xsp:logic><base><xsp:expr>request.getParameter("db")</xsp:expr></base></xsp:logic>
+		 	<xsp:logic><qid><xsp:expr>request.getParameter("qid")</xsp:expr></qid></xsp:logic>
+		 	<xsp:logic><sortfield><xsp:expr>request.getParameter("sortfield")</xsp:expr></sortfield></xsp:logic>
+		 	<xsp:logic><order><xsp:expr>request.getParameter("order")</xsp:expr></order></xsp:logic>
+		 </export>
       </xtg:authentication>
    </sdx:page>
 </xsp:page>

@@ -1,4 +1,17 @@
 ==============================================================================
+ XToGen 2 - le 16/04/2004
+
+Nouveautés :
+	* Export de la brochure PDF sur un résultat de requête
+	* Export d'une archive ZIP sur un résultat de requête
+==============================================================================
+ XToGen 2 - le 13/04/2004
+
+Amélioration :
+	* sitemap.xmap est plus petit. Un certain nombre de déclarations
+	redondantes ont pu être remplacées par des * et des {1}
+
+==============================================================================
  XToGen 2 - le 09/04/2004
 
 Nouveautés :

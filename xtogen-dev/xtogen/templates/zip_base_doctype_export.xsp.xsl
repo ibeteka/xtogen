@@ -79,22 +79,42 @@
 			<xtg:authentication domain="base">
 				<xsp:logic>
 					request.setCharacterEncoding("UTF8");
+					String myQidParam = request.getParameter("qid");
 				</xsp:logic>
 				<xsl:variable name="base" select="@id"/>
 				<database id="{$base}">
-					<sdx:executeFieldQuery field="sdxall" value="1" hpp="-1">
-						<xsl:choose>
-							<xsl:when test="location">
-								<xsl:call-template name="copy-location">
-									<xsl:with-param name="location" select="location"/>
-									<xsl:with-param name="sdxlocation">yes</xsl:with-param>
-								</xsl:call-template>
-							</xsl:when>
-							<xsl:otherwise>
-								<sdx:location base="{$base}"/>
-							</xsl:otherwise>
-						</xsl:choose>
-					</sdx:executeFieldQuery>
+					<xsp:logic>
+					if (myQidParam == null || myQidParam.equals(""))
+					{
+						<sdx:executeFieldQuery field="sdxall" value="1" hpp="-1">
+							<xsl:choose>
+								<xsl:when test="location">
+									<xsl:call-template name="copy-location">
+										<xsl:with-param name="location" select="location"/>
+										<xsl:with-param name="sdxlocation">yes</xsl:with-param>
+									</xsl:call-template>
+								</xsl:when>
+								<xsl:otherwise>
+									<sdx:location base="{$base}"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</sdx:executeFieldQuery>
+					}
+					else
+					{
+						<sdx:results qidParam="qid"/>
+						<xsp:logic>
+							if (sdx_results != null ) {
+								sdx_results.setAllHits();
+								Pipeline my_pipeline = new GetDocumentsPipeline();
+								my_pipeline.enableLogging(sdx_log);
+								my_pipeline.compose(manager);
+								my_pipeline.setConsumer(sdx_consumer);
+								sdx_results.toSAX(my_pipeline, 1);
+							}
+						</xsp:logic> 
+					}
+					</xsp:logic>
 				</database>
 			</xtg:authentication>
 		</sdx:page>

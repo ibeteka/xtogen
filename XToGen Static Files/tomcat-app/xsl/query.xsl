@@ -35,6 +35,9 @@ http://www.fsf.org/copyleft/gpl.html
     <xsl:template match="sdx:results">
 	<h2><xsl:value-of select="$messages[@id='bouton.navigation']"/></h2>
 	<xsl:apply-templates select="." mode="hpp"/>
+	<div align="left">
+		<xsl:call-template name="exportbar"/>
+	</div>
 	<div align="right">
 		<xsl:call-template name="sortbar"/>
 	</div>

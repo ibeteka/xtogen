@@ -437,6 +437,14 @@ http://www.fsf.org/copyleft/gpl.html
 		</select>
 	</xsl:template>
 
+	<xsl:template name="exportbar">
+		<xsl:if test="$admin">
+		<a class="nav" href="pre_query_export.xsp?type=pdf&amp;db={$currentdoctype}&amp;qid={//sdx:results/@qid}" title="{$messages[@id='page.admin.exportpdf']}"><img alt="{$messages[@id='page.admin.exportpdf']}" src="icones/pdf.png" border="0"/></a>
+		<xsl:text> </xsl:text>
+		<a class="nav" href="pre_query_export.xsp?type=zip&amp;db={$currentdoctype}&amp;qid={//sdx:results/@qid}" title="{$messages[@id='page.admin.exportzip']}"><img alt="{$messages[@id='page.admin.exportzip']}" src="icones/zip.png" border="0"/></a>
+		</xsl:if>
+	</xsl:template>
+
 	<xsl:template name="sortbar">
 		<xsl:if test="$currentdoctypesort">
 			<xsl:variable name="currentsortfield" select="$urlparameter[@name='sortfield']/@value"/>

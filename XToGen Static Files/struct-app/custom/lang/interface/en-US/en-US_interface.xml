@@ -137,6 +137,7 @@
 	<message id="page.admin.import">Import</message>
 	<message id="page.admin.exportdedocuments">Document export (CSV format)</message>
 	<message id="page.admin.export">Export</message>
+	<message id="page.admin.exportderesultats">Result export</message>
 	<message id="page.admin.saisiedunnouveaudocument">Edit a new document</message>
 	<message id="page.admin.saisie">Edit</message>
 	<message id="page.admin.copiededocument">Document copy</message>

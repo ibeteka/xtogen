@@ -136,6 +136,7 @@ El manejo de la applicación SDX puede ser asegurado usando los conceptos de "gr
 	<message id="page.admin.import">Importar</message>
 	<message id="page.admin.exportdedocuments">*Export de documents (au format CSV)*</message>
 	<message id="page.admin.export">*Export*</message>
+	<message id="page.admin.exportderesultats">*Export de résultats*</message>
 	<message id="page.admin.saisiedunnouveaudocument">Entrar un documento nuevo</message>
 	<message id="page.admin.saisie">Entrar</message>
 	<message id="page.admin.copiededocument">*Copie de document*</message>

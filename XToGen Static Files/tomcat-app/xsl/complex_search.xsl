@@ -43,6 +43,9 @@ http://www.fsf.org/copyleft/gpl.html
 	</xsl:template>
 
 	<xsl:template match="sdx:results">
+		<div align="left">
+			<xsl:call-template name="exportbar"/>
+		</div>
         <xsl:if test="@nb &gt; 0">
 			<xsl:if test="@currentPage='1' and @pages='1'">
 			<p>

@@ -138,6 +138,7 @@
 	<message id="page.admin.import">Inserimento</message>
 	<message id="page.admin.exportdedocuments">Esporto dei documenti (verso il formato CSV)</message>
 	<message id="page.admin.export">Esporto</message>
+	<message id="page.admin.exportderesultats">*Export de résultats*</message>
 	<message id="page.admin.saisiedunnouveaudocument">Creazione di un nuovo documento</message>
 	<message id="page.admin.saisie">Crea</message>
 	<message id="page.admin.copiededocument">Copia del documento</message>

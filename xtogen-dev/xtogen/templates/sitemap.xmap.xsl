@@ -101,6 +101,8 @@
 		</xsl:text>
 <xsl:comment> HTML </xsl:comment>
             <map:serializer name="html" src="org.apache.cocoon.serialization.HTMLSerializer" mime-type="text/html" logger="sitemap.serializer.html" pool-max="32" pool-min="4" pool-grow="4">
+				<doctype-public>-//W3C//DTD HTML 4.01//EN</doctype-public>
+				<doctype-system>http://www.w3.org/TR/html4/strict.dtd</doctype-system>
                 <buffer-size>1024</buffer-size>
                 <encoding>UTF-8</encoding>
             </map:serializer>

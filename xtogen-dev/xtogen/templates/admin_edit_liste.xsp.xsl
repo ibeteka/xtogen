@@ -72,6 +72,7 @@
 			<title id="title.admin"/>
 			<bar/>
 			<xtg:authentication domain="list">
+				<xsl:variable name="defaultLang" select="//languages/lang[@default]/@id"/>
 				<xsp:logic>
 					// To be sure, it's ok
 					request.setCharacterEncoding("UTF8");
@@ -116,7 +117,6 @@
 					}
 					else if ("add".equals(op))
 					{
-						<xsl:variable name="defaultLang" select="//languages/lang[@default]/@id"/>
 						String list				= request.getParameter("list");
 						String id				= request.getParameter("id");
 						String defaultFilename	= baseDir + "<xsl:value-of select="$defaultLang"/>" + File.separator
@@ -151,6 +151,16 @@
 					}
 				</xsp:logic>
 				<file>
+					<xsp:logic>
+						fileName = baseDir + "<xsl:value-of select="$defaultLang"/>"
+							+ File.separator + "<xsl:value-of select="$defaultLang"/>_"
+							+ request.getParameter("list") + ".xml";
+						fr.tech.sdx.xtogen.list.ExternalListEditor ele
+							= new fr.tech.sdx.xtogen.list.ExternalListEditor(new File(fileName));
+					</xsp:logic>
+					<nextId>
+						<xsp:expr>ele.newId()</xsp:expr>
+					</nextId>
 					<basedir><xsp:expr>baseDir</xsp:expr></basedir>
 					<list><xsp:expr>request.getParameter("list")</xsp:expr></list>
 					<files>

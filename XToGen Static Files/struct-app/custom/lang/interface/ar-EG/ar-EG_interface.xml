@@ -131,6 +131,7 @@
 	<message id="page.admin.import">إدخال</message>
 	<message id="page.admin.exportdedocuments">*Export de documents (au format CSV)*</message>
 	<message id="page.admin.export">*Export*</message>
+	<message id="page.admin.exportderesultats">*Export de résultats*</message>
 	<message id="page.admin.saisiedunnouveaudocument">ملف جديد</message>
 	<message id="page.admin.saisie">ملف جديد</message>
 	<message id="page.admin.copiededocument">*Copie de document*</message>
