@@ -32,7 +32,8 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:sdx="http://www.culture.gouv.fr/ns/sdx/sdx"
 	xmlns:xtg="http://xtogen.tech.fr"
-	exclude-result-prefixes="sdx xsl xtg">
+	xmlns:urle="java.net.URLEncoder"
+	exclude-result-prefixes="sdx xsl xtg urle">
 
 	<!-- Version de XtoGen -->
 	<xsl:variable name="xtogenVersion">2.0.1</xsl:variable>
@@ -181,13 +182,13 @@
 	<!-- Pour la gestion des urls de langue -->
 	<xsl:variable name="langprefixuri">
 		<xsl:text/><xsl:value-of select="$currentpage"/>?<xsl:for-each select="$urlparameter[@type='get' and @name!='lang']">
-			<xsl:text/><xsl:value-of select="@name"/>=<xsl:value-of select="@value"/>&amp;</xsl:for-each>lang=<xsl:text/>
+			<xsl:text/><xsl:value-of select="@name"/>=<xsl:value-of select="urle:encode(@value,'UTF-8')"/>&amp;</xsl:for-each>lang=<xsl:text/>
 	</xsl:variable>
 
 	<!-- Pour la gestion des urls de tri -->
 	<xsl:variable name="sortprefixuri">
 		<xsl:text/><xsl:value-of select="$currentpage"/>?<xsl:for-each select="$urlparameter[@type='get' and @name!='sortfield' and @name!='order']">
-			<xsl:text/><xsl:value-of select="@name"/>=<xsl:value-of select="@value"/>&amp;</xsl:for-each><xsl:text/>
+			<xsl:text/><xsl:value-of select="@name"/>=<xsl:value-of select="urle:encode(@value,'UTF-8')"/>&amp;</xsl:for-each><xsl:text/>
 	</xsl:variable>
 
 	<!-- Parametres de la feuille de style -->

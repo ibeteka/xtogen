@@ -1,4 +1,10 @@
 ==============================================================================
+ XToGen 2 - le 07/10/2004
+
+Bugs corrigés :
+	* Problème de codage des paramètres d'URL dans le changement de langue,
+		le passage de page en page et le changement de tri.
+==============================================================================
  XToGen 2 - le 01/09/2004
 
 Bugs corrigés :
