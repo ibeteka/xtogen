@@ -1,4 +1,10 @@
 ==============================================================================
+ XToGen 2 - le 26/03/2004
+
+Nouvelles fonctionnalités :
+	* La navigation sur les relations est désormais possible.
+
+==============================================================================
  XToGen 2 - le 15/03/2004
 
 Bugs corrigés :
