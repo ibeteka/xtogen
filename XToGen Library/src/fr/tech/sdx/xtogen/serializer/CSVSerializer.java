@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.avalon.framework.configuration.Configurable;
 import org.apache.avalon.framework.configuration.Configuration;
 import org.apache.avalon.framework.configuration.ConfigurationException;
 import org.apache.cocoon.serialization.Serializer;
@@ -33,7 +34,7 @@ import fr.tech.sdx.xtogen.list.StringOrderedMap;
  * To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Generation - Code and Comments
  */
-public class CSVSerializer implements Serializer
+public class CSVSerializer implements Serializer, Configurable
 {
 	private static final String MIME_TYPE = "text/comma-separated-values";
 	private StringBuffer		_buffer 		= new StringBuffer("");
