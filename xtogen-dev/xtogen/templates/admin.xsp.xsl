@@ -37,6 +37,8 @@
 <xsl:param name="display_config_file"/>
 <xsl:param name="file_url_prefix"/>
 
+<xsl:variable name="doctypes" select="document(concat($file_url_prefix,$display_config_file))/display/documenttypes"/>
+
 <xsl:template match="/">
 <xsl:comment>
 	XtoGen - Générateur d'applications SDX2 - http://xtogen.tech.fr
@@ -99,12 +101,13 @@
 </xsl:template>
 
 <xsl:template match="documenttype" mode="document">
+	<xsl:variable name="displaydoctype" select="$doctypes/documenttype[@id=current()/@id]"/>
 	<xsl:element name="document">
 		<xsl:attribute name="base"><xsl:value-of select="@id"/></xsl:attribute>
 		<xsl:if test="location">
 			<xsl:attribute name="external">yes</xsl:attribute>
 		</xsl:if>
-		<xsl:if test="fields/descendant-or-self::field[@type='attach' or @type='image']">
+		<xsl:if test="fields/descendant-or-self::field[@type='attach' or @type='image'] and not($displaydoctype/edit/on[@mode='upload'])">
 			<xsl:attribute name="with-attach">yes</xsl:attribute>
 		</xsl:if>
 	</xsl:element>
