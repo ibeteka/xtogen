@@ -79,7 +79,7 @@
 	<xsl:element name="xsl:stylesheet" namespace="http://www.w3.org/1999/XSL/Transform">
 		<xsl:copy-of select="document('admin_saisie_doctype.xsl.xsl')//namespace::*[.='http://www.culture.gouv.fr/ns/sdx/sdx']"/>
 		<xsl:attribute name="version">1.0</xsl:attribute>
-		<xsl:attribute name="exclude-result-prefixes">xsl</xsl:attribute>
+		<xsl:attribute name="exclude-result-prefixes">sdx</xsl:attribute>
 
 		<xsl:variable name="docinfo" select="$forminfo/documenttype[@id=$currentid]/edit"/>
 
@@ -106,14 +106,6 @@
 					<xsl:attribute name="type">hidden</xsl:attribute>
 					<xsl:attribute name="value">{$urlparameter[@name='id']/@value}</xsl:attribute>
 				</xsl:element>
-			</xsl:element>
-		</xsl:element>
-		<xsl:element name="xsl:if">
-			<xsl:attribute name="test">@id and (not($mode) or $mode!='copy')</xsl:attribute>
-			<xsl:element name="input">
-				<xsl:attribute name="name">documentId</xsl:attribute>
-				<xsl:attribute name="type">hidden</xsl:attribute>
-				<xsl:attribute name="value">{@id}</xsl:attribute>
 			</xsl:element>
 		</xsl:element>
 		<xsl:element name="xsl:variable">
@@ -811,21 +803,45 @@
 						</xsl:element>
 					</xsl:element>
 				</xsl:element>
-				<xsl:element name="xsl:call-template">
-					<xsl:attribute name="name">attach</xsl:attribute>
-					<xsl:element name="xsl:with-param">
-						<xsl:attribute name="name">gprefix</xsl:attribute>
-						<xsl:attribute name="select">$gprefix</xsl:attribute>
-					</xsl:element>
-					<xsl:element name="xsl:with-param">
-						<xsl:attribute name="name">field</xsl:attribute>
-						<xsl:value-of select="$value/@name"/>
-					</xsl:element>
-					<xsl:element name="xsl:with-param">
-						<xsl:attribute name="name">mode</xsl:attribute>
-						<xsl:value-of select="$mode"/>
-					</xsl:element>
-				</xsl:element>
+				<xsl:choose>
+					<xsl:when test="$value/@repeat='no'">
+						<xsl:element name="xsl:if">
+							<xsl:attribute name="test">not(<xsl:value-of select="$fieldPath"/>)</xsl:attribute>
+							<xsl:element name="xsl:call-template">
+								<xsl:attribute name="name">attach</xsl:attribute>
+								<xsl:element name="xsl:with-param">
+									<xsl:attribute name="name">gprefix</xsl:attribute>
+									<xsl:attribute name="select">$gprefix</xsl:attribute>
+								</xsl:element>
+								<xsl:element name="xsl:with-param">
+									<xsl:attribute name="name">field</xsl:attribute>
+									<xsl:value-of select="$value/@name"/>
+								</xsl:element>
+								<xsl:element name="xsl:with-param">
+									<xsl:attribute name="name">mode</xsl:attribute>
+									<xsl:value-of select="$mode"/>
+								</xsl:element>
+							</xsl:element>
+						</xsl:element>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:element name="xsl:call-template">
+							<xsl:attribute name="name">attach</xsl:attribute>
+							<xsl:element name="xsl:with-param">
+								<xsl:attribute name="name">gprefix</xsl:attribute>
+								<xsl:attribute name="select">$gprefix</xsl:attribute>
+							</xsl:element>
+							<xsl:element name="xsl:with-param">
+								<xsl:attribute name="name">field</xsl:attribute>
+								<xsl:value-of select="$value/@name"/>
+							</xsl:element>
+							<xsl:element name="xsl:with-param">
+								<xsl:attribute name="name">mode</xsl:attribute>
+								<xsl:value-of select="$mode"/>
+							</xsl:element>
+						</xsl:element>
+					</xsl:otherwise>
+				</xsl:choose>
 			</td>
 		</xsl:when>
 

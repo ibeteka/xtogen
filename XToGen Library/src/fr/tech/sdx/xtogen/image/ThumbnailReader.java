@@ -330,7 +330,10 @@ public class ThumbnailReader extends AbstractReader implements Composable
 	private File getIconDirectory()
 	{
 		if (!_iconDirectory.exists())
+		{
+			LOG.info("I create directory " + _iconDirectory);
 			_iconDirectory.mkdirs();
+		}
 		return _iconDirectory;
 	}
 
