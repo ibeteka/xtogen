@@ -78,8 +78,8 @@
 	<message id="common.ok">Ok</message>
 	<message id="common.importCSV">Import CSV</message>
 	<message id="common.exportCSV">Export CSV</message>
-	<message id="common.importauformattexteseparateurvirgule">Import au format texte séparateur virgule</message>
-	<message id="common.exportauformattexteseparateurvirgule">Export au format texte séparateur virgule</message>
+	<message id="common.importauformattexteseparateurvirgule">Import au format délimité CSV (Comma Separated Value)</message>
+	<message id="common.exportauformattexteseparateurvirgule">Export au format délimité CSV (Comma Separated Value)</message>
 	<message id="common.exportauformatcsv">Export au format CSV</message>
 	<message id="common.pasdecontenudanslefichierstatique.debut">Pas de contenu dans le fichier statique</message>
 	<message id="common.pasdecontenudanslefichierstatique.fin">ou fichier absent.</message>
