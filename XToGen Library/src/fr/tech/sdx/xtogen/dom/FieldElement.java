@@ -38,6 +38,7 @@ import java.util.StringTokenizer;
 
 import org.apache.cocoon.components.request.multipart.FilePartFile;
 import org.apache.cocoon.environment.Request;
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -49,6 +50,10 @@ import org.w3c.dom.NodeList;
  */
 public abstract class FieldElement
 {
+    // Logger
+    private static final Logger LOG =
+       Logger.getLogger(FieldElement.class);
+    
 	private String	_name			= null;
 	private String	_path			= null;
 	private String	_absolutePath	= null;
@@ -366,6 +371,7 @@ public abstract class FieldElement
 	 */
 	protected final void addValue(FieldValue value)
 	{
+        LOG.debug("addValue() : " + value);
 		_values.add(value);
 	}
 

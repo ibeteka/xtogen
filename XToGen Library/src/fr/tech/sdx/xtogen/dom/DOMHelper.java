@@ -102,6 +102,7 @@ public class DOMHelper
 	public DOMHelper(String docName)
 	{
 		_docName = docName;
+        LOG.debug("DOMHelper('" + docName + "')");
 	}
 	
 	/**
@@ -111,6 +112,7 @@ public class DOMHelper
 	public final void setDefaultField(String defaultField)
 	{
 		_mandatoryFields.add(defaultField);
+        LOG.debug("setDefaultField('" + defaultField + "')");
 	}
 
 	/**
@@ -120,6 +122,7 @@ public class DOMHelper
 	public final void setUniqueField(String uniqueField)
 	{
 		_uniqueFields.add(uniqueField);
+        LOG.debug("setUniqueField('" + uniqueField + "')");
 	}
 
 	/**
@@ -128,6 +131,7 @@ public class DOMHelper
 	public void setVersioning()
 	{
 		_versioning = true;
+        LOG.debug("setVersioning()");
 	}
 
 	/**
@@ -138,6 +142,7 @@ public class DOMHelper
 	{
 		// Sets upload directory
 		_uploadDirectory = uploadDir;
+        LOG.debug("setUploadDir('" + uploadDir + "')");
 	}
 
 	/**
@@ -150,6 +155,8 @@ public class DOMHelper
 	{
 		FieldElement fe = createField(name, path, strType);
 		_elements.put(name, fe);
+        LOG.debug("addField('" + name + "', '" + path + "', '"
+                + strType + "')");
 	}
 
 	/**
@@ -180,6 +187,8 @@ public class DOMHelper
 		FieldElement fe = createField(name, path, strType);
 		GroupFieldElement gfe = (GroupFieldElement)_groups.get(group);
 		gfe.addFieldElement(fe);
+        LOG.debug("addField('" + name + "', '" + path + "', '"
+                + strType + "', '" + group + "')");
 	}
 
 	/**
@@ -200,6 +209,7 @@ public class DOMHelper
 			return;
 		}
 		((AttachFieldElement)fe).setUpload(true, _uploadDirectory);
+        LOG.debug("setUploadField('" + name + "')");
 	}
 
 	/**
@@ -210,6 +220,7 @@ public class DOMHelper
 	{
 		FieldElement fe = getElement(name);
 		fe.setMultilingual();
+        LOG.debug("setMultilingualField('" + name + "')");
 	}
 
 	/**
@@ -219,6 +230,7 @@ public class DOMHelper
 	public void addMandatoryField(String name)
 	{
 		_mandatoryFields.add(name);		
+        LOG.debug("addMandatoryField('" + name + "')");
 	}
 
 	/**
@@ -272,6 +284,8 @@ public class DOMHelper
 	public final Document createDom(Request request)
 		throws Exception
 	{
+        LOG.debug("Create DOM");
+        
 		Document dom = new DocumentImpl();
 		Element top = dom.createElement(_docName);
 
@@ -290,6 +304,7 @@ public class DOMHelper
 		{
 			String eltName = (String)it.next();
 			FieldElement elt = (FieldElement)_elements.get(eltName);
+            LOG.debug("Builds element <" + eltName + ">");
 			elt.buildValuedElement(top, dom, request);
 		}
 

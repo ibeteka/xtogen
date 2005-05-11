@@ -38,6 +38,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.cocoon.environment.Request;
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 
 import fr.tech.sdx.xtogen.dom.FieldElement;
@@ -50,6 +51,7 @@ public class TextFieldElement extends FieldElement
 {
 	private static final String XML_PREFIX	= "<?xml version=\"1.0\" standalone=\"yes\"?><text>";
 	private static final String XML_SUFFIX	= "</text>";
+    private static final Logger LOG = Logger.getLogger(TextFieldElement.class);
 
 	/**
 	 * Constructor
@@ -68,6 +70,7 @@ public class TextFieldElement extends FieldElement
 	 */
 	public final void extractValues(String name, Request request)
 	{
+        LOG.debug("extractValues('" + name +"')");
 		String[] textValues = getValues(request, name);
 		String[] languages	= getValues(request, name + ".lang");
 		DocumentBuilderFactory factory =
@@ -108,8 +111,13 @@ public class TextFieldElement extends FieldElement
 				ex.printStackTrace();
 				fv = createFieldValue(textValues[i]);
 			}
-			if (isMultilingual() && i<languages.length)
-				fv.addAttribute("xml:lang", languages[i]);
+			if (isMultilingual()) {
+                if (i >= languages.length) {
+                	LOG.warn("Can't find language info for multilingual field");
+                } else {
+                	fv.addAttribute("xml:lang", languages[i]);
+                }   
+            }
 			addValue(fv); 
 		}
 	}
