@@ -242,7 +242,19 @@ http://www.fsf.org/copyleft/gpl.html
 						</a>
 					</xsl:when>
 					<xsl:otherwise>
-						<a class="nav" href="query_{$dbId}.xsp?f={$choicefieldprefix}{$field}&amp;v={$evalue}&amp;list={$list}&amp;sortfield={$currentdoctypedefaultsortfield}&amp;order=ascendant"><xsl:apply-templates select="$value" mode="html"/></a>
+						<xsl:variable name="listfile" select="concat('lang/liste/',$lang,'/',$lang,'_',$list,'.xml')"/>
+						<xsl:variable name="items" select="document($listfile)/list/item"/>
+						<xsl:variable name="itemid" select="$items[.=$value]/@id"/>
+						<xsl:choose>
+							<xsl:when test="$itemid">
+								<a class="nav" href="query_{$dbId}.xsp?f={$choicefieldprefix}{$field}&amp;v={$itemid}&amp;list={$list}&amp;sortfield={$currentdoctypedefaultsortfield}&amp;order=ascendant">
+									<xsl:apply-templates select="$value" mode="html"/>
+								</a>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:apply-templates select="$value" mode="html"/>
+							</xsl:otherwise>
+						</xsl:choose>
 					</xsl:otherwise>
 				</xsl:choose>
 			</xsl:when>

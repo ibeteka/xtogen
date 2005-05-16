@@ -1,4 +1,10 @@
 ==============================================================================
+ XToGen 2 - le 16/05/2005
+
+Corrections :
+    * La navigation par lien "tarzan" sur un champ lié à une liste de valeurs
+	   fonctionne maintenant correctement...
+==============================================================================
  XToGen 2 - le 11/05/2005
 
 Nouveautés :

@@ -476,7 +476,7 @@ http://www.fsf.org/copyleft/gpl.html
 
 			<!-- Choice -->
 			<xsl:when test="$fieldtype='choice'">
-				<xsl:variable name="fieldlist" select="xtogenconf/lists/list[@doc=$currentdoctype and @field=$fieldname]"/>
+				<xsl:variable name="fieldlist" select="$xtogenconf/lists/list[@doc=$currentdoctype and @field=$fieldname]"/>
 
 				<xsl:call-template name="choice">
 					<xsl:with-param name="field" select="$fieldname"/>
