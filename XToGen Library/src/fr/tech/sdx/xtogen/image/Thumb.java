@@ -54,7 +54,7 @@ public class Thumb {
 
 	/**
      * Constructor.
-     * @param srcFile Source file
+     * @param aSrcFile Source file
      */
     public Thumb(File aSrcFile) {
         srcFile = aSrcFile;

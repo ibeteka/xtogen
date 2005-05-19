@@ -52,7 +52,7 @@ http://www.fsf.org/copyleft/gpl.html
 			</xsl:choose>
 
 			fr.tech.sdx.xtogen.security.RightsManager rm
-				= new fr.tech.sdx.xtogen.security.RightsManager(context,request);
+				= fr.tech.sdx.xtogen.security.RightsManager.instance(context,request);
 			fr.tech.sdx.xtogen.security.RightsManager.AccessRights ar
 				= rm.getAccessRights(domain);
 			LOG.debug(domain);

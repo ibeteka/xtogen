@@ -1,4 +1,10 @@
 ==============================================================================
+ XToGen 2 - le 19/05/2005
+
+Améliorations :
+    * Utilisation du module regexp du JDK plutôt que celui d'Apache
+	* Optimisation de la lecture du fichier de droits
+==============================================================================
  XToGen 2 - le 16/05/2005
 
 Corrections :

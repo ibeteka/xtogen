@@ -31,7 +31,10 @@
  */
 package fr.tech.sdx.xtogen.security;
 
+import java.io.File;
 import java.io.IOException;
+
+import org.apache.log4j.Logger;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -43,18 +46,28 @@ import junit.framework.TestSuite;
 public class RightsManagerTest extends TestCase
 {
 	private static final String TEST_FILE_PATH = "test\\fr\\tech\\sdx\\xtogen\\security";
-
+	private static final Logger LOG
+        = Logger.getLogger(RightsManagerTest.class);
+    
 	public void testNull()
 		throws Exception
 	{
 		try
 		{
-			new RightsManager(null);
+			new RightsManager((String)null);
 			fail("new RightsManager(null) didn't throw any exception");
 		}
 		catch (IllegalArgumentException iae)
 		{
 		}
+        try
+        {
+            new RightsManager((File)null);
+            fail("new RightsManager(null) didn't throw any exception");
+        }
+        catch (IllegalArgumentException iae)
+        {
+        }
 	}
 	
 	public void testInexistentFile()
@@ -90,12 +103,14 @@ public class RightsManagerTest extends TestCase
 		RightsManager rm = new RightsManager(TEST_FILE_PATH);
 		
 		RightsManager.AccessRights ar = rm.getAccessRights("indexMultiple.xsp");
-
+		System.err.println(" ");
+        System.err.println("TOTOT " + ar);
+        
 		String[] apps = ar.getApps();
 		assertEquals("Apps size", 3, apps.length);
-		checkGroupApp(ar, 3, 0, "admins", "fr.tech.sdx.tata");
-		checkGroupApp(ar, 3, 1, "saisie", "fr.tech.sdx.foo");
-		checkGroupApp(ar, 3, 2, "consultant", "fr.tech.sdx.toto");
+		checkGroupApp(ar, 3, 0, "consultant", "fr.tech.sdx.toto");
+		checkGroupApp(ar, 3, 1, "admins", "fr.tech.sdx.tata");
+		checkGroupApp(ar, 3, 2, "saisie", "fr.tech.sdx.foo");
 	}
 
 	private void checkGroupApp(RightsManager.AccessRights ar, String group, String app)
@@ -111,11 +126,11 @@ public class RightsManagerTest extends TestCase
 	private void checkGroupApp(RightsManager.AccessRights ar, int size, int index, String group, String app)
 	{
 		String[] apps = ar.getApps();
+        String[] groups = ar.getGroups(apps[index]);
+        assertEquals("Groups size", 1, groups.length);
+        assertEquals("Group value", group, groups[0]);
 		assertEquals("Apps size", size, apps.length);
 		assertEquals("Application name", app, apps[index]);
-		String[] groups = ar.getGroups(apps[index]);
-		assertEquals("Groups size", 1, groups.length);
-		assertEquals("Group value", group, groups[0]);
 	}
 
 	public void testGetDefault()

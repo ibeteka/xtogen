@@ -36,18 +36,19 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.cocoon.environment.Context;
 import org.apache.cocoon.environment.Request;
 import org.apache.log4j.Logger;
-import org.apache.regexp.RE;
-import org.apache.regexp.RESyntaxException;
 
 /**
  * Gestion des droits des utilisateurs à accéder aux pages
@@ -62,14 +63,44 @@ public class RightsManager
 	
 	private static final Logger LOG
 		= Logger.getLogger(RightsManager.class);
-	
+	private static RightsManager instance = null;
+    private static long instanceTime = 0L;
+
+    /**
+     * Singleton method
+     * @param context Cocoon context
+     * @param request Cocoon request
+     * @return Single instance
+     * @throws IOException If something bad occurs
+     */
+    public static RightsManager instance(Context context, Request request)
+        throws IOException {
+        
+        String baseDir = context.getRealPath(
+            request.getServletPath().substring(0,
+            request.getServletPath().lastIndexOf('/')+1));
+        File propFile = new File(baseDir, PROP_FILE_NAME);
+        
+        // If the rights manager is already loaded
+        // and the conf file has not be modified since last reload
+        // just send back current instance
+        if (instance != null && instanceTime > propFile.lastModified()) {
+            return instance;
+        }
+        
+        // Else builds and returns instance
+        instance = new RightsManager(context, request);
+        instanceTime = System.currentTimeMillis();
+    	return instance;
+    }
+    
 	/**
 	 * Constructor
 	 * @param context Context
 	 * @param request Request
 	 * @throws IOException If something bad occurs
 	 */
-	public RightsManager(Context context, Request request)
+	RightsManager(Context context, Request request)
 		throws IOException
 	{
 		this(context.getRealPath(
@@ -82,18 +113,28 @@ public class RightsManager
 	 * @param propFilePath Path of the access rights file
 	 * @throws IOException If the file can't be open
 	 */
-	public RightsManager(String propFilePath)
+	RightsManager(String propFilePath)
 		throws IOException
 	{
-		if (propFilePath == null)
-			throw new IllegalArgumentException("Null file path");
-		
-		_rightsProp = new Properties();
-		_rightsProp.load(new FileInputStream(new File(propFilePath,
-			PROP_FILE_NAME)));
-		if (!_rightsProp.containsKey("default"))
-			LOG.warn("Warning: no default rights!");
+        this(new File(propFilePath, PROP_FILE_NAME));
 	}
+
+    /**
+     * Constructor
+     * @param propFilePath Path of the access rights file
+     * @throws IOException If the file can't be open
+     */
+    RightsManager(File propFile) throws IOException
+    {
+        LOG.debug("RightsManager() constructor()");
+        if (propFile == null)
+            throw new IllegalArgumentException("Null prop file");
+        
+        _rightsProp = new Properties();
+        _rightsProp.load(new FileInputStream(propFile));
+        if (!_rightsProp.containsKey("default"))
+            LOG.warn("Warning: no default rights!");
+    }
 
 	/**
 	 * Gets the lists of the access rights for one domain
@@ -102,7 +143,6 @@ public class RightsManager
 	 * @throws RESyntaxException If something wrong occurs
 	 */
 	public final AccessRights getAccessRights(String domainName)
-		throws RESyntaxException
 	{
 		if (domainName == null)
 			throw new IllegalArgumentException("Null page name");
@@ -139,35 +179,31 @@ public class RightsManager
 		private static final String NO_CONTROL_RE
 			= " *none *";
 		
-		private static RE _groupRe	= null;
-		private static RE _noneRe	= null;
+		private static Pattern _groupRe	= null;
+		private static Pattern _noneRe	= null;
 		
-		private Map		_apps		= new HashMap();
-		private boolean	_noControl	= false;
+		private OrderedHashMap    _apps	      = new OrderedHashMap();
+		private boolean           _noControl  = false;
 		
 		/**
 		 * Lazy initialization for the group regular expression
 		 * @return Group regular expression
-		 * @throws RESyntaxException
 		 */
-		private static RE getGroupRe()
-			throws RESyntaxException
+		private static Pattern getGroupRe()
 		{
 			if (_groupRe == null)
-				_groupRe = new RE(GROUP_APP_RE);
+				_groupRe = Pattern.compile(GROUP_APP_RE);
 			return _groupRe;
 		}
 
 		/**
 		 * Lazy initialization for the no control regular expression
 		 * @return No control regular expression
-		 * @throws RESyntaxException
 		 */
-		private static RE getNoControlRe()
-			throws RESyntaxException
+		private static Pattern getNoControlRe()
 		{
 			if (_noneRe == null)
-				_noneRe = new RE(NO_CONTROL_RE);
+				_noneRe = Pattern.compile(NO_CONTROL_RE);
 			return _noneRe;
 		}
 		
@@ -183,28 +219,30 @@ public class RightsManager
 		 * @param value The value associated to a domain
 		 */
 		public void addRights(String value)
-			throws RESyntaxException
 		{
 			if (value == null)
 				throw new IllegalArgumentException("Value is null");
-			
-			if (getNoControlRe().match(value))
+		
+            
+            Matcher m = getNoControlRe().matcher(value);
+            if (m.matches())
 			{
 				_noControl	= true;
 				return;
 			}
 			
-			RE groupAppRe		= getGroupRe();
+			Pattern groupAppRe	= getGroupRe();
 			String appName		= null;
 			String groupName	= null;
 			List groups			= null;
 			int index			= 0;
 			while (true)
 			{
-				if (!groupAppRe.match(value, index))
+				m = groupAppRe.matcher(value);
+                if (!m.find(index))
 					break;
-				groupName = groupAppRe.getParen(1);
-				appName = groupAppRe.getParen(2);
+				groupName = m.group(1);
+				appName = m.group(2);
 				if (_apps.containsKey(appName))
 				{
 					groups = (List)_apps.get(appName);
@@ -213,19 +251,19 @@ public class RightsManager
 				{
 					groups = new ArrayList();
 				}
-				groups.add(groupName);
+                if (!groups.contains(groupName)) {
+                	groups.add(groupName);
+                }
 				_apps.put(appName, groups);
-				index = groupAppRe.getParenEnd(0);
+				index = m.end(0);
 			}
 		}
 		
 		/**
 		 * Constructor
 		 * @param value The value associated to a domain
-		 * @throws RESyntaxException If something bad occurs
 		 */
 		public AccessRights(String value)
-			throws RESyntaxException
 		{
 			addRights(value);
 		}
@@ -249,7 +287,7 @@ public class RightsManager
 		 */
 		public final String[] getApps()
 		{
-			return (String[])_apps.keySet().toArray(new String[0]);
+			return (String[])_apps.keys().toArray(new String[0]);
 		}
 
 		/**
@@ -306,7 +344,7 @@ public class RightsManager
 				return false;
 			
 			// Apps values test
-			for (Iterator it=_apps.keySet().iterator(); it.hasNext();)
+			for (Iterator it=_apps.keys().iterator(); it.hasNext();)
 			{
 				String app = (String)it.next();
 				List myList = (List)_apps.get(app);
@@ -325,6 +363,30 @@ public class RightsManager
 			}
 			
 			return true;
-		}	
+		}
+        
+        public static class OrderedHashMap {
+        	private List keys = new ArrayList();
+            private Map map = new HashMap();
+	
+			public int size() { return map.size(); }
+			public void clear() { keys.clear(); map.clear(); }
+			public boolean isEmpty() { return map.isEmpty(); }
+			public boolean containsKey(Object arg0) {
+                return map.containsKey(arg0);
+			}
+			public boolean containsValue(Object arg0) {
+                return map.containsValue(arg0);
+			}
+            public Collection keys() { return keys; }
+			public Object get(Object arg0) { return map.get(arg0); }
+			public Object put(Object arg0, Object arg1) {
+				if (!keys.contains(arg0)) {
+					keys.add(arg0);
+                }
+				return map.put(arg0, arg1);
+            }
+            
+        }
 	}
 }

@@ -56,10 +56,6 @@ public class AccessRightsTest extends TestCase
 		catch (IllegalArgumentException iae)
 		{
 		}
-		catch (RESyntaxException rse)
-		{
-			fail("new AccessRights(null) threw a RESyntaxException");
-		}
 	}
 
 	public void testNone()
