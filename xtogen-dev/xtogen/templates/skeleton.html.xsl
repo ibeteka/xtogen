@@ -48,8 +48,7 @@
 				<title>XToGen Template</title>
 				<link rel="stylesheet" type="text/css" href="css/html.css"/>
 			</head>
-			<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" onload="">
-
+			<body>
 				<table width="720" border="0" cellspacing="0" cellpadding="0">
 					<tr>
 						<td id="tdcol1">&#160;</td>
@@ -58,31 +57,22 @@
 					</tr>
 					<tr>
 						<td colspan="3" class="header">
-							<table>
-
+							<table width="100%">
 								<tr>
 									<td>
 										<img alt="logo" src="icones/logo.png" title="{$appli_name}"/>
 									</td>
-									<td>
-										<font size="+3" color="#196fac">
-											<b>
-												<xsl:value-of select="$appli_comment"/>
-											</b>
-										</font>
-									</td>
-									<td id="xtg-lang-bar">
-										<small>
-											<div id="xtg-lang-item"/>
-											<div id="xtg-lang-item-selected">
+									<td style="font-size: 250%; color: #196fac;"><xsl:value-of select="$appli_comment"/></td>
+									<td id="xtg-lang-bar" style="font-size: 70%;">
+										<div id="xtg-lang-item"/>
+										<div id="xtg-lang-item-selected">
+											<span id="xtg-lang-label"/>
+										</div>
+										<div id="xtg-lang-item-notselected">
+											<a id="xtg-lang-link">
 												<span id="xtg-lang-label"/>
-											</div>
-											<div id="xtg-lang-item-notselected">
-												<a id="xtg-lang-link">
-													<span id="xtg-lang-label"/>
-												</a>
-											</div>
-										</small>
+											</a>
+										</div>
 									</td>
 								</tr>
 							</table>
@@ -90,7 +80,7 @@
 					</tr>
 
 					<tr>
-						<td valign="top">
+						<td id="tdmenu" valign="top">
 							<table class="bar" cellpadding="0" cellspacing="0" border="0" width="100%">
 								<tr id="xtg-nav-index">
 									<td nowrap="nowrap">
@@ -208,7 +198,7 @@
 									</tr>
 								</table>
 							</td>
-							<td colspan="2" valign="top">
+							<td colspan="2" valign="top" id="tdcontent">
 								<table cellpadding="5" width="100%">
 									<tr>
 										<td>

@@ -538,7 +538,7 @@ http://www.fsf.org/copyleft/gpl.html
 				<table border="0">
 				<tr>
 				<td>
-				<select multiple="multiple" size="{$selectsize}" onkeydown="return xfm_selectKeydown (this, this.form[&quot;{$otherfieldname}&quot;]);" type="text" onblur="if (window.xfm_blur) xfm_blur(this);" onfocus="if (window.xfm_focus) xfm_focus(this);">
+				<select multiple="multiple" size="{$selectsize}" onkeydown="return xfm_selectKeydown (this, this.form[&quot;{$otherfieldname}&quot;]);" onblur="if (window.xfm_blur) xfm_blur(this);" onfocus="if (window.xfm_focus) xfm_focus(this);">
 				 	<xsl:choose>
 						<!-- Liste externe -->
 						<xsl:when test="$list != ''">
@@ -586,7 +586,7 @@ http://www.fsf.org/copyleft/gpl.html
 				</td>
 				<td>
 				<input type="hidden" name="{$prefix}2cols.id" value="{$otherfieldname}"/>
-				<select multiple="multiple" size="{$selectsize}" onkeydown="return xfm_selectKeydown(this)" type="text" onblur="if (window.xfm_blur) xfm_blur(this);" onfocus="if (window.xfm_focus) xfm_focus(this);" name="{$otherfieldname}">
+				<select multiple="multiple" size="{$selectsize}" onkeydown="return xfm_selectKeydown(this)" onblur="if (window.xfm_blur) xfm_blur(this);" onfocus="if (window.xfm_focus) xfm_focus(this);" name="{$otherfieldname}">
 				 	<xsl:choose>
 						<!-- Liste externe -->
 						<xsl:when test="$list != ''">
