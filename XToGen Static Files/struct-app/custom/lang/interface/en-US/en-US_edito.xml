@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
 <div>
-<p>Welcome in the [appname] application!</p>
-<font size="-2" color="#ca8000"><i>This home page has been automagically generated from the informations contained in the xtogen.properties file. You can modify it, editing en-US_edito.xml file in custom/lang/interface directory.</i></font>
+<h2>Welcome in the [appname] application!</h2>
+<p>This home page has been automagically generated from the informations contained in the xtogen.properties file. You can modify it, editing en-US_edito.xml file in custom/lang/interface directory.</p>
 </div>

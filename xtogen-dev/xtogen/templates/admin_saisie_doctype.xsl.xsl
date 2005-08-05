@@ -141,12 +141,14 @@
 						</xsl:if>
 
 						<!-- Langue -->
+						<tr><td>
 						<xsl:element name="input">
 							<xsl:attribute name="type">hidden</xsl:attribute>
 							<xsl:attribute name="name">documentLang</xsl:attribute>
 							<xsl:attribute name="value">{$documentLang}</xsl:attribute>
 						</xsl:element>
-						<tr><td><xsl:element name="xsl:value-of"><xsl:attribute name="select">$messages[@id='page.saisie.languedudocument']</xsl:attribute></xsl:element>:</td><td>
+						<xsl:element name="xsl:value-of"><xsl:attribute name="select">$messages[@id='page.saisie.languedudocument']</xsl:attribute></xsl:element>:
+						</td><td>
 						<b><xsl:element name="xsl:value-of"><xsl:attribute name="select">$documentLang</xsl:attribute></xsl:element></b>
 						</td></tr>	
 

@@ -35,7 +35,6 @@ http://www.fsf.org/copyleft/gpl.html
     <sdx:page langSession="lang" langParam="lang">
         <bar/>
         <title id="title.admin_saisie"/>
-		<script/>
 		<xsp:logic>
 			java.text.SimpleDateFormat formatter
 				= new java.text.SimpleDateFormat("dd/MM/yyyy hh:mm:ss");

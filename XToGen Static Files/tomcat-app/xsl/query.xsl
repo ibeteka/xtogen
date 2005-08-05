@@ -109,7 +109,10 @@ http://www.fsf.org/copyleft/gpl.html
 		</xsl:variable>
 		<xsl:variable name="subtitle">
 			<xsl:choose>
-				<xsl:when test="$originalfield='sdxall'"><xsl:value-of select="$labels/doctype[@name=$dbId]/nav[@type='alpha']"/></xsl:when>
+				<xsl:when test="$originalfield='sdxall'">
+					<xsl:variable name="defaultfield" select="$titlefields/dbase[@id=$dbId]"/>
+					<xsl:value-of select="$labels/doctype[@name=$dbId]/nav[@field=$defaultfield]/title"/>
+				</xsl:when>
 				<xsl:otherwise><xsl:value-of select="$labels/doctype[@name=$dbId]/nav[@field=$originalfield]/subtitle"/></xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>

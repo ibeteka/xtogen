@@ -32,7 +32,7 @@ http://www.fsf.org/copyleft/gpl.html
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:sdx="http://www.culture.gouv.fr/ns/sdx/sdx"
 	xmlns:urle="java.net.URLEncoder"
-	exclude-result-prefixes="sdx">
+	exclude-result-prefixes="sdx urle">
     <xsl:import href="common.xsl"/>
 
 	<xsl:variable name="listname" select="$urlparameter[@name='list']/@value"/>
@@ -41,6 +41,8 @@ http://www.fsf.org/copyleft/gpl.html
 	<xsl:variable name="field" select="$urlparameter[@name='field']/@value"/>
 	<xsl:variable name="fichierliste" select="concat('lang/liste/',$lang,'/',$lang,'_',$listname,'.xml')"/>
 	<xsl:variable name="liste" select="document($fichierliste)/list"/>
+
+	<xsl:template match="documentbase"/>
 
 	<xsl:variable name="optionalappinfo">
 		<xsl:choose>

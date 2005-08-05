@@ -66,7 +66,7 @@ http://www.fsf.org/copyleft/gpl.html
 					</tr>
 				</table>
 				<xsl:value-of select="$messages[@id='page.csv.separateurdechampsmultivalues']"/>
-				<input type="text" size="1" length="1" name="csv.mvsep" value="$"/><br/>
+				<input type="text" size="1" name="csv.mvsep" value="$"/><br/>
 				<xsl:choose>
 					<xsl:when test="$currentdoctypesort">
 						<xsl:value-of select="$messages[@id='common.trierpar']"/>

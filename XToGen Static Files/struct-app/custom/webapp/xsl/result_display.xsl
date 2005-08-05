@@ -69,9 +69,6 @@
 			</xsl:choose>
 		</a>
 <xsl:text> </xsl:text><a class="nav" href="{$pdfurl}" title="{$messages[@id='page.admin.exportpdf']}"><img src="icones/pdf.png" alt="{$messages[@id='page.admin.exportpdf']}"/></a>
-<xsl:if test="$value!=''">
-<xsl:text> </xsl:text><span dir="ltr">(<xsl:value-of select="$docid"/>)</span>
-</xsl:if>
 	</xsl:template>
 
 </xsl:stylesheet>

@@ -184,7 +184,6 @@
 				<br/>
 				<fieldset>
 					<legend><xsl:value-of select="$messages[@id='common.recherchedetaillee']"/></legend>
-				<table border="0">
 				<form action="search_{@db}.xsp" method="GET">
 					<xsl:if test="$useJavaScript">
 						<xsl:attribute name="onsubmit">if (window.xfm_submit) return xfm_submit(this);</xsl:attribute>
@@ -192,6 +191,7 @@
 					<input type="hidden" name="sortfield" value="{$currentdoctypedefaultsortfield}"/>
 					<input type="hidden" name="order" value="ascendant"/>
 					<input type="hidden" name="qlang" value="{$lang}"/>
+				<table border="0">
 					<xsl:for-each select="zone">
 						<tr>
 							<xsl:apply-templates select="."/>
@@ -216,8 +216,8 @@
 						</xsl:choose>
 						<input type="reset" value="{$messages[@id='page.search.reinitialiser']}"/>
 					</td></tr>
-				</form>
 				</table>
+				</form>
 				</fieldset>
 			</xsl:when>
 			<!-- pas de parametre db :-( -->

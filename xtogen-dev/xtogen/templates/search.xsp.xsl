@@ -76,7 +76,6 @@
 		xmlns:sdx="http://www.culture.gouv.fr/ns/sdx/sdx">
 		<sdx:page langSession="lang" langParam="lang">
 		<bar/>
-		<script/>
 		<title id="title.search"/>
 
 			<xtg:authentication domain="search">

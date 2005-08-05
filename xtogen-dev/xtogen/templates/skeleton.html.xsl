@@ -40,30 +40,23 @@
 	<xsl:param name="appli_comment"/>
 
 	<xsl:template match="/">
-	
 		<xsl:variable name="doctypes" select="//documenttypes/documenttype"/>
-	
 		<html>
 			<head>
 				<title>XToGen Template</title>
 				<link rel="stylesheet" type="text/css" href="css/html.css"/>
 			</head>
 			<body>
-				<table width="720" border="0" cellspacing="0" cellpadding="0">
-					<tr>
-						<td id="tdcol1">&#160;</td>
-						<td id="tdcol2">&#160;</td>
-						<td id="tdcol3">&#160;</td>
-					</tr>
+				<table id="layout">
 					<tr>
 						<td colspan="3" class="header">
-							<table width="100%">
+							<table id="headerlayout">
 								<tr>
 									<td>
 										<img alt="logo" src="icones/logo.png" title="{$appli_name}"/>
 									</td>
-									<td style="font-size: 250%; color: #196fac;"><xsl:value-of select="$appli_comment"/></td>
-									<td id="xtg-lang-bar" style="font-size: 70%;">
+									<td id="title"><xsl:value-of select="$appli_comment"/></td>
+									<td class="langbar" id="xtg-lang-bar">
 										<div id="xtg-lang-item"/>
 										<div id="xtg-lang-item-selected">
 											<span id="xtg-lang-label"/>
@@ -80,177 +73,137 @@
 					</tr>
 
 					<tr>
-						<td id="tdmenu" valign="top">
-							<table class="bar" cellpadding="0" cellspacing="0" border="0" width="100%">
-								<tr id="xtg-nav-index">
-									<td nowrap="nowrap">
-										<a id="xtg-nav-link" class="barnav" href="#">
-											<span id="xtg-nav-label">#Index#</span>
-										</a>
-									</td>
-								</tr>
+						<td id="tdmenu">
+							<ul id="menubar">
+								<li id="xtg-nav-index">
+									<a id="xtg-nav-link" class="barnav" href="#">
+										<span id="xtg-nav-label">#Index#</span>
+									</a>
+								</li>
 								<xsl:if test="$doctypes/nav/on">
-									<tr id="xtg-nav-nav">
+									<li id="xtg-nav-nav">
 										<xsl:choose>
 											<!-- Un seul type de document -->
 											<xsl:when test="count($doctypes/nav[on])=1">
-												<td id="xtg-nav-nav-{$doctypes[nav/on]/@id}" nowrap="nowrap">
+												<div id="xtg-nav-nav-{$doctypes[nav/on]/@id}" nowrap="nowrap">
 													<a id="xtg-nav-link" class="barnav" href="nav.xsp?db={$doctypes[nav/on]/@id}">
 														<span id="xtg-message-bouton.navigation"/>
 													</a>
-												</td>
+												</div>
 											</xsl:when>
 											<!-- Plusieurs types de documents -->
 											<xsl:otherwise>
-												<td nowrap="nowrap">
-													<fieldset>
-														<legend id="xtg-message-bouton.navigation">#Navigation#</legend>
-														<xsl:for-each select="$doctypes[nav/on]">
-															<div id="xtg-nav-nav-{@id}">
-																<a id="xtg-nav-link" class="barnav" href="#">
-																	<span id="xtg-nav-label">#<xsl:value-of select="@id"/>#</span>
-																</a>
-															</div>
-														</xsl:for-each>
-													</fieldset>
-												</td>
+												<fieldset>
+													<legend id="xtg-message-bouton.navigation">#Navigation#</legend>
+													<xsl:for-each select="$doctypes[nav/on]">
+														<div id="xtg-nav-nav-{@id}">
+															<a id="xtg-nav-link" class="barnav" href="#">
+																<span id="xtg-nav-label">#<xsl:value-of select="@id"/>#</span>
+															</a>
+														</div>
+													</xsl:for-each>
+												</fieldset>
 											</xsl:otherwise>
 										</xsl:choose>
-									</tr>
+									</li>
 								</xsl:if>
 								<xsl:if test="$doctypes/search/on">
-									<tr id="xtg-nav-search">
+									<li id="xtg-nav-search">
 										<xsl:choose>
 											<!-- Un seul type de document -->
 											<xsl:when test="count($doctypes/search[on])=1">
-												<td id="xtg-nav-search-{$doctypes[search/on]/@id}" nowrap="nowrap">
+												<div id="xtg-nav-search-{$doctypes[search/on]/@id}" nowrap="nowrap">
 													<a id="xtg-nav-link" class="barnav" href="#">
 														<span id="xtg-message-bouton.recherche"/>
 													</a>
-												</td>
+												</div>
 											</xsl:when>
 											<!-- Plusieurs types de documents -->
 											<xsl:otherwise>
-												<td nowrap="nowrap">
-													<fieldset>
-														<legend id="xtg-message-bouton.recherche">#Recherche#</legend>
-														<xsl:for-each select="$doctypes[search/on]">
-															<div id="xtg-nav-search-{@id}">
-																<a id="xtg-nav-link" class="barnav" href="#">
-																	<span id="xtg-nav-label">#<xsl:value-of select="@id"/>#</span>
-																</a>
-															</div>
-														</xsl:for-each>
-													</fieldset>
-												</td>
+												<fieldset>
+													<legend id="xtg-message-bouton.recherche">#Recherche#</legend>
+													<xsl:for-each select="$doctypes[search/on]">
+														<div id="xtg-nav-search-{@id}">
+															<a id="xtg-nav-link" class="barnav" href="#">
+																<span id="xtg-nav-label">#<xsl:value-of select="@id"/>#</span>
+															</a>
+														</div>
+													</xsl:for-each>
+												</fieldset>
 											</xsl:otherwise>
 											</xsl:choose>
-										</tr>
+										</li>
 									</xsl:if>
 									<xsl:if test="//application/static/page">
-										<tr>
-											<td nowrap="nowrap">
-												<table cellpadding="0" cellspacing="0" width="100%">
-													<xsl:for-each select="//application/static/page">
-														<tr id="xtg-nav-static-{.}">
-
-															<td>
-																<a id="xtg-nav-link" class="barnav" href="#">
-																	<span id="xtg-nav-label">#<xsl:value-of select="."/>#</span>
-																</a>
-															</td>
-														</tr>
-													</xsl:for-each>
-												</table>
-											</td>
-										</tr>
+										<xsl:for-each select="//application/static/page">
+											<li id="xtg-nav-static-{.}">
+												<a id="xtg-nav-link" class="barnav" href="#">
+													<span id="xtg-nav-label">#<xsl:value-of select="."/>#</span>
+												</a>
+											</li>
+										</xsl:for-each>
 									</xsl:if>
 
-									<tr id="xtg-nav-login">
-										<td nowrap="nowrap">
-											<a id="xtg-nav-link" class="barnav" href="#">
-												<span id="xtg-nav-label">#Login#</span>
-											</a>
-										</td>
-									</tr>
-									<tr id="xtg-nav-admin">
-										<td nowrap="nowrap">
-											<a id="xtg-nav-link" class="barnav" href="#">
-												<span id="xtg-nav-label">#Administration#</span>
-											</a>
-										</td>
-									</tr>
-									<tr>
-										<td nowrap="nowrap">
-
-											<div align="center">
-												<small id="xtg-message-bouton.recherche">
-													#Recherche#
-												</small>
-												<br/>
-												<form action="results.xsp" method="get">
-													<input id="xtg-search-input" type="text" name="q" size="15"/>
-													<select id="xtg-lang-combo" name="qlang"/>
-													<input type="image" value="submit" src="icones/ok.png"/>
-												</form>
-											</div>
-										</td>
-									</tr>
-								</table>
+									<li id="xtg-nav-login">
+										<a id="xtg-nav-link" class="barnav" href="#">
+											<span id="xtg-nav-label">#Login#</span>
+										</a>
+									</li>
+									<li id="xtg-nav-admin">
+										<a id="xtg-nav-link" class="barnav" href="#">
+											<span id="xtg-nav-label">#Administration#</span>
+										</a>
+									</li>
+									<li>
+										<small id="xtg-message-bouton.recherche">
+											#Recherche#
+										</small>
+										<form action="results.xsp" method="get">
+											<input id="xtg-search-input" type="text" name="q" size="15"/>
+											<select id="xtg-lang-combo" name="qlang"/>
+											<input type="image" value="submit" src="icones/ok.png"/>
+										</form>
+									</li>
+								</ul>
 							</td>
 							<td colspan="2" valign="top" id="tdcontent">
-								<table cellpadding="5" width="100%">
-									<tr>
-										<td>
-											<div id="xtg-content">
-												<table width="100%" bgcolor="grey">
-													<tr>
-														<td align="center">
-															<br/>
-															<br/>
-															<br/>
-															<br/>
-															<br/>
-															<br/>
-															<br/>
-															<br/>
-															<br/>
-															<span style="color=#000000;">CONTENT</span>
-															<br/>
-															<br/>
-															<br/>
-															<br/>
-															<br/>
-															<br/>
-															<br/>
-															<br/>
-															<br/>
-														</td>
-													</tr>
-												</table>
-											</div>
-										</td>
-									</tr>
-								</table>
+								<div id="xtg-content">
+									<table width="100%" bgcolor="grey">
+										<tr>
+											<td align="center">
+												<br/>
+												<br/>
+												<br/>
+												<br/>
+												<br/>
+												<br/>
+												<br/>
+												<br/>
+												<br/>
+												<span style="color=#000000;">CONTENT</span>
+												<br/>
+												<br/>
+												<br/>
+												<br/>
+												<br/>
+												<br/>
+												<br/>
+												<br/>
+												<br/>
+											</td>
+										</tr>
+									</table>
+								</div>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="3" class="footer">
-								<table width="100%">
-									<tr id="xtg-user-info">
-		
-										<td>
-											<span id="xtg-user-id">#user#</span>, <span id="xtg-user-comment">#comment#</span>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<a class="url" href="http://xtogen.tech.fr">
-												<img alt="XToGen" src="icones/v_xtogen.png" width="79" height="24"/>
-											</a>
-										</td>
-									</tr>
-								</table>
+								<div id="xtg-user-info">
+									<span id="xtg-user-id">#user#</span>, <span id="xtg-user-comment">#comment#</span>
+								</div>
+								<a class="url" href="http://xtogen.tech.fr">
+									<img alt="XToGen" src="icones/v_xtogen.png" width="79" height="24"/>
+								</a>
 							</td>
 						</tr>
 					</table>

@@ -31,6 +31,8 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:sdx="http://www.culture.gouv.fr/ns/sdx/sdx" exclude-result-prefixes="sdx">
     <xsl:import href="common.xsl"/>
 
+	<xsl:template match="documentbase"/>
+
     <xsl:template match="sdx:terms">
 	<xsl:variable name="dbId" select="/sdx:document/documentbase/@id"/>
 	<xsl:variable name="field" select="$urlparameter[@name='field']/@value"/>
@@ -39,7 +41,7 @@
 			<xsl:when test="$conf_disp/documenttypes/documenttype[@id=$dbId]/nav/on[@field=$field and @thnsize]">
 				<xsl:value-of select="$conf_disp/documenttypes/documenttype[@id=$dbId]/nav/on[@field=$field]/@thnsize"/>
 			</xsl:when>
-			<xsl:otherwise>150x150</xsl:otherwise>
+			<xsl:otherwise>125x125</xsl:otherwise>
 		</xsl:choose>
 	</xsl:variable>
 	<xsl:variable name="mode">
@@ -60,7 +62,7 @@
                 </p>
             </xsl:when>
             <xsl:otherwise>
-				<div id="galerie">
+				<div class="galerie">
 					<div class="spacer">&#160;</div>
 					<xsl:for-each select="sdx:term">
 						<div class="vignettegalerie">

@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <div>
-<p>Bienvenue dans l'application [appname] !</p>
-<font size="-2" color="#ca8000"><i>Cet édito a été automatiquement généré par
+<h2>Bienvenue dans l'application [appname] !</h2>
+<p>Cet édito a été automatiquement généré par
 XtoGen
 en fonction des informations trouvées dans le fichier XtoGen.properties. Vous
 pouvez le modifier en éditant le fichier fr-FR_edito.xml dans le répertoire
-custom/lang/interface.</i></font>
+custom/lang/interface.</p>
 </div>
