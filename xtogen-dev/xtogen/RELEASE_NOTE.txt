@@ -1,4 +1,10 @@
 ==============================================================================
+ XToGen 2 - le 05/08/2005
+
+Améliorations :
+	* Le nombre de tableaux pour la mise en page a été limité
+	* meilleure validation HTML
+==============================================================================
  XToGen 2 - le 19/05/2005
 
 Améliorations :
