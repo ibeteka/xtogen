@@ -1,6 +1,17 @@
 ==============================================================================
+ XToGen 2 - le 11/08/2005
+
+Nouveautés :
+	* Sortie de XToGen 2.0b7
+Améliorations
+    * Meilleur affichage des erreurs d'indexation
+Corrections :
+	* Erreurs JS dans la saisie
+==============================================================================
  XToGen 2 - le 05/08/2005
 
+Nouveautés :
+	* Sortie de XToGen 2.0b6
 Améliorations :
 	* Le nombre de tableaux pour la mise en page a été limité
 	* meilleure validation HTML

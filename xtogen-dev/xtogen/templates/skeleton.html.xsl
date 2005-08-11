@@ -38,6 +38,7 @@
 	<xsl:output method="xml" indent="yes"/>
 	<xsl:param name="appli_name"/>
 	<xsl:param name="appli_comment"/>
+	<xsl:param name="xtogen_version"/>
 
 	<xsl:template match="/">
 		<xsl:variable name="doctypes" select="//documenttypes/documenttype"/>
@@ -201,7 +202,7 @@
 								<div id="xtg-user-info">
 									<span id="xtg-user-id">#user#</span>, <span id="xtg-user-comment">#comment#</span>
 								</div>
-								<a class="url" href="http://xtogen.tech.fr">
+								<a class="url" href="http://xtogen.tech.fr" title="XToGen {$xtogen_version}">
 									<img alt="XToGen" src="icones/v_xtogen.png" width="79" height="24"/>
 								</a>
 							</td>

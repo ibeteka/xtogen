@@ -81,7 +81,7 @@
 	</xsl:template>
 
 
-	<xsl:template match="script" mode="head">
+	<xsl:template match="bar" mode="head">
 	<xsl:if test="$useJavaScript">
 	<script type="text/javascript" src="{/sdx:document/@server}/{/sdx:document/@appbypath}/js/selects.js"/>
 	<script type="text/javascript" language="javascript">

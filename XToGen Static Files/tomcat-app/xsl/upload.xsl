@@ -62,7 +62,15 @@ http://www.fsf.org/copyleft/gpl.html
 					<xsl:if test="count(../sdx:uploadDocument/sdx:exception) &gt; 0">
 						<ul>
 						<xsl:for-each select="../sdx:uploadDocument">
-							<li><span class="error"><xsl:value-of select="$messages[@id='page.upload.erreurlorsdelindexationdudocument']"/><xsl:text> </xsl:text><b><xsl:value-of select="@id"/></b></span></li>
+							<li>
+								<span class="error">
+									<xsl:if test="@id">
+										<xsl:value-of select="$messages[@id='page.upload.erreurlorsdelindexationdudocument']"/><xsl:text> </xsl:text>
+										<strong><xsl:value-of select="@id"/></strong> : <xsl:text/>
+									</xsl:if>
+									<xsl:value-of select="sdx:exception/sdx:message"/>
+								</span>	
+							</li>
 						</xsl:for-each>
 						</ul>
 					</xsl:if>

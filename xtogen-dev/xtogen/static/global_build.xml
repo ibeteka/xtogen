@@ -421,6 +421,7 @@
 		  style="${tmpl.dir}/skeleton.html.xsl">
 		<param name="appli_name" expression="${project.name}"/>
 		<param name="appli_comment" expression="${project.label}"/>
+		<param name="xtogen_version" expression="${xtogen.version}"/>
 	</xslt>
 
 	<echo>Génération des documents HTML</echo>
