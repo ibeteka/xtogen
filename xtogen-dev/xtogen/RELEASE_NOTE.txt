@@ -1,4 +1,14 @@
 ==============================================================================
+ XToGen 2 - le 12/08/2005
+
+Corrections :
+	* valueParam plutôt que queryParam pour les query_*.xsp
+==============================================================================
+ XToGen 2 - le 11/08/2005
+
+Corrections :
+	* Meilleure validation du code HTML dans les formulaires de saisie
+==============================================================================
  XToGen 2 - le 11/08/2005
 
 Nouveautés :

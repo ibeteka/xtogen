@@ -127,8 +127,6 @@
         <table cellpadding="10" cellspacing="0" width="100%" class="paddings">
             <tr>
                 <td class="highlight">
-                    <table cellpadding="3" class="highlight" cellspacing="0" width="100%">
-
 						<!-- Versioning -->
 						<xsl:if test="@versioning='true'">
 							<xsl:element name="xsl:call-template">
@@ -139,6 +137,8 @@
 								</xsl:element>
 							</xsl:element>
 						</xsl:if>
+
+                    <table cellpadding="3" class="highlight" cellspacing="0" width="100%">
 
 						<!-- Langue -->
 						<tr><td>
@@ -613,6 +613,7 @@
 				<xsl:with-param name="empty" select="$empty"/>
 				<xsl:with-param name="docinfo" select="$docinfo"/>
 			</xsl:apply-templates>
+		</table>
 
 			<xsl:if test="$new='yes'">
 				<xsl:call-template name="computePrefix">
@@ -636,7 +637,7 @@
 					</xsl:element>
 				</xsl:element>
 			</xsl:if>
-		</table>
+
 		<xsl:if test="$new='no'">
 			<div align="right">
 				<xsl:call-template name="computePrefix">

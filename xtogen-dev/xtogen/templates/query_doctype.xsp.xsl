@@ -87,7 +87,7 @@
 
 					<xtg:authentication domain="nav">
 						<documentbase id="{@id}"/>
-						<sdx:executeFieldQuery fieldParam="f" queryParam="v">
+						<sdx:executeFieldQuery fieldParam="f" valueParam="v">
 							<sdx:sort fieldParam="sortfield" orderParam="order"/>
 							<xsl:variable name="base" select="@id"/>
 							<xsl:choose>
@@ -107,7 +107,7 @@
 				// Sinon autorisé seulement en accès local
 				else //if ("127.0.0.1".equals(request.getRemoteAddr()))
 				{
-					<sdx:executeFieldQuery fieldParam="f" queryParam="v">
+					<sdx:executeFieldQuery fieldParam="f" valueParam="v">
 						<sdx:sort fieldParam="sortfield" orderParam="order"/>
 						<xsl:variable name="base" select="@id"/>
 						<xsl:choose>
