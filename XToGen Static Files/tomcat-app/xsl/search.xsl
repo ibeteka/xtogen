@@ -87,31 +87,26 @@
 	<script type="text/javascript" language="javascript">
 
 	// Ce code JavaScript ainsi que les différents petits inserts
-	// viennent de la page d'administration SDX
-	// et ont été écrits par AJLSM
-    
-    function xfm_blur(o)
-    {
-        if (!o.className) return true;
-        o.className=o.className.replace(/ ?xfm_focus/gi, ''); 
-        return true;
-    }
+	// viennent de la page d'administration SDX et ont été écrits par AJLSM
+	// puis sérieusement revus par Pierre DITTGEN, PASS-TECH
 
-    function xfm_focus(o) 
-    {
-        document.xfm_last = o;
-        if (!o.className) return true;
-        o.className=o.className + ' xfm_focus'; 
-        return true;
-    }
-    
-	function xfm_load()
-	{
-		
-		return true;
+	/**
+	 * Select values in a select
+	 * @param selectId HTML select element identifier
+	 */
+	function __2colsSelectValues(selectId) {
+		var select = document.getElementById(selectId);
+		for (var i=0; i&lt;select.options.length; i++) {
+			select.options[i].selected = true;
+		}
 	}
 
-	function xfm_submit(form)
+	/**
+	 * Called on form submit
+	 * @param form Current form
+	 * @return always true
+	 */
+	function _2colsSubmit()
 	{
 		<xsl:for-each select="/sdx:document/recherche[@db=$dbParam]/zone[@mode='2cols']">
 			<xsl:variable name="fieldname">
@@ -120,20 +115,10 @@
 					<xsl:otherwise><xsl:value-of select="@name"/></xsl:otherwise>
 				</xsl:choose>
 			</xsl:variable>
-			if (form.<xsl:value-of select="$fieldname"/>)
-			{
-				if (form.<xsl:value-of select="$fieldname"/>.length == 0)
-					optionAdd(form.<xsl:value-of select="$fieldname"/>,"---","");
-				selectAll(form.<xsl:value-of select="$fieldname"/>);
-			}
+			<xsl:text/>__2colsSelectValues('<xsl:value-of select="$fieldname"/>');
 		</xsl:for-each>
 
 		return true;
-	}
-	
-	function xfm_reset(form)
-	{
-	
 	}
 
     </script>
@@ -186,7 +171,7 @@
 					<legend><xsl:value-of select="$messages[@id='common.recherchedetaillee']"/></legend>
 				<form action="search_{@db}.xsp" method="GET">
 					<xsl:if test="$useJavaScript">
-						<xsl:attribute name="onsubmit">if (window.xfm_submit) return xfm_submit(this);</xsl:attribute>
+						<xsl:attribute name="onsubmit">return _2colsSubmit();</xsl:attribute>
 					</xsl:if>
 					<input type="hidden" name="sortfield" value="{$currentdoctypedefaultsortfield}"/>
 					<input type="hidden" name="order" value="ascendant"/>
@@ -206,14 +191,7 @@
 					</td>
 					</tr>
 					<tr><td colspan="4">
-						<xsl:choose>
-							<xsl:when test="$useJavaScript">
-								<input type="submit" onblur="if (window.xfm_blur) xfm_blur(this);" onfocus="if (window.xfm_focus) xfm_focus(this);" value="{$messages[@id='page.search.rechercher']}"/>
-							</xsl:when>
-							<xsl:otherwise>
-								<input type="submit" value="{$messages[@id='page.search.rechercher']}"/>
-							</xsl:otherwise>
-						</xsl:choose>
+						<input type="submit" value="{$messages[@id='page.search.rechercher']}"/>
 						<input type="reset" value="{$messages[@id='page.search.reinitialiser']}"/>
 					</td></tr>
 				</table>
@@ -355,7 +333,7 @@
 				<table border="0">
 				<tr>
 				<td>
-				<select multiple="multiple" size="{$selectsize}" onkeydown="return xfm_selectKeydown (this, this.form.{$otherfieldname});" type="text" onblur="if (window.xfm_blur) xfm_blur(this);" onfocus="if (window.xfm_focus) xfm_focus(this);">
+				<select multiple="multiple" size="{$selectsize}" id="{$otherfieldname}_repository">
 					<xsl:choose>
 						<!-- liste externe -->
 						<xsl:when test="@list">
@@ -399,16 +377,16 @@
 				</select>
 				</td>
 				<td>
-				<input type="button" value=" &gt; " onclick="for (var i=0; this.form.length; i++) if (this.form[i]==this) break; xfm_selectAdd(this.form[i-1],this.form.{$otherfieldname}); "/>
+				<input type="button" value=" &gt; " onclick="_2colsShiftValues('{$otherfieldname}');"/>
 				</td>
 				<td>
-				<select multiple="multiple" size="{$selectsize}" onkeydown="return xfm_selectKeydown(this)" type="text" onblur="if (window.xfm_blur) xfm_blur(this);" onfocus="if (window.xfm_focus) xfm_focus(this);" name="{$otherfieldname}"/>
+				<select multiple="multiple" size="{$selectsize}" name="{$otherfieldname}" id="{$otherfieldname}"/>
 				</td>
 				<td>
-                <input type="button" value=" - " onclick="optionDel(this.form.{$otherfieldname}); "/><br/>
-                <input type="button" value=" ^ " onclick="optionUp(this.form.{$otherfieldname}); "/><br/>
-                <input type="button" value=" v " onclick="optionDown(this.form.{$otherfieldname}); "/><br/>
-				<input type="button" value=" 0 " onclick="xfm_selectReset(this.form.{$otherfieldname}); "/>
+                <input type="button" value=" - " onclick="_2colsOptionDel('{$otherfieldname}');"/><br/>
+                <input type="button" value=" ^ " onclick="_2colsOptionUp('{$otherfieldname}');"/><br/>
+                <input type="button" value=" v " onclick="_2colsOptionDown('{$otherfieldname}');"/><br/>
+				<input type="button" value=" 0 " onclick="_2colsClearSelection('{$otherfieldname}');"/>
 				</td>
 				</tr>
 				</table>

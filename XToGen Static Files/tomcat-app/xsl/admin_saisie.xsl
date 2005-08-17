@@ -87,7 +87,7 @@ http://www.fsf.org/copyleft/gpl.html
 			</xsl:choose>
 		</xsl:variable>
 
-		<input type="text" name="{$prefix}{$gprefix}{$name}" size="{$size}">
+		<input type="text" id="{$prefix}{$gprefix}{$name}" name="{$prefix}{$gprefix}{$name}" size="{$size}">
 			<xsl:if test="$value">
 				<xsl:attribute name="value"><xsl:value-of select="$value"/></xsl:attribute>
 			</xsl:if>
@@ -142,63 +142,46 @@ http://www.fsf.org/copyleft/gpl.html
 	<script type="text/javascript" language="javascript">
 
 	// Ce code JavaScript ainsi que les différents petits inserts
-	// viennent de la page d'administration SDX
-	// et ont été écrits par AJLSM
+	// viennent de la page d'administration SDX et ont été écrits par AJLSM
+	// puis sérieusement revus par Pierre DITTGEN, PASS-TECH
     
-    function xfm_blur(o) {
-        if (!o.className) return true;
-        o.className=o.className.replace(/ ?xfm_focus/gi, ''); 
-        return true;
-    }
-
-    function xfm_focus(o) {
-        document.xfm_last = o;
-        if (!o.className) return true;
-        o.className=o.className + ' xfm_focus'; 
-        return true;
-    }
-    
-	function xfm_load() {
-		return true;
+	/**
+	 * Select values in a select
+	 * @param selectId HTML select element identifier
+	 */
+	function __2colsSelectValues(selectId) {
+		var select = document.getElementById(selectId);
+		for (var i=0; i&lt;select.options.length; i++) {
+			select.options[i].selected = true;
+		}
 	}
 
-	function getInputValue(obj) {
-		if ((typeof(obj.length) != "undefined") &amp;&amp; (typeof(obj.type)=="undefined"))
-		{
-			var values = new Array();
-			for (var i=0; i&lt;obj.length; i++)
-			{
-				var v = obj[i].value;
-				if (v != null)
-					values[values.length] = v;
+	/**
+	 * Called on form submit
+	 * @param form Current form
+	 * @return always true
+	 */
+	function _2colsSubmit(form) {
+		var obj = form['f_2cols.id'];
+
+		if (obj) {
+			if (obj.length) {
+				for (var i=0; i&lt;obj.length; i++) {
+					__2colsSelectValues(obj[i].value);
+				}
+			} else {
+				__2colsSelectValues(obj.value);
 			}
-			return values;
 		}
-
-		var ret = new Array();
-		ret[0] = obj.value;
-		return ret;
-	}
-
-	function xfm_submit(form) {
-		values = getInputValue(form['<xsl:value-of select="$prefix"/>2cols.id']);
-		for (i=0; i&lt;values.length; i++) {
-			var hid = values[i];
-			if (form[hid]) selectAll(form[hid]);
-		}
-
 		return true;
-	}
-	
-	function xfm_reset(form) {
 	}
 
 	function clearField(field) {
 		document.getElementById(field).value = '';
 	}
 	function clearFields(field) {
-		document.getElementById(field).value = '';
-		document.getElementById(field + '.label').value = '';
+		clearField(field);
+		clearField(field + '.label');
 	}
     </script>
 	</xsl:if>
@@ -274,7 +257,7 @@ http://www.fsf.org/copyleft/gpl.html
 		<xsl:if test="$urlparameter[@name='id']">&#160;<small>(<xsl:value-of select="$urlparameter[@name='id']/@value"/>)</small></xsl:if>
 		<form id="saisie" name="saisie" method="POST" action="saisie_{$base}.xsp" enctype="multipart/form-data">
 			<xsl:if test="$useJavaScript">
-				<xsl:attribute name="onsubmit">if (window.xfm_submit) return xfm_submit(this);</xsl:attribute>
+				<xsl:attribute name="onsubmit">return _2colsSubmit(this);</xsl:attribute>
 			</xsl:if>
 			<input type="hidden" name="document.base" value="{$base}"/>
 			<input type="hidden" name="interfaceLang" value="{$lang}"/>
@@ -286,14 +269,7 @@ http://www.fsf.org/copyleft/gpl.html
 				<input type="hidden" name="nextno" value="{$batchnav/sdx:next/@no}"/>
 			</xsl:if>
 			<xsl:apply-templates/>
-			<xsl:choose>
-				<xsl:when test="$useJavaScript">
-					<input type="submit" onblur="if (window.xfm_blur) xfm_blur(this);" onfocus="if (window.xfm_focus) xfm_focus(this);" value="{$messages[@id='common.ok']}"/>
-				</xsl:when>
-				<xsl:otherwise>
-					<input type="submit" value="{$messages[@id='common.ok']}"/>
-				</xsl:otherwise>
-			</xsl:choose>
+			<input type="submit" value="{$messages[@id='common.ok']}"/>
 		</form>
 	</xsl:template>
 
@@ -538,7 +514,7 @@ http://www.fsf.org/copyleft/gpl.html
 				<table border="0">
 				<tr>
 				<td>
-				<select multiple="multiple" size="{$selectsize}" onkeydown="return xfm_selectKeydown (this, this.form[&quot;{$otherfieldname}&quot;]);" onblur="if (window.xfm_blur) xfm_blur(this);" onfocus="if (window.xfm_focus) xfm_focus(this);">
+				<select multiple="multiple" size="{$selectsize}" id="{$otherfieldname}_repository">
 				 	<xsl:choose>
 						<!-- Liste externe -->
 						<xsl:when test="$list != ''">
@@ -582,11 +558,11 @@ http://www.fsf.org/copyleft/gpl.html
 				</select>
 				</td>
 				<td>
-				<input type="button" value=" &gt; " onclick="for (var i=0; this.form.length; i++) if (this.form[i]==this) break; xfm_selectAdd(this.form[i-1],this.form[&quot;{$otherfieldname}&quot;]); "/>
+				<input type="button" value=" &gt; " onclick="_2colsShiftValues('{$otherfieldname}');"/>
 				</td>
 				<td>
 				<input type="hidden" name="{$prefix}2cols.id" value="{$otherfieldname}"/>
-				<select multiple="multiple" size="{$selectsize}" onkeydown="return xfm_selectKeydown(this)" onblur="if (window.xfm_blur) xfm_blur(this);" onfocus="if (window.xfm_focus) xfm_focus(this);" name="{$otherfieldname}">
+				<select multiple="multiple" size="{$selectsize}" name="{$otherfieldname}" id="{$otherfieldname}">
 				 	<xsl:choose>
 						<!-- Liste externe -->
 						<xsl:when test="$list != ''">
@@ -634,10 +610,10 @@ http://www.fsf.org/copyleft/gpl.html
 				</select>
 				</td>
 				<td>
-                <input type="button" value=" - " onclick="optionDel(this.form[&quot;{$otherfieldname}&quot;]); "/><br/>
-                <input type="button" value=" ^ " onclick="optionUp(this.form[&quot;{$otherfieldname}&quot;]); "/><br/>
-                <input type="button" value=" v " onclick="optionDown(this.form[&quot;{$otherfieldname}&quot;]); "/><br/>
-				<input type="button" value=" 0 " onclick="xfm_selectReset(this.form[&quot;{$otherfieldname}&quot;]); "/>
+                <input type="button" value=" - " onclick="_2colsOptionDel('{$otherfieldname}');"/><br/>
+                <input type="button" value=" ^ " onclick="_2colsOptionUp('{$otherfieldname}');"/><br/>
+                <input type="button" value=" v " onclick="_2colsOptionDown('{$otherfieldname}');"/><br/>
+				<input type="button" value=" 0 " onclick="_2colsClearSelection('{$otherfieldname}');"/>
 				</td>
 				</tr>
 				</table>
@@ -670,7 +646,7 @@ http://www.fsf.org/copyleft/gpl.html
 						</xsl:otherwise>
 					</xsl:choose>
 				</xsl:if>
-				<select name="{$otherfieldname}">
+			<select name="{$otherfieldname}">
 					<xsl:if test="$mode='Mcombo'">
 						<xsl:attribute name="multiple">multiple</xsl:attribute>
 						<xsl:attribute name="size"><xsl:value-of select="$selectsize"/></xsl:attribute>
@@ -1000,7 +976,7 @@ http://www.fsf.org/copyleft/gpl.html
 						</xsl:when>
 						<xsl:when test="$mode='browser'">
 							<input type="text" id="{$prefix}{$gprefix}{$field}_{$id}" name="{$prefix}{$gprefix}{$field}" value="{$value}"/><xsl:text> </xsl:text>
-							<input type="button" value="{$messages[@id='page.admin.navigateurdepiecesattachees']}..." onClick="openBrowser('{$prefix}{$gprefix}{$field}_{$id}')"/><br/>
+							<input type="button" value="{$messages[@id='page.admin.navigateurdepiecesattachees']}..." onclick="openBrowser('{$prefix}{$gprefix}{$field}_{$id}')"/><br/>
 						</xsl:when>
 						<xsl:otherwise>
 							<select name="{$prefix}{$gprefix}{$field}">
@@ -1052,7 +1028,7 @@ http://www.fsf.org/copyleft/gpl.html
 						</xsl:choose>
 					</xsl:variable>
 					<xsl:if test="($mode='link' and $value/@thn) or ($mode='inline' and $value) or ($mode='upload' or $mode='browser')">
-						<img alt="{$imgurl}" id="{$prefix}{$gprefix}{$field}_{$id}_img" src="{$imgurl}"/>
+						<img id="{$prefix}{$gprefix}{$field}_{$id}_img" src="{$imgurl}"/>
 					</xsl:if>
 				</td>
 				</tr>
@@ -1076,7 +1052,7 @@ http://www.fsf.org/copyleft/gpl.html
 					</xsl:when>
 					<xsl:when test="$mode='browser'">
 						<input type="text" id="{$prefix}{$gprefix}{$field}_empty" name="{$prefix}{$gprefix}{$field}"/><xsl:text> </xsl:text>
-						<input type="button" value="{$messages[@id='page.admin.navigateurdepiecesattachees']}..." onClick="openBrowser('{$prefix}{$gprefix}{$field}_empty')"/>
+						<input type="button" value="{$messages[@id='page.admin.navigateurdepiecesattachees']}..." onclick="openBrowser('{$prefix}{$gprefix}{$field}_empty')"/>
 					</xsl:when>
 					<xsl:when test="$mode='upload'">
 						<input type="file" name="{$prefix}{$gprefix}{$field}.upload"/>
@@ -1101,7 +1077,7 @@ http://www.fsf.org/copyleft/gpl.html
 				</xsl:if>
 				</td>
 			<td>
-				<img id="{$prefix}{$gprefix}{$field}_empty_img" alt="blank" src="icones/transparent.png"/>
+				<img id="{$prefix}{$gprefix}{$field}_empty_img" src="icones/transparent.png"/>
 			</td>
 				</tr>
 			</xsl:otherwise>
