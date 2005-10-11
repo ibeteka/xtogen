@@ -352,4 +352,11 @@
 	<message id="page.static.pasdepagedemandee">No page id given!</message>
 	<message id="page.static.pagenondeclaree.debut">Page "</message>
 	<message id="page.static.pagenondeclaree.fin">" has not been declared!</message>
+
+	<!-- La widget 2 colonnes -->
+	<message id="widget.2cols.ajouterleselementsselectionnes">Add the selected items</message>
+	<message id="widget.2cols.supprimerleselementsselectionnes">Remove the selected items</message>
+	<message id="widget.2cols.monterlelementselectionne">Move the selected item up</message>
+	<message id="widget.2cols.descendrelelementselectionne">Move the selected item down</message>
+	<message id="widget.2cols.viderlaliste">Flush the list</message>
 </messages>

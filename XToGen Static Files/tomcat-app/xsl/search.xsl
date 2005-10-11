@@ -380,13 +380,23 @@
 				<input type="button" value=" &gt; " onclick="_2colsShiftValues('{$otherfieldname}');"/>
 				</td>
 				<td>
-				<select multiple="multiple" size="{$selectsize}" name="{$otherfieldname}" id="{$otherfieldname}"/>
+				<input type="image" src="icones/2cols_right.png" alt=" &gt; "
+					title="{$messages[@id='specifique.2cols.ajouterleselementsselectionnes']}"
+					onclick="_2colsShiftValues('{$otherfieldname}'); return false;"/>
 				</td>
 				<td>
-                <input type="button" value=" - " onclick="_2colsOptionDel('{$otherfieldname}');"/><br/>
-                <input type="button" value=" ^ " onclick="_2colsOptionUp('{$otherfieldname}');"/><br/>
-                <input type="button" value=" v " onclick="_2colsOptionDown('{$otherfieldname}');"/><br/>
-				<input type="button" value=" 0 " onclick="_2colsClearSelection('{$otherfieldname}');"/>
+                <input type="image" src="icones/2cols_remove.png" alt=" - "
+					title="{$messages[@id='specifique.2cols.supprimerleselementsselectionnes']}"
+					onclick="_2colsOptionDel('{$otherfieldname}'); return false;"/><br/>
+                <input type="image" src="icones/2cols_up.png" alt=" ^ "
+					title="{$messages[@id='specifique.2cols.monterlelementselectionne']}"
+					onclick="_2colsOptionUp('{$otherfieldname}'); return false;"/><br/>
+                <input type="image" src="icones/2cols_down.png" alt=" v "
+					title="{$messages[@id='specifique.2cols.descendrelelementselectionne']}"
+					onclick="_2colsOptionDown('{$otherfieldname}'); return false;"/><br/>
+				<input type="image" src="icones/2cols_flush.png" alt=" 0 "
+					title="{$messages[@id='specifique.2cols.viderlaliste']}"
+					onclick="_2colsClearSelection('{$otherfieldname}'); return false;"/>
 				</td>
 				</tr>
 				</table>

@@ -558,7 +558,9 @@ http://www.fsf.org/copyleft/gpl.html
 				</select>
 				</td>
 				<td>
-				<input type="button" value=" &gt; " onclick="_2colsShiftValues('{$otherfieldname}');"/>
+				<input type="image" src="icones/2cols_right.png" alt=" &gt; "
+					title="{$messages[@id='widget.2cols.ajouterleselementsselectionnes']}"
+					onclick="return _2colsShiftValues('{$otherfieldname}');"/>
 				</td>
 				<td>
 				<input type="hidden" name="{$prefix}2cols.id" value="{$otherfieldname}"/>
@@ -610,10 +612,18 @@ http://www.fsf.org/copyleft/gpl.html
 				</select>
 				</td>
 				<td>
-                <input type="button" value=" - " onclick="_2colsOptionDel('{$otherfieldname}');"/><br/>
-                <input type="button" value=" ^ " onclick="_2colsOptionUp('{$otherfieldname}');"/><br/>
-                <input type="button" value=" v " onclick="_2colsOptionDown('{$otherfieldname}');"/><br/>
-				<input type="button" value=" 0 " onclick="_2colsClearSelection('{$otherfieldname}');"/>
+                <input type="image" src="icones/2cols_remove.png" alt=" - "
+					title="{$messages[@id='widget.2cols.supprimerleselementsselectionnes']}"
+					onclick="return _2colsOptionDel('{$otherfieldname}');"/><br/>
+                <input type="image" src="icones/2cols_up.png" alt=" ^ "
+					title="{$messages[@id='widget.2cols.monterlelementselectionne']}"
+					onclick="return _2colsOptionUp('{$otherfieldname}');"/><br/>
+                <input type="image" src="icones/2cols_down.png" alt=" v "
+					title="{$messages[@id='widget.2cols.descendrelelementselectionne']}"
+					onclick="return _2colsOptionDown('{$otherfieldname}');"/><br/>
+				<input type="image" src="icones/2cols_flush.png" alt=" 0 "
+					title="{$messages[@id='widget.2cols.viderlaliste']}"
+					onclick="return _2colsClearSelection('{$otherfieldname}');"/>
 				</td>
 				</tr>
 				</table>

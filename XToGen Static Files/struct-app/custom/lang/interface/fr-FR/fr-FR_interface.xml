@@ -353,4 +353,11 @@
 	<message id="page.static.pasdepagedemandee">Pas de page demandée !</message>
 	<message id="page.static.pagenondeclaree.debut">La page </message>
 	<message id="page.static.pagenondeclaree.fin"> n'a pas été déclarée</message>
+
+	<!-- La widget 2 colonnes -->
+	<message id="widget.2cols.ajouterleselementsselectionnes">Ajouter les éléments sélectionnés</message>
+	<message id="widget.2cols.supprimerleselementsselectionnes">Supprimer les éléments sélectionnés</message>
+	<message id="widget.2cols.monterlelementselectionne">Monter l'élément sélectionné</message>
+	<message id="widget.2cols.descendrelelementselectionne">Descendre l'élément sélectionné</message>
+	<message id="widget.2cols.viderlaliste">Vider la liste</message>
 </messages>
