@@ -13,6 +13,9 @@ function _2colsClearSelection(selectId) {
 	while (select.options[0] != null) {
 		select.options[0] = null;
 	}
+
+	// To avoid form submission
+	return false;
 }
 
 /**
@@ -25,13 +28,16 @@ function _2colsOptionDown(selectId) {
 	var index = select.selectedIndex;
 
 	if (index < 0 || index == select.options.length - 1) {
-		return;
+		return false;
 	}
 	var option1 = select.options[index];
 	var option2 = select.options[index + 1];
 	select.options[index] = new Option(option2.text, option2.value);
 	select.options[index + 1] = new Option(option1.text, option1.value);
 	select.selectedIndex = index + 1;
+
+	// To avoid form submission
+	return false;
 }
 
 /**
@@ -44,13 +50,16 @@ function _2colsOptionUp(selectId) {
 	var index = select.selectedIndex;
 
 	if (index < 1) {
-		return;
+		return false;
 	}
 	var option1 = select.options[index - 1];
 	var option2 = select.options[index];
 	select.options[index - 1] = new Option(option2.text, option2.value);
 	select.options[index] = new Option(option1.text, option1.value);
 	select.selectedIndex = index - 1;
+
+	// To avoid form submission
+	return false;
 }
 
 /**
@@ -71,6 +80,9 @@ function _2colsOptionDel(selectId) {
 		var index = selectedIndices[i];
 	    select.options[index - i] = null;
 	}
+
+	// To avoid form submission
+	return false;
 }
 
 /**
@@ -124,4 +136,7 @@ function _2colsShiftValues(selectId) {
 			__2colsOptionAdd(select2, options[i].text, options[i].value);
 		}
 	}
+
+	// To avoid form submission
+	return false;
 }

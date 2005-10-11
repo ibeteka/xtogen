@@ -1,4 +1,11 @@
 ==============================================================================
+ XToGen 2 - le 11/10/2005
+
+Améliorations :
+	* Meilleure gestion de la sélection en mode "2 colonnes"
+		+ Javascript moins buggé
+		+ gestion du reset (dans les formulaires de recherche)
+==============================================================================
  XToGen 2 - le 17/08/2005
 
 Améliorations :
