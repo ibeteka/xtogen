@@ -121,6 +121,26 @@
 		return true;
 	}
 
+	/**
+	 * Called on form reset
+	 * @param form Current form
+	 * @return always true
+	 */
+	function _2colsReset()
+	{
+		<xsl:for-each select="/sdx:document/recherche[@db=$dbParam]/zone[@mode='2cols']">
+			<xsl:variable name="fieldname">
+				<xsl:choose>
+					<xsl:when test="@list"><xsl:value-of select="concat($choicefieldprefix,@name)"/></xsl:when>
+					<xsl:otherwise><xsl:value-of select="@name"/></xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
+			<xsl:text/>_2colsClearSelection('<xsl:value-of select="$fieldname"/>');
+		</xsl:for-each>
+
+		return true;
+	}
+
     </script>
 	</xsl:if>
 	</xsl:template>
@@ -172,6 +192,7 @@
 				<form action="search_{@db}.xsp" method="GET">
 					<xsl:if test="$useJavaScript">
 						<xsl:attribute name="onsubmit">return _2colsSubmit();</xsl:attribute>
+						<xsl:attribute name="onreset">return _2colsReset();</xsl:attribute>
 					</xsl:if>
 					<input type="hidden" name="sortfield" value="{$currentdoctypedefaultsortfield}"/>
 					<input type="hidden" name="order" value="ascendant"/>
