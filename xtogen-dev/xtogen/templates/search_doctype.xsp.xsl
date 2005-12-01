@@ -82,6 +82,8 @@
 			<bar/>
 		
 			<xtg:authentication domain="search">
+
+			<!-- Champs multilingues -->
 			<xsl:variable name="mlfs" select="fields/descendant-or-self::field[@lang='multi']"/>
 			<xsl:if test="count($mlfs)!=0">
 				<xsp:logic>
@@ -91,8 +93,32 @@
 					</xsl:for-each>
 				</xsp:logic>
 			</xsl:if>
+
+			<!-- Requete complexe -->
 			<resultats>
-				<sdx:executeComplexQuery>
+
+				<!-- Champs sous forme de combos -->
+				<xsp:logic>
+					<xsl:variable name="docstructure" select="."/>
+					<xsl:for-each select="$docsearch/on">
+						<xsl:variable name="fieldname" select="@field"/>
+						<xsl:variable name="field" select="$docstructure/fields/descendant-or-self::field[@name=$fieldname]"/>
+						<xsl:if test="$field/@type='choice' and (not(@mode) or @mode='Mcombo' or @mode='combo')">
+							<xsl:variable name="varname" select="concat('my',translate(substring($fieldname,1,1),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),substring($fieldname,2))"/>
+							<xsl:variable name="f">
+								<xsl:if test="$field/@list"><xsl:value-of select="$xtg_choiceidprefix"/></xsl:if><xsl:value-of select="@field"/>
+							</xsl:variable>
+							<xsl:text/>
+			String[] <xsl:value-of select="$varname"/> = request.getParameterValues("<xsl:value-of select="$f"/>");
+			if (<xsl:value-of select="$varname"/> != null &amp;&amp; <xsl:value-of select="$varname"/>.length == 1 &amp;&amp; "".equals(<xsl:value-of select="$varname"/>[0])) {
+				<xsl:value-of select="$varname"/> = new String[0];
+			}</xsl:if>
+					</xsl:for-each>
+				<xsl:text>
+			</xsl:text>
+				</xsp:logic>
+
+				<sdx:executeComplexQuery complexopParam="complex.query.op">
 					<!-- Tri -->
 					<sdx:sort fieldParam="sortfield" orderParam="order"/>
 
@@ -143,9 +169,6 @@
 					<xsl:attribute name="field"><xsl:value-of select="$xtg_wordprefix"/><xsl:value-of select="@field"/></xsl:attribute>
 				</xsl:otherwise>
 			</xsl:choose>
-			<xsl:if test="position()!=1">
-				<xsl:attribute name="complexopParam">complex.query.op</xsl:attribute>
-			</xsl:if>
 			</sdx:simpleQuery>
 		</xsl:when>
 		<!-- Listes -->
@@ -154,28 +177,24 @@
 				<xsl:if test="$field/@list"><xsl:value-of select="$xtg_choiceidprefix"/></xsl:if><xsl:value-of select="@field"/>
 			</xsl:variable>
 			<xsl:choose>
-				<xsl:when test="not($field/@mode) or $field/@mode='Mcombo' or $field/@mode='check'">
-					<sdx:linearQuery field="{$f}" valueParam="{$f}" opParam="{@field}.op">
-						<xsl:if test="position()!=1">
-							<xsl:attribute name="complexopParam">complex.query.op</xsl:attribute>
-						</xsl:if>
-					</sdx:linearQuery>
+				<xsl:when test="not(@mode) or @mode='Mcombo'">
+					<xsl:variable name="varname" select="concat('my',translate(substring($fieldname,1,1),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),substring($fieldname,2))"/>
+					<sdx:linearQuery field="{$f}" valueStrings="{$varname}" opParam="{@field}.op" />
+				</xsl:when>
+				<xsl:when test="@mode='check' or @mode='2cols'">
+					<sdx:linearQuery field="{$f}" valueParam="{$f}" opParam="{@field}.op" />
+				</xsl:when>
+				<xsl:when test="@mode='combo'">
+					<xsl:variable name="varname" select="concat('my',translate(substring($fieldname,1,1),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),substring($fieldname,2))"/>
+					<sdx:fieldQuery field="{$f}" valueStrings="{$varname}" op="and" />
 				</xsl:when>
 				<xsl:otherwise>
-					<sdx:fieldQuery field="{$f}" valueParam="{$f}" op="and">
-						<xsl:if test="position()!=1">
-							<xsl:attribute name="complexopParam">complex.query.op</xsl:attribute>
-						</xsl:if>
-					</sdx:fieldQuery>
+					<sdx:fieldQuery field="{$f}" valueParam="{$f}" op="and" />
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:when>
 		<xsl:otherwise>
-			<sdx:simpleQuery field="{@field}" queryParam="{$xtg_wordprefix}{@field}" complexopParam="complex.query.op">
-			<xsl:if test="position()!=1">
-				<xsl:attribute name="complexopParam">complex.query.op</xsl:attribute>
-			</xsl:if>
-			</sdx:simpleQuery>
+			<sdx:simpleQuery field="{@field}" queryParam="{$xtg_wordprefix}{@field}"/>
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:template>

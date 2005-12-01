@@ -1,4 +1,11 @@
 ==============================================================================
+ XToGen 2 - le 01/12/2005
+
+Correction :
+	* Modification du traitement des formulaires de recherche complexe pour
+	se conformer au nouveau mode de fonctionnement de SDX
+
+==============================================================================
  XToGen 2 - le 11/10/2005
 
 Améliorations :
