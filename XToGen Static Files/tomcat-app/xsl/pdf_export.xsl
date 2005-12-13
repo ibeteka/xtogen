@@ -540,10 +540,10 @@
 		<xsl:param name="mode"/>
 
 		<!-- L'url du thumbnail -->
-		<xsl:variable name="thnurl" select="concat($sdxdocument/@api-url,'/getatt?app=',$application,'&amp;base=',$dbId,'&amp;id=',$value/@thn,'&amp;doc=',$docId)"/>
+		<xsl:variable name="thnurl" select="concat('attached_file?app=',$application,'&amp;base=',$dbId,'&amp;id=',$value/@thn,'&amp;doc=',$docId)"/>
 
 		<!-- L'url du document attaché -->
-		<xsl:variable name="imgurl" select="concat($sdxdocument/@api-url,'/getatt?app=',$application,'&amp;base=',$dbId,'&amp;id=',$value,'&amp;doc=',$docId)"/>
+		<xsl:variable name="imgurl" select="concat('attached_file?app=',$application,'&amp;base=',$dbId,'&amp;id=',$value,'&amp;doc=',$docId)"/>
 
 		<!-- Taille de la vignette -->
 		<xsl:variable name="thnsize">
@@ -627,10 +627,10 @@
 		<xsl:param name="mode"/>
 
 		<!-- L'url du thumbnail -->
-		<xsl:variable name="thnurl" select="concat($sdxdocument/@api-url,'/getatt?app=',$application,'&amp;base=',$dbId,'&amp;id=',$value/@thn,'&amp;doc=',$docId)"/>
+		<xsl:variable name="thnurl" select="concat('attached_file?app=',$application,'&amp;base=',$dbId,'&amp;id=',$value/@thn,'&amp;doc=',$docId)"/>
 
 		<!-- L'url du document attaché -->
-		<xsl:variable name="imgurl" select="concat($sdxdocument/@api-url,'/getatt?app=',$application,'&amp;base=',$dbId,'&amp;id=',$value,'&amp;doc=',$docId)"/>
+		<xsl:variable name="imgurl" select="concat('attached_file?app=',$application,'&amp;base=',$dbId,'&amp;id=',$value,'&amp;doc=',$docId)"/>
 
 		<!-- Taille de la vignette -->
 		<xsl:variable name="thnsize">

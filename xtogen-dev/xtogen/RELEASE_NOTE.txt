@@ -1,4 +1,12 @@
 ==============================================================================
+ XToGen 2 - le 12/12/2005
+
+Amélioration :
+	* L'accès au document attaché se fait maintenant à partir d'une URL dans
+	l'application même (et plus dans l'arborescence ../sdx/api-url, ceci
+	résoud les problèmes liés aux front-ends Apache ou url-rewrite.
+
+==============================================================================
  XToGen 2 - le 01/12/2005
 
 Correction :

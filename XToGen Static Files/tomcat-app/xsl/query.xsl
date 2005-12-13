@@ -145,7 +145,7 @@ http://www.fsf.org/copyleft/gpl.html
 		<xsl:variable name="alt" select="substring-before($rest,'||')"/>
 
 		<xsl:element name="img">
-			<xsl:attribute name="src"><xsl:value-of select="concat(/sdx:document/@api-url,'/getatt?app=',$app,'&amp;base=',$dbId,'&amp;id=',$thn)"/></xsl:attribute>
+			<xsl:attribute name="src"><xsl:value-of select="concat('attached_file?app=',$app,'&amp;base=',$dbId,'&amp;id=',$thn)"/></xsl:attribute>
 			<xsl:attribute name="border">0</xsl:attribute>
 			<xsl:attribute name="alt"><xsl:value-of select="$alt"/></xsl:attribute>
 		</xsl:element>

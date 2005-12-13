@@ -41,7 +41,7 @@ http://www.fsf.org/copyleft/gpl.html
 
 <xsl:variable name="urlparams" select="concat('app=',$urlparameter[@name='app']/@value,'&amp;base=',$urlparameter[@name='db']/@value,'&amp;db=',$urlparameter[@name='db']/@value,'&amp;id=',$urlparameter[@name='id']/@value,'&amp;doc=',$urlparameter[@name='doc']/@value)"/>
 <xsl:variable name="queryparams" select="concat('qid=',$urlparameter[@name='qid']/@value,'&amp;q=',$urlparameter[@name='q']/@value,'&amp;n=',$urlparameter[@name='n']/@value)"/>
-<xsl:variable name="docurl" select="concat(/sdx:document/@api-url,'/getatt?',$urlparams)"/>
+<xsl:variable name="docurl" select="concat('attached_file?',$urlparams)"/>
 
 <frameset rows="40,*" frameborder="no" border="0" framespacing="0">
 	<frame src="header.xsp?{$urlparams}&amp;{$queryparams}" name="header" scrolling="No" noresize="noresize" id="header" />

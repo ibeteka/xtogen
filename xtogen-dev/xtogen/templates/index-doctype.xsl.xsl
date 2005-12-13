@@ -450,7 +450,7 @@
 <xsl:text>
 
    </xsl:text>
-<xsl:comment> Groupe de champs <xsl:value-of select="@name"/> </xsl:comment>
+<xsl:comment> Groupe de champs <xsl:value-of select="@name"/><xsl:text> </xsl:text></xsl:comment>
 	<xsl:element name="xsl:template">
 		<xsl:attribute name="match">
 			<xsl:call-template name="computeFullPath">
@@ -470,7 +470,7 @@
 <xsl:text>
 
    </xsl:text>
-<xsl:comment> Champ <xsl:value-of select="@name"/> </xsl:comment>
+<xsl:comment> Champ <xsl:value-of select="@name"/><xsl:text> </xsl:text></xsl:comment>
 	<xsl:element name="xsl:template">
 		<xsl:variable name="fieldpath">
 			<xsl:call-template name="computeFullPath">

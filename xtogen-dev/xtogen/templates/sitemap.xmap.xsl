@@ -79,6 +79,7 @@
             <map:reader name="resource" src="org.apache.cocoon.reading.ResourceReader" logger="sitemap.reader.resource" pool-max="32"/>
             <map:reader name="thumbnail" src="fr.tech.sdx.xtogen.image.ThumbnailSDXReader"/>
             <map:reader name="vignette" src="fr.tech.sdx.xtogen.image.ThumbnailFileReader"/>
+            <map:reader name="getatt" logger="sdx.sitemap.DocumentReader" src="fr.gouv.culture.sdx.sitemap.DocumentReader"/>
         </map:readers>
 
         <map:transformers default="xsl">
@@ -265,6 +266,33 @@
         </map:pipeline>
 		</xsl:if>
         <map:pipeline>
+			<map:match pattern="attached_file">
+				<map:act type="request">
+					<map:parameter name="parameters" value="true"/>
+					<map:read type="getatt">
+						<xsl:attribute name="src">{requestQuery}</xsl:attribute>
+						<map:parameter name="app">
+							<xsl:attribute name="value">{app}</xsl:attribute>
+						</map:parameter>
+						<map:parameter name="base">
+							<xsl:attribute name="value">{base}</xsl:attribute>
+						</map:parameter>
+						<map:parameter name="id">
+							<xsl:attribute name="value">{id}</xsl:attribute>
+						</map:parameter>
+						<xsl:comment> id of the attached document, relative to a main document id </xsl:comment>
+						<map:parameter name="attid">
+							<xsl:attribute name="value">{attid}</xsl:attribute>
+						</map:parameter>
+					</map:read>
+				</map:act>
+			</map:match>
+			<map:match pattern="**.js">
+		        <map:read>
+			  	  <xsl:attribute name="src">{1}.js</xsl:attribute>
+			  	  <xsl:attribute name="mime-type">text/javascript</xsl:attribute>
+			    </map:read>
+		   </map:match>
 		   <map:match pattern="**.ico">
 		      <map:read>
 			  	<xsl:attribute name="src">{1}.ico</xsl:attribute>

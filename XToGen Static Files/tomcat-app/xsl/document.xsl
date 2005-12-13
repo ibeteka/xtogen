@@ -342,12 +342,12 @@ http://www.fsf.org/copyleft/gpl.html
 		</xsl:variable>
 
 		<!-- L'url du thumbnail -->
-		<xsl:variable name="thnurl" select="concat($sdxdocument/@api-url,'/getatt?app=',$application,'&amp;base=',$dbId,'&amp;id=',$thnid,'&amp;doc=',$docId)"/>
+		<xsl:variable name="thnurl" select="concat('attached_file?app=',$application,'&amp;base=',$dbId,'&amp;id=',$thnid,'&amp;doc=',$docId)"/>
 
 		<!-- L'url du document attaché (via la page de visualisation) -->
 		<xsl:variable name="imgurlvisu" select="concat('show_attach.xsp?app=',$application,'&amp;db=',$dbId,'&amp;id=',$imgid,'&amp;doc=',$docId,'&amp;label=',$imglabel,'&amp;q=',$urlparameter[@name='q']/@value,'&amp;qid=',$urlparameter[@name='qid']/@value,'&amp;n=',$urlparameter[@name='n']/@value)"/>
 		<!-- L'url du document attaché (en direct) -->
-		<xsl:variable name="imgurldirect" select="concat($sdxdocument/@api-url,'/getatt?app=',$application,'&amp;db=',$dbId,'&amp;id=',$imgid,'&amp;doc=',$docId)"/>
+		<xsl:variable name="imgurldirect" select="concat('attached_file?app=',$application,'&amp;db=',$dbId,'&amp;id=',$imgid,'&amp;doc=',$docId)"/>
 
 		<xsl:choose>
 			<xsl:when test="$mode='inline'">

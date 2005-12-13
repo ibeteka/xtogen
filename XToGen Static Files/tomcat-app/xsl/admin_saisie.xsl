@@ -1033,8 +1033,8 @@ http://www.fsf.org/copyleft/gpl.html
 					<xsl:variable name="imgurl">
 						<xsl:choose>
 							<xsl:when test="$mode='upload' or $mode='browser'"><xsl:value-of select="concat($rootUrl,'thumbnail?app=',$urlparameter[@name='app']/@value,'&amp;base=',$dbId,'&amp;id=',$value,'&amp;size=',$thnsize)"/></xsl:when>
-							<xsl:when test="$mode='link'"><xsl:value-of select="concat(/sdx:document/@api-url,'/getatt?app=',$urlparameter[@name='app']/@value,'&amp;base=',$dbId,'&amp;doc=',$docid,'&amp;id=',$value/@thn)"/></xsl:when>
-							<xsl:otherwise><xsl:value-of select="concat(/sdx:document/@api-url,'/getatt?app=',$urlparameter[@name='app']/@value,'&amp;db=',$dbId,'&amp;doc=',$docid,'&amp;id=',$value)"/></xsl:otherwise>
+							<xsl:when test="$mode='link'"><xsl:value-of select="concat('attached_file?app=',$urlparameter[@name='app']/@value,'&amp;base=',$dbId,'&amp;doc=',$docid,'&amp;id=',$value/@thn)"/></xsl:when>
+							<xsl:otherwise><xsl:value-of select="concat('attached_file?app=',$urlparameter[@name='app']/@value,'&amp;db=',$dbId,'&amp;doc=',$docid,'&amp;id=',$value)"/></xsl:otherwise>
 						</xsl:choose>
 					</xsl:variable>
 					<xsl:if test="($mode='link' and $value/@thn) or ($mode='inline' and $value) or ($mode='upload' or $mode='browser')">

@@ -105,13 +105,13 @@
 		<!-- Vignette -->
 		<xsl:variable name="vignette">
 			<xsl:choose>
-				<xsl:when test="$mode='inline'"><xsl:value-of select="concat(/sdx:document/@api-url,'/getatt?app=',$app,'&amp;base=',$dbId,'&amp;id=',$img)"/></xsl:when>
+				<xsl:when test="$mode='inline'"><xsl:value-of select="concat('attached_file?app=',$app,'&amp;base=',$dbId,'&amp;id=',$img)"/></xsl:when>
 				<xsl:otherwise>
 					<xsl:variable name="field" select="$urlparameter[@name='field']/@value"/>
 					<xsl:variable name="dt" select="$conf_disp/documenttypes/documenttype[@id=$dbId]"/>
 					<xsl:choose>
 						<xsl:when test="$thn!='' and not($dt/nav/on[@field=$field and @thnsize])">
-							<xsl:value-of select="concat(/sdx:document/@api-url,'/getatt?app=',$app,'&amp;base=',$dbId,'&amp;id=',$thn)"/>
+							<xsl:value-of select="concat('attached_file?app=',$app,'&amp;base=',$dbId,'&amp;id=',$thn)"/>
 						</xsl:when>
 						<xsl:otherwise>
 							<xsl:value-of select="concat($rootUrl,'thumbnail?app=',$app,'&amp;base=',$dbId,'&amp;id=',$img,'&amp;size=',$thnsize)"/>

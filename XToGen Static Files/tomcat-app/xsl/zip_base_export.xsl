@@ -67,7 +67,7 @@
 		<xsl:param name="attachfieldname"/>
 
 		<xsl:variable name="docid" select="$result/sdx:field[@name='sdxdocid']/@value"/>
-		<xsl:variable name="attachUrl" select="concat(/sdx:document/@api-url,'/getatt?app=',/sdx:document/@app,'&amp;base=',$base,'&amp;')"/>
+		<xsl:variable name="attachUrl" select="concat('attached_file?app=',/sdx:document/@app,'&amp;base=',$base,'&amp;')"/>
 
 		<xsl:for-each select="$result/sdx:field[@name=$attachfieldname]">
 			<xsl:variable name="thn" select="substring-before(@value,'||')"/>
